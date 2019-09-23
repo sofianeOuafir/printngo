@@ -62,10 +62,9 @@ class HomePage extends React.Component {
         { sections.map((section, index) => {
           if(index === 1) {
             return (
-              <Fragment>
+              <Fragment key={index}>
                 <HowItWorks/>
                 <LandingPageSection 
-                  key={index}
                   {...section}
                 />
               </Fragment>
