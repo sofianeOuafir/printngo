@@ -1,0 +1,51 @@
+@import 'variables/size';
+
+.p0 {
+  padding: 0;
+}
+
+.pr1 {
+  padding-right: $s-size;
+}
+
+.pr2 {
+  padding-right: $m-size;
+}
+
+.pr3 {
+  padding-right: $l-size;
+}
+
+.pl1 {
+  padding-left: $s-size;
+}
+
+.pl2 {
+  padding-left: $m-size;
+}
+.pl3 {
+  padding-left: $l-size;
+}
+
+.pb1 {
+  padding-bottom: $s-size;
+}
+
+.pb2 {
+  padding-bottom: $m-size;
+}
+
+.pb3 {
+  padding-bottom: $l-size;
+}
+
+.pt1 {
+  padding-top: $s-size;
+}
+
+.pt2 {
+  padding-top: $m-size;
+}
+.pt3 {
+  padding-top: $l-size;
+}

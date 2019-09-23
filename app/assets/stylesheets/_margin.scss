@@ -1,0 +1,51 @@
+@import 'variables/size';
+
+.m0 {
+  margin: 0;
+}
+
+.mr1 {
+  margin-right: $s-size;
+}
+
+.mr2 {
+  margin-right: $m-size;
+}
+
+.mr3 {
+  margin-right: $l-size;
+}
+
+.ml1 {
+  margin-left: $s-size;
+}
+
+.ml2 {
+  margin-left: $m-size;
+}
+.ml3 {
+  margin-left: $l-size;
+}
+
+.mb1 {
+  margin-bottom: $s-size;
+}
+
+.mb2 {
+  margin-bottom: $m-size;
+}
+
+.mb3 {
+  margin-bottom: $l-size;
+}
+
+.mt1 {
+  margin-top: $s-size;
+}
+
+.mt2 {
+  margin-top: $m-size;
+}
+.mt3 {
+  margin-top: $l-size;
+}
