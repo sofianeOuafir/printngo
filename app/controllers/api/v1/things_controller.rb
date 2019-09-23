@@ -1,4 +1,4 @@
-class V1::ThingsController < ApplicationController
+class Api::V1::ThingsController < ApplicationController
   def index
     render json: {
       things: [
