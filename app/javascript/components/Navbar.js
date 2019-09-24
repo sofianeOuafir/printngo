@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 class Navbar extends React.Component {
   render () {
     return (
-      <div>
-        <Link to="/">Print N' Go</Link>
+      <div id="navbar" className="navbar">
+        <Link className="website-name" to="/">Print N' Go</Link>
         <Link to="/">How it works?</Link>
         <Link to="/">Why Print n' go?</Link>
         <Link to="/">Pricing</Link>

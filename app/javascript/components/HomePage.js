@@ -5,8 +5,22 @@ import HowItWorks from './HowItWorks';
 import LandingPageSection from './LandingPageSection';
 import Layout from './Layout';
 import images from './../images';
+import UploadAndPrintButton from './UploadAndPrintButton';
 
 class HomePage extends React.Component {
+  // code for changing navbar color on scrolling
+  // componentDidMount () {
+  //   window.addEventListener('scroll', this.handleScroll);
+  // }
+
+  // componentWillUnmount () {
+  //     window.removeEventListener('scroll', this.handleScroll);
+  // }
+
+  // handleScroll = function(event) {
+  //   const foo = document.getElementById('navbar').getBoundingClientRect();
+  // }
+
   render () {
     const sections = [{
       title: "Upload, Choose your closest pick up point, Print n' Go", 
@@ -14,7 +28,8 @@ class HomePage extends React.Component {
       imgSrc: images.printer,
       imgAlt: "Printer Icon",
       bgColour: 'bg-navy',
-      reverse: false
+      reverse: false,
+      CallToActionButton: UploadAndPrintButton
     }, {
       title: "We are the closest printing service near you", 
       description: "How? Our partners are your favourite convenient stores, pharmacies and any kind of shops that has a printing machine.",

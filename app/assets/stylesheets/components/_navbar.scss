@@ -1,0 +1,23 @@
+@import 'variables/size'; 
+
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px black solid;
+  height: 100px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index:2;
+}
+
+.navbar a {
+  text-decoration: none;
+  font-size: $m-size;
+  color: white;
+}
+
+.navbar .website-name {
+  font-size: $l-size;
+}
