@@ -29,7 +29,7 @@ class PartnerPage extends React.Component {
       reverse: false
     }, {
       title: "It is hassle free and won't impact your business",
-      description: "All you have to do is pressing the printing button and handling the documents to the customers after a verificaiton of ID.",
+      description: "All you have to do is pressing the printing button and handling the documents to the customers after a verification of ID.",
       imgSrc: images.yoga,
       imgAlt: "Hassle free Icon",
       bgColour: 'bg-navy',
