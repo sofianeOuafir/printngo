@@ -1,6 +1,7 @@
 import React from "react"
 import Modal from 'react-modal'
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
 class UploadAndPrintButton extends React.Component {
   constructor() {
@@ -30,18 +31,9 @@ class UploadAndPrintButton extends React.Component {
           'Content-Type': 'multipart/form-data'
         }
       }).then((response) => {
-        console.log(response);
+        this.props.history.push('/basket')
       })
     }
-
-    // var imagefile = document.querySelector('#file');
-    // formData.append("file", imagefile.files);
-    // axios.post('upload_file', formData, {
-    //     headers: {
-    //       'Content-Type': 'multipart/form-data'
-    //     }
-    // })
-
   }
 
   render () {
@@ -71,4 +63,4 @@ class UploadAndPrintButton extends React.Component {
   }
 }
 
-export default UploadAndPrintButton
+export default withRouter(UploadAndPrintButton);
