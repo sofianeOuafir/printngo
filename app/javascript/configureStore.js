@@ -3,7 +3,6 @@ import {
 } from 'redux';
 
 const initialState = {
-  things: []
 };
 
 function rootReducer(state, action) {

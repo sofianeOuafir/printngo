@@ -3,4 +3,6 @@ class Ahoy::Visit < ApplicationRecord
 
   has_many :events, class_name: "Ahoy::Event"
   belongs_to :user, optional: true
+  has_many :orders, foreign_key: :ahoy_visit_id
+  has_many :documents, foreign_key: :ahoy_visit_id
 end
