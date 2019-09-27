@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 
 import PartnerPage from './PartnerPage';
 import HomePage from './HomePage';
+import PickUpLocationPage from './PickUpLocationPage';
 import BasketPage from './BasketPage';
 import configureStore from './../configureStore';
 const store = configureStore();
@@ -18,6 +19,7 @@ class App extends React.Component {
             <Route exact path="/" render={() => <HomePage />}/>
             <Route path="/become-partner" render={() => <PartnerPage />  }/>
             <Route path="/basket" render={() => <BasketPage />  }/>
+            <Route path="/pick-up-location" render={() => <PickUpLocationPage />  }/>
           </Switch>
         </BrowserRouter>
       </Provider>

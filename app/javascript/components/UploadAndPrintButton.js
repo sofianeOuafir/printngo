@@ -31,15 +31,17 @@ class UploadAndPrintButton extends React.Component {
           'Content-Type': 'multipart/form-data'
         }
       }).then((response) => {
+        this.closeModal();
         this.props.history.push('/basket')
       })
     }
   }
 
   render () {
+    const { text = "Upload & Print Now" } = this.props;
     return (
       <React.Fragment>
-        <a className="pointer" onClick={this.openModal}>Upload & Print Now</a>
+        <a className="pointer" onClick={this.openModal}>{text}</a>
         <Modal
           ariaHideApp={false}
           isOpen={this.state.modalIsOpen}

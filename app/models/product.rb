@@ -7,10 +7,14 @@ class Product < ApplicationRecord
     Product.where(format: 'A4', color: false).first
   end
 
+  def name
+    color = color? ? 'Color' : 'Black & White'
+    "#{format} - #{color}"
+  end
+
   def as_json(options = {})
     h = super(options)
-    color = color? ? 'Color' : 'Black & White'
-    h[:name] = "#{format} - #{color}"
+    h[:name] = name
     h
   end
 end
