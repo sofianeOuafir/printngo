@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :sessions, only: [:create, :destroy]
       resources :order_items, only: [:create, :update, :destroy]
       resources :documents, only: [:create, :update, :destroy]
+      resources :products, only: [:index]
       resources :orders do
         resources :documents, only: [:create, :update, :destroy], controller: 'orders/documents'
       end

@@ -1,8 +1,9 @@
 import React, { Fragment } from "react"
+import { Link } from 'react-router-dom';
 
 const OrderLayout = (props) => (
   <Fragment>
-  <div>Print N' Go</div>
+  <Link to="/">Print N' Go</Link>
     {props.children}
   </Fragment>
 )
