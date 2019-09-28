@@ -1,22 +1,27 @@
-import printer from './../assets/images/landing_page/printer.png';
-import pinpoint from './../assets/images/landing_page/pinpoint.png';
-import runningMan from './../assets/images/landing_page/running-man.png';
-import debitCard from './../assets/images/landing_page/debit-card.png';
-import lock from './../assets/images/landing_page/lock.png';
-import hourglass from './../assets/images/landing_page/hourglass.png';
-import moneyBag from './../assets/images/landing_page/money-bag.png';
-import handShake from './../assets/images/landing_page/handshake.png';
-import money from './../assets/images/landing_page/money.png';
-import attract from './../assets/images/landing_page/attract.png';
-import yoga from './../assets/images/landing_page/yoga.png';
-import exercise from './../assets/images/landing_page/exercise.png';
-import shout from './../assets/images/landing_page/shout.png';
-import upload from './../assets/images/landing_page/upload.png';
-import creditCard from './../assets/images/landing_page/credit-card.png';
-import map from './../assets/images/landing_page/map.png';
-import file from './../assets/images/landing_page/file.png';
+import printer from './../assets/images/printer.png';
+import pinpoint from './../assets/images/pinpoint.png';
+import runningMan from './../assets/images/running-man.png';
+import debitCard from './../assets/images/debit-card.png';
+import lock from './../assets/images/lock.png';
+import hourglass from './../assets/images/hourglass.png';
+import moneyBag from './../assets/images/money-bag.png';
+import handShake from './../assets/images/handshake.png';
+import money from './../assets/images/money.png';
+import attract from './../assets/images/attract.png';
+import yoga from './../assets/images/yoga.png';
+import exercise from './../assets/images/exercise.png';
+import shout from './../assets/images/shout.png';
+import upload from './../assets/images/upload.png';
+import creditCard from './../assets/images/credit-card.png';
+import map from './../assets/images/map.png';
+import file from './../assets/images/file.png';
+import aDocument from './../assets/images/document.png';
+import minus from './../assets/images/minus.png';
+import plus from './../assets/images/plus.png';
 
 export default {
+  plus,
+  minus,
   printer,
   pinpoint,
   runningMan,
@@ -33,5 +38,6 @@ export default {
   upload,
   creditCard,
   map,
-  file
+  file,
+  aDocument
 }

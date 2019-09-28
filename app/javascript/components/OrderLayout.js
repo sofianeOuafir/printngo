@@ -3,11 +3,19 @@ import { Link } from 'react-router-dom';
 
 const OrderLayout = ({ title, children, nextButtonLink, nextButtonText, prevButtonLink, prevButtonText }) => (
   <Fragment>
-    <Link to="/">Print N' Go</Link>
-    <h1>{title}</h1>
+    <div className="order-navbar content-container">
+      <Link className="website-name">Print N' Go</Link>
+    </div>
+    <div className="content-container">
+      <h1 className="h3 favourite-font-weight">{title}</h1>
+    </div>
+
     {children}
-    { prevButtonLink && prevButtonText && <Link to={prevButtonLink}>{prevButtonText}</Link> }
-    { nextButtonLink && nextButtonText && <Link to={nextButtonLink}>{nextButtonText}</Link> }
+
+    <div className="content-container">
+      { prevButtonLink && prevButtonText && <Link to={prevButtonLink}>{prevButtonText}</Link> }
+      { nextButtonLink && nextButtonText && <Link to={nextButtonLink}>{nextButtonText}</Link> }
+    </div>
   </Fragment>
 )
 

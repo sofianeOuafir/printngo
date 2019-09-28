@@ -1,4 +1,5 @@
 @import 'variables/size'; 
+@import 'variables/colours'; 
 
 .navbar {
   display: flex;
@@ -12,12 +13,20 @@
   z-index:2;
 }
 
-.navbar a {
+.order-navbar {
+  display: flex;
+  justify-content: center;
+  background-color: $navy;
+  height: 75px;
+  align-items: center;
+}
+
+.navbar a, .order-navbar a {
   text-decoration: none;
   font-size: $m-size;
   color: white;
 }
 
-.navbar .website-name {
-  font-size: $l-size;
+.navbar .website-name, .order-navbar .website-name {
+  font-size: $ml-size;
 }
