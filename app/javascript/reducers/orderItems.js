@@ -7,13 +7,24 @@ const orderItemsReducer = (state = orderItemsReducerDefaultState, action) => {
         ...action.orderItems
       ];
     case "REMOVE_ORDER_ITEM":
-    console.log(state);
     return [
       ...state.filter((orderItem) => {
         return orderItem.id !== action.orderItemId
       })
     ]
-      console.log(action.orderItemId);
+    case "UPDATE_ORDER_ITEM": 
+    return [
+      ...state.map((orderItem) => {
+        if(orderItem.id === action.id) {
+          return {
+            ...orderItem,
+            ...action.updates
+          };
+        } else {
+          return orderItem;
+        }
+      })
+    ]
     default:
       return state;
   }

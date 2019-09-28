@@ -16,3 +16,12 @@ export const removeOrderItem = orderItemId => dispatch => {
   })
 };
 
+export const updateOrderItem = ({ id, updates }) => dispatch => {
+  axios.patch(`api/v1/order_items/${id}`, updates).then(response => {
+    return dispatch({
+      type: "UPDATE_ORDER_ITEM",
+      id,
+      updates: response.data
+    });
+  })
+}
