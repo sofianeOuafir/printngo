@@ -31,7 +31,7 @@ class BasketPage extends React.Component {
     return (
       <OrderLayout 
         title="Your Basket"
-        nextButton={{ link: '/pick-up-location', text: 'Go to Pick up details' }}
+        nextButton={{ link: '/pick-up-location', text: 'Go to Pick up details', disabled: orderItems.length == 0 }}
         info={`Subtotal: ${number_of_items} (${pluralize('Item', number_of_items)}): $${sub_total}`}
       >
         <div className="content-container">
