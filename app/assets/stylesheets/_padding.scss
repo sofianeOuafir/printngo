@@ -56,3 +56,15 @@
 .py2 {
   @extend .pt2, .pb2;
 }
+
+.px1 {
+  @extend .pr1, .pl1;
+}
+
+.px2 {
+  @extend .pr2, .pl2;
+}
+
+.px3 {
+  @extend .pr3, .pl3;
+}

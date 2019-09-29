@@ -4,7 +4,7 @@ import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { addOrderItem } from './../actions/orderItems';
+import { addOrderItem } from './../actions/orderItems'; 
 
 class UploadAndPrintButton extends React.Component {
   constructor() {
@@ -44,10 +44,10 @@ class UploadAndPrintButton extends React.Component {
   }
 
   render () {
-    const { text = "Upload & Print Now" } = this.props;
+    const { text = "Upload & Print Now", className } = this.props;
     return (
       <React.Fragment>
-        <a className="pointer" onClick={this.openModal}>{text}</a>
+        <a className={`${className} pointer`} onClick={this.openModal}>{text}</a>
         <Modal
           ariaHideApp={false}
           isOpen={this.state.modalIsOpen}

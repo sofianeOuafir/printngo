@@ -1,22 +1,20 @@
 import React, { Fragment } from "react"
 import { Link } from 'react-router-dom';
 
-const OrderLayout = ({ title, children, nextButtonLink, nextButtonText, prevButtonLink, prevButtonText }) => (
+const OrderLayout = ({ title, info = null, children, nextButton = null }) => (
   <Fragment>
     <div className="order-navbar">
       <div className="content-container">
         <Link to="#" className="website-name">Print N' Go</Link>
       </div>
     </div>
-    <div className="content-container">
-      <h1 className="h3 favourite-font-weight">{title}</h1>
+    <div className="my2 content-container flex justify-content--between align-items--center sticky bg-white">
+      <h1 className="h3 text-navy favourite-font-weight">{title}</h1>
+      {info && <span className="h4 text-navy">{info}</span>}
+      { nextButton && <Link className="button button--pink" to={nextButton.link}>{nextButton.text}  &rarr;</Link> }
     </div>
-
-    {children}
-
-    <div className="content-container">
-      { prevButtonLink && prevButtonText && <Link to={prevButtonLink}>{prevButtonText}</Link> }
-      { nextButtonLink && nextButtonText && <Link to={nextButtonLink}>{nextButtonText}</Link> }
+    <div className="mb3 pb3">
+      {children}
     </div>
   </Fragment>
 )

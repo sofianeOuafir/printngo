@@ -1,3 +1,5 @@
+@import 'variables/colours';
+
 .border {
   border: 1px black solid;
 }
@@ -8,4 +10,8 @@
 
 .border-color--white {
   border-color: white;
+}
+
+.border-color--navy {
+  border-color: $navy;
 }

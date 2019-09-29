@@ -1,0 +1,33 @@
+@import 'variables/colours';
+@import 'variables/font_weights';
+@import 'variables/size';
+@import 'padding';
+
+.button {
+  border-radius: 10px;
+  color: white;
+  display: inline-block;
+  text-decoration: none;
+  font-weight: $favourite-font-weight;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: $m-size;
+  @extend .px3;
+}
+
+.button--navy {
+  background-color: $navy;
+}
+
+.button-outline {
+  border: 1px white solid;
+}
+
+.button-outline--pink {
+  border: 1px $pink solid;
+  color: $pink;
+}
+
+.button--pink {
+  background-color: $pink;
+}

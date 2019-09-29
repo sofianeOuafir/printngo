@@ -50,11 +50,11 @@ class OrderItem extends React.Component {
         <div className="flex flex-direction--column">
           <span className="mb2">Quantity:</span>
           <div className="flex justify-content--around">
-            <a onClick={(e) => { this.onQuantityChange({ e, orderItemId: id, currentQuantity: quantity, action: 'minus'  }) } }>
+            <a className="pointer" onClick={(e) => { this.onQuantityChange({ e, orderItemId: id, currentQuantity: quantity, action: 'minus'  }) } }>
               <img src={images.minus} alt="Document Icon" width={30}/>
             </a>
             <span>{quantity}</span>
-            <a onClick={(e) => { this.onQuantityChange({ e, orderItemId: id, currentQuantity: quantity, action: 'plus'  }) } }>          
+            <a className="pointer" onClick={(e) => { this.onQuantityChange({ e, orderItemId: id, currentQuantity: quantity, action: 'plus'  }) } }>          
               <img src={images.plus} alt="Document Icon" width={30}/>
             </a>
           </div>

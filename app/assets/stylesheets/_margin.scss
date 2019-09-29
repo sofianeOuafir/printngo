@@ -49,3 +49,10 @@
 .mt3 {
   margin-top: $l-size;
 }
+
+.my2 {
+  @extend .mt2, .mb2;
+}
+.my3 {
+  @extend .mt3, .mb3;
+}

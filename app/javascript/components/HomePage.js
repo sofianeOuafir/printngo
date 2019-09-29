@@ -23,7 +23,7 @@ class HomePage extends React.Component {
 
   render () {
     const sections = [{
-      title: "Upload, Choose your closest pick up point, Print n' Go", 
+      title: "Upload documents, Choose your closest pick up point, Print n' Go", 
       description: "Printing documents has never been so convenient.",
       imgSrc: images.printer,
       imgAlt: "Printer Icon",

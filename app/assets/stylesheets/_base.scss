@@ -21,3 +21,9 @@ body {
 .block {
   display: block;
 }
+
+.sticky {
+  position: -webkit-sticky; /* Required for Safari */
+  position: sticky;
+  top: 0px;
+}
