@@ -6,6 +6,11 @@ const orderItemsReducer = (state = orderItemsReducerDefaultState, action) => {
       return [
         ...action.orderItems
       ];
+    case "ADD_ORDER_ITEM":
+      return [
+        ...state,
+        action.orderItem
+      ]
     case "REMOVE_ORDER_ITEM":
     return [
       ...state.filter((orderItem) => {

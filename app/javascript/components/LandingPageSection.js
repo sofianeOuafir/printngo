@@ -5,8 +5,8 @@ class LandingPageSection extends React.Component {
   render () {
     const { id = null, title, description = null, CallToActionButton = null, imgSrc, imgAlt, bgColour, reverse = false } = this.props;
     return (
-      <div id={id} className={`${bgColour} content-container fullscreen border--bottom border-color--white justify-content--center align-items--center text-white flex`}>
-        <div className={`flex justify-content--center ${reverse ? 'flex-direction--row-reverse' : null}`}>
+      <div id={id} className={`${bgColour} fullscreen border--bottom border-color--white align-items--center text-white flex`}>
+        <div className={`content-container flex justify-content--center ${reverse ? 'flex-direction--row-reverse' : null}`}>
           <div className={`${reverse ? 'ml3' : 'mr3'}`} style={{ width: '55%' }}>
             <h1 className="m0 h2 favourite-font-weight">{title}</h1>
             {description && <p className="h4">{description}</p>}

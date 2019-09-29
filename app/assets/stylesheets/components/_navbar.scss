@@ -22,8 +22,9 @@
 }
 
 .navbar a, .order-navbar a {
+  margin-right: $m-size;
   text-decoration: none;
-  font-size: $m-size;
+  font-size: $s-size;
   color: white;
 }
 

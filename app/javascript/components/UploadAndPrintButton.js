@@ -2,6 +2,9 @@ import React from "react"
 import Modal from 'react-modal'
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import { addOrderItem } from './../actions/orderItems';
 
 class UploadAndPrintButton extends React.Component {
   constructor() {
@@ -31,6 +34,9 @@ class UploadAndPrintButton extends React.Component {
           'Content-Type': 'multipart/form-data'
         }
       }).then((response) => {
+        console.log(response);
+        this.props.addOrderItem(response.data)
+        console.log(response);
         this.closeModal();
         this.props.history.push('/basket')
       })
@@ -65,4 +71,8 @@ class UploadAndPrintButton extends React.Component {
   }
 }
 
-export default withRouter(UploadAndPrintButton);
+const mapDispatchToProps = (dispatch) => ({
+  addOrderItem: (orderItem) => dispatch(addOrderItem(orderItem))
+})
+
+export default connect(null, mapDispatchToProps)(withRouter(UploadAndPrintButton));

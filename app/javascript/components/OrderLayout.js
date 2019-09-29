@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 
 const OrderLayout = ({ title, children, nextButtonLink, nextButtonText, prevButtonLink, prevButtonText }) => (
   <Fragment>
-    <div className="order-navbar content-container">
-      <Link className="website-name">Print N' Go</Link>
+    <div className="order-navbar">
+      <div className="content-container">
+        <Link to="#" className="website-name">Print N' Go</Link>
+      </div>
     </div>
     <div className="content-container">
       <h1 className="h3 favourite-font-weight">{title}</h1>

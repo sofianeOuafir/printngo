@@ -7,7 +7,13 @@ class Api::V1::Orders::DocumentsController < ApplicationController
       document.file.attach(params[:file])
       document.save
       product = Product.a4_black_and_white
-      order.order_items.create(product_id: product.id, document_id: document.id, quantity: 1, price: product.price)
+      order_item = order.order_items.create(
+        product_id: product.id,
+        document_id: document.id,
+        quantity: 1,
+        price: product.price
+      )
+      render json: order_item.to_json(include: [:document, :order])
     end
   end
 end

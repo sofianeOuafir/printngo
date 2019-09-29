@@ -1,5 +1,6 @@
 import React from "react"
 import { connect } from 'react-redux';
+import pluralize from 'pluralize';
 
 import images from './../images';
 import { removeOrderItem, updateOrderItem } from './../actions/orderItems';
@@ -20,7 +21,9 @@ class OrderItem extends React.Component {
   }
 
   render () {
-    const { orderItem } = this.props;
+    const { orderItem, product_id, products } = this.props;
+    const { id, document, quantity, sub_total } = orderItem;
+    const { name, number_of_page } = document;
     return (
       <div className="border flex justify-content--around py2 mb1 h4"> 
         <div className="center">
@@ -29,17 +32,17 @@ class OrderItem extends React.Component {
           </div>
           <div className="flex align-items--center mt1">
             <a className="mr1 pointer">View</a>
-            <a className="pointer" onClick={() => { this.onRemove(orderItem.id) } }>Remove</a>
+            <a className="pointer" onClick={() => { this.onRemove(id) } }>Remove</a>
           </div>
         </div>
-        <div className="flex flex-direction--column">
-          <span className="mb2">{orderItem.document.name}</span>
-          <span>{`${orderItem.document.number_of_page} Page`}</span>
+        <div className="flex flex-direction--column" style={{ width: '100px'}}>
+          <span className="mb2 h5" title={name}>{name.length > 30 ? `${name.substring(0, 30)}...` : name}</span>
+          <span>{`${number_of_page} ${pluralize('Page', number_of_page)}`}</span>
         </div>
         <div className="flex flex-direction--column">
           <span className="mb2">Print In: </span>
-          <select value={orderItem.product_id} onChange={(e) => { this.onProductChange({ e: e, orderItemId: orderItem.id }) }}>
-          { this.props.products.map((product, index) => (
+          <select value={product_id} onChange={(e) => { this.onProductChange({ e: e, orderItemId: id }) }}>
+          { products.map((product, index) => (
             <option key={index} value={product.id}>{product.name}</option>
           )) }
           </select>
@@ -47,18 +50,18 @@ class OrderItem extends React.Component {
         <div className="flex flex-direction--column">
           <span className="mb2">Quantity:</span>
           <div className="flex justify-content--around">
-            <a onClick={(e) => { this.onQuantityChange({ e, orderItemId: orderItem.id, currentQuantity: orderItem.quantity, action: 'minus'  }) } }>
+            <a onClick={(e) => { this.onQuantityChange({ e, orderItemId: id, currentQuantity: quantity, action: 'minus'  }) } }>
               <img src={images.minus} alt="Document Icon" width={30}/>
             </a>
-            <span>{orderItem.quantity}</span>
-            <a onClick={(e) => { this.onQuantityChange({ e, orderItemId: orderItem.id, currentQuantity: orderItem.quantity, action: 'plus'  }) } }>          
+            <span>{quantity}</span>
+            <a onClick={(e) => { this.onQuantityChange({ e, orderItemId: id, currentQuantity: quantity, action: 'plus'  }) } }>          
               <img src={images.plus} alt="Document Icon" width={30}/>
             </a>
           </div>
         </div>
         <div className="flex flex-direction--column">
           <span className="mb2">Price:</span>
-          <span>${orderItem.sub_total / 100}</span>
+          <span>${sub_total / 100}</span>
         </div>
       </div>
     );

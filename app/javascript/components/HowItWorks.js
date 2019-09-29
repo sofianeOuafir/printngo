@@ -32,16 +32,18 @@ class HowItWorks extends React.Component {
       number: 4
     }]
     return (
-      <div className={`bg-orange fullscreen border--bottom border-color--white justify-content--center align-items--center text-white flex flex-direction--column`}>
-        <h1 className="m0 h2 favourite-font-weight mb3">How It Works?</h1>
-        <div className="flex justify-content--around center">
-          { steps.map((step, index) => (
-            <div key={index} className="mr1">
-              <Circle number={step.number} />
-              <img src={step.src} alt={step.alt} width={step.width}/>
-              <h2 className="h3">{ step.title }</h2>
-            </div>
-          )) }
+      <div className={`bg-orange fullscreen border--bottom border-color--white justify-content--center text-white flex align-items--center`}>
+        <div className="content-container">
+          <h1 className="m0 h2 favourite-font-weight mb3 center">How It Works?</h1>
+          <div className="flex justify-content--around center">
+            { steps.map((step, index) => (
+              <div key={index} className="mr1">
+                <Circle number={step.number} />
+                <img src={step.src} alt={step.alt} width={step.width}/>
+                <h2 className="h3">{ step.title }</h2>
+              </div>
+            )) }
+          </div>
         </div>
       </div>
     );
