@@ -6,6 +6,7 @@ import thunk from 'redux-thunk';
 import orderItemsReducer from './reducers/orderItems';
 import productsReducer from './reducers/products';
 import ordersReducer from './reducers/orders';
+import partnersReducer from './reducers/partners';
 
 let composeEnhancers;
 try {
@@ -25,7 +26,8 @@ export default function (initData) {
     combineReducers({
       orderItems: orderItemsReducer,
       products: productsReducer,
-      order: ordersReducer
+      order: ordersReducer,
+      partners: partnersReducer
     }),
     initData,
     composeEnhancers(applyMiddleware(thunk))
