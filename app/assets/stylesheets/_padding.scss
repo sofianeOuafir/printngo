@@ -65,6 +65,10 @@
   @extend .pr2, .pl2;
 }
 
+.p2 {
+  @extend .px2, .py2;
+}
+
 .px3 {
   @extend .pr3, .pl3;
 }

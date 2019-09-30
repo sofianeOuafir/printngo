@@ -1,15 +1,14 @@
 import React from "react"
-import axios from 'axios';
 import { connect } from 'react-redux';
-import pluralize from 'pluralize';
+import axios from 'axios';
 
-import OrderLayout from "./OrderLayout";
+import OrderLayout from './OrderLayout';
+import OrderItemList from './OrderItemList';
 import { setOrderItems } from './../actions/orderItems';
 import { setProducts } from './../actions/products';
 import { setOrder } from './../actions/orders';
-import OrderItemList from './OrderItemList';
 
-class BasketPage extends React.Component {
+class PaymentPage extends React.Component {
   componentDidMount(){
     axios.get('/api/v1/products').then((response) => {
       this.props.setProducts(response.data);
@@ -21,28 +20,21 @@ class BasketPage extends React.Component {
   }
 
   render () {
-    const  { orderItems, order } = this.props;
-    let { sub_total, number_of_items } = order;
-    sub_total = sub_total / 100;
-
     return (
-      <OrderLayout 
-        title="Your Basket"
-        nextButton={{ link: '/pick-up-location', text: 'Go to Pick up details', disabled: orderItems.length == 0 }}
-        info={`Subtotal: ${number_of_items} (${pluralize('Item', number_of_items)}): $${sub_total}`}
-      >
+      <OrderLayout title="Review your order and pay">
         <div className="content-container">
-          <OrderItemList />
+          <div className="p2 border mb2">
+            <h1 className="h4 text-navy">Your Order</h1>
+            <OrderItemList />
+          </div>
+          <div className="p2 border">
+            <h1 className="h4 text-navy">Pick up Location</h1>
+            <span></span>
+          </div>
+
         </div>
       </OrderLayout>
     );
-  }
-}
-
-const mapStateToProps = (state) => {
-  return {
-    orderItems: state.orderItems,
-    order: state.order
   }
 }
 
@@ -54,4 +46,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(BasketPage);
+export default connect(null, mapDispatchToProps)(PaymentPage)

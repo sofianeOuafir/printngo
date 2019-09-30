@@ -34,9 +34,7 @@ class UploadAndPrintButton extends React.Component {
           'Content-Type': 'multipart/form-data'
         }
       }).then((response) => {
-        console.log(response);
         this.props.addOrderItem(response.data)
-        console.log(response);
         this.closeModal();
         this.props.history.push('/basket')
       })
