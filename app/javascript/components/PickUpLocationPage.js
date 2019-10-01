@@ -5,22 +5,11 @@ import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 
 import OrderLayout from "./OrderLayout";
-import { setPartners } from './../actions/partners';
-import { setOrder, startUpdateOrder } from './../actions/orders';
+import { startUpdateOrder } from './../actions/orders';
 
 class PickUpLocationPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      renderPage: false
-    }
-  }
-  componentDidMount() {
-    Promise.all([axios.get('/api/v1/partners'), axios.get('/api/v1/orders/undefined')]).then(([responsePartners, responseOrder]) => {
-      this.props.setPartners(responsePartners.data)
-      this.props.setOrder(responseOrder.data);
-      this.setState(() => ({renderPage: true}) )
-    })
   }
 
   onLocationSelect = (partnerId) => {
@@ -30,11 +19,9 @@ class PickUpLocationPage extends React.Component {
   }
 
   render () {
-    const { renderPage } = this.state;
     const { partners, order } = this.props;
     return (
       <OrderLayout
-        renderPage={renderPage}
         title="Select Pick Up Location"
         nextButton={{ link: '/payment', text: 'Go to Payment', disabled: order.partner_id == null }} 
       >
@@ -72,8 +59,6 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  setPartners: (partners) => dispatch(setPartners(partners)),
-  setOrder: (order) => dispatch(setOrder(order)),
   startUpdateOrder: (updates) => dispatch(startUpdateOrder(updates))
 })
 

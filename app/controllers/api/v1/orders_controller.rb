@@ -5,7 +5,7 @@ class Api::V1::OrdersController < ApplicationController
 
   def update
     current_order.update(order_params)
-    render json: current_order.to_json
+    render json: current_order.to_json(include: :partner)
   end
 
   private

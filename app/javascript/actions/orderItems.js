@@ -9,8 +9,6 @@ export const setOrderItems = orderItems => dispatch => {
   });
 };
 
-
-
 export const addOrderItem = orderItem => dispatch => {
   dispatch(updateOrder(orderItem.order));
   dispatch({
