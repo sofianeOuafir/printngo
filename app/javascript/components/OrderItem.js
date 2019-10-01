@@ -21,8 +21,8 @@ class OrderItem extends React.Component {
   }
 
   render () {
-    const { orderItem, product_id, products } = this.props;
-    const { id, document, quantity, sub_total } = orderItem;
+    const { orderItem, products } = this.props;
+    const { id, document, quantity, sub_total, product_id } = orderItem;
     const { name, number_of_page } = document;
     return (
       <div className="border flex justify-content--around py2 mb1 h4"> 

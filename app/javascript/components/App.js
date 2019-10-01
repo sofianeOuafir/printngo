@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import PropTypes from "prop-types"
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -9,6 +9,7 @@ import PickUpLocationPage from './PickUpLocationPage';
 import BasketPage from './BasketPage';
 import configureStore from './../configureStore';
 import PaymentPage from './PaymentPage';
+
 const store = configureStore();
 
 class App extends React.Component {

@@ -10,31 +10,39 @@ import { setOrder } from './../actions/orders';
 import OrderItemList from './OrderItemList';
 
 class BasketPage extends React.Component {
-  componentDidMount(){
-    axios.get('/api/v1/products').then((response) => {
-      this.props.setProducts(response.data);
-    })
-    axios.get('/api/v1/orders/undefined').then((response) => {
-      this.props.setOrderItems(response.data.order_items);
-      this.props.setOrder(response.data);
+  constructor(props) {
+    super(props);
+    this.state = {
+      renderPage: false
+    }
+  }
+
+  componentDidMount() {
+    Promise.all([axios.get('/api/v1/products'), axios.get('/api/v1/orders/undefined')]).then(([responseProducts, responseOrder]) => {
+      this.props.setProducts(responseProducts.data);
+      this.props.setOrder(responseOrder.data);
+      this.props.setOrderItems(responseOrder.data.order_items);
+      this.setState(() => ({ renderPage: true }))
     })
   }
 
   render () {
+    const { renderPage } = this.state;
     const  { orderItems, order } = this.props;
     let { sub_total, number_of_items } = order;
     sub_total = sub_total / 100;
 
     return (
       <OrderLayout 
+        renderPage={renderPage}
         title="Your Basket"
         nextButton={{ link: '/pick-up-location', text: 'Go to Pick up details', disabled: orderItems.length == 0 }}
         info={`Subtotal: ${number_of_items} (${pluralize('Item', number_of_items)}): $${sub_total}`}
       >
-        <div className="content-container">
-          <OrderItemList />
-        </div>
-      </OrderLayout>
+      <div className="content-container">
+        <OrderItemList />
+      </div>
+    </OrderLayout>
     );
   }
 }

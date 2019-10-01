@@ -9,12 +9,17 @@ import { setPartners } from './../actions/partners';
 import { setOrder, startUpdateOrder } from './../actions/orders';
 
 class PickUpLocationPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      renderPage: false
+    }
+  }
   componentDidMount() {
-    axios.get('/api/v1/partners').then(response => {
-      this.props.setPartners(response.data)
-    });
-    axios.get('/api/v1/orders/undefined').then((response) => {
-      this.props.setOrder(response.data);
+    Promise.all([axios.get('/api/v1/partners'), axios.get('/api/v1/orders/undefined')]).then(([responsePartners, responseOrder]) => {
+      this.props.setPartners(responsePartners.data)
+      this.props.setOrder(responseOrder.data);
+      this.setState(() => ({renderPage: true}) )
     })
   }
 
@@ -25,16 +30,18 @@ class PickUpLocationPage extends React.Component {
   }
 
   render () {
+    const { renderPage } = this.state;
     const { partners, order } = this.props;
     return (
-      <OrderLayout 
+      <OrderLayout
+        renderPage={renderPage}
         title="Select Pick Up Location"
         nextButton={{ link: '/payment', text: 'Go to Payment', disabled: order.partner_id == null }} 
       >
         <div className="content-container">
           { partners.map((partner, index) => (
             <div key={index} className={`${order.partner_id === partner.id ? 'bg-navy text-white' : ''} mb2 flex justify-content--between p2 border flex align-items--center`}>
-              <div className="flex h4" >
+              <div className="flex h4">
                 <div className="flex flex-direction--column">
                   <span>{partner.name}</span>
                   <span>{partner.address}</span>
