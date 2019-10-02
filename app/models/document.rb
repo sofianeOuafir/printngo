@@ -5,12 +5,12 @@ class Document < ApplicationRecord
   belongs_to :user, optional: true
 
   after_create :update_name
-  after_create :update_number_of_page
+  after_commit :update_number_of_page
 
   private
 
   def update_number_of_page
-    o = open("https://www.adobe.com/content/dam/acom/en/devnet/acrobat/pdfs/pdf_open_parameters.pdf")
+    o = open("https://printngo-dev.s3.ca-central-1.amazonaws.com/#{file.key}")
     reader = PDF::Reader.new(o)
     update_columns(number_of_page: reader.page_count)
   end
