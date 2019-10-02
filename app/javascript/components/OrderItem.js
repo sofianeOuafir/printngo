@@ -25,7 +25,7 @@ class OrderItem extends React.Component {
     const { id, document, quantity, sub_total, product_id } = orderItem;
     const { name, number_of_page } = document;
     return (
-      <div className="border flex justify-content--around py2 mb1 h4"> 
+      <div className="border flex justify-content--around py2 mb1 h5"> 
         <div className="center">
           <div>
             <img src={images.aDocument} alt="Document Icon" width={100}/>
@@ -51,11 +51,11 @@ class OrderItem extends React.Component {
           <span className="mb2">Quantity:</span>
           <div className="flex justify-content--around">
             <a className="pointer" onClick={(e) => { this.onQuantityChange({ e, orderItemId: id, currentQuantity: quantity, action: 'minus'  }) } }>
-              <img src={images.minus} alt="Document Icon" width={30}/>
+              <img src={images.minus} alt="Document Icon" width={25}/>
             </a>
-            <span>{quantity}</span>
+            <span className="px1">{quantity}</span>
             <a className="pointer" onClick={(e) => { this.onQuantityChange({ e, orderItemId: id, currentQuantity: quantity, action: 'plus'  }) } }>          
-              <img src={images.plus} alt="Document Icon" width={30}/>
+              <img src={images.plus} alt="Document Icon" width={25}/>
             </a>
           </div>
         </div>

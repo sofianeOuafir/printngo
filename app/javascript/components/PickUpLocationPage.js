@@ -30,7 +30,7 @@ class PickUpLocationPage extends React.Component {
         <div className="content-container">
           { partners.map((partner, index) => (
             <div key={index} className={`${order.partner_id === partner.id ? 'bg-navy text-white' : ''} mb2 flex justify-content--between p2 border flex align-items--center`}>
-              <div className="flex h4">
+              <div className="flex h5">
                 <div className="flex flex-direction--column">
                   <span>{partner.name}</span>
                   <span>{partner.address}</span>

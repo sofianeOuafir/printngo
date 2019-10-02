@@ -1,3 +1,5 @@
+@import 'variables/colours';
+
 .rc-steps {
   font-size: 0;
   width: 100%;
@@ -59,7 +61,7 @@
     > .rc-steps-icon {
       line-height: 1;
       top: -1px;
-      color: #108ee9;
+      color: $pink;
       position: relative;
 
       &.rcicon {
@@ -143,12 +145,12 @@
   }
 
   &-process &-icon {
-    border-color: #108ee9;
+    border-color: $pink;
     background-color: #fff;
     > .rc-steps-icon {
-      color: #108ee9;
+      color: $pink;
       .rc-steps-icon-dot {
-        background: #108ee9;
+        background: $pink;
       }
     }
   }
@@ -166,33 +168,33 @@
   }
 
   &-process &-icon {
-    background: #108ee9;
+    background: $pink;
     > .rc-steps-icon {
       color: #fff;
     }
   }
 
   &-finish &-icon {
-    border-color:  #108ee9;
+    border-color:  $pink;
     background-color: #fff;
     > .rc-steps-icon {
-      color:  #108ee9;
+      color:  $pink;
       .rc-steps-icon-dot {
-        background:  #108ee9;
+        background:  $pink;
       }
     }
   }
   &-finish &-title {
     color: rgba(0,0,0,.43);
     &:after {
-      background-color: #108ee9;
+      background-color: $pink;
     }
   }
   &-finish &-description {
     color: rgba(0,0,0,.43);
   }
   &-finish &-tail:after {
-    background-color: #108ee9;
+    background-color: $pink;
   }
   
   &-error &-icon {

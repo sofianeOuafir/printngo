@@ -20,7 +20,7 @@ class OrderItemList extends React.Component {
         )) : (
           <p className="h4">You basket is currently empty.</p>
         ) }
-        <div className="flex justify-content--between h4">
+        <div className="flex justify-content--between h5">
           <div>
             <UploadAndPrintButton className="button button--navy" text="Upload Documents" />
           </div>

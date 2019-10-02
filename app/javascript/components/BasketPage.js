@@ -21,7 +21,7 @@ class BasketPage extends React.Component {
         currentState={currentState}
         title="Your Basket"
         nextButton={{ link: '/order/pick-up-location', text: 'Go to Pick up details', disabled: orderItems.length == 0 }}
-        info={`Subtotal: ${number_of_items} (${pluralize('Item', number_of_items)}): $${sub_total}`}
+        info={`Subtotal (${number_of_items} ${pluralize('Item', number_of_items)}): $${sub_total}`}
       >
       <div className="content-container">
         <OrderItemList />

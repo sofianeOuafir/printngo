@@ -11,14 +11,15 @@ class ThankYouPage extends React.Component {
       <OrderLayout
         currentState={currentState}
       >
-        <div className="content-container h4">
-          <h1>Payment Sucess</h1>
+        <div className="content-container border h5 flex justify-content--center">
           <div>
-            <p>Thank you Sofiane. You can now go gather your documents at:</p>
-            <p>{`${name} - ${address}, ${city} ${postcode}`}</p>
-            <p>{`Opening hours: ${opening_hours}`}</p>
+            <h1 className="h4 center">Payment Sucess!</h1>
+            <div>
+              <p>Thank you Sofiane. You can now go gather your documents at:</p>
+              <p>{`${name} - ${address}, ${city} ${postcode}`}</p>
+              <p>{`Opening hours: ${opening_hours}`}</p>
+            </div>
           </div>
-
         </div>
       </OrderLayout>
     );

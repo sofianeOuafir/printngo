@@ -11,8 +11,12 @@
   font-weight: $favourite-font-weight;
   padding-top: 10px;
   padding-bottom: 10px;
-  font-size: $m-size;
+  font-size: $s-size;
   @extend .px3;
+}
+
+.button-text--medium {
+  font-size: $m-size;
 }
 
 .button--navy {

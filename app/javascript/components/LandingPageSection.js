@@ -14,7 +14,7 @@ class LandingPageSection extends React.Component {
           <div className="flex flex-direction--column center">
             { CallToActionButton ? (
               <div className="mb3">
-                <CallToActionButton className="button button-outline" />
+                <CallToActionButton className="button button-outline button-text--medium" />
               </div>
             ) : null }
             <img src={imgSrc} alt={imgAlt} width={350} />

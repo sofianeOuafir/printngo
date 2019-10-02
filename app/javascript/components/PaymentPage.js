@@ -27,14 +27,14 @@ class PaymentPage extends React.Component {
       <OrderLayout
         currentState={currentState}
         title="Review your order and pay">
-        <div className="content-container">
+        <div className="h5 content-container">
           <div className="p2 border mb2">
-            <h1 className="h4 text-navy">Your Order</h1>
+            <h2 className="h5 text-navy favourite-font-weight">Your Order</h2>
             <OrderItemList />
           </div>
           <div className="p2 border mb2">
-            <h1 className="h4 text-navy">Pick up Location</h1>
-            <div className="flex h4 mb1">
+            <h2 className="h5 text-navy favourite-font-weight">Pick up Location</h2>
+            <div className="flex mb1">
               <div className="flex flex-direction--column">
                 <span>{name}</span>
                 <span>{address}</span>
@@ -43,10 +43,10 @@ class PaymentPage extends React.Component {
               </div>
               <span>{opening_hours}</span>
             </div>
-            <Link to="/order/pick-up-location" className="button button-outline button-outline--pink">Select Another Pick up Location</Link>
+            <Link to="/order/pick-up-location" className="button button-outline button-outline--pink">&larr; Select Another Pick up Location</Link>
           </div>
           <div className="p2 border">
-            <h1 className="h4 text-navy">Payment</h1>
+            <h2 className="h5 text-navy favourite-font-weight">Payment</h2>
             <div>
               <form onSubmit={this.onSubmit}>
                 <input type="text" placeholder="Firstname"/>
