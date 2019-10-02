@@ -25,6 +25,7 @@ class PaymentPage extends React.Component {
     const currentState = 3;
     return (
       <OrderLayout
+        stickyBar={false}
         currentState={currentState}
         title="Review your order and pay">
         <div className="h5 content-container">

@@ -4,7 +4,7 @@ import Steps, { Step } from 'rc-steps';
 
 import Loader from './Loader';
 
-const OrderLayout = ({ title, info = null, children, nextButton = null, currentState }) => (
+const OrderLayout = ({ title, info = null, children, nextButton = null, currentState, stickyBar = true }) => (
   <Fragment>
     <div className="order-navbar">
       <div className="content-container">
@@ -20,7 +20,7 @@ const OrderLayout = ({ title, info = null, children, nextButton = null, currentS
         <Step title="Done" description="Thanks and happy printing!"/>
       </Steps>
     </div>
-    <div className="py1 content-container sticky bg-white">
+    <div className={`py1 content-container ${stickyBar ? 'sticky' : '' } bg-white`}>
       <div className="flex h5 justify-content--between align-items--center">
         <h1 className="h5 text-navy favourite-font-weight">{title}</h1>
         {info && <span className="h5 text-navy">{info}</span>}

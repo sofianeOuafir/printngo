@@ -18,6 +18,7 @@ import file from './../assets/images/file.png';
 import aDocument from './../assets/images/document.png';
 import minus from './../assets/images/minus.png';
 import plus from './../assets/images/plus.png';
+import success from './../assets/images/success.png';
 
 export default {
   plus,
@@ -39,5 +40,6 @@ export default {
   creditCard,
   map,
   file,
-  aDocument
+  aDocument,
+  success
 }
