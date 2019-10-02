@@ -15,11 +15,12 @@ class BasketPage extends React.Component {
     const  { orderItems, order } = this.props;
     let { sub_total, number_of_items } = order;
     sub_total = sub_total / 100;
-
+    const currentState = number_of_items > 0 ? 1 : 0;
     return (
       <OrderLayout
+        currentState={currentState}
         title="Your Basket"
-        nextButton={{ link: '/pick-up-location', text: 'Go to Pick up details', disabled: orderItems.length == 0 }}
+        nextButton={{ link: '/order/pick-up-location', text: 'Go to Pick up details', disabled: orderItems.length == 0 }}
         info={`Subtotal: ${number_of_items} (${pluralize('Item', number_of_items)}): $${sub_total}`}
       >
       <div className="content-container">

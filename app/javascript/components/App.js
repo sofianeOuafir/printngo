@@ -16,6 +16,7 @@ import BasketPage from './BasketPage';
 import configureStore from './../configureStore';
 import PaymentPage from './PaymentPage';
 import Loader from './Loader';
+import ThankYouPage from './ThankYouPage';
 
 const store = configureStore();
 
@@ -27,9 +28,10 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/" render={() => <HomePage />}/>
             <Route path="/become-partner" render={() => <PartnerPage />  }/>
-            <Route path="/basket" render={() => <BasketPage />  }/>
-            <Route path="/pick-up-location" render={() => <PickUpLocationPage />  }/>
-            <Route path="/payment" render={() => <PaymentPage />  }/>
+            <Route path="/order/basket" render={() => <BasketPage />  }/>
+            <Route path="/order/pick-up-location" render={() => <PickUpLocationPage />  }/>
+            <Route path="/order/payment" render={() => <PaymentPage />  }/>
+            <Route path="/order/thank-you" render={() => <ThankYouPage />  }/>
           </Switch>
         </BrowserRouter>
       </Provider>

@@ -2,6 +2,7 @@ import React from "react"
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import OrderLayout from './OrderLayout';
 import OrderItemList from './OrderItemList';
@@ -13,6 +14,7 @@ class PaymentPage extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault();
+    this.props.history.push('/order/thank-you')
     console.log('yo');
   }
 
@@ -20,8 +22,10 @@ class PaymentPage extends React.Component {
     const { order } = this.props;
     const { partner } = order;
     const { name, address, city, postcode, opening_hours } = partner;
+    const currentState = 3;
     return (
-      <OrderLayout 
+      <OrderLayout
+        currentState={currentState}
         title="Review your order and pay">
         <div className="content-container">
           <div className="p2 border mb2">
@@ -39,7 +43,7 @@ class PaymentPage extends React.Component {
               </div>
               <span>{opening_hours}</span>
             </div>
-            <Link to="/pick-up-location" className="button button-outline button-outline--pink">Select Another Pick up Location</Link>
+            <Link to="/order/pick-up-location" className="button button-outline button-outline--pink">Select Another Pick up Location</Link>
           </div>
           <div className="p2 border">
             <h1 className="h4 text-navy">Payment</h1>
@@ -64,4 +68,4 @@ const mapStateToProps = (state) => ({
   order: state.order
 })
 
-export default connect(mapStateToProps, null)(PaymentPage)
+export default connect(mapStateToProps, null)(withRouter(PaymentPage))

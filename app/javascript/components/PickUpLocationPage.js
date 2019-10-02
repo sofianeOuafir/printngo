@@ -14,16 +14,18 @@ class PickUpLocationPage extends React.Component {
 
   onLocationSelect = (partnerId) => {
     this.props.startUpdateOrder({ partner_id: partnerId }).then(() => {
-      this.props.history.push('/payment');
+      this.props.history.push('/order/payment');
     })
   }
 
   render () {
     const { partners, order } = this.props;
+    const currentState = 2;
     return (
       <OrderLayout
+        currentState={currentState}
         title="Select Pick Up Location"
-        nextButton={{ link: '/payment', text: 'Go to Payment', disabled: order.partner_id == null }} 
+        nextButton={{ link: '/order/payment', text: 'Go to Payment', disabled: order.partner_id == null }} 
       >
         <div className="content-container">
           { partners.map((partner, index) => (
@@ -46,7 +48,7 @@ class PickUpLocationPage extends React.Component {
 
 
         <div className={`content-container my3`}>
-          <Link className="button button-outline--pink" to="/basket">&larr; Go back to Basket</Link>
+          <Link className="button button-outline--pink" to="/order/basket">&larr; Go back to Basket</Link>
         </div>
       </OrderLayout>
     );

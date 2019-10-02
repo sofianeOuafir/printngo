@@ -18,7 +18,7 @@ export const addOrderItem = orderItem => dispatch => {
 };
 
 export const removeOrderItem = orderItemId => dispatch => {
-  axios.delete(`api/v1/order_items/${orderItemId}`).then(response => {
+  axios.delete(`/api/v1/order_items/${orderItemId}`).then(response => {
     dispatch(updateOrder(response.data.order));
     dispatch({
       type: "REMOVE_ORDER_ITEM",
@@ -28,7 +28,7 @@ export const removeOrderItem = orderItemId => dispatch => {
 };
 
 export const updateOrderItem = ({ id, updates }) => dispatch => {
-  axios.patch(`api/v1/order_items/${id}`, updates).then(response => {
+  axios.patch(`/api/v1/order_items/${id}`, updates).then(response => {
     dispatch(updateOrder(response.data.order));
     dispatch({
       type: "UPDATE_ORDER_ITEM",

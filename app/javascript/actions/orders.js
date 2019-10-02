@@ -15,7 +15,7 @@ export const updateOrder = updates => dispatch => {
 };
 
 export const startUpdateOrder = updates => dispatch => {
-  return axios.patch(`api/v1/orders/undefined`, updates).then(response => {
+  return axios.patch(`/api/v1/orders/undefined`, updates).then(response => {
     dispatch(updateOrder(response.data));
   });
 }

@@ -29,14 +29,14 @@ class UploadAndPrintButton extends React.Component {
       const file = files[i];
       var formData = new FormData();
       formData.append("file", file);
-      axios.post('api/v1/orders/undefined/documents', formData, {
+      axios.post('/api/v1/orders/undefined/documents', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       }).then((response) => {
         this.props.addOrderItem(response.data)
         this.closeModal();
-        this.props.history.push('/basket')
+        this.props.history.push('/order/basket')
       })
     }
   }
