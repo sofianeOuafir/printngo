@@ -5,15 +5,24 @@ class Document < ApplicationRecord
   belongs_to :user, optional: true
 
   after_create :update_name
-  after_commit :update_number_of_page
+
+  def url
+    file.service_url
+  end
+
+  def as_json(options = {})
+    h = super(options)
+    h[:url] = url
+    h
+  end
+
+  def serializable_hash(options = {})
+    h = super(options)
+    h[:url] = url
+    h
+  end
 
   private
-
-  def update_number_of_page
-    o = open("https://printngo-dev.s3.ca-central-1.amazonaws.com/#{file.key}")
-    reader = PDF::Reader.new(o)
-    update_columns(number_of_page: reader.page_count)
-  end
 
   def update_name
     return unless file.attached?

@@ -1,6 +1,7 @@
 import React from "react"
 import { connect } from 'react-redux';
 import pluralize from 'pluralize';
+import axios from 'axios';
 
 import images from './../images';
 import { removeOrderItem, updateOrderItem } from './../actions/orderItems';
@@ -20,10 +21,17 @@ class OrderItem extends React.Component {
     this.props.updateOrderItem({ id: orderItemId, updates: { quantity }})
   }
 
+  onViewClick = (id) => {
+    axios.get(`/api/v1/documents/${id}`).then((response) => {
+      var win = window.open(response.data.url, '_blank');
+      win.focus();
+    })
+  }
+
   render () {
     const { orderItem, products } = this.props;
     const { id, document, quantity, sub_total, product_id } = orderItem;
-    const { name, number_of_page } = document;
+    const { name, number_of_page, id: documentId } = document;
     return (
       <div className="border flex justify-content--around py2 mb1 h5"> 
         <div className="center">
@@ -31,11 +39,11 @@ class OrderItem extends React.Component {
             <img src={images.aDocument} alt="Document Icon" width={100}/>
           </div>
           <div className="flex align-items--center mt1">
-            <a className="mr1 pointer">View</a>
+            <a onClick={() => this.onViewClick(documentId)} className="mr1 pointer">View</a>
             <a className="pointer" onClick={() => { this.onRemove(id) } }>Remove</a>
           </div>
         </div>
-        <div className="flex flex-direction--column" style={{ width: '100px'}}>
+        <div className="flex flex-direction--column word-wrap--break-word" style={{ width: '100px'}}>
           <span className="mb2 h5" title={name}>{name.length > 30 ? `${name.substring(0, 30)}...` : name}</span>
           <span>{`${number_of_page} ${pluralize('Page', number_of_page)}`}</span>
         </div>
