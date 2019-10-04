@@ -2,12 +2,13 @@ class Api::V1::SessionsController < ApplicationController
   def create
     user = User.authenticate(params[:email], params[:password])
     if user
+      ahoy.authenticate(user)
       session[:user_id] = user.id
-      # return some json
+      render json: user.to_json
     else
-      # return some json
-      # flash.now.alert = "Invalid email or password"
-      # render "new"
+      render json: {
+        error: 'Username or password incorrect'
+      }, status: 404
     end
   end
 

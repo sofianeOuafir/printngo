@@ -17,6 +17,7 @@ import configureStore from './../configureStore';
 import PaymentPage from './PaymentPage';
 import Loader from './Loader';
 import ThankYouPage from './ThankYouPage';
+import LoginPage from './LoginPage';
 
 const store = configureStore();
 
@@ -32,6 +33,7 @@ class App extends React.Component {
             <Route path="/order/pick-up-location" render={() => <PickUpLocationPage />  }/>
             <Route path="/order/payment" render={() => <PaymentPage />  }/>
             <Route path="/order/thank-you" render={() => <ThankYouPage />  }/>
+            <Route path="/login" render={() => <LoginPage />  }/>
           </Switch>
         </BrowserRouter>
       </Provider>
