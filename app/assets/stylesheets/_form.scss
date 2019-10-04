@@ -1,0 +1,15 @@
+@import 'variables/size';
+@import 'variables/colours';
+
+.form__input-container input {
+  width: 100%;
+  border: 1px $grey solid;
+  height: 10px;
+  font-size: $s-size;
+  padding: $s-size;
+}
+
+.form__input-container input[type=checkbox] {
+  width: 20px;
+  height: 20px;
+}

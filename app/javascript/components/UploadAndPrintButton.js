@@ -15,6 +15,10 @@ class UploadAndPrintButton extends React.Component {
     };
   }
 
+  triggerFileDialog = () => {
+    document.getElementById("fileInput").click();
+  }
+
   openModal = () => {
     this.setState({modalIsOpen: true});
   }
@@ -47,22 +51,28 @@ class UploadAndPrintButton extends React.Component {
       <React.Fragment>
         <a className={`${className} pointer`} onClick={this.openModal}>{text}</a>
         <Modal
+          className="modal modal--large"
           ariaHideApp={false}
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
-          contentLabel="Example Modal"
+          contentLabel="Upload Modal"
         >
-          <h2>Choose Files</h2>
-          <form>
-            <input
-              type="file"
-              multiple
-              onChange={this.onUpload}
-            />
-          </form>
-
-          <button>Upload From Computer</button>
-          <button onClick={this.closeModal}>close</button>
+          <h2 className="m0 center py1 bg-navy text-white h4 favourite-font-weight">Choose Files</h2>
+          <div className="px3 flex flex-direction--column my2">
+            <form>
+              <input
+                id="fileInput"
+                type="file"
+                multiple
+                className="hide"
+                onChange={this.onUpload}
+              />
+            </form>
+            <a onClick={this.triggerFileDialog} className="button button--navy button--no-border-radius center">Upload From Computer</a>
+            <div className="flex justify-content--end mt1">
+              <a className="button button-outline--navy button--no-border-radius" onClick={this.closeModal}>Cancel</a>
+            </div>
+          </div>
         </Modal>
       </React.Fragment>
     );

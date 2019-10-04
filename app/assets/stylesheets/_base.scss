@@ -18,6 +18,10 @@ body {
   cursor: pointer;
 }
 
+.hide {
+  display: none;
+}
+
 .block {
   display: block;
 }
@@ -34,4 +38,8 @@ body {
 
 .word-wrap--break-word {
   word-wrap: break-word;
+}
+
+.fullwidth {
+  width: 100%;
 }

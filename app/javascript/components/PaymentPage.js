@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 
 import OrderLayout from './OrderLayout';
 import OrderItemList from './OrderItemList';
+import images from './../images';
 
 class PaymentPage extends React.Component {
   constructor(props) {
@@ -29,11 +30,11 @@ class PaymentPage extends React.Component {
         currentState={currentState}
         title="Review your order and pay">
         <div className="h5 content-container">
-          <div className="p2 border mb2">
+          <div className="p2 border border-color--grey mb2">
             <h2 className="h5 text-navy favourite-font-weight">Your Order</h2>
             <OrderItemList />
           </div>
-          <div className="p2 border mb2">
+          <div className="p2 border border-color--grey mb2">
             <h2 className="h5 text-navy favourite-font-weight">Pick up Location</h2>
             <div className="flex mb1">
               <div className="flex flex-direction--column">
@@ -46,18 +47,34 @@ class PaymentPage extends React.Component {
             </div>
             <Link to="/order/pick-up-location" className="button button-outline button-outline--pink">&larr; Select Another Pick up Location</Link>
           </div>
-          <div className="p2 border">
+          <div className="p2 border border-color--grey">
             <h2 className="h5 text-navy favourite-font-weight">Payment</h2>
-            <div>
-              <form onSubmit={this.onSubmit}>
-                <input type="text" placeholder="Firstname"/>
+            <form className="form__input-container" onSubmit={this.onSubmit}>
+              <div className="flex">
+                <input className="mr1" type="text" placeholder="Firstname"/>
                 <input type="text" placeholder="Lastname"/>
+              </div>
+              <div className="flex mt2">
                 <input type="text" placeholder="Email"/>
+              </div>
+              <div className="mt2">
+                <span>Already customer? <a href="">Sign In</a></span>
+              </div>
+              <div className="mt2">
+                <img className="mr1" src={images.mastercard} alt="MasterCard Icon" width={50}/>
+                <img src={images.visa} alt="MasterCard Icon" width={50}/>
+              </div>
+              <div className="flex mt2">
                 <input type="text" placeholder="Card number"/>
-                <input type="checkbox" />
-                <button text="Submit">Pay Now</button>
-              </form>
-            </div>
+              </div>
+              <div className="my2">
+                <label>
+                  <input type="checkbox" />
+                  I agree to terms and conditions. I have double checked my document preview and specification. I understand that my order will be printed in line with the preview and specification I have chosen.
+                </label>
+              </div>
+              <button className="fullwidth button button--pink" text="Submit">Pay Now</button>
+            </form>
           </div>
         </div>
       </OrderLayout>

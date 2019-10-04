@@ -33,7 +33,7 @@ class OrderItem extends React.Component {
     const { id, document, quantity, sub_total, product_id } = orderItem;
     const { name, number_of_page, id: documentId } = document;
     return (
-      <div className="border flex justify-content--around py2 mb1 h5"> 
+      <div className="border border-color--grey flex justify-content--around py2 mb1 h5"> 
         <div className="center">
           <div>
             <img src={images.aDocument} alt="Document Icon" width={100}/>

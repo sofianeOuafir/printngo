@@ -13,6 +13,11 @@
   padding-bottom: 10px;
   font-size: $s-size;
   @extend .px3;
+  cursor: pointer;
+}
+
+.button--no-border-radius {
+  border-radius: 0px;
 }
 
 .button-text--medium {
@@ -34,6 +39,11 @@
 .button-outline--pink {
   border: 1px $pink solid;
   color: $pink;
+}
+
+.button-outline--navy {
+  border: 1px $navy solid;
+  color: $navy;
 }
 
 .button--pink {
