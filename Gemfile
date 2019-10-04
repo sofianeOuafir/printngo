@@ -17,7 +17,6 @@ gem 'react-rails'
 gem 'bcrypt'
 gem 'ahoy_matey'
 gem 'pdf-reader'
-gem 'hairtrigger'
 gem "aws-sdk-s3", require: false
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
