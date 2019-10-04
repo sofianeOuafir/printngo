@@ -7,6 +7,7 @@ import orderItemsReducer from './reducers/orderItems';
 import productsReducer from './reducers/products';
 import ordersReducer from './reducers/orders';
 import partnersReducer from './reducers/partners';
+import authReducer from './reducers/auth';
 
 let composeEnhancers;
 try {
@@ -27,7 +28,8 @@ export default function (initData) {
       orderItems: orderItemsReducer,
       products: productsReducer,
       order: ordersReducer,
-      partners: partnersReducer
+      partners: partnersReducer,
+      auth: authReducer
     }),
     initData,
     composeEnhancers(applyMiddleware(thunk))

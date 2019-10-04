@@ -8,6 +8,7 @@ import { setOrderItems } from './../actions/orderItems';
 import { setProducts } from './../actions/products';
 import { setOrder } from './../actions/orders';
 import { setPartners } from './../actions/partners';
+import { startGetCurrentUser } from './../actions/auth';
 
 import PartnerPage from './PartnerPage';
 import HomePage from './HomePage';
@@ -49,7 +50,7 @@ const renderApp = () => {
   }
 }
 
-Promise.all([axios.get('/api/v1/products'), axios.get('/api/v1/orders/undefined'), axios.get('/api/v1/partners')]).then(([responseProducts, responseOrder, responsePartners]) => {
+Promise.all([axios.get('/api/v1/products'), axios.get('/api/v1/orders/undefined'), axios.get('/api/v1/partners'), store.dispatch(startGetCurrentUser())]).then(([responseProducts, responseOrder, responsePartners]) => {
   store.dispatch(setOrder(responseOrder.data));
   store.dispatch(setOrderItems(responseOrder.data.order_items));
   store.dispatch(setProducts(responseProducts.data));

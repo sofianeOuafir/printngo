@@ -1,17 +1,18 @@
 import React from "react"
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import { startLogin, startLogout } from './../actions/auth';
 
 class LoginPage extends React.Component {
   onSubmit = (e) => {
     e.preventDefault();
-    axios.post('/api/v1/sessions', {
-      email: 'sofiane.ouafir@live.fr',
-      password: 'abc123'
-    })
+    this.props.startLogin({ email: 'jennaklomp@gmail.com', password: 'abc123' })
   }
 
   logout = () => {
-    axios.delete('/api/v1/sessions/undefined')
+    this.props.startLogout();
   }
 
   render () {
@@ -26,4 +27,9 @@ class LoginPage extends React.Component {
   }
 }
 
-export default LoginPage
+const mapDispatchToProps = (dispatch) => ({
+  startLogin: ({ email, password }) => dispatch(startLogin({ email, password })),
+  startLogout: () => dispatch(startLogout())
+})
+
+export default connect(null, mapDispatchToProps)(withRouter(LoginPage));

@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   def current_order
     if current_user
-      current_user.orders.first_or_create
+      current_user.orders.order(created_at: :desc).first || current_user.orders.create
     elsif current_visit
       current_visit.orders.first_or_create
     end

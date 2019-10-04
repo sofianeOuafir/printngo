@@ -16,7 +16,6 @@ class PaymentPage extends React.Component {
   onSubmit = (e) => {
     e.preventDefault();
     this.props.history.push('/order/thank-you')
-    console.log('yo');
   }
 
   render () {
@@ -58,7 +57,7 @@ class PaymentPage extends React.Component {
                 <input type="text" placeholder="Email"/>
               </div>
               <div className="mt2">
-                <span>Already customer? <a href="">Sign In</a></span>
+                <span>Already customer? <Link to="/login">Sign In</Link></span>
               </div>
               <div className="mt2">
                 <img className="mr1" src={images.mastercard} alt="MasterCard Icon" width={50}/>
@@ -83,7 +82,8 @@ class PaymentPage extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  order: state.order
+  order: state.order,
+  auth: state.auth
 })
 
 export default connect(mapStateToProps, null)(withRouter(PaymentPage))

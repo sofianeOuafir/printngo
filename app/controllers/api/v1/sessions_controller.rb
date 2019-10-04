@@ -1,4 +1,8 @@
 class Api::V1::SessionsController < ApplicationController
+  def show
+    render json: current_user.to_json
+  end
+
   def create
     user = User.authenticate(params[:email], params[:password])
     if user

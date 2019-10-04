@@ -7,7 +7,9 @@ import images from './../images';
 
 class ThankYouPage extends React.Component {
   render () {
-    const { partner } = this.props;
+    const { partner, order } = this.props;
+    const { user } = order;
+    const { firstname } = user;
     const { name, address, city, postcode, opening_hours } = partner;
     const currentState = 4;
     return (
@@ -21,7 +23,7 @@ class ThankYouPage extends React.Component {
             </div>
             <h1 className="h4 center">Payment Sucess!</h1>
             <div>
-              <p>Thank you Sofiane. You can now go gather your documents at:</p>
+              <p>Thank you { firstname }. You can now go gather your documents at:</p>
               <p>{`${name} - ${address}, ${city} ${postcode}`}</p>
               <p>{`Opening hours: ${opening_hours}`}</p>
             </div>
@@ -34,7 +36,8 @@ class ThankYouPage extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  partner: state.order.partner
+  partner: state.order.partner,
+  order: state.order
 })
 
 export default connect(mapStateToProps)(ThankYouPage)
