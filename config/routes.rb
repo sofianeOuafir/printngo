@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :products, only: [:index]
       resources :partners, only: [:index]
       resources :documents, only: [:show]
+      resources :payments, only: [:create]
       resources :orders do
         resources :documents, only: [:create, :update, :destroy], controller: 'orders/documents'
       end

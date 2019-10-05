@@ -3,10 +3,12 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
+import {Elements, StripeProvider} from 'react-stripe-elements';
 
 import OrderLayout from './OrderLayout';
 import OrderItemList from './OrderItemList';
 import images from './../images';
+import CheckoutForm from './CheckoutForm';
 
 class PaymentPage extends React.Component {
   constructor(props) {
@@ -22,7 +24,6 @@ class PaymentPage extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.history.push('/order/thank-you')
   }
 
   onFirstnameChange = (e) => {
@@ -107,7 +108,11 @@ class PaymentPage extends React.Component {
                 <img src={images.visa} alt="MasterCard Icon" width={50}/>
               </div>
               <div className="flex mt2">
-                <input type="text" placeholder="Card number"/>
+              <StripeProvider apiKey="pk_test_IyiaKrZbjpSSNn0RiEni1Ry000WVCC2kWW">
+                <Elements>
+                <CheckoutForm />
+              </Elements>
+              </StripeProvider>
               </div>
               <div className="my2">
                 <label>
