@@ -1,10 +1,17 @@
 class Api::V1::UsersController < ApplicationController
+  wrap_parameters :user, include: [:firstname, :lastname, :email, :password]
   def create
-    @user = User.new(params[:user])
+    @user = User.new(users_params)
     if @user.save
-      # respond with some json
+      render json: @user.to_json
     else
-      # respond with some json error
+      render json: { errors: @user.errors.to_json }, status: 400
     end
+  end
+
+  private
+
+  def users_params
+    params.require(:user).permit(:firstname, :lastname, :email, :password)
   end
 end

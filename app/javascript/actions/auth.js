@@ -5,22 +5,30 @@ export const startLogin = ({email, password}) => dispatch => {
     email,
     password
   }).then((response) => {
-    return dispatch({
+    dispatch({
       type: 'LOGIN',
       user: response.data
     });
-  }).catch((e) => {
-    console.log(e);
+    return response;
+  })
+}
+
+export const startSignUp = (user) => dispatch => {
+  return axios.post('/api/v1/users', user).then((response) => {
+    const { email, password } = user;
+    dispatch(startLogin({ email, password }));
+    return response;
   })
 }
 
 export const startGetCurrentUser = () => dispatch => {
   return axios.get('/api/v1/sessions/undefined').then((response) => {
     if(response.data) {
-      return dispatch({
+      dispatch({
         type: 'LOGIN',
         user: response.data
       });
+      return response;
     } else {
       return dispatch(logout());
     }
@@ -35,6 +43,7 @@ export const logout = () => dispatch => {
 
 export const startLogout = () => dispatch => {
   return axios.delete('/api/v1/sessions/undefined').then((response) => {
-    return dispatch(logout());
+    dispatch(logout());
+    return response
   })
 }

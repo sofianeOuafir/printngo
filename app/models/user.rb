@@ -6,10 +6,10 @@ class User < ApplicationRecord
   before_save :encrypt_password
 
   validates_presence_of :password, on: :create
-  validates_presence_of :email
   validates_uniqueness_of :email
-  validates_uniqueness_of :firstname
-  validates_uniqueness_of :lastname
+  validates_presence_of :email
+  validates_presence_of :firstname
+  validates_presence_of :lastname
 
   def self.authenticate(email, password)
     user = find_by_email(email)

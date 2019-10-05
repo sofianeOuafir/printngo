@@ -5,7 +5,6 @@ class Api::V1::PaymentsController < ApplicationController
         amount: current_order.total,
         currency: 'cad',
         source: params["payment"]["token"], # obtained with Stripe.js
-        metadata: {order_id: '6735'},
       })
       render json: charge.to_json
     rescue => e
