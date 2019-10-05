@@ -3,6 +3,7 @@ import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import Layout from './Layout';
 import { startLogin, startLogout } from './../actions/auth';
 
 class LoginPage extends React.Component {
@@ -17,12 +18,16 @@ class LoginPage extends React.Component {
 
   render () {
     return (
-      <form onSubmit={this.onSubmit}>
-        <input type="text"/>
-        <input type="password"/>
-        <button>Login</button>
-        <a onClick={this.logout}>Logout</a>
-      </form>
+      <Layout>
+        <div className="flex fullscreen align-items--center justify-between--center"> 
+          <form onSubmit={this.onSubmit} className="border">
+            <input type="text"/>
+            <input type="password"/>
+            <button>Login</button>
+            <a onClick={this.logout}>Logout</a>
+          </form>
+        </div>
+      </Layout>
     );
   }
 }

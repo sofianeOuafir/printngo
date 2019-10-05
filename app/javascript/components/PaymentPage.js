@@ -1,4 +1,4 @@
-import React from "react"
+import React, { Fragment } from "react"
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -11,6 +11,13 @@ import images from './../images';
 class PaymentPage extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      firtname: '',
+      lastname: '',
+      email: '',
+      password: '',
+      passwordConfirmation: ''
+    }
   }
 
   onSubmit = (e) => {
@@ -18,8 +25,33 @@ class PaymentPage extends React.Component {
     this.props.history.push('/order/thank-you')
   }
 
+  onFirstnameChange = (e) => {
+    const firstname = e.target.value;
+    this.setState(() => ({ firstname }))
+  }
+
+  onLastnameChange = (e) => {
+    const lastname = e.target.value;
+    this.setState(() => ({ lastname }))
+  }
+
+  onEmailChange = (e) => {
+    const email = e.target.value;
+    this.setState(() => ({ email }))
+  }
+
+  onPasswordChange = (e) => {
+    const password = e.target.value;
+    this.setState(() => ({ password }))
+  }
+
+  onPasswordConfirmationChange = (e) => {
+    const passwordConfirmation = e.target.value;
+    this.setState(() => ({ passwordConfirmation }))
+  }
+
   render () {
-    const { order } = this.props;
+    const { order, auth } = this.props;
     const { partner } = order;
     const { name, address, city, postcode, opening_hours } = partner;
     const currentState = 3;
@@ -49,16 +81,27 @@ class PaymentPage extends React.Component {
           <div className="p2 border border-color--grey">
             <h2 className="h5 text-navy favourite-font-weight">Payment</h2>
             <form className="form__input-container" onSubmit={this.onSubmit}>
-              <div className="flex">
-                <input className="mr1" type="text" placeholder="Firstname"/>
-                <input type="text" placeholder="Lastname"/>
-              </div>
-              <div className="flex mt2">
-                <input type="text" placeholder="Email"/>
-              </div>
-              <div className="mt2">
-                <span>Already customer? <Link to="/login">Sign In</Link></span>
-              </div>
+              {
+                !auth.authenticated && (
+                  <Fragment>
+                    <div className="flex">
+                      <input className="mr1" type="text" placeholder="Firstname" value={this.state.firstname} onChange={this.onFirstnameChange} />
+                      <input type="text" placeholder="Lastname" value={this.state.lastname} onChange={this.onLastnameChange} />
+                    </div>
+                    <div className="flex mt2">
+                      <input type="text" placeholder="Email" value={this.state.email} onChange={this.onEmailChange}/>
+                    </div>
+                    <div className="flex mt2">
+                      <input className="mr1" type="password" placeholder="Password" value={this.state.password} onChange={this.onPasswordChange}/>
+                      <input type="password" placeholder="Password Confirmation" value={this.state.passwordConfirmation} onChange={this.onPasswordConfirmationChange}/>
+                    </div>
+                    <div className="mt2">
+                      <span>Already customer? <Link to="/login">Sign In</Link></span>
+                    </div>
+                  </Fragment>
+                )
+              }
+
               <div className="mt2">
                 <img className="mr1" src={images.mastercard} alt="MasterCard Icon" width={50}/>
                 <img src={images.visa} alt="MasterCard Icon" width={50}/>
