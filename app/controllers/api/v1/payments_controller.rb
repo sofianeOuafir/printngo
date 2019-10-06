@@ -1,4 +1,6 @@
 class Api::V1::PaymentsController < ApplicationController 
+  wrap_parameters :payment, include: [:token]
+  
   def create
     begin
       charge = Stripe::Charge.create({
@@ -6,8 +8,10 @@ class Api::V1::PaymentsController < ApplicationController
         currency: 'cad',
         source: params["payment"]["token"], # obtained with Stripe.js
       })
+      payment = current_order.create_payment(amount: charge.amount, stripe_id: charge.id)
       current_order.update_columns(paid: true)
-      render json: charge.to_json
+      payment.reload
+      render json: payment.to_json(include: :order)
     rescue => e
       render json: e.to_json, status: e.http_status
     end

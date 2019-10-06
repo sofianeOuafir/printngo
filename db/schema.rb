@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_06_164416) do
+ActiveRecord::Schema.define(version: 2019_10_06_211436) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,6 +125,15 @@ ActiveRecord::Schema.define(version: 2019_10_06_164416) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.string "stripe_id"
+    t.integer "amount"
+    t.bigint "order_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_payments_on_order_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.integer "price"
     t.string "format"
@@ -150,4 +159,5 @@ ActiveRecord::Schema.define(version: 2019_10_06_164416) do
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "partners"
   add_foreign_key "orders", "users"
+  add_foreign_key "payments", "orders"
 end

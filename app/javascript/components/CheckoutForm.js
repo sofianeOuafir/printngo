@@ -21,7 +21,8 @@ class CheckoutForm extends Component {
         firstname: [],
         lastname: [],
         email: [],
-        password: []
+        password: [],
+        payment: ''
       }
     }
   }
@@ -56,13 +57,12 @@ class CheckoutForm extends Component {
     // console.log(e.complete);
   }
 
-  onSubmit = async (e) => {
-    e.preventDefault();
-    const { auth, startSignUp, stripe, history } = this.props;
-    const { firstname, lastname, email, password, passwordConfirmation, cardComplete } = this.state;
-    const { authenticated, fullname, id } = auth;
+  attemptPayment = () => {
+    const { auth, stripe, history } = this.props;
+    const { fullname, id } = auth;
+    const { cardComplete } = this.state;
 
-    if(authenticated) {
+    if(cardComplete) {
       stripe.createToken({name: `${fullname}, id: ${id}`}).then((response) => {
         let {token} = response;
         axios.post("/api/v1/payments", {
@@ -70,33 +70,35 @@ class CheckoutForm extends Component {
         }).then((response) => {
           console.log("Purchase Complete!")
           history.push('/order/thank-you');
+          console.log(response);
         }).catch((e) => {
-          console.log(e);
+          this.setState((prevState) => ({ errors: { ...prevState.errors, payment: e.response.data } }))
         })
       })
     } else {
+      this.setState((prevState) => ({ errors: { ...prevState.errors, payment: 'Please provide card details' } }))
+    }
+  }
+
+  onSubmit = async (e) => {
+    e.preventDefault();
+    const { auth, startSignUp } = this.props;
+    const { authenticated } = auth;
+    const { firstname, lastname, email, password } = this.state;
+
+    if(authenticated) {
+      this.attemptPayment();
+    } else {
       const user = { firstname, lastname, email, password }
       startSignUp(user).then((response) => {
-        console.log(response);
-        const { fullname, id } = response.data;
-        stripe.createToken({name: `${fullname}, id: ${id}`}).then((response) => {
-          let {token} = response;
-          axios.post("/api/v1/payments", {
-            token: token.id
-          }).then((response) => {
-            console.log("Purchase Complete!")
-            history.push('/order/thank-you');
-          }).catch((e) => {
-            console.log(e);
-          })
-        })
+        this.attemptPayment();
       }).catch((e) => {
         const errors = JSON.parse(e.response.data.errors);
+        const { email, firstname, lastname, password } = errors;
+        this.setState((prevState) => ({ errors: { ...prevState.errors, email, firstname, lastname, password } }));
         console.log(errors);
       })
     }
-
-
   }
 
   render() {
@@ -110,8 +112,13 @@ class CheckoutForm extends Component {
                 <input required className="mr1" type="text" placeholder="Firstname" value={this.state.firstname} onChange={this.onFirstnameChange} />
                 <input required type="text" placeholder="Lastname" value={this.state.lastname} onChange={this.onLastnameChange} />
               </div>
-              <div className="flex mt2">
+              <div className="flex flex-direction--column mt2">
                 <input required type="text" placeholder="Email" value={this.state.email} onChange={this.onEmailChange}/>
+                <div>
+                  { this.state.errors.email.map((error, index) => (
+                    <p key={index}>{error}</p>
+                  )) }
+                </div>
               </div>
               <div className="flex mt2">
                 <input required className="mr1" type="password" placeholder="Password" value={this.state.password} onChange={this.onPasswordChange}/>
@@ -128,6 +135,7 @@ class CheckoutForm extends Component {
           <img src={images.visa} alt="MasterCard Icon" width={50}/>
         </div>
         <CardElement hidePostalCode={true} onChange={this.onCardChange} />
+        <p>{this.state.errors.payment}</p>
         <div className="my2">
           <label>
             <input type="checkbox" />

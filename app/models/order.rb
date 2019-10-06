@@ -3,6 +3,7 @@ class Order < ApplicationRecord
   belongs_to :partner, optional: true
   belongs_to :visit, optional: true
   has_many :order_items
+  has_one :payment
 
   scope :paid, -> { where(paid: true) }
   scope :unpaid, -> { where(paid: false) }
