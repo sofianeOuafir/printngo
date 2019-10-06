@@ -6,6 +6,7 @@ class Api::V1::PaymentsController < ApplicationController
         currency: 'cad',
         source: params["payment"]["token"], # obtained with Stripe.js
       })
+      current_order.update_columns(paid: true)
       render json: charge.to_json
     rescue => e
       render json: e.to_json, status: e.http_status

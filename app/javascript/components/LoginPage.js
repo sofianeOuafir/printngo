@@ -7,9 +7,28 @@ import Layout from './Layout';
 import { startLogin, startLogout } from './../actions/auth';
 
 class LoginPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: ''
+    }
+  }
+
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.startLogin({ email: 'jennaklomp@gmail.com', password: 'abc123' })
+    const { email, password } = this.state;
+    this.props.startLogin({ email, password })
+  }
+
+  onEmailChange = (e) => {
+    const email = e.target.value;
+    this.setState(() => ({ email }))
+  }
+
+  onPasswordChange = (e) => {
+    const password = e.target.value;
+    this.setState(() => ({ password }))
   }
 
   logout = () => {
@@ -21,8 +40,8 @@ class LoginPage extends React.Component {
       <Layout>
         <div className="flex fullscreen align-items--center justify-between--center"> 
           <form onSubmit={this.onSubmit} className="border">
-            <input type="text"/>
-            <input type="password"/>
+            <input value={this.state.email} onChange={this.onEmailChange} type="text"/>
+            <input value={this.state.password} onChange={this.onPasswordChange} type="password"/>
             <button>Login</button>
             <a onClick={this.logout}>Logout</a>
           </form>

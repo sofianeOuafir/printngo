@@ -20,6 +20,10 @@ class User < ApplicationRecord
     end
   end
 
+  def fullname 
+    "#{firstname} #{lastname}"
+  end
+
   def encrypt_password
     if password.present?
       self.password_salt = BCrypt::Engine.generate_salt
@@ -29,11 +33,13 @@ class User < ApplicationRecord
 
   def as_json(options = {})
     h = super(options).except!("password_hash", "password_salt", "created_at", "updated_at")
+    h[:fullname] = fullname
     h
   end
 
   def serializable_hash(options = {})
     h = super(options).except!("password_hash", "password_salt", "created_at", "updated_at")
+    h[:fullname] = fullname
     h
   end
 end

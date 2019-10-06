@@ -4,6 +4,9 @@ class Order < ApplicationRecord
   belongs_to :visit, optional: true
   has_many :order_items
 
+  scope :paid, -> { where(paid: true) }
+  scope :unpaid, -> { where(paid: false) }
+
   def sub_total
     order_items.sum(&:sub_total)
   end

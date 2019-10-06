@@ -1,7 +1,7 @@
 class Api::V1::Orders::DocumentsController < ApplicationController
   def create
     order = current_order
-    document = Document.new
+    document = Document.new(user_id: current_user.try(:id))
     document.file.attach(params[:file])
     document.save
     o = open(document.file.service_url)

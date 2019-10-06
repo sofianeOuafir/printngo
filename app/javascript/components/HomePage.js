@@ -8,19 +8,6 @@ import images from './../images';
 import UploadAndPrintButton from './UploadAndPrintButton';
 
 class HomePage extends React.Component {
-  // code for changing navbar color on scrolling
-  // componentDidMount () {
-  //   window.addEventListener('scroll', this.handleScroll);
-  // }
-
-  // componentWillUnmount () {
-  //     window.removeEventListener('scroll', this.handleScroll);
-  // }
-
-  // handleScroll = function(event) {
-  //   const foo = document.getElementById('navbar').getBoundingClientRect();
-  // }
-
   render () {
     const sections = [{
       title: "Upload documents, Choose your closest pick up point, Print n' Go", 

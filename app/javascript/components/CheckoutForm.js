@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react';
 import {CardElement, injectStripe} from 'react-stripe-elements';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import images from './../images';
 import { startSignUp } from './../actions/auth';
@@ -15,7 +15,14 @@ class CheckoutForm extends Component {
       lastname: 'Ouafir',
       email: 'sooooo@live.fr',
       password: 'abc123',
-      passwordConfirmation: 'abc123'
+      passwordConfirmation: 'abc123',
+      cardComplete: false,
+      errors: {
+        firstname: [],
+        lastname: [],
+        email: [],
+        password: []
+      }
     }
   }
 
@@ -45,33 +52,47 @@ class CheckoutForm extends Component {
   }
 
   onCardChange = (e) => {
-    console.log(e);
-    // this.setState(() => ({ cardNumber: e }))
+    this.setState(() => ({ cardComplete: e.complete }))
     // console.log(e.complete);
   }
 
   onSubmit = async (e) => {
-    const { authenticated } = this.props.auth;
     e.preventDefault();
-    if(authenticated) {
+    const { auth, startSignUp, stripe, history } = this.props;
+    const { firstname, lastname, email, password, passwordConfirmation, cardComplete } = this.state;
+    const { authenticated, fullname, id } = auth;
 
+    if(authenticated) {
+      stripe.createToken({name: `${fullname}, id: ${id}`}).then((response) => {
+        let {token} = response;
+        axios.post("/api/v1/payments", {
+          token: token.id
+        }).then((response) => {
+          console.log("Purchase Complete!")
+          history.push('/order/thank-you');
+        }).catch((e) => {
+          console.log(e);
+        })
+      })
     } else {
-      const { firstname, lastname, email, password, passwordConfirmation } = this.state;
       const user = { firstname, lastname, email, password }
-      this.props.startSignUp(user).then((response) => {
-        console.log(this.props.stripe);
-        // let {token} = await this.props.stripe.createToken({name: "Name"});
-        // axios.post("/api/v1/payments", {
-        //   token: token.id
-        // }).then((response) => {
-        //   console.log("Purchase Complete!")
-        // }).catch((e) => {
-        //   console.log(e);
-        // })
-      }).catch((error) => {
-        console.log(this.props.stripe);
-        console.log(error.response.data);
-        console.log(error.message)
+      startSignUp(user).then((response) => {
+        console.log(response);
+        const { fullname, id } = response.data;
+        stripe.createToken({name: `${fullname}, id: ${id}`}).then((response) => {
+          let {token} = response;
+          axios.post("/api/v1/payments", {
+            token: token.id
+          }).then((response) => {
+            console.log("Purchase Complete!")
+            history.push('/order/thank-you');
+          }).catch((e) => {
+            console.log(e);
+          })
+        })
+      }).catch((e) => {
+        const errors = JSON.parse(e.response.data.errors);
+        console.log(errors);
       })
     }
 
@@ -86,15 +107,15 @@ class CheckoutForm extends Component {
           !auth.authenticated && (
             <Fragment>
               <div className="flex">
-                <input className="mr1" type="text" placeholder="Firstname" value={this.state.firstname} onChange={this.onFirstnameChange} />
-                <input type="text" placeholder="Lastname" value={this.state.lastname} onChange={this.onLastnameChange} />
+                <input required className="mr1" type="text" placeholder="Firstname" value={this.state.firstname} onChange={this.onFirstnameChange} />
+                <input required type="text" placeholder="Lastname" value={this.state.lastname} onChange={this.onLastnameChange} />
               </div>
               <div className="flex mt2">
-                <input type="text" placeholder="Email" value={this.state.email} onChange={this.onEmailChange}/>
+                <input required type="text" placeholder="Email" value={this.state.email} onChange={this.onEmailChange}/>
               </div>
               <div className="flex mt2">
-                <input className="mr1" type="password" placeholder="Password" value={this.state.password} onChange={this.onPasswordChange}/>
-                <input type="password" placeholder="Password Confirmation" value={this.state.passwordConfirmation} onChange={this.onPasswordConfirmationChange}/>
+                <input required className="mr1" type="password" placeholder="Password" value={this.state.password} onChange={this.onPasswordChange}/>
+                <input required type="password" placeholder="Password Confirmation" value={this.state.passwordConfirmation} onChange={this.onPasswordConfirmationChange}/>
               </div>
               <div className="mt2">
                 <span>Already customer? <Link to="/login">Sign In</Link></span>
@@ -127,4 +148,4 @@ const mapDispatchToProps = (dispatch) => ({
   startSignUp: (user) => dispatch(startSignUp(user))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectStripe(CheckoutForm));
+export default connect(mapStateToProps, mapDispatchToProps)(injectStripe(withRouter(CheckoutForm)));

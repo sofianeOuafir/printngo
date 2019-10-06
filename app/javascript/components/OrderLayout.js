@@ -6,7 +6,7 @@ import Loader from './Loader';
 
 const OrderLayout = ({ title, info = null, children, nextButton = null, currentState, stickyBar = true }) => (
   <Fragment>
-    <div className="order-navbar">
+    <div style={{ height: '75px' }} className="navbar flex justify-content--center bg-navy align-items--center">
       <div className="content-container">
         <Link to="#" className="website-name">Print N' Go</Link>
       </div>

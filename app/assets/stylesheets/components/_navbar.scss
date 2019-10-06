@@ -1,32 +1,13 @@
 @import 'variables/size'; 
 @import 'variables/colours'; 
 
-.navbar {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 100px;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index:2;
-}
-
-.order-navbar {
-  display: flex;
-  justify-content: center;
-  background-color: $navy;
-  height: 75px;
-  align-items: center;
-}
-
-.navbar a, .order-navbar a {
+.navbar a {
   margin-right: $m-size;
   text-decoration: none;
   font-size: $s-size;
   color: white;
 }
 
-.navbar .website-name, .order-navbar .website-name {
+.navbar .website-name {
   font-size: $ml-size;
 }
