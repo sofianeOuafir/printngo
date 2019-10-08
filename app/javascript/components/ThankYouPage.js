@@ -1,6 +1,6 @@
 import React from "react"
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import OrderLayout from "./OrderLayout";
 import images from './../images';
@@ -8,10 +8,11 @@ import images from './../images';
 class ThankYouPage extends React.Component {
   render () {
     const { partner, order } = this.props;
-    const { user } = order;
+    const { user, paid } = order;
     const { firstname } = user;
     const { name, address, city, postcode, opening_hours } = partner;
     const currentState = 4;
+
     return (
       <OrderLayout
         currentState={currentState}
@@ -40,4 +41,4 @@ const mapStateToProps = (state) => ({
   order: state.order
 })
 
-export default connect(mapStateToProps)(ThankYouPage)
+export default connect(mapStateToProps)(withRouter(ThankYouPage))

@@ -11,7 +11,7 @@ class Api::V1::PaymentsController < ApplicationController
       payment = current_order.create_payment(amount: charge.amount, stripe_id: charge.id)
       current_order.update_columns(paid: true)
       payment.reload
-      render json: payment.to_json(include: :order)
+      render json: payment.to_json(include: { order: { include: :user } })
     rescue => e
       render json: e.to_json, status: e.http_status
     end

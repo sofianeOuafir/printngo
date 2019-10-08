@@ -13,8 +13,7 @@ class PaymentPage extends React.Component {
   constructor(props) {
     super(props);
   }
-
-
+  
   render () {
     const { order, auth } = this.props;
     const { partner } = order;

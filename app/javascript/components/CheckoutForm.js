@@ -6,6 +6,7 @@ import { Link, withRouter } from 'react-router-dom';
 
 import images from './../images';
 import { startSignUp } from './../actions/auth';
+import { startCreatePayment } from './../actions/payments';
 
 class CheckoutForm extends Component {
   constructor(props) {
@@ -58,19 +59,15 @@ class CheckoutForm extends Component {
   }
 
   attemptPayment = () => {
-    const { auth, stripe, history } = this.props;
+    const { auth, stripe, history, startCreatePayment } = this.props;
     const { fullname, id } = auth;
     const { cardComplete } = this.state;
 
     if(cardComplete) {
       stripe.createToken({name: `${fullname}, id: ${id}`}).then((response) => {
         let {token} = response;
-        axios.post("/api/v1/payments", {
-          token: token.id
-        }).then((response) => {
-          console.log("Purchase Complete!")
-          history.push('/order/thank-you');
-          console.log(response);
+        startCreatePayment(token.id).then((response) => {
+          history.push(`/order/thank-you`);
         }).catch((e) => {
           this.setState((prevState) => ({ errors: { ...prevState.errors, payment: e.response.data } }))
         })
@@ -153,7 +150,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  startSignUp: (user) => dispatch(startSignUp(user))
+  startSignUp: (user) => dispatch(startSignUp(user)),
+  startCreatePayment: (token) => dispatch(startCreatePayment(token))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectStripe(withRouter(CheckoutForm)));
