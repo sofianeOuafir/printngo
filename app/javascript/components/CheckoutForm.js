@@ -55,7 +55,6 @@ class CheckoutForm extends Component {
 
   onCardChange = (e) => {
     this.setState(() => ({ cardComplete: e.complete }))
-    // console.log(e.complete);
   }
 
   attemptPayment = () => {
@@ -67,7 +66,7 @@ class CheckoutForm extends Component {
       stripe.createToken({name: `${fullname}, id: ${id}`}).then((response) => {
         let {token} = response;
         startCreatePayment(token.id).then((response) => {
-          history.push(`/order/thank-you`);
+          history.push(`/order/${response.order.id}/thank-you`);
         }).catch((e) => {
           this.setState((prevState) => ({ errors: { ...prevState.errors, payment: e.response.data } }))
         })

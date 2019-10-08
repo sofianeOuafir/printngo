@@ -1,10 +1,10 @@
 class Api::V1::OrdersController < ApplicationController
-  def index
-    render json: current_user.orders.paid.to_json
-  end
-
   def show
-    render json: current_order.to_json(include: [{ order_items: { include: :document } }, :partner, :user])
+    if params[:id] != 'undefined'
+      render json: Order.find(params[:id]).to_json(include: [{ order_items: { include: :document } }, :partner, :user])
+    else
+      render json: current_order.to_json(include: [{ order_items: { include: :document } }, :partner, :user])
+    end
   end
 
   def update

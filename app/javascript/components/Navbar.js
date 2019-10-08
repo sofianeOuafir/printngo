@@ -13,7 +13,7 @@ class Navbar extends React.Component {
   render () {
     const { authenticated, firstname } = this.props.auth;
     return (
-      <div style={{ height: '100px' }} className="navbar flex justify-content--around align-items--center fixed fullwidth">
+      <div style={{ height: '100px' }} className="navbar bg-navy flex justify-content--around align-items--center fullwidth">
         <div className="content-container">
           <Link className="website-name" to="/">Print N' Go</Link>
           {authenticated ? (
