@@ -7,6 +7,7 @@ import { Link, withRouter } from 'react-router-dom';
 import images from './../images';
 import { startSignUp } from './../actions/auth';
 import { startCreatePayment } from './../actions/payments';
+import { startUpdateOrder } from './../actions/orders';
 
 class CheckoutForm extends Component {
   constructor(props) {
@@ -23,9 +24,19 @@ class CheckoutForm extends Component {
         lastname: [],
         email: [],
         password: [],
-        payment: ''
-      }
+        payment: '',
+        termsAndCondition: ''
+      },
+      agreedToTermsAndConditions: props.order.agreed_to_terms_and_conditions || false 
     }
+  }
+
+  onTermsAndConditionsAgreementChange = (e) => {
+    this.setState((prevState) => ({ errors: { ...prevState.errors, termsAndCondition: '' } }))
+    const value = e.target.checked;
+    this.props.startUpdateOrder({ agreed_to_terms_and_conditions: value }).then(() => {
+      this.setState(() => ({ agreedToTermsAndConditions: value }))
+    })
   }
 
   onFirstnameChange = (e) => {
@@ -54,14 +65,17 @@ class CheckoutForm extends Component {
   }
 
   onCardChange = (e) => {
-    this.setState(() => ({ cardComplete: e.complete }))
+    this.setState((prevState) => ({ cardComplete: e.complete, errors: { ...prevState.errors, payment: '' }}))
   }
 
   attemptPayment = () => {
     const { auth, stripe, history, startCreatePayment } = this.props;
     const { fullname, id } = auth;
     const { cardComplete } = this.state;
-
+    if(!this.state.agreedToTermsAndConditions) {
+      this.setState((prevState) => ({ errors: { ...prevState.errors, termsAndCondition: 'Please agree to T&C\'s.' } }))
+      return;
+    }
     if(cardComplete) {
       stripe.createToken({name: `${fullname}, id: ${id}`}).then((response) => {
         let {token} = response;
@@ -92,7 +106,6 @@ class CheckoutForm extends Component {
         const errors = JSON.parse(e.response.data.errors);
         const { email, firstname, lastname, password } = errors;
         this.setState((prevState) => ({ errors: { ...prevState.errors, email, firstname, lastname, password } }));
-        console.log(errors);
       })
     }
   }
@@ -134,9 +147,10 @@ class CheckoutForm extends Component {
         <p>{this.state.errors.payment}</p>
         <div className="my2">
           <label>
-            <input type="checkbox" />
+            <input type="checkbox" checked={this.state.agreedToTermsAndConditions} onChange={this.onTermsAndConditionsAgreementChange} />
             I agree to terms and conditions. I have double checked my document preview and specification. I understand that my order will be printed in line with the preview and specification I have chosen.
           </label>
+          {this.state.errors.termsAndCondition && <p>{this.state.errors.termsAndCondition}</p>}
         </div>
         <button className="fullwidth button button--pink" text="Submit">Pay Now</button>
       </form>
@@ -145,12 +159,14 @@ class CheckoutForm extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  auth: state.auth
+  auth: state.auth,
+  order: state.order
 });
 
 const mapDispatchToProps = (dispatch) => ({
   startSignUp: (user) => dispatch(startSignUp(user)),
-  startCreatePayment: (token) => dispatch(startCreatePayment(token))
+  startCreatePayment: (token) => dispatch(startCreatePayment(token)),
+  startUpdateOrder: (updates) => dispatch(startUpdateOrder(updates))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectStripe(withRouter(CheckoutForm)));

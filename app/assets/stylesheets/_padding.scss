@@ -70,6 +70,10 @@
   @extend .px2, .py2;
 }
 
+.p1 {
+  @extend .px1, .py1;
+}
+
 .px3 {
   @extend .pr3, .pl3;
 }

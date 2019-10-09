@@ -15,6 +15,6 @@ class Api::V1::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:partner_id)
+    params.require(:order).permit(:partner_id, :agreed_to_terms_and_conditions)
   end
 end

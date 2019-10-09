@@ -18,6 +18,7 @@ class Api::V1::SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
+    cookies.delete :ahoy_visit if cookies[:ahoy_visit]
     render json: { message: 'Logout successfully' }, status: 200
   end
 end
