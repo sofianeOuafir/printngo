@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :visits
   has_many :orders
+  has_many :documents
 
   attr_accessor :password
   before_save :encrypt_password

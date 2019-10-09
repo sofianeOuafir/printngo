@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       resources :documents, only: [:create, :update, :destroy]
       resources :products, only: [:index]
       resources :partners, only: [:index]
-      resources :documents, only: [:show]
+      resources :documents, only: [:show, :index]
       resources :payments, only: [:create]
       resources :orders do
         resources :documents, only: [:create, :update, :destroy], controller: 'orders/documents'

@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Layout from './Layout';
-import { startLogin, startLogout } from './../actions/auth';
+import { startLogin } from './../actions/auth';
 
 class LoginPage extends React.Component {
   constructor(props) {
@@ -31,10 +31,6 @@ class LoginPage extends React.Component {
     this.setState(() => ({ password }))
   }
 
-  logout = () => {
-    this.props.startLogout();
-  }
-
   render () {
     return (
       <Layout>
@@ -43,7 +39,6 @@ class LoginPage extends React.Component {
             <input value={this.state.email} onChange={this.onEmailChange} type="text"/>
             <input value={this.state.password} onChange={this.onPasswordChange} type="password"/>
             <button>Login</button>
-            <a onClick={this.logout}>Logout</a>
           </form>
         </div>
       </Layout>
@@ -52,8 +47,7 @@ class LoginPage extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  startLogin: ({ email, password }) => dispatch(startLogin({ email, password })),
-  startLogout: () => dispatch(startLogout())
+  startLogin: ({ email, password }) => dispatch(startLogin({ email, password }))
 })
 
 export default connect(null, mapDispatchToProps)(withRouter(LoginPage));

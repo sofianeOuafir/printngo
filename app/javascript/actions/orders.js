@@ -18,6 +18,20 @@ export const setOrder = order => dispatch => {
   });
 };
 
+export const setClientOrders = (clientOrders) => dispatch => {
+  return dispatch({
+    type: "SET_CLIENT_ORDERS",
+    clientOrders
+  });
+};
+
+export const startSetClientOrders = () => dispatch => {
+  return axios.get('/api/v1/users/undefined/orders').then(response => {
+    dispatch(setClientOrders(response.data))
+    return response;
+  })
+};
+
 export const updateOrder = updates => dispatch => {
   return dispatch({
     type: "UPDATE_ORDER",

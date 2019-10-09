@@ -8,6 +8,8 @@ import productsReducer from './reducers/products';
 import ordersReducer from './reducers/orders';
 import partnersReducer from './reducers/partners';
 import authReducer from './reducers/auth';
+import clientOrdersReducer from './reducers/clientOrders';
+import documentsReducer from './reducers/documents';
 
 let composeEnhancers;
 try {
@@ -16,12 +18,6 @@ try {
   composeEnhancers = compose;
 }
 
-const initialState = {
-  things: [{
-    foo: 'bar'
-  }]
-};
-
 export default function (initData) {
   const store = createStore(
     combineReducers({
@@ -29,7 +25,9 @@ export default function (initData) {
       products: productsReducer,
       order: ordersReducer,
       partners: partnersReducer,
-      auth: authReducer
+      auth: authReducer,
+      clientOrders: clientOrdersReducer,
+      documents: documentsReducer
     }),
     initData,
     composeEnhancers(applyMiddleware(thunk))

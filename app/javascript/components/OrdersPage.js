@@ -1,8 +1,10 @@
 import React from "react"
 import Layout from './Layout';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 import Loader from './Loader';
+import { startSetClientOrders } from './../actions/orders';
 
 class OrdersPage extends React.Component {
   constructor(props) {
@@ -13,8 +15,9 @@ class OrdersPage extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/api/v1/users/1/orders').then(response => {
-      this.setState(() => ({ loadingData: false, orders: response.data }))
+    const { startSetClientOrders } = this.props;
+    startSetClientOrders().then(() => {
+      this.setState(() => ({ loadingData: false}))
     })
   }
 
@@ -24,11 +27,12 @@ class OrdersPage extends React.Component {
         <Loader />
       )
     } else {
+      const { clientOrders } = this.props;
       return (
         <Layout>
           <div className="content-container">
             <h1>Your Orders</h1>
-            { this.state.orders.map((order, index) => (
+            { clientOrders.map((order, index) => (
               <div key={index} className="border">
                 <div>
                   Order placed
@@ -54,4 +58,12 @@ class OrdersPage extends React.Component {
   }
 }
 
-export default OrdersPage
+const mapStateToProps = (state) => ({
+  clientOrders: state.clientOrders
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  startSetClientOrders: () => dispatch(startSetClientOrders())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(OrdersPage)

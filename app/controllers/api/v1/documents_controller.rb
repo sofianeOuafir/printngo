@@ -1,4 +1,8 @@
 class Api::V1::DocumentsController < ApplicationController
+  def index
+    render json: current_user.documents.to_json
+  end
+
   def show
     render json: Document.find(params[:id]).to_json
   end

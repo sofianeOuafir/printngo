@@ -11,7 +11,7 @@ class PartnerPage extends React.Component {
       description: "By providing the quickest and most convenient printing service, you will get paid while attracting more people in your selling point without impacting your main activity.",
       imgSrc: images.handShake,
       imgAlt: "Become Partner Icon",
-      bgColour: 'bg-orange',
+      bgColour: 'bg-navy',
       reverse: false
     }, {
       title: "Create a new source of revenue", 

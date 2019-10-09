@@ -16,8 +16,7 @@ export const startLogin = ({email, password}) => dispatch => {
 export const startSignUp = (user) => dispatch => {
   return axios.post('/api/v1/users', user).then((response) => {
     const { email, password } = user;
-    dispatch(startLogin({ email, password }));
-    return response;
+    return dispatch(startLogin({ email, password }));
   })
 }
 
