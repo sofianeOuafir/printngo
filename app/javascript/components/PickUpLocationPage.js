@@ -48,13 +48,13 @@ class PickUpLocationPage extends React.Component {
             { partners.map((partner, index) => (
               <div key={index} className={`${order.partner_id === partner.id ? 'bg-navy text-white' : ''} mb2 flex justify-content--between p2 border border-color--grey flex align-items--center`}>
                 <div className="flex h5">
-                  <div className="flex flex-direction--column">
+                  <div className="flex flex-direction--column mr2">
                     <span>{partner.name}</span>
                     <span>{partner.address}</span>
                     <span>{partner.city}</span>
                     <span>{partner.postcode}</span>
                   </div>
-                  <span>{partner.opening_hours}</span>
+                  <span>Opening Hours: {partner.opening_hours}</span>
                 </div>
                 <div>
                   <a className={`button pointer ${order.partner_id === partner.id ? 'button-outline' : 'button--navy'}`} onClick={() => this.onLocationSelect(partner.id)}>Select</a>

@@ -5,6 +5,7 @@ import axios from 'axios';
 
 import images from './../images';
 import { removeOrderItem, updateOrderItem } from './../actions/orderItems';
+import { fromCentsToDollars } from './../utils/money';
 
 class OrderItem extends React.Component {
   onRemove = (orderItemId) => {
@@ -69,7 +70,7 @@ class OrderItem extends React.Component {
         </div>
         <div className="flex flex-direction--column">
           <span className="mb2">Price:</span>
-          <span>${sub_total / 100}</span>
+          <span>{fromCentsToDollars(sub_total)}</span>
         </div>
       </div>
     );

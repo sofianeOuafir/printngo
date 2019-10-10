@@ -8,6 +8,7 @@ import OrderItemList from './OrderItemList';
 import { startSetProducts } from './../actions/products';
 import { startSetOrder } from './../actions/orders';
 import Loader from "./Loader";
+import { fromCentsToDollars } from './../utils/money';
 
 class BasketPage extends React.Component {
   constructor(props) {
@@ -32,14 +33,14 @@ class BasketPage extends React.Component {
     } else {
       const  { orderItems, order } = this.props;
       let { sub_total, number_of_items } = order;
-      sub_total = sub_total / 100;
+      sub_total = fromCentsToDollars(sub_total);
       const currentState = number_of_items > 0 ? 1 : 0;
       return (
         <OrderLayout
           currentState={currentState}
           title="Your Basket"
           nextButton={{ link: '/order/pick-up-location', text: 'Go to Pick up details', disabled: orderItems.length == 0 }}
-          info={`Subtotal (${number_of_items} ${pluralize('Item', number_of_items)}): $${sub_total}`}
+          info={`Subtotal (${number_of_items} ${pluralize('Item', number_of_items)}): ${sub_total}`}
         >
         <div className="content-container">
           <OrderItemList />

@@ -13,26 +13,29 @@ class Navbar extends React.Component {
   render () {
     const { authenticated, firstname } = this.props.auth;
     return (
-      <div style={{ height: '75px' }} className="navbar bg-navy flex justify-content--around align-items--center fullwidth">
-        <div className="content-container">
-          <Link className="website-name" to="/">Print N' Go</Link>
+      <div style={{ height: '75px' }} className="navbar bg-navy fullwidth flex align-items--center border--bottom border-color--white">
+        <div className="content-container flex justify-content--between align-items--center fullwidth">
+          <div>
+            <Link className="website-name" to="/">Print N' Go</Link>
+          </div>
           {authenticated ? (
-            <Fragment>
+            <div>
               <Link to="/documents">Documents</Link>
               <Link to="/orders">Orders</Link>
               <UploadAndPrintButton />
+              <Link to="/become-partner">Become Partner</Link>
               <Link to="/">{ firstname }</Link>
               <Link to="/" onClick={this.onLogout}>Log out</Link>
-            </Fragment>
+            </div>
           ) : (
-            <Fragment>  
+            <div>  
               <Link to="/">How it works?</Link>
               <Link to="/">Why Print n' go?</Link>
               <Link to="/">Pricing</Link>
               <UploadAndPrintButton />
               <Link to="/become-partner">Become Partner</Link>
               <Link to="/login">Sign In</Link>
-            </Fragment>
+            </div>
           )}
         </div>
       </div>
