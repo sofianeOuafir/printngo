@@ -6,8 +6,10 @@ class User < ApplicationRecord
   attr_accessor :password
   before_save :encrypt_password
 
-  validates_presence_of :password, on: :create
+  validates :password, presence: true, confirmation: true
+  validates_confirmation_of :password
   validates_uniqueness_of :email
+  validates_format_of :email, with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
   validates_presence_of :email
   validates_presence_of :firstname
   validates_presence_of :lastname

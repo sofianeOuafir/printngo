@@ -26,10 +26,18 @@ body {
   display: block;
 }
 
+.inline-block {
+  display: inline-block;
+}
+
 .sticky {
   position: -webkit-sticky; /* Required for Safari */
   position: sticky;
   top: 0px;
+}
+
+.relative {
+  position: relative;
 }
 
 .fixed {
@@ -46,4 +54,8 @@ body {
 
 .fullwidth {
   width: 100%;
+}
+
+.halfwidth {
+  width: 50%;
 }
