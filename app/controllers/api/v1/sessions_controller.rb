@@ -11,7 +11,7 @@ class Api::V1::SessionsController < ApplicationController
       render json: user.to_json
     else
       render json: {
-        error: 'Username or password incorrect'
+        error: 'Email or password incorrect'
       }, status: 404
     end
   end

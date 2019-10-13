@@ -29,7 +29,8 @@ class CheckoutForm extends Component {
         payment: '',
         termsAndCondition: ''
       },
-      agreedToTermsAndConditions: props.order.agreed_to_terms_and_conditions || false 
+      agreedToTermsAndConditions: props.order.agreed_to_terms_and_conditions || false,
+      processingPayment: false 
     }
   }
 
@@ -75,7 +76,7 @@ class CheckoutForm extends Component {
     const { fullname, id } = auth;
     const { cardComplete } = this.state;
     if(!this.state.agreedToTermsAndConditions) {
-      this.setState((prevState) => ({ errors: { ...prevState.errors, termsAndCondition: 'Please agree to T&C\'s.' } }))
+      this.setState((prevState) => ({ errors: { ...prevState.errors, termsAndCondition: 'Please agree to T&C\'s.'}, processingPayment: false }))
       return;
     }
     if(cardComplete) {
@@ -83,38 +84,42 @@ class CheckoutForm extends Component {
         let {token} = response;
         startCreatePayment(token.id).then((response) => {
           history.push(`/order/${response.order.id}/thank-you`);
+          this.setState(() => ({ processingPayment: false }))
         }).catch((e) => {
-          this.setState((prevState) => ({ errors: { ...prevState.errors, payment: e.response.data } }))
+          console.log(e.response);
+          this.setState((prevState) => ({ errors: { ...prevState.errors, payment: e.response.data }, processingPayment: false }))
         })
       })
     } else {
-      this.setState((prevState) => ({ errors: { ...prevState.errors, payment: 'Please provide card details' } }))
+      this.setState((prevState) => ({ errors: { ...prevState.errors, payment: 'Please provide card details' }, processingPayment: false }))
     }
   }
 
   onSubmit = (e) => {
     e.preventDefault();
-    const { auth, startSignUp } = this.props;
-    const { authenticated } = auth;
-    const { firstname, lastname, email, password, passwordConfirmation: password_confirmation } = this.state;
-
-    if(authenticated) {
-      this.attemptPayment();
-    } else {
-      const user = { firstname, lastname, email, password, password_confirmation }
-      startSignUp(user).then((response) => {
+    this.setState(() => ({ processingPayment: true }), () => {
+      const { auth, startSignUp } = this.props;
+      const { authenticated } = auth;
+      const { firstname, lastname, email, password, passwordConfirmation: password_confirmation } = this.state;
+  
+      if(authenticated) {
         this.attemptPayment();
-      }).catch((e) => {
-        const errors = JSON.parse(e.response.data.errors);
-        const { email, firstname, lastname, password, password_confirmation } = errors;
-        console.log(password_confirmation);
-        this.setState((prevState) => ({ errors: { ...prevState.errors, email, firstname, lastname, password, passwordConfirmation: password_confirmation } }));
-      })
-    }
+      } else {
+        const user = { firstname, lastname, email, password, password_confirmation }
+        startSignUp(user).then(() => {
+          this.attemptPayment();
+        }).catch((e) => {
+          const errors = JSON.parse(e.response.data.errors);
+          const { email, firstname, lastname, password, password_confirmation } = errors;
+          this.setState((prevState) => ({ errors: { ...prevState.errors, email, firstname, lastname, password, passwordConfirmation: password_confirmation }, processingPayment: false }));
+        })
+      }
+    });
   }
 
   render() {
     const { auth } = this.props;
+    const { errors, firstname, lastname, email, password, passwordConfirmation, agreedToTermsAndConditions, processingPayment } = this.state;
     return (
       <form className="form__input-container" onSubmit={this.onSubmit}>
         { 
@@ -122,22 +127,22 @@ class CheckoutForm extends Component {
             <Fragment>
               <div className="flex">
                 <div className="flex flex-direction--column col-6 mr1">
-                  <TextInput errors={this.state.errors.firstname} className="mb1" type="text" placeholder="Firstname" value={this.state.firstname} onChange={this.onFirstnameChange} />
+                  <TextInput errors={errors.firstname} className="mb1" type="text" placeholder="Firstname" value={firstname} onChange={this.onFirstnameChange} />
                 </div>
                 <div className="flex flex-direction--column col-6">
-                  <TextInput errors={this.state.errors.lastname} className="mb1" type="text" placeholder="Lastname" value={this.state.lastname} onChange={this.onLastnameChange} />
+                  <TextInput errors={errors.lastname} className="mb1" type="text" placeholder="Lastname" value={lastname} onChange={this.onLastnameChange} />
                 </div>
               </div>
 
               <div className="flex flex-direction--column pt1">
-                <TextInput errors={this.state.errors.email} className="mb1" type="text" placeholder="Email" value={this.state.email} onChange={this.onEmailChange} />
+                <TextInput errors={errors.email} className="mb1" type="text" placeholder="Email" value={email} onChange={this.onEmailChange} />
               </div>
               <div className="flex pt1">
                 <div className="flex flex-direction--column col-6 mr1">
-                  <TextInput errors={this.state.errors.password} className="mb1" type="password" placeholder="Password" value={this.state.password} onChange={this.onPasswordChange} />
+                  <TextInput errors={errors.password} className="mb1" type="password" placeholder="Password" value={password} onChange={this.onPasswordChange} />
                 </div>
                 <div className="flex flex-direction--column col-6">
-                  <TextInput errors={this.state.errors.passwordConfirmation} className="mb1" type="password" placeholder="Password Confirmation" value={this.state.passwordConfirmation} onChange={this.onPasswordConfirmationChange} />
+                  <TextInput errors={errors.passwordConfirmation} className="mb1" type="password" placeholder="Password Confirmation" value={passwordConfirmation} onChange={this.onPasswordConfirmationChange} />
                 </div>
               </div>
               <div className="mt2">
@@ -151,15 +156,15 @@ class CheckoutForm extends Component {
           <img src={images.visa} alt="MasterCard Icon" width={50}/>
         </div>
         <CardElement hidePostalCode={true} onChange={this.onCardChange} />
-        <p className="text-pink">{this.state.errors.payment}</p>
+        <p className="text-pink">{errors.payment}</p>
         <div className="my2">
           <label>
-            <input type="checkbox" checked={this.state.agreedToTermsAndConditions} onChange={this.onTermsAndConditionsAgreementChange} />
+            <input type="checkbox" checked={agreedToTermsAndConditions} onChange={this.onTermsAndConditionsAgreementChange} />
             I agree to terms and conditions. I have double checked my document preview and specification. I understand that my order will be printed in line with the preview and specification I have chosen.
           </label>
-          {this.state.errors.termsAndCondition && <p className="text-pink">{this.state.errors.termsAndCondition}</p>}
+          {errors.termsAndCondition && <p className="text-pink">{errors.termsAndCondition}</p>}
         </div>
-        <button className="fullwidth button button--pink" text="Submit">Pay Now</button>
+        <button disabled={processingPayment} className={`fullwidth button ${processingPayment ? 'button-grey text-pink' : 'button--pink' }`} text="Submit">{processingPayment ? 'Processing Payment...' : 'Pay Now' }</button>
       </form>
     );
   }

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import TextInput from './TextInput';
 import Layout from './Layout';
 import { startLogin } from './../actions/auth';
 
@@ -11,34 +12,39 @@ class LoginPage extends React.Component {
     super(props);
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      error: ''
     }
   }
 
   onSubmit = (e) => {
     e.preventDefault();
     const { email, password } = this.state;
-    this.props.startLogin({ email, password })
+    this.props.startLogin({ email, password }).catch((e) => {
+      const { error } = e.response.data;
+      this.setState(() => ({ error }))
+    })
   }
 
   onEmailChange = (e) => {
     const email = e.target.value;
-    this.setState(() => ({ email }))
+    this.setState(() => ({ email, error: '' }))
   }
 
   onPasswordChange = (e) => {
     const password = e.target.value;
-    this.setState(() => ({ password }))
+    this.setState(() => ({ password, error: '' }))
   }
 
   render () {
     return (
       <Layout>
-        <div className="flex fullscreen align-items--center justify-between--center"> 
-          <form onSubmit={this.onSubmit} className="border">
-            <input value={this.state.email} onChange={this.onEmailChange} type="text"/>
-            <input value={this.state.password} onChange={this.onPasswordChange} type="password"/>
-            <button>Login</button>
+        <div className="flex fullscreen align-items--center justify-content--center">
+          <form onSubmit={this.onSubmit} className="border border-color--grey p2 form__input-container">
+            <p className="text-pink center">{this.state.error}</p>
+            <TextInput placeholder="Email" className="block mb1" value={this.state.email} onChange={this.onEmailChange} type="text"/>
+            <TextInput placeholder="Password" className="block mb1" value={this.state.password} onChange={this.onPasswordChange} type="password"/>
+            <button className="button button--navy fullwidth">Login</button>
           </form>
         </div>
       </Layout>

@@ -8,7 +8,7 @@ const OrderLayout = ({ title, info = null, children, nextButton = null, currentS
   <Fragment>
     <div style={{ height: '75px' }} className="navbar flex justify-content--center bg-navy align-items--center">
       <div className="content-container">
-        <Link to="#" className="website-name">Print N' Go</Link>
+        <Link to="/" className="website-name">Print N' Go</Link>
       </div>
     </div>
     <div className="mt2 content-container">
