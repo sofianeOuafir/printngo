@@ -1,7 +1,6 @@
 import React from "react"
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import axios from 'axios';
 
 import OrderLayout from "./OrderLayout";
 import images from './../images';
@@ -30,7 +29,7 @@ class ThankYouPage extends React.Component {
       )
     } else {
       const { partner, order } = this.props;
-      const { user, paid } = order;
+      const { user } = order;
       const { firstname } = user;
       const { name, address, city, postcode, opening_hours } = partner;
       const currentState = 4;
@@ -39,7 +38,7 @@ class ThankYouPage extends React.Component {
         <OrderLayout
           currentState={currentState}
         >
-          <div className="content-container border h5 flex justify-content--center">
+          <div className="content-container border border-color--grey h5 flex justify-content--center">
             <div className="my2">
               <div className="center">
                 <img src={images.success} alt="Success Icon" width={100}/>
@@ -47,11 +46,14 @@ class ThankYouPage extends React.Component {
               <h1 className="h4 center">Payment Sucess!</h1>
               <div>
                 <p>Thank you { firstname }. You can now go gather your documents at:</p>
-                <p>{`${name} - ${address}, ${city} ${postcode}`}</p>
+                <p>{`${name} - ${address}, ${city} ${postcode}.`}</p>
                 <p>{`Opening hours: ${opening_hours}`}</p>
+                <p><strong>Important: Please bring a proof of ID with you.</strong></p>
               </div>
-              <Link className="mt3 button button-outline--pink" to="/orders">See Orders</Link>
-              <Link className="mt3 button button-outline--pink" to="/dashboard">Download Invoice</Link>
+              <div className="flex justify-content--between">
+                <Link className="mt3 button button-outline--pink" to="/orders">See Order</Link>
+                <Link className="mt3 button button-outline--pink" to="/dashboard">Download Invoice</Link>
+              </div>
             </div>
           </div>
         </OrderLayout>
