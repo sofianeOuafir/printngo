@@ -2,6 +2,8 @@ class OrderItem < ApplicationRecord
   belongs_to :product
   belongs_to :document
   belongs_to :order
+  
+  validates_numericality_of :quantity, greater_than_or_equal_to: 0
 
   before_save :change_price
 

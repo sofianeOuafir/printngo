@@ -37,6 +37,9 @@ export const removeOrderItem = orderItemId => dispatch => {
 };
 
 export const updateOrderItem = ({ id, updates }) => dispatch => {
+  if(updates.quantity && updates.quantity < 0) {
+    updates.quantity = 0;
+  }
   axios.patch(`/api/v1/order_items/${id}`, updates).then(response => {
     dispatch(updateOrder(response.data.order));
     dispatch({
