@@ -1,12 +1,12 @@
 import React from "react"
 import { connect } from 'react-redux';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 import Layout from './Layout';
 import { startSetDocuments } from './../actions/documents';
 import Loader from "./App";
-import images from './../images';
-import { getDateTimeFormat } from './../utils/date';
+import UploadAndPrintButton from './UploadAndPrintButton';
+import Document from "./Document";
 
 class DocumentsPage extends React.Component {
   constructor(props) {
@@ -23,48 +23,29 @@ class DocumentsPage extends React.Component {
     })
   }
 
-  onViewClick(id) {
-    axios.get(`/api/v1/documents/${id}`).then((response) => {
-      var win = window.open(response.data.url, '_blank');
-      win.focus();
-    })
-  }
-
   render () {
     if(this.state.loadingData) {
       return (
         <Loader />
       )
     } else {
-      const { documents } = this.props;
+      const { documents, orderItems } = this.props;
       return (
         <Layout>
           <div className="content-container">
-            <h1 className="favourite-font-weight h4">Your Documents</h1>
-            { documents.map((document, index) => {
-              const { name, created_at, id } = document;
-              return (
-              <div key={index} className="h5 flex align-items--center justify-content--between border border-color--grey p2 mb1">
-                <div className="center">
-                  <div>
-                    <img src={images.aDocument} alt="Document Icon" width={40}/>
-                  </div>
-                  <div className="flex align-items--center mt1">
-                    <a onClick={() => this.onViewClick(id)} className="mr1 pointer">View</a>
-                    <a className="pointer" onClick={() => { this.onRemove(id) } }>Remove</a>
-                  </div>
-                </div>
-                <div style={{ width: '100px'}} className="word-wrap--break-word">
-                  <span title={name}>{name.length > 30 ? `${name.substring(0, 30)}...` : name}</span>
-                </div>
-                <div>
-                  <span>{getDateTimeFormat(created_at)}</span>
-                </div>
-                <div>
-                  <a to="/" className="button button--navy">Add To Basket</a>
-                </div>
-              </div>
-            )}) }
+            <div className="sticky bg-white flex align-items--center justify-content--between" style={{ height: '75px' }}>
+              <h1 className="favourite-font-weight h4">Your Documents</h1>
+              {orderItems.length > 0 && <Link to="/order/basket" className="button button--pink" >Checkout &rarr;</Link>}
+            </div>
+
+            <div>
+              { documents.map((document, index) => {
+                return (
+                  <Document key={index} document={document} />
+              )}) }
+              <UploadAndPrintButton text="Upload & Add To Basket" className="button button--navy" />
+            </div>
+
           </div>
         </Layout>
       );
@@ -73,7 +54,8 @@ class DocumentsPage extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  documents: state.documents
+  documents: state.documents,
+  orderItems: state.orderItems
 })
 
 const mapDispatchToProps = (dispatch) => ({

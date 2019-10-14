@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 
 import { startGetCurrentUser } from './../actions/auth';
 import PartnerPage from './PartnerPage';
@@ -15,6 +16,7 @@ import ThankYouPage from './ThankYouPage';
 import LoginPage from './LoginPage';
 import OrdersPage from './OrdersPage';
 import DocumentsPage from './DocumentsPage';
+import 'react-toastify/dist/ReactToastify.css';
 
 const store = configureStore();
 
@@ -34,6 +36,7 @@ class App extends React.Component {
             <Route path="/documents" render={() => <DocumentsPage />  }/>
             <Route path="/login" render={() => <LoginPage />  }/>
           </Switch>
+          <ToastContainer autoClose={2000} />
         </BrowserRouter>
       </Provider>
     );

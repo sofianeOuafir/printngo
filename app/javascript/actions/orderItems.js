@@ -9,6 +9,15 @@ export const setOrderItems = orderItems => dispatch => {
   });
 };
 
+export const startAddOrderItem = (document_id) => dispatch => {
+  return axios.post('/api/v1/order_items', {
+    document_id
+  }).then((response) => {
+    dispatch(addOrderItem(response.data))
+    return response;
+  })
+}
+
 export const addOrderItem = orderItem => dispatch => {
   dispatch(updateOrder(orderItem.order));
   dispatch({
