@@ -6,6 +6,7 @@ class OrderItem < ApplicationRecord
   validates_numericality_of :quantity, greater_than_or_equal_to: 0
 
   before_save :change_price
+  after_save :destroy_order_item_if_quantity_is_zero
 
   def sub_total
     document.number_of_page * quantity * price
@@ -24,6 +25,12 @@ class OrderItem < ApplicationRecord
   end
 
   private
+
+  def destroy_order_item_if_quantity_is_zero
+    return unless quantity.zero?
+
+    destroy
+  end
 
   def change_price
     return unless product_id_changed?

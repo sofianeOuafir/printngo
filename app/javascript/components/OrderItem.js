@@ -2,24 +2,41 @@ import React from "react"
 import { connect } from 'react-redux';
 import pluralize from 'pluralize';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 import images from './../images';
-import { removeOrderItem, updateOrderItem } from './../actions/orderItems';
+import { startRemoveOrderItem, startUpdateOrderItem, removeOrderItem } from './../actions/orderItems';
 import { fromCentsToDollars } from './../utils/money';
 
 class OrderItem extends React.Component {
   onRemove = (orderItemId) => {
-    this.props.removeOrderItem(orderItemId);
+    this.props.startRemoveOrderItem(orderItemId).then(() => {
+      this.displayRemovalNotification();
+    })
   }
 
   onProductChange = ({ e, orderItemId } ) => {
     const productId = e.target.value;
-    this.props.updateOrderItem({ id: orderItemId, updates: { product_id: productId }})
+    this.props.startUpdateOrderItem({ id: orderItemId, updates: { product_id: productId }})
+  }
+
+  displayRemovalNotification = () => {
+    toast.info("Item removed successfully!", {
+      position: toast.POSITION.BOTTOM_RIGHT
+    });
   }
 
   onQuantityChange = ({ e, action, currentQuantity, orderItemId }) => {
-    const quantity = action === 'plus' ? currentQuantity + 1 : currentQuantity - 1;
-    this.props.updateOrderItem({ id: orderItemId, updates: { quantity }})
+    const { startUpdateOrderItem, removeOrderItem } = this.props
+    let quantity = action === 'plus' ? currentQuantity + 1 : currentQuantity - 1;
+    quantity = quantity < 0 ? 0 : quantity;
+    startUpdateOrderItem({ id: orderItemId, updates: { quantity }}).then((response) => {
+      const { quantity, id } = response.data;
+      if(quantity === 0) {
+        removeOrderItem(id)
+        this.displayRemovalNotification();
+      }
+    })
   }
 
   onViewClick = (id) => {
@@ -85,8 +102,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    removeOrderItem: (orderItemId) => dispatch(removeOrderItem(orderItemId)),
-    updateOrderItem: ({ id, updates }) => dispatch(updateOrderItem({ id, updates}))
+    startRemoveOrderItem: (orderItemId) => dispatch(startRemoveOrderItem(orderItemId)),
+    startUpdateOrderItem: ({ id, updates }) => dispatch(startUpdateOrderItem({ id, updates})),
+    removeOrderItem: (orderItemId) => dispatch(removeOrderItem(orderItemId))
   }
 }
 

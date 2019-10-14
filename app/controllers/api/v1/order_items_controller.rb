@@ -4,7 +4,6 @@ class Api::V1::OrderItemsController < ApplicationController
   def create
     order_item = current_order.order_items.create(
       product: Product.a4_black_and_white,
-      quantity: 1,
       document_id: params[:document_id]
     )
     render json: order_item.to_json(include: [:order, :document])

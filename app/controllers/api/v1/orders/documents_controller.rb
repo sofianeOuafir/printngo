@@ -11,7 +11,6 @@ class Api::V1::Orders::DocumentsController < ApplicationController
     order_item = order.order_items.create(
       product_id: product.id,
       document_id: document.id,
-      quantity: 1,
       price: product.price
     )
     render json: order_item.to_json(include: [:document, :order])

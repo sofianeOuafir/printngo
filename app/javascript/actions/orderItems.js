@@ -26,26 +26,28 @@ export const addOrderItem = orderItem => dispatch => {
   })
 };
 
-export const removeOrderItem = orderItemId => dispatch => {
-  axios.delete(`/api/v1/order_items/${orderItemId}`).then(response => {
+export const startRemoveOrderItem = orderItemId => dispatch => {
+  return axios.delete(`/api/v1/order_items/${orderItemId}`).then(response => {
     dispatch(updateOrder(response.data.order));
-    dispatch({
-      type: "REMOVE_ORDER_ITEM",
-      orderItemId
-    });
+    dispatch(removeOrderItem(orderItemId));
   })
 };
 
-export const updateOrderItem = ({ id, updates }) => dispatch => {
-  if(updates.quantity && updates.quantity < 0) {
-    updates.quantity = 0;
-  }
-  axios.patch(`/api/v1/order_items/${id}`, updates).then(response => {
+export const removeOrderItem = orderItemId => dispatch => {
+  dispatch({
+    type: "REMOVE_ORDER_ITEM",
+    orderItemId
+  });
+}
+
+export const startUpdateOrderItem = ({ id, updates }) => dispatch => {
+  return axios.patch(`/api/v1/order_items/${id}`, updates).then(response => {
     dispatch(updateOrder(response.data.order));
     dispatch({
       type: "UPDATE_ORDER_ITEM",
       id,
       updates: response.data
     });
+    return response;
   })
 }
