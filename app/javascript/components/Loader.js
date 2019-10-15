@@ -2,7 +2,7 @@ import React from 'react';
 import { ClipLoader } from 'react-spinners';
 
 const Loader = () => (
-  <div class="fullscreen flex justify-content--between align-items--center">
+  <div className="fullscreen flex justify-content--between align-items--center">
     <div className="fullwidth flex justify-content--center">
       <ClipLoader
         size={100}

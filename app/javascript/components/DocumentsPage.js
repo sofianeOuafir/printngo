@@ -6,7 +6,7 @@ import Layout from './Layout';
 import { startSetDocuments } from './../actions/documents';
 import Loader from "./App";
 import UploadAndPrintButton from './UploadAndPrintButton';
-import Document from "./Document";
+import DocumentList from './DocumentList';
 
 class DocumentsPage extends React.Component {
   constructor(props) {
@@ -29,7 +29,7 @@ class DocumentsPage extends React.Component {
         <Loader />
       )
     } else {
-      const { documents, orderItems } = this.props;
+      const { orderItems } = this.props;
       return (
         <Layout>
           <div className="content-container">
@@ -37,12 +37,8 @@ class DocumentsPage extends React.Component {
               <h1 className="favourite-font-weight h4">Your Documents</h1>
               {orderItems.length > 0 && <Link to="/order/basket" className="button button--pink" >Checkout &rarr;</Link>}
             </div>
-
             <div>
-              { documents.map((document, index) => {
-                return (
-                  <Document key={index} document={document} />
-              )}) }
+              <DocumentList />
               <UploadAndPrintButton text="Upload & Add To Basket" className="button button--navy" />
             </div>
 
@@ -54,7 +50,6 @@ class DocumentsPage extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  documents: state.documents,
   orderItems: state.orderItems
 })
 

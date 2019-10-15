@@ -19,7 +19,7 @@ class OrderItemList extends React.Component {
         { orderItems.length ? orderItems.map((orderItem, index) => (
           <OrderItem key={index} orderItem={orderItem} />
         )) : (
-          <p className="h4">You basket is currently empty.</p>
+          <p className="h5">You basket is currently empty.</p>
         ) }
         <div className="flex justify-content--between h5">
           <div>
