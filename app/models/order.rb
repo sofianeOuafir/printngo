@@ -7,6 +7,8 @@ class Order < ApplicationRecord
 
   scope :paid, -> { where(paid: true) }
   scope :unpaid, -> { where(paid: false) }
+  scope :archived, -> { where(archived: true) }
+  scope :unarchived, -> { where(archived: false) }
 
   def sub_total
     order_items.sum(&:sub_total)

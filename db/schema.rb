@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_10_032633) do
+ActiveRecord::Schema.define(version: 2019_10_15_215837) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,6 +110,7 @@ ActiveRecord::Schema.define(version: 2019_10_10_032633) do
     t.boolean "paid", default: false
     t.boolean "agreed_to_terms_and_conditions", default: false
     t.boolean "printed", default: false
+    t.boolean "archived", default: false
     t.index ["partner_id"], name: "index_orders_on_partner_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
