@@ -15,7 +15,7 @@ const PickUpLocationCard = ({ partner, readOnly = false }) => {
           <span><strong>Opening hours: </strong>{opening_hours}</span>
         </div>
           {!readOnly && 
-          <div class="mt1">
+          <div className="mt1">
             <Link to="/order/pick-up-location" className="button button-outline button-outline--pink">&larr; Select Another Pick up Location</Link>
           </div>}
       </div>

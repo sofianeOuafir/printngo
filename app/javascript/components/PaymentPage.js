@@ -48,7 +48,7 @@ class PaymentPage extends React.Component {
             </div>
             <div className="p2 border border-color--grey">
               <h2 className="h5 text-navy favourite-font-weight">Payment</h2>
-              <StripeProvider apiKey="pk_test_IyiaKrZbjpSSNn0RiEni1Ry000WVCC2kWW">
+              <StripeProvider apiKey={process.env.STRIPE_PUBLIC_KEY}>
                 <Elements>
                   <CheckoutForm />
                 </Elements>
