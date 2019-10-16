@@ -17,4 +17,10 @@ class Product < ApplicationRecord
     h[:name] = name
     h
   end
+
+  def serializable_hash(options = {})
+    h = super(options)
+    h[:name] = name
+    h
+  end
 end

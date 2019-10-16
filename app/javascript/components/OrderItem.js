@@ -47,8 +47,8 @@ class OrderItem extends React.Component {
   }
 
   render () {
-    const { orderItem, products } = this.props;
-    const { id, document, quantity, sub_total, product_id } = orderItem;
+    const { orderItem, products, readOnly } = this.props;
+    const { id, document, quantity, sub_total, product_id, product } = orderItem;
     const { name, number_of_page, id: documentId } = document;
     return (
       <div className="border border-color--grey flex justify-content--around py2 mb1 h5"> 
@@ -56,36 +56,46 @@ class OrderItem extends React.Component {
           <div>
             <img src={images.aDocument} alt="Document Icon" width={100}/>
           </div>
-          <div className="flex align-items--center mt1">
-            <a onClick={() => this.onViewClick(documentId)} className="mr1 pointer">View</a>
-            <a className="pointer" onClick={() => { this.onRemove(id) } }>Remove</a>
+          <div className="flex align-items--center justify-content--center mt1">
+            <a onClick={() => this.onViewClick(documentId)} className="pointer">View</a>
+            {!readOnly && <a className="pointer ml1" onClick={() => { this.onRemove(id) } }>Remove</a>}
           </div>
         </div>
-        <div className="flex flex-direction--column word-wrap--break-word" style={{ width: '100px'}}>
+        <div className="flex flex-direction--column justify-content--center word-wrap--break-word" style={{ width: '100px'}}>
           <span className="mb2 h5" title={name}>{name.length > 30 ? `${name.substring(0, 30)}...` : name}</span>
           <span>{`${number_of_page} ${pluralize('Page', number_of_page)}`}</span>
         </div>
-        <div className="flex flex-direction--column">
+        <div className="flex flex-direction--column justify-content--center">
           <span className="mb2">Print In: </span>
-          <select value={product_id} onChange={(e) => { this.onProductChange({ e: e, orderItemId: id }) }}>
-          { products.map((product, index) => (
-            <option key={index} value={product.id}>{product.name}</option>
-          )) }
-          </select>
+          {readOnly ? (
+            <span>{product.name}</span>
+          ) : ( 
+            <select value={product_id} onChange={(e) => { this.onProductChange({ e: e, orderItemId: id }) }}>
+            { products.map((product, index) => (
+              <option key={index} value={product.id}>{product.name}</option>
+            )) }
+            </select>
+          )}
         </div>
-        <div className="flex flex-direction--column">
-          <span className="mb2">Quantity:</span>
-          <div className="flex justify-content--around">
-            <a className="pointer" onClick={(e) => { this.onQuantityChange({ e, orderItemId: id, currentQuantity: quantity, action: 'minus'  }) } }>
-              <img src={images.minus} alt="Document Icon" width={25}/>
-            </a>
-            <span className="px1">{quantity}</span>
-            <a className="pointer" onClick={(e) => { this.onQuantityChange({ e, orderItemId: id, currentQuantity: quantity, action: 'plus'  }) } }>          
-              <img src={images.plus} alt="Document Icon" width={25}/>
-            </a>
+
+          <div className="flex flex-direction--column justify-content--center">
+            <span className="mb2">Quantity:</span>
+            { readOnly ? (
+              <span className="center">{quantity}</span>
+            ) : (
+              <div className="flex justify-content--around">
+                <a className="pointer" onClick={(e) => { this.onQuantityChange({ e, orderItemId: id, currentQuantity: quantity, action: 'minus'  }) } }>
+                  <img src={images.minus} alt="Document Icon" width={25}/>
+                </a>
+                <span className="px1">{quantity}</span>
+                <a className="pointer" onClick={(e) => { this.onQuantityChange({ e, orderItemId: id, currentQuantity: quantity, action: 'plus'  }) } }>          
+                  <img src={images.plus} alt="Document Icon" width={25}/>
+                </a>
+              </div>
+            )}
           </div>
-        </div>
-        <div className="flex flex-direction--column">
+
+        <div className="flex flex-direction--column justify-content--center">
           <span className="mb2">Price:</span>
           <span>{fromCentsToDollars(sub_total)}</span>
         </div>

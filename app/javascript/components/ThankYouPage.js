@@ -51,7 +51,7 @@ class ThankYouPage extends React.Component {
                 <p><strong>Important: Please bring a proof of ID with you.</strong></p>
               </div>
               <div className="flex justify-content--between">
-                <Link className="mt3 button button-outline--pink" to="/orders">See Order</Link>
+                <Link className="mt3 button button-outline--pink" to={`/order/${this.props.match.params.id}`}>See Order</Link>
                 <Link className="mt3 button button-outline--pink" to="/dashboard">Download Invoice</Link>
               </div>
             </div>

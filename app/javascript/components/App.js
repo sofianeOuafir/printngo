@@ -16,6 +16,7 @@ import ThankYouPage from './ThankYouPage';
 import LoginPage from './LoginPage';
 import OrdersPage from './OrdersPage';
 import DocumentsPage from './DocumentsPage';
+import OrderShowPage from './OrderShowPage';
 import 'react-toastify/dist/ReactToastify.css';
 
 const store = configureStore();
@@ -35,6 +36,7 @@ class App extends React.Component {
             <Route path="/orders" render={() => <OrdersPage />  }/>
             <Route path="/documents" render={() => <DocumentsPage />  }/>
             <Route path="/login" render={() => <LoginPage />  }/>
+            <Route path="/order/:id" render={() => <OrderShowPage />  }/>
           </Switch>
           <ToastContainer autoClose={2000} />
         </BrowserRouter>

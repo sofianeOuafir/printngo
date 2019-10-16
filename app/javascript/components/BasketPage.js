@@ -43,7 +43,7 @@ class BasketPage extends React.Component {
           info={`Subtotal (${number_of_items} ${pluralize('Item', number_of_items)}): ${sub_total}`}
         >
         <div className="content-container">
-          <OrderItemList />
+          <OrderItemList orderItems={orderItems} order={order} />
         </div>
       </OrderLayout>
       );

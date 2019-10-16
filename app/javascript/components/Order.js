@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from 'react-router-dom';
 
 import { fromCentsToDollars } from './../utils/money';
 import { getDateTimeFormat } from './../utils/date';
@@ -22,7 +23,7 @@ const Order = ({ order }) => {
       <div className="flex flex-direction--column">
         <span className="mb1">Order #{id}</span>
         <div>
-          <span className="mr1">Order details</span>
+          <Link to={`/order/${id}`} className="text-decoration--none text-black mr1">Order details</Link>
           <span>Invoice</span>
         </div>
       </div>

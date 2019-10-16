@@ -1,6 +1,5 @@
 import React, {Component, Fragment} from 'react';
 import {CardElement, injectStripe} from 'react-stripe-elements';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 

@@ -1,9 +1,9 @@
 class Api::V1::OrdersController < ApplicationController
   def show
     if params[:id] != 'undefined'
-      render json: Order.find(params[:id]).to_json(include: [{ order_items: { include: :document } }, :partner, :user])
+      render json: Order.find(params[:id]).to_json(include: [{ order_items: { include: [:document, :product] } }, :partner, :user])
     else
-      render json: current_order.to_json(include: [{ order_items: { include: :document } }, :partner, :user])
+      render json: current_order.to_json(include: [{ order_items: { include: [:document, :product] } }, :partner, :user])
     end
   end
 

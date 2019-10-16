@@ -1,7 +1,5 @@
-import React, { Fragment } from "react"
+import React from "react"
 import { connect } from 'react-redux';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import {Elements, StripeProvider} from 'react-stripe-elements';
 
@@ -11,6 +9,7 @@ import CheckoutForm from './CheckoutForm';
 import { startSetOrder } from './../actions/orders';
 import { startSetProducts } from './../actions/products';
 import Loader from "./Loader";
+import PickUpLocationCard from './PickUpLocationCard';
 
 class PaymentPage extends React.Component {
   constructor(props) {
@@ -33,9 +32,8 @@ class PaymentPage extends React.Component {
         <Loader />
       )
     } else {
-      const { order, auth } = this.props;
+      const { order, orderItems } = this.props;
       const { partner } = order;
-      const { name, address, city, postcode, opening_hours } = partner;
       const currentState = 3;
       return (
         <OrderLayout
@@ -43,22 +41,10 @@ class PaymentPage extends React.Component {
           currentState={currentState}
           title="Review your order and pay">
           <div className="h5 content-container">
+            <PickUpLocationCard partner={partner} />
             <div className="p2 border border-color--grey mb2">
               <h2 className="h5 text-navy favourite-font-weight">Your Order</h2>
-              <OrderItemList />
-            </div>
-            <div className="p2 border border-color--grey mb2">
-              <h2 className="h5 text-navy favourite-font-weight">Pick up Location</h2>
-              <div className="flex mb1">
-                <div className="flex flex-direction--column">
-                  <span>{name}</span>
-                  <span>{address}</span>
-                  <span>{city}</span>
-                  <span>{postcode}</span>
-                </div>
-                <span>{opening_hours}</span>
-              </div>
-              <Link to="/order/pick-up-location" className="button button-outline button-outline--pink">&larr; Select Another Pick up Location</Link>
+              <OrderItemList orderItems={orderItems} order={order} />
             </div>
             <div className="p2 border border-color--grey">
               <h2 className="h5 text-navy favourite-font-weight">Payment</h2>
@@ -77,7 +63,7 @@ class PaymentPage extends React.Component {
 
 const mapStateToProps = (state) => ({
   order: state.order,
-  auth: state.auth
+  orderItems: state.orderItems
 })
 
 const mapDispatchToProps = (dispatch) => ({
