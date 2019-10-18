@@ -34,7 +34,7 @@ class DocumentsPage extends React.Component {
         <Layout>
           <div className="content-container">
             <div className="sticky bg-white flex align-items--center justify-content--between" style={{ height: '75px' }}>
-              <h1 className="favourite-font-weight h4">Your Documents</h1>
+              <h1 className="text-navy favourite-font-weight h4">Your Documents</h1>
               {orderItems.length > 0 && <Link to="/order/basket" className="button button--pink" >Checkout &rarr;</Link>}
             </div>
             <div>

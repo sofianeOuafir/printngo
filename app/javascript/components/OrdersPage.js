@@ -30,7 +30,7 @@ class OrdersPage extends React.Component {
       return (
         <Layout>
           <div className="content-container">
-            <h1 className="h4 favourite-font-weight">Your Orders</h1>
+            <h1 className="h4 text-navy favourite-font-weight">Your Orders</h1>
             <OrderList />
           </div>
         </Layout>
