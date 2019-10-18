@@ -5,6 +5,7 @@ class Ahoy::Visit < ApplicationRecord
   belongs_to :user, optional: true
   has_many :orders, foreign_key: :ahoy_visit_id
   has_many :documents, foreign_key: :ahoy_visit_id
+  has_many :order_items, through: :orders
 
   before_update :assign_documents_to_user
   before_update :assign_orders_to_user

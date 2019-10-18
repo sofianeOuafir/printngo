@@ -1,9 +1,11 @@
 class Api::V1::DocumentsController < ApplicationController
+  before_action :authenticate!, only: [:index]
+
   def index
     render json: current_user.documents.to_json
   end
 
   def show
-    render json: Document.find(params[:id]).to_json
+    render json: current_person.documents.find(params[:id]).to_json
   end
 end

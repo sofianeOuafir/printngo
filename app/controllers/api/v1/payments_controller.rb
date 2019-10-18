@@ -1,5 +1,6 @@
 class Api::V1::PaymentsController < ApplicationController 
   wrap_parameters :payment, include: [:token]
+  before_action :authenticate!
 
   def create
     if !current_order.paid?
