@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { startLogout } from './../actions/auth';
 import { startSetOrder } from './../actions/orders';
 import UploadAndPrintButton from './UploadAndPrintButton';
+import SignInLink from './SignInLink';
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -50,7 +51,7 @@ class Navbar extends React.Component {
                 <Link to="/">Pricing</Link>
                 <UploadAndPrintButton />
                 <Link to="/become-partner">Become Partner</Link>
-                <Link to="/login">Sign In</Link>
+                <SignInLink />
               </Fragment>
             )}
             <Link to="/order/basket">

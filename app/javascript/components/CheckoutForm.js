@@ -1,13 +1,14 @@
 import React, {Component, Fragment} from 'react';
 import {CardElement, injectStripe} from 'react-stripe-elements';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import images from './../images';
 import { startSignUp } from './../actions/auth';
 import { startCreatePayment } from './../actions/payments';
 import { startUpdateOrder } from './../actions/orders';
 import TextInput from './TextInput';
+import SignInLink from './SignInLink';
 
 class CheckoutForm extends Component {
   constructor(props) {
@@ -145,7 +146,7 @@ class CheckoutForm extends Component {
                 </div>
               </div>
               <div className="mt2">
-                <span>Already customer? <Link to="/login">Sign In</Link></span>
+                <span>Already customer? <SignInLink /></span>
               </div>
             </Fragment>
           )

@@ -16,7 +16,6 @@ class OrderShowPage extends React.Component {
   }
 
   componentDidMount() {
-
     axios.get(`/api/v1/orders/${this.props.match.params.id}`).then((response) => {
       this.setState(() => ({loadingData: false, order: response.data, orderItems: response.data.order_items}))
     })

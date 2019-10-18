@@ -18,6 +18,8 @@ import OrdersPage from './OrdersPage';
 import DocumentsPage from './DocumentsPage';
 import OrderShowPage from './OrderShowPage';
 import 'react-toastify/dist/ReactToastify.css';
+import PublicRoute from '../routers/PublicRoute';
+import PrivateRoute from '../routers/PrivateRoute';
 
 const store = configureStore();
 
@@ -32,11 +34,11 @@ class App extends React.Component {
             <Route path="/order/basket" render={() => <BasketPage />  }/>
             <Route path="/order/pick-up-location" render={() => <PickUpLocationPage />  }/>
             <Route path="/order/payment" render={() => <PaymentPage />  }/>
-            <Route path="/order/:id/thank-you" render={() => <ThankYouPage />  }/>
-            <Route path="/orders" render={() => <OrdersPage />  }/>
-            <Route path="/documents" render={() => <DocumentsPage />  }/>
-            <Route path="/login" render={() => <LoginPage />  }/>
-            <Route path="/order/:id" render={() => <OrderShowPage />  }/>
+            <Route path="/order/:id/thank-you" render={() => <PrivateRoute component={ThankYouPage} />  }/>
+            <Route path="/orders" render={() => <PrivateRoute component={OrdersPage} />  }/>
+            <Route path="/documents" render={() => <PrivateRoute component={DocumentsPage} />  }/>
+            <Route path="/login" render={() => <PublicRoute component={LoginPage} />  }/>
+            <Route path="/order/:id" render={() => <PrivateRoute component={OrderShowPage} />  }/>
           </Switch>
           <ToastContainer autoClose={2000} />
         </BrowserRouter>

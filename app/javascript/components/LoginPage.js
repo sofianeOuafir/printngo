@@ -20,7 +20,15 @@ class LoginPage extends React.Component {
   onSubmit = (e) => {
     e.preventDefault();
     const { email, password } = this.state;
-    this.props.startLogin({ email, password }).catch((e) => {
+    this.props.startLogin({ email, password }).then(() => {
+      const { location } = this.props;
+      console.log(location);
+      if(location.state && location.state.from) {
+        this.props.history.push(location.state.from);
+     } else {
+        this.props.history.push('/');
+     }
+    }).catch((e) => {
       const { error } = e.response.data;
       this.setState(() => ({ error }))
     })
