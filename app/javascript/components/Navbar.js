@@ -21,7 +21,9 @@ class Navbar extends React.Component {
   }
 
   onLogout = () => {
-    this.props.startLogout();
+    this.props.startLogout().then(() => {
+      location.reload()
+    })
   }
 
   render () {
