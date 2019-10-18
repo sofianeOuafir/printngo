@@ -1,5 +1,6 @@
 import React, { Fragment } from "react"
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { startLogout } from './../actions/auth';
@@ -22,12 +23,12 @@ class Navbar extends React.Component {
 
   onLogout = () => {
     this.props.startLogout().then(() => {
+      this.props.history.push('/')
       location.reload()
     })
   }
 
   render () {
-
     const { auth, order } = this.props;
     const { authenticated, firstname } = auth;
     return (
@@ -44,7 +45,7 @@ class Navbar extends React.Component {
                 <UploadAndPrintButton />
                 <Link to="/become-partner">Become Partner</Link>
                 <Link to="/">{ firstname }</Link>
-                <Link to="/" onClick={this.onLogout}>Log out</Link>
+                <Link to="#" onClick={this.onLogout}>Log out</Link>
               </Fragment>
             ) : (
               <Fragment>  
@@ -76,4 +77,4 @@ const mapDispatchToProps = (dispatch) => ({
   startSetOrder: () => dispatch(startSetOrder())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Navbar));
