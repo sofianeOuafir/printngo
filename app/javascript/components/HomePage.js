@@ -17,6 +17,7 @@ class HomePage extends React.Component {
       reverse: false,
       CallToActionButton: UploadAndPrintButton
     }, {
+      id: 'why-print-n-go',
       title: "We are the closest printing service near you", 
       description: "How? Our partners are your favourite convenient stores, pharmacies and any kind of shops that has a printing machine.",
       imgSrc: images.pinpoint,
@@ -51,7 +52,8 @@ class HomePage extends React.Component {
       bgColour: 'bg-blue-sky',
       reverse: true
     }, {
-      title: "Best value",
+      id: 'pricing',
+      title: "Pricing - Best value",
       description: "Our service is awesome, it doesn't mean it should be more expensive! We provide you with the best printing service at the best price: $0.20 for black & white and $0.50 for colour.", 
       imgSrc: images.moneyBag,
       imgAlt: "Best printing service at best price icon",

@@ -19,7 +19,7 @@ class LandingPageSection extends React.Component {
             <img src={imgSrc} alt={imgAlt} width={350} />
           </div>    
         </div>
- 
+
       </div>
     );
   }

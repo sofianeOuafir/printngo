@@ -7,8 +7,8 @@ const Circle = (props) => {
     margin:20,
     display:"inline-block",
     borderRadius: "50%",
-    width:100,
-    height:100,
+    width:80,
+    height:80,
   };
   return (
     <div className="border border-color--white" style={circleStyle}>

@@ -1,5 +1,5 @@
 import React, { Fragment } from "react"
-import { Link } from 'react-router-dom';
+import { HashLink as Link } from 'react-router-hash-link';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -49,9 +49,9 @@ class Navbar extends React.Component {
               </Fragment>
             ) : (
               <Fragment>  
-                <Link to="/">How it works?</Link>
-                <Link to="/">Why Print n' go?</Link>
-                <Link to="/">Pricing</Link>
+                <Link to="/#how-it-works">How it works?</Link>
+                <Link to="/#why-print-n-go">Why Print n' go?</Link>
+                <Link to="/#pricing">Pricing</Link>
                 <UploadAndPrintButton />
                 <Link to="/become-partner">Become Partner</Link>
                 <SignInLink />
