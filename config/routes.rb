@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       resources :orders do
         resources :documents, only: [:create, :update, :destroy], controller: 'orders/documents'
       end
+      resources :invoices, only: [:show]
     end
   end
 

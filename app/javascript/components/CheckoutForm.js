@@ -86,7 +86,6 @@ class CheckoutForm extends Component {
           history.push(`/order/${response.order.id}/thank-you`);
           this.setState(() => ({ processingPayment: false }))
         }).catch((e) => {
-          console.log(e.response);
           this.setState((prevState) => ({ errors: { ...prevState.errors, payment: e.response.data }, processingPayment: false }))
         })
       })

@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :orders
   has_many :documents
   has_many :order_items, through: :orders
+  has_many :invoices, through: :orders
 
   attr_accessor :password
   before_save :encrypt_password

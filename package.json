@@ -7,6 +7,7 @@
     "@rails/activestorage": "^6.0.0-alpha",
     "@rails/ujs": "^6.0.0-alpha",
     "@rails/webpacker": "^4.0.7",
+    "@react-pdf/renderer": "^1.6.7",
     "axios": "^0.19.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "babel-polyfill": "^6.26.0",
@@ -33,5 +34,8 @@
   "version": "0.1.0",
   "devDependencies": {
     "webpack-dev-server": "^3.8.1"
+  },
+  "resolutions": {
+    "dfa": "1.1.0"
   }
 }

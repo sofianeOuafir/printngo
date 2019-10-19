@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def authenticate!
+  def authenticate_user!
     return if current_user.present?
     render json: {
       error: 'Unauthorized'

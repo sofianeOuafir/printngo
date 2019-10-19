@@ -1,5 +1,5 @@
 class Api::V1::SessionsController < ApplicationController
-  before_action :authenticate!, only: [:destroy]
+  before_action :authenticate_user!, only: [:destroy]
 
   def show
     render json: current_user.to_json

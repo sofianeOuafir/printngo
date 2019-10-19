@@ -20,6 +20,7 @@ import OrderShowPage from './OrderShowPage';
 import 'react-toastify/dist/ReactToastify.css';
 import PublicRoute from '../routers/PublicRoute';
 import PrivateRoute from '../routers/PrivateRoute';
+import InvoicePage from './InvoicePage';
 
 const store = configureStore();
 
@@ -39,6 +40,7 @@ class App extends React.Component {
             <Route path="/documents" render={() => <PrivateRoute component={DocumentsPage} />  }/>
             <Route path="/login" render={() => <PublicRoute component={LoginPage} />  }/>
             <Route path="/order/:id" render={() => <PrivateRoute component={OrderShowPage} />  }/>
+            <Route path="/invoice/:id" render={() => <PrivateRoute component={InvoicePage} /> } />
           </Switch>
           <ToastContainer autoClose={2000} />
         </BrowserRouter>

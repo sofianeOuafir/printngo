@@ -1,5 +1,5 @@
 class Api::V1::OrderItemsController < ApplicationController
-  before_action :authenticate!, only: [:create]
+  before_action :authenticate_user!, only: [:create]
 
   def create
     order_item = current_order.order_items.create(

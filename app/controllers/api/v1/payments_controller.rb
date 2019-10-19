@@ -1,6 +1,6 @@
 class Api::V1::PaymentsController < ApplicationController 
   wrap_parameters :payment, include: [:token]
-  before_action :authenticate!
+  before_action :authenticate_user!
 
   def create
     if !current_order.paid?
@@ -9,6 +9,7 @@ class Api::V1::PaymentsController < ApplicationController
                                        currency: 'cad',
                                        source: params['payment']['token'])
         payment = current_order.create_payment(amount: charge.amount, stripe_id: charge.id)
+        payment.create_invoice
         current_order.update_columns(paid: true)
         current_user.orders.update_all(archived: true)
         payment.reload

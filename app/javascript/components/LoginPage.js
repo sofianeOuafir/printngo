@@ -1,5 +1,4 @@
 import React from "react"
-import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -22,7 +21,6 @@ class LoginPage extends React.Component {
     const { email, password } = this.state;
     this.props.startLogin({ email, password }).then(() => {
       const { location } = this.props;
-      console.log(location);
       if(location.state && location.state.from) {
         this.props.history.push(location.state.from);
      } else {

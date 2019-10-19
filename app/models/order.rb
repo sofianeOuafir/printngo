@@ -4,6 +4,7 @@ class Order < ApplicationRecord
   belongs_to :visit, optional: true
   has_many :order_items
   has_one :payment
+  has_one :invoice, through: :payment
 
   scope :paid, -> { where(paid: true) }
   scope :unpaid, -> { where(paid: false) }
@@ -26,12 +27,22 @@ class Order < ApplicationRecord
     sub_total * 113 / 100
   end
 
+  def total_paid
+    payment.try(:amount) || 0
+  end
+
+  def total_due
+    total - total_paid
+  end
+
   def serializable_hash(options = {})
     h = super(options)
     h[:sub_total] = sub_total
     h[:total] = total
     h[:tax_amount] = tax_amount
     h[:number_of_items] = number_of_items
+    h[:total_paid] = total_paid
+    h[:total_due] = total_due
     h
   end
 
@@ -41,6 +52,8 @@ class Order < ApplicationRecord
     h[:total] = total
     h[:tax_amount] = tax_amount
     h[:number_of_items] = number_of_items
+    h[:total_paid] = total_paid
+    h[:total_due] = total_due
     h
   end
 end

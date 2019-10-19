@@ -1,5 +1,5 @@
 class Api::V1::DocumentsController < ApplicationController
-  before_action :authenticate!, only: [:index]
+  before_action :authenticate_user!, only: [:index]
 
   def index
     render json: current_user.documents.to_json

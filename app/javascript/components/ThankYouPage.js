@@ -29,7 +29,7 @@ class ThankYouPage extends React.Component {
       )
     } else {
       const { partner, order } = this.props;
-      const { user } = order;
+      const { user, invoice } = order;
       const { firstname } = user;
       const { name, address, city, postcode, opening_hours } = partner;
       const currentState = 4;
@@ -52,7 +52,7 @@ class ThankYouPage extends React.Component {
               </div>
               <div className="flex justify-content--between">
                 <Link className="mt3 button button-outline--pink" to={`/order/${this.props.match.params.id}`}>See Order</Link>
-                <Link className="mt3 button button-outline--pink" to="/dashboard">Download Invoice</Link>
+                <Link className="mt3 button button-outline--pink" target="_blank" to={`/invoice/${invoice.id}`}>Download Invoice</Link>
               </div>
             </div>
           </div>

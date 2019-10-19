@@ -5,7 +5,8 @@ import { fromCentsToDollars } from './../utils/money';
 import { getDateTimeFormat } from './../utils/date';
 
 const Order = ({ order }) => {
-  const { total, id, payment, printed } = order
+  const { total, id, payment, printed, invoice } = order
+  const invoiceId = invoice ? invoice.id : null;
   return (
     <div className="h5 border border-color--grey flex justify-content--between p1 mb1 center">
       <div className="flex flex-direction--column">
@@ -24,7 +25,7 @@ const Order = ({ order }) => {
         <span className="mb1">Order #{id}</span>
         <div>
           <Link to={`/order/${id}`} className="text-decoration--none text-black mr1">Order details</Link>
-          <span>Invoice</span>
+          <Link target="_blank" to={`/invoice/${invoiceId}`} className="text-decoration--none text-black mr1">Invoice</Link>
         </div>
       </div>
     </div>
