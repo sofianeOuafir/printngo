@@ -48,10 +48,10 @@ class ThankYouPage extends React.Component {
                 <p>A big thank you for your purchase { firstname }. Your order number is #{order.id}.</p>
                 <p>You can now gather your documents at the following address:</p>
                 <p>
-                  {`${name} - ${address}, ${city} ${postcode}.`} <br/> <a className="text-navy" target="_blank" href={`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`}>Find the best way get there</a>
+                  {`${name} - ${address}, ${city} ${postcode}.`} <br/> <a className="text-navy" target="_blank" href={`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`}>Find the best way to get there</a>
                 </p>
                 <p>{`Opening hours: ${opening_hours}`}</p>
-                <p className="m0"><strong>Note: A proof of ID might be requested.</strong></p>
+                <p className="m0"><strong>Because we care about your privacy, please note that a proof of ID might be required for gathering your order.</strong></p>
               </div>
               <div className="flex justify-content--between">
                 <Link className="mt3 button button-outline--pink" to={`/order/${this.props.match.params.id}`}>See Order</Link>
