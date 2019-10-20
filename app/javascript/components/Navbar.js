@@ -2,6 +2,7 @@ import React, { Fragment } from "react"
 import { HashLink as Link } from 'react-router-hash-link';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { animateScroll as scroll, scroller} from 'react-scroll'
 
 import { startLogout } from './../actions/auth';
 import { startSetOrder } from './../actions/orders';
@@ -28,6 +29,19 @@ class Navbar extends React.Component {
     })
   }
 
+  navigateAndScroll = ({ e, element }) => {
+    e.preventDefault();
+    new Promise((resolve) => {
+      this.props.history.push('/')
+      resolve();
+    }).then(() => {
+      scroller.scrollTo(element, {
+        duration: 500,
+        smooth: true,
+      });
+    })
+  }
+
   render () {
     const { auth, order } = this.props;
     const { authenticated, firstname } = auth;
@@ -49,9 +63,9 @@ class Navbar extends React.Component {
               </Fragment>
             ) : (
               <Fragment>  
-                <Link to="/#how-it-works">How it works?</Link>
-                <Link to="/#why-print-n-go">Why Print n' go?</Link>
-                <Link to="/#pricing">Pricing</Link>
+                <Link onClick={(e) => this.navigateAndScroll({ e, element: 'how-it-works' })} to="#">How it works?</Link>
+                <Link onClick={(e) => this.navigateAndScroll({ e, element: 'why-print-n-go' })} to="#">Why Print n' go?</Link>
+                <Link onClick={(e) => this.navigateAndScroll({ e, element: 'pricing' })} to="#">Pricing</Link>
                 <UploadAndPrintButton />
                 <Link to="/become-partner">Become Partner</Link>
                 <SignInLink />
