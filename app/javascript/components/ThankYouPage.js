@@ -31,7 +31,7 @@ class ThankYouPage extends React.Component {
       const { partner, order } = this.props;
       const { user, invoice } = order;
       const { firstname } = user;
-      const { name, address, city, postcode, opening_hours } = partner;
+      const { name, address, city, postcode, opening_hours, lat, lng } = partner;
       const currentState = 4;
   
       return (
@@ -45,10 +45,13 @@ class ThankYouPage extends React.Component {
               </div>
               <h1 className="h4 center">Payment Sucess!</h1>
               <div>
-                <p>Thank you { firstname }. You can now go gather your documents at:</p>
-                <p>{`${name} - ${address}, ${city} ${postcode}.`}</p>
+                <p>A big thank you for your purchase { firstname }. Your order number is #{order.id}.</p>
+                <p>You can now gather your documents at the following address:</p>
+                <p>
+                  {`${name} - ${address}, ${city} ${postcode}.`} <br/> <a className="text-navy" target="_blank" href={`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`}>Find the best way get there</a>
+                </p>
                 <p>{`Opening hours: ${opening_hours}`}</p>
-                <p><strong>Important: Please bring a proof of ID with you.</strong></p>
+                <p className="m0"><strong>Note: A proof of ID might be requested.</strong></p>
               </div>
               <div className="flex justify-content--between">
                 <Link className="mt3 button button-outline--pink" to={`/order/${this.props.match.params.id}`}>See Order</Link>
