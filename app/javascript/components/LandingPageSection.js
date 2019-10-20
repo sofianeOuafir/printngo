@@ -2,9 +2,9 @@ import React from "react"
 
 class LandingPageSection extends React.Component {
   render () {
-    const { id = null, title, description = null, CallToActionButton = null, imgSrc, imgAlt, bgColour, reverse = false } = this.props;
+    const { id = null, color = 'text-white', title, description = null, CallToActionButton = null, imgSrc, imgAlt, bgColour, reverse = false } = this.props;
     return (
-      <div id={id}  className={`${bgColour} fullscreen border--bottom border-color--white align-items--center text-white flex`}>
+      <div id={id} className={`${bgColour} fullscreen border--bottom border-color--white align-items--center ${color} flex`}>
         <div className={`content-container flex justify-content--center ${reverse ? 'flex-direction--row-reverse' : null}`}>
           <div className={`${reverse ? 'ml3' : 'mr3'}`} style={{ width: '60%' }}>
             <h1 className="m0 h2 favourite-font-weight">{title}</h1>

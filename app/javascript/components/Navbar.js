@@ -71,6 +71,9 @@ class Navbar extends React.Component {
                 <SignInLink />
               </Fragment>
             )}
+            <Link onClick={(e) => this.navigateAndScroll({ e, element: 'contact-us' })} to="#">
+              Contact Us
+            </Link>
             <Link to="/order/basket">
               <span className="text-orange">Basket ({this.state.loadingData ? 0 : order.number_of_items})</span>
             </Link>

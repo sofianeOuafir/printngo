@@ -21,8 +21,10 @@ import plus from './../assets/images/plus.png';
 import success from './../assets/images/success.png';
 import mastercard from './../assets/images/mastercard.png';
 import visa from './../assets/images/visa.png';
+import contact from './../assets/images/contact-us.png';
 
 export default {
+  contact,
   plus,
   minus,
   printer,

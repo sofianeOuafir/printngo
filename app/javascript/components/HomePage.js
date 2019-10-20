@@ -60,6 +60,15 @@ class HomePage extends React.Component {
       imgAlt: "Best printing service at best price icon",
       bgColour: 'bg-christmas-tree',
       reverse: false
+    }, {
+      id: 'contact-us',
+      title: "We love hearing from you",
+      description: "Have questions or feedback? You can contact us anytime at contact@printngo.ca", 
+      imgSrc: images.contact,
+      imgAlt: "Contact Us",
+      bgColour: 'bg-white',
+      color: 'text-navy',
+      reverse: true
     }]
     return (
       <Layout>
