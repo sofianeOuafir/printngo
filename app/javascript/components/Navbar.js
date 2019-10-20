@@ -36,7 +36,7 @@ class Navbar extends React.Component {
       resolve();
     }).then(() => {
       scroller.scrollTo(element, {
-        duration: 500,
+        duration: 1500,
         smooth: true,
       });
     })

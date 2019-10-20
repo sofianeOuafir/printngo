@@ -142,7 +142,7 @@ class InvoicePage extends React.Component {
                 </View>
                 <View style={[styles.row, styles.rowWithoutBorder]}>
                   <Text style={[styles.headerText, styles.cell, styles.cellCompanyDetails, {textAlign: 'left'}]}>
-                    Website: https://www.print.go.ca
+                    Website: https://www.printngo.ca
                   </Text>
                   <Text style={[styles.headerText, styles.cell, styles.cellWithoutBorder]}></Text>
                   <Text style={[styles.headerText, styles.cell, styles.cellWithoutBorder]}></Text>
