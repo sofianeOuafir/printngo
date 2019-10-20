@@ -9,7 +9,7 @@ class HowItWorks extends React.Component {
       src: images.upload,
       alt: "Upload Icon",
       width: 180,
-      title: "Upload",
+      title: "Upload Documents",
       number: 1
     }, {
       src: images.map,
