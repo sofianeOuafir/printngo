@@ -21,7 +21,8 @@ class SendgridMailer
             lng: partner.lng,
             postcode: partner.postcode,
             id: order.id,
-            opening_hours: partner.opening_hours
+            opening_hours: partner.opening_hours,
+            secret_code: order.secret_code
           }
         }
       ],

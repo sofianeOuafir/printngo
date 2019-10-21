@@ -31,7 +31,7 @@ class OrderShowPage extends React.Component {
           <div className="h5 content-container my2">
             <Link to="/orders" className="text-navy">&larr; See All Orders</Link>
             <div className="flex justify-content--between align-items--center">
-              <h1 className="h4 text-navy favourite-font-weight">Order #{this.state.order.id}</h1>
+              <h1 className="h4 text-navy favourite-font-weight">Order #{this.state.order.id} - Secret Code: {this.state.order.secret_code}</h1>
               <Link target="_blank" className="text-navy" to={`/invoice/${this.state.order.invoice.id}`}>See Invoice</Link>
             </div>
             <PickUpLocationCard partner={this.state.order.partner} readOnly={true} />

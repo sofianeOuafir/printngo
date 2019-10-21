@@ -6,6 +6,8 @@ class Order < ApplicationRecord
   has_one :payment
   has_one :invoice, through: :payment
 
+  before_save :set_secret_code
+
   scope :paid, -> { where(paid: true) }
   scope :unpaid, -> { where(paid: false) }
   scope :archived, -> { where(archived: true) }
@@ -55,5 +57,21 @@ class Order < ApplicationRecord
     h[:total_paid] = total_paid
     h[:total_due] = total_due
     h
+  end
+
+  private
+
+  def set_secret_code
+    return unless user_id_changed? && user_id.present?
+
+    secret_code = generate_secret_code
+    while Order.find_by(secret_code: secret_code).present?
+      secret_code = generate_secret_code
+    end
+    self.secret_code = secret_code
+  end
+
+  def generate_secret_code
+    "#{user_id}#{(0...4).map { (65 + rand(26)).chr }.join}"
   end
 end

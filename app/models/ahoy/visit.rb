@@ -14,11 +14,13 @@ class Ahoy::Visit < ApplicationRecord
 
   def assign_documents_to_user
     return unless user_id_changed?
+
     documents.update_all(user_id: user_id)
   end
 
   def assign_orders_to_user
     return unless user_id_changed?
-    orders.update_all(user_id: user_id)
+
+    orders.each { |order| order.update(user_id: user_id) }
   end
 end

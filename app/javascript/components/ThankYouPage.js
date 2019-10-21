@@ -43,15 +43,22 @@ class ThankYouPage extends React.Component {
               <div className="center">
                 <img src={images.success} alt="Success Icon" width={100}/>
               </div>
-              <h1 className="h4 center">Payment Sucess!</h1>
+              <h1 className="h4 center">Payment Success! Order #{order.id}</h1>
               <div>
-                <p>A big thank you for your purchase { firstname }. Your order number is #{order.id}.</p>
+                <p>A big thank you for your purchase { firstname }. Your secret code for picking up your order is <strong>{order.secret_code}</strong>. </p>
+                <p>Please provide this code at the pick up location.</p> 
                 <p>You can now gather your documents at the following address:</p>
-                <p>
-                  {`${name} - ${address}, ${city} ${postcode}.`} <br/> <a className="text-navy" target="_blank" href={`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`}>Find the best way to get there</a>
-                </p>
-                <p>{`Opening hours: ${opening_hours}`}</p>
-                <p className="m0"><strong>Because we care about your privacy, please note that a proof of ID might be required for gathering your order.</strong></p>
+                <div className="p1 border border-color--grey">
+                  <p>
+                    {`${name} - ${address}, ${city} ${postcode}.`}
+                  </p>
+                  <p>{`Opening hours: ${opening_hours}`}</p>
+                  <a className="text-navy" target="_blank" href={`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`}>Find the best way to get there</a>
+                </div>
+
+
+                <p></p>
+                <p className="m0"><i>As we care about your privacy: <br /><strong>If you are unable to provide the secret code, please note that a proof of ID will be required for gathering your order.</strong></i></p>
               </div>
               <div className="flex justify-content--between">
                 <Link className="mt3 button button-outline--pink" to={`/order/${this.props.match.params.id}`}>See Order</Link>
