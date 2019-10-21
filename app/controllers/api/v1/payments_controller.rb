@@ -10,7 +10,7 @@ class Api::V1::PaymentsController < ApplicationController
                                        source: params['payment']['token'])
         payment = current_order.create_payment(amount: charge.amount, stripe_id: charge.id)
         payment.create_invoice
-        SendgridMailer.new.order_confirmed_email(current_order)
+        SendgridMailer.order_confirmed_email(current_order)
         current_order.update_columns(paid: true)
         current_user.orders.update_all(archived: true)
         payment.reload

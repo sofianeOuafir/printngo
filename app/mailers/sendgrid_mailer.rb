@@ -1,10 +1,6 @@
 class SendgridMailer
-  def initialize
-    @sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
-    @from = 'contact@printngo.ca'
-  end
 
-  def order_confirmed_email(order)
+  def self.order_confirmed_email(order)
     user = order.user
     partner = order.partner
     data = {
@@ -30,14 +26,14 @@ class SendgridMailer
         }
       ],
       "from": {
-        "email": from
+        "email": 'contact@printngo.ca'
       },
       "template_id": 'd-37305aec46ae4898a40df3ad3ce89e13'
     }
     send_email(data)
   end
 
-  def send_welcome_email(user)
+  def self.send_welcome_email(user)
     data = {
       "personalizations": [
         {
@@ -50,16 +46,15 @@ class SendgridMailer
         }
       ],
       "from": {
-        "email": from
+        "email": 'contact@printngo.ca'
       },
       "template_id": 'd-23c125a1683a4e7fac655d3844533c69'
     }
     send_email(data)
   end
 
-  private
-
-  def send_email(data)
+  def self.send_email(data)
+    sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
     begin
       response = sg.client.mail._('send').post(request_body: data)
       return response.status_code
@@ -67,6 +62,4 @@ class SendgridMailer
       puts e.message
     end
   end
-
-  attr_reader :sg, :from
 end

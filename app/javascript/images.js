@@ -22,8 +22,10 @@ import success from './../assets/images/success.png';
 import mastercard from './../assets/images/mastercard.png';
 import visa from './../assets/images/visa.png';
 import contact from './../assets/images/contact-us.png';
+import tinyPrinter from './../assets/images/tiny-printer.png';
 
 export default {
+  tinyPrinter,
   contact,
   plus,
   minus,
