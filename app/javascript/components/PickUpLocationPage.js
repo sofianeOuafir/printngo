@@ -16,8 +16,13 @@ class PickUpLocationPage extends React.Component {
       lat: 43.6425662, lng: -79.3892455
     }
     this.state = {
+      defaultMapZoom: 12,
       loadingData: true,
-      mapCenter: torontoLocation
+      mapCenter: torontoLocation,
+      highlightedPartner: null,
+      sortingData: false,
+      sortingError: '',
+      sortingMessage: 'Loading... Please wait.'
     }
   }
 
@@ -27,7 +32,8 @@ class PickUpLocationPage extends React.Component {
       const order = response[0].data;
       const { partner } = order;
       const mapCenter = partner ? { lat: partner.lat, lng: partner.lng } : this.state.mapCenter;
-      this.setState(() => ({ loadingData: false, mapCenter }))
+      this.setState(() => ({ loadingData: false, mapCenter, highlightedPartner: partner }))
+
     })
   }
 
@@ -37,12 +43,61 @@ class PickUpLocationPage extends React.Component {
     })
   }
 
-  onPartnerHover = (partner) => {
-    this.setState((prevState) => ({ ...prevState, mapCenter: { lat: partner.lat, lng: partner.lng } }))
+  onPartnerMouseEnter = (partner) => {
+    this.setState((prevState) => ({ ...prevState, mapCenter: { lat: partner.lat, lng: partner.lng }, highlightedPartner: partner }))
+  }
+
+  onPartnerMouseLeave = () => {
+    const { order } = this.props;
+    const { partner } = order;
+    if (partner) {
+      const { lat, lng } = partner;
+      this.setState((prevState) => ({ ...prevState, mapCenter: { lat, lng }, highlightedPartner: partner }))
+    } else {
+      this.setState((prevState) => ({ ...prevState, highlightedPartner: null }))
+    }
+  }
+
+  onFindClosest = () => {
+    const { startSetPartners } = this.props;
+    this.setState(() => ({ sortingData: true }), () => {
+      new Promise((resolve, reject) => {
+        if(navigator.geolocation) {
+          this.setState(() => ({ sortingMessage: 'Please enable geolocation so we can find the closest printing machine for you!' }), () => {
+            navigator.geolocation.getCurrentPosition((data) => {
+              this.setState(() => ({ sortingMessage: 'Loading... Please wait.' }), () => {
+                const { latitude: lat, longitude: lng } = data.coords;
+                startSetPartners({ lat, lng }).then(() => {
+                  resolve()
+                })
+              })
+            }, () => {
+              reject('Geolocation is not enabled. Please enable Geolocation and try again.')
+            })
+          })
+        } else {
+          reject('Geolocation is not supported by this browser.')
+        }
+      }).then(() => {
+        this.setState(() => ({ sortingData: false }));
+      }).catch((e) => {
+        this.setState(() => ({ sortingData: false, sortingError: e} ));
+      })
+    });
   }
 
   render () {
-    if(this.state.loadingData) {
+    const { 
+      loadingData, 
+      sortingData, 
+      sortingMessage, 
+      sortingError, 
+      mapCenter,
+      highlightedPartner,
+      defaultMapZoom
+    } = this.state;
+
+    if(loadingData) {
       return (
         <Loader/>
       )
@@ -57,25 +112,31 @@ class PickUpLocationPage extends React.Component {
         >
           <div className="content-container flex">
             <div className="col-8">
-              { partners.map((partner, index) => (
-                <div onMouseOver={() => this.onPartnerHover(partner)} key={index} className={`${order.partner_id === partner.id ? 'bg-navy text-white' : ''} mb2 flex justify-content--between p2 border border-color--grey flex align-items--center`}>
-                  <div className="flex h5">
-                    <div className="flex flex-direction--column mr2">
-                      <span>{partner.name}</span>
-                      <span>{partner.address}</span>
-                      <span>{partner.city}</span>
-                      <span>{partner.postcode}</span>
+              <a className="button button-outline--pink button--no-border-radius mb1" onClick={this.onFindClosest}>Sort from Closest to Furthest</a>
+              {sortingError && <p className="h5 m0 mb1 text-pink">{sortingError}</p>}
+              { sortingData ? (
+                <p className="h5 m0 mb1 text-navy">{sortingMessage}</p>
+              ) : (
+                partners.map((partner, index) => (
+                  <div onMouseLeave={this.onPartnerMouseLeave} onMouseEnter={() => this.onPartnerMouseEnter(partner)} key={index} className={`${order.partner_id === partner.id ? 'bg-navy text-white' : ''} pointer mb2 flex justify-content--between p2 border border-color--grey flex align-items--center`}>
+                    <div className="flex h5">
+                      <div className="flex flex-direction--column mr2">
+                        <span>{partner.name}</span>
+                        <span>{partner.address}</span>
+                        <span>{partner.city}</span>
+                        <span>{partner.postcode}</span>
+                      </div>
+                      <span>Opening Hours: {partner.opening_hours}</span>
                     </div>
-                    <span>Opening Hours: {partner.opening_hours}</span>
+                    <div>
+                      <a className={`button pointer ${order.partner_id === partner.id ? 'button-outline' : 'button--navy'}`} onClick={() => this.onLocationSelect(partner.id)}>Select</a>
+                    </div>
                   </div>
-                  <div>
-                    <a className={`button pointer ${order.partner_id === partner.id ? 'button-outline' : 'button--navy'}`} onClick={() => this.onLocationSelect(partner.id)}>Select</a>
-                  </div>
-                </div>
-              )) }
+                ))
+              ) }
             </div>
             <div className="col-4 pl1">
-              <MapElement defaultMapCenter={this.state.mapCenter} center={this.state.mapCenter} positions={partners.map(({ lat, lng }) => ({lat, lng}))} />
+              <MapElement defaultZoom={defaultMapZoom} defaultMapCenter={mapCenter} center={mapCenter} data={partners} highlightedElement={highlightedPartner} />
             </div>
           </div>
   
@@ -97,7 +158,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   startUpdateOrder: (updates) => dispatch(startUpdateOrder(updates)),
   startSetOrder: () => dispatch(startSetOrder()),
-  startSetPartners: () => dispatch(startSetPartners())
+  startSetPartners: (position) => dispatch(startSetPartners(position))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(PickUpLocationPage));

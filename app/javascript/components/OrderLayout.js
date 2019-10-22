@@ -2,8 +2,6 @@ import React, { Fragment } from "react"
 import { Link } from 'react-router-dom';
 import Steps, { Step } from 'rc-steps';
 
-import Loader from './Loader';
-
 const OrderLayout = ({ title, info = null, children, nextButton = null, currentState, stickyBar = true }) => (
   <Fragment>
     <div style={{ height: '75px' }} className="navbar flex justify-content--center bg-navy align-items--center">

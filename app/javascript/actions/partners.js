@@ -7,8 +7,10 @@ export const setPartners = partners => dispatch => {
   });
 };
 
-export const startSetPartners = () => dispatch => {
-  axios.get('/api/v1/partners').then((response) => {
+export const startSetPartners = ({ lat, lng } = {lat: null, lng: null}) => dispatch => {
+  return axios.get('/api/v1/partners', {
+    params: { lat, lng }
+  }).then((response) => {
     dispatch(setPartners(response.data));
     return response;
   })

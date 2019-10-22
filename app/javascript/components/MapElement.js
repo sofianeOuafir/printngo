@@ -15,13 +15,20 @@ const MapElement = compose(
   withGoogleMap
 )((props) =>
   <GoogleMap
-    defaultZoom={12}
+    defaultZoom={props.defaultZoom}
     defaultCenter={props.defaultCenter}
     center={props.center}
   >
-    {props.positions.map(({ lat, lng }, index) => (
-      <Marker key={index} icon={images.tinyPrinter} position={{ lat, lng }} />
-    ))}
+    {props.data.map((element, index) => {
+      const { lat, lng, id } = element;
+      const { highlightedElement } = props;
+      return highlightedElement && id == highlightedElement.id ? (
+        <Marker zIndex={2} key={index} icon={images.tinyBluePrinter} position={{ lat, lng }} />
+
+      ) : (
+        <Marker zIndex={1} key={index} icon={images.tinyPrinter} position={{ lat, lng }} />
+      )
+  })}
   </GoogleMap>
 );
 

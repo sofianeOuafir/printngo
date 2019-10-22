@@ -23,8 +23,10 @@ import mastercard from './../assets/images/mastercard.png';
 import visa from './../assets/images/visa.png';
 import contact from './../assets/images/contact-us.png';
 import tinyPrinter from './../assets/images/tiny-printer.png';
+import tinyBluePrinter from './../assets/images/tiny-blue-printer.png';
 
 export default {
+  tinyBluePrinter,
   tinyPrinter,
   contact,
   plus,
