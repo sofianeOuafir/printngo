@@ -17,6 +17,7 @@ gem 'react-rails'
 gem 'bcrypt'
 gem 'ahoy_matey'
 gem 'sendgrid-ruby'
+gem 'geocoder'
 gem 'pdf-reader'
 gem 'stripe'
 gem "aws-sdk-s3", require: false

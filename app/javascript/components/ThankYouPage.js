@@ -6,6 +6,8 @@ import OrderLayout from "./OrderLayout";
 import images from './../images';
 import { startSetOrder } from './../actions/orders';
 import Loader from "./App";
+import Partner from "./Partner";
+
 
 class ThankYouPage extends React.Component {
   constructor(props){
@@ -48,6 +50,11 @@ class ThankYouPage extends React.Component {
                 <p>A big thank you for your purchase { firstname }. Your secret code for picking up your order is <strong>{order.secret_code}</strong>. </p>
                 <p>Please provide this code at the pick up location.</p> 
                 <p>You can now gather your documents at the following address:</p>
+
+                <Partner 
+                  partner={partner} 
+                  order={order} 
+                />
                 <div className="p1 border border-color--grey">
                   <p>
                     {`${name} - ${address}, ${city} ${postcode}.`}

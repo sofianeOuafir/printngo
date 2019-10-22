@@ -8,6 +8,7 @@ import OrderLayout from "./OrderLayout";
 import { startUpdateOrder, startSetOrder } from './../actions/orders';
 import { startSetPartners } from './../actions/partners';
 import Loader from "./Loader";
+import Partner from './Partner';
 
 class PickUpLocationPage extends React.Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class PickUpLocationPage extends React.Component {
       highlightedPartner: null,
       sortingData: false,
       sortingError: '',
+      permissionStatus: '',
       sortingMessage: 'Loading... Please wait.'
     }
   }
@@ -63,17 +65,17 @@ class PickUpLocationPage extends React.Component {
     this.setState(() => ({ sortingData: true }), () => {
       new Promise((resolve, reject) => {
         if(navigator.geolocation) {
-          this.setState(() => ({ sortingMessage: 'Please enable geolocation so we can find the closest printing machine for you!' }), () => {
+          navigator.permissions.query({ name: 'geolocation' }).then((permissionStatus) => {
+            this.setState(() => ({ permissionStatus: permissionStatus.state }))
+          }).then(() => {
             navigator.geolocation.getCurrentPosition((data) => {
-              this.setState(() => ({ sortingMessage: 'Loading... Please wait.' }), () => {
-                const { latitude: lat, longitude: lng } = data.coords;
-                startSetPartners({ lat, lng }).then(() => {
-                  resolve()
-                })
+              const { latitude: lat, longitude: lng } = data.coords;
+              startSetPartners({ lat, lng }).then(() => {
+                resolve()
               })
             }, () => {
               reject('Geolocation is not enabled. Please enable Geolocation and try again.')
-            })
+            }, { enableHighAccuracy: true, timeout: 10000 })
           })
         } else {
           reject('Geolocation is not supported by this browser.')
@@ -90,11 +92,11 @@ class PickUpLocationPage extends React.Component {
     const { 
       loadingData, 
       sortingData, 
-      sortingMessage, 
       sortingError, 
       mapCenter,
       highlightedPartner,
-      defaultMapZoom
+      defaultMapZoom,
+      permissionStatus
     } = this.state;
 
     if(loadingData) {
@@ -112,26 +114,21 @@ class PickUpLocationPage extends React.Component {
         >
           <div className="content-container flex">
             <div className="col-8">
-              <a className="button button-outline--pink button--no-border-radius mb1" onClick={this.onFindClosest}>Sort from Closest to Furthest</a>
+              <a className="button button--navy button--no-border-radius mb1" onClick={this.onFindClosest}>Sort from Closest to Furthest</a>
               {sortingError && <p className="h5 m0 mb1 text-pink">{sortingError}</p>}
               { sortingData ? (
-                <p className="h5 m0 mb1 text-navy">{sortingMessage}</p>
+                permissionStatus && <p className="h5 m0 mb1 text-navy">{permissionStatus == 'granted' ? 'Loading... Please wait.' : 'Please enable geolocation so we can find the nearest printing machine for you!' }</p>
               ) : (
                 partners.map((partner, index) => (
-                  <div onMouseLeave={this.onPartnerMouseLeave} onMouseEnter={() => this.onPartnerMouseEnter(partner)} key={index} className={`${order.partner_id === partner.id ? 'bg-navy text-white' : ''} pointer mb2 flex justify-content--between p2 border border-color--grey flex align-items--center`}>
-                    <div className="flex h5">
-                      <div className="flex flex-direction--column mr2">
-                        <span>{partner.name}</span>
-                        <span>{partner.address}</span>
-                        <span>{partner.city}</span>
-                        <span>{partner.postcode}</span>
-                      </div>
-                      <span>Opening Hours: {partner.opening_hours}</span>
-                    </div>
-                    <div>
-                      <a className={`button pointer ${order.partner_id === partner.id ? 'button-outline' : 'button--navy'}`} onClick={() => this.onLocationSelect(partner.id)}>Select</a>
-                    </div>
-                  </div>
+                  <Partner 
+                    readOnly={false}
+                    onLocationSelect={() => this.onLocationSelect(partner.id)} 
+                    partner={partner} 
+                    order={order} 
+                    onMouseLeave={this.onPartnerMouseLeave} 
+                    onMouseEnter={() => this.onPartnerMouseEnter(partner)} 
+                    key={index} 
+                  />
                 ))
               ) }
             </div>
