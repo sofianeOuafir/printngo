@@ -6,7 +6,7 @@ import Layout from "./Layout";
 import OrderItemList from "./OrderItemList";
 import Loader from "./Loader";
 import { withRouter } from 'react-router-dom';
-import PickUpLocationCard from './PickUpLocationCard';
+import Partner from './Partner';
 
 class OrderShowPage extends React.Component {
   constructor(props) {
@@ -34,7 +34,10 @@ class OrderShowPage extends React.Component {
               <h1 className="h4 text-navy favourite-font-weight">Order #{this.state.order.id} - Secret Code: {this.state.order.secret_code}</h1>
               <Link target="_blank" className="text-navy" to={`/invoice/${this.state.order.invoice.id}`}>See Invoice</Link>
             </div>
-            <PickUpLocationCard partner={this.state.order.partner} readOnly={true} />
+            <div className="p2 border border-color--grey mb2">
+              <h2 className="h5 text-navy favourite-font-weight">Pick up Location</h2>
+              <Partner partner={this.state.order.partner} order={this.state.order} ></Partner>
+            </div>
             <div className="p2 border border-color--grey">
               <h2 className="h5 text-navy favourite-font-weight">Your Order</h2>
               <OrderItemList readOnly={true} orderItems={this.state.orderItems} order={this.state.order} />

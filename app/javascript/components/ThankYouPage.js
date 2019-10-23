@@ -33,12 +33,13 @@ class ThankYouPage extends React.Component {
       const { partner, order } = this.props;
       const { user, invoice } = order;
       const { firstname } = user;
-      const { name, address, city, postcode, opening_hours, lat, lng } = partner;
       const currentState = 4;
   
       return (
         <OrderLayout
           currentState={currentState}
+          title="Happy printing!"
+          nextButton={{ link: `/`, text: 'Home' }} 
         >
           <div className="content-container border border-color--grey h5 flex justify-content--center">
             <div className="my2">
@@ -55,16 +56,7 @@ class ThankYouPage extends React.Component {
                   partner={partner} 
                   order={order} 
                 />
-                <div className="p1 border border-color--grey">
-                  <p>
-                    {`${name} - ${address}, ${city} ${postcode}.`}
-                  </p>
-                  <p>{`Opening hours: ${opening_hours}`}</p>
-                  <a className="text-navy" target="_blank" href={`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`}>Find the best way to get there</a>
-                </div>
 
-
-                <p></p>
                 <p className="m0"><i>As we care about your privacy: <br /><strong>If you are unable to provide the secret code, please note that a proof of ID will be required for gathering your order.</strong></i></p>
               </div>
               <div className="flex justify-content--between">

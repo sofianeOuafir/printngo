@@ -9,7 +9,8 @@ import CheckoutForm from './CheckoutForm';
 import { startSetOrder } from './../actions/orders';
 import { startSetProducts } from './../actions/products';
 import Loader from "./Loader";
-import PickUpLocationCard from './PickUpLocationCard';
+import Partner from './Partner';
+import { Link } from 'react-router-dom';
 
 class PaymentPage extends React.Component {
   constructor(props) {
@@ -41,7 +42,13 @@ class PaymentPage extends React.Component {
           currentState={currentState}
           title="Review your order and pay">
           <div className="h5 content-container">
-            <PickUpLocationCard partner={partner} />
+            <div className="p2 border border-color--grey mb2">
+              <h2 className="h5 text-navy favourite-font-weight">Pick up Location</h2>
+              <Partner partner={partner} order={order} ></Partner>
+              <div className="mt1">
+                <Link to="/order/pick-up-location" className="button button-outline button-outline--pink">&larr; Select Another Pick up Location</Link>
+              </div>
+            </div>
             <div className="p2 border border-color--grey mb2">
               <h2 className="h5 text-navy favourite-font-weight">Your Order</h2>
               <OrderItemList orderItems={orderItems} order={order} />

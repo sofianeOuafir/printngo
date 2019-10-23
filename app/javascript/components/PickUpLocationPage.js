@@ -112,29 +112,35 @@ class PickUpLocationPage extends React.Component {
           title="Select Pick Up Location"
           nextButton={{ link: '/order/payment', text: 'Go to Payment', disabled: order.partner_id == null }} 
         >
-          <div className="content-container flex">
-            <div className="col-8">
-              <a className="button button--navy button--no-border-radius mb1" onClick={this.onFindClosest}>Sort from Closest to Furthest</a>
-              {sortingError && <p className="h5 m0 mb1 text-pink">{sortingError}</p>}
-              { sortingData ? (
-                permissionStatus && <p className="h5 m0 mb1 text-navy">{permissionStatus == 'granted' ? 'Loading... Please wait.' : 'Please enable geolocation so we can find the nearest printing machine for you!' }</p>
-              ) : (
-                partners.map((partner, index) => (
-                  <Partner 
-                    readOnly={false}
-                    onLocationSelect={() => this.onLocationSelect(partner.id)} 
-                    partner={partner} 
-                    order={order} 
-                    onMouseLeave={this.onPartnerMouseLeave} 
-                    onMouseEnter={() => this.onPartnerMouseEnter(partner)} 
-                    key={index} 
-                  />
-                ))
-              ) }
+          <div className="content-container flex flex-direction--column">
+            <div>
+              <a className="button button-outline--navy button--no-border-radius mb1" onClick={this.onFindClosest}>Sort from Closest to Furthest</a>
             </div>
-            <div className="col-4 pl1">
-              <MapElement defaultZoom={defaultMapZoom} defaultMapCenter={mapCenter} center={mapCenter} data={partners} highlightedElement={highlightedPartner} />
+            <div className="flex">
+              <div className="col-8">
+                {sortingError && <p className="h5 m0 mb1 text-pink">{sortingError}</p>}
+                { sortingData ? (
+                  permissionStatus && <p className="h5 m0 mb1 text-navy">{permissionStatus == 'granted' ? 'Loading... Please wait.' : 'Please enable geolocation so we can find the nearest printing machine for you!' }</p>
+                ) : (
+                  partners.map((partner, index) => (
+                    <Partner 
+                      highlighted={highlightedPartner && partner.id === highlightedPartner.id }
+                      readOnly={false}
+                      onLocationSelect={() => this.onLocationSelect(partner.id)} 
+                      partner={partner} 
+                      order={order} 
+                      onMouseLeave={this.onPartnerMouseLeave} 
+                      onMouseEnter={() => this.onPartnerMouseEnter(partner)} 
+                      key={index} 
+                    />
+                  ))
+                ) }
+              </div>
+              <div className="col-4 pl1 sticky sticky--map" style={{ height: '400px' }}>
+                <MapElement defaultZoom={defaultMapZoom} defaultMapCenter={mapCenter} center={mapCenter} data={partners} highlightedElement={highlightedPartner} />
+              </div>
             </div>
+
           </div>
   
   
