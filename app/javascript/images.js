@@ -24,8 +24,10 @@ import visa from './../assets/images/visa.png';
 import contact from './../assets/images/contact-us.png';
 import tinyPrinter from './../assets/images/tiny-printer.png';
 import tinyBluePrinter from './../assets/images/tiny-blue-printer.png';
+import pdf from './../assets/images/pdf.png';
 
 export default {
+  pdf,
   tinyBluePrinter,
   tinyPrinter,
   contact,

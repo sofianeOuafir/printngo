@@ -50,6 +50,9 @@
   margin-top: $l-size;
 }
 
+.my1 {
+  @extend .mt1, .mb1;
+}
 .my2 {
   @extend .mt2, .mb2;
 }

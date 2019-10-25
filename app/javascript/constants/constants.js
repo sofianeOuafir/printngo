@@ -1,0 +1,1 @@
+export const acceptedFormat = ['PDF, PNG, JPEG'];

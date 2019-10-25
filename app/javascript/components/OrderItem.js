@@ -54,7 +54,7 @@ class OrderItem extends React.Component {
       <div className="border border-color--grey flex justify-content--around py2 mb1 h5"> 
         <div className="center">
           <div>
-            <img src={images.aDocument} alt="Document Icon" width={100}/>
+            <img src={images.pdf} alt="Document Icon" width={100}/>
           </div>
           <div className="flex align-items--center justify-content--center mt1">
             <a onClick={() => this.onViewClick(documentId)} className="pointer">View</a>
