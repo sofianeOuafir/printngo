@@ -32,15 +32,15 @@ class PickUpLocationPage extends React.Component {
     const { startSetClientCurrentOrder, startSetPartners } = this.props;
     Promise.all([startSetClientCurrentOrder(), startSetPartners()]).then((response) => {
       const order = response[0].data;
-      const { partner } = order;
-      const mapCenter = partner ? { lat: partner.lat, lng: partner.lng } : this.state.mapCenter;
-      this.setState(() => ({ loadingData: false, mapCenter, highlightedPartner: partner }))
+      const { selected_partner } = order;
+      const mapCenter = selected_partner ? { lat: selected_partner.lat, lng: selected_partner.lng } : this.state.mapCenter;
+      this.setState(() => ({ loadingData: false, mapCenter, highlightedPartner: selected_partner }))
 
     })
   }
 
   onLocationSelect = (partnerId) => {
-    this.props.startUpdateClientCurrentOrder({ partner_id: partnerId }).then(() => {
+    this.props.startUpdateClientCurrentOrder({ selected_partner_id: partnerId }).then(() => {
       this.props.history.push('/order/payment');
     })
   }
@@ -51,10 +51,10 @@ class PickUpLocationPage extends React.Component {
 
   onPartnerMouseLeave = () => {
     const { clientCurrentOrder } = this.props;
-    const { partner } = clientCurrentOrder;
-    if (partner) {
-      const { lat, lng } = partner;
-      this.setState((prevState) => ({ ...prevState, mapCenter: { lat, lng }, highlightedPartner: partner }))
+    const { selected_partner} = clientCurrentOrder;
+    if (selected_partner) {
+      const { lat, lng } = selected_partner;
+      this.setState((prevState) => ({ ...prevState, mapCenter: { lat, lng }, highlightedPartner: selected_partner }))
     } else {
       this.setState((prevState) => ({ ...prevState, highlightedPartner: null }))
     }
@@ -110,7 +110,7 @@ class PickUpLocationPage extends React.Component {
         <OrderLayout
           currentState={currentState}
           title="Select Pick Up Location"
-          nextButton={{ link: '/order/payment', text: 'Go to Payment', disabled: clientCurrentOrder.partner_id == null }} 
+          nextButton={{ link: '/order/payment', text: 'Go to Payment', disabled: clientCurrentOrder.selected_partner_id == null }} 
         >
           <div className="content-container flex flex-direction--column">
             <div>

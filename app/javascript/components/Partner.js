@@ -11,7 +11,7 @@ const Partner = ({
   highlighted = false,
   ...rest
 }) => {
-  const highlight = readOnly === false && order.partner_id === partner.id || highlighted;
+  const highlight = readOnly === false && order.selected_partner_id === partner.id || highlighted;
   return (
     <div
       {...rest}

@@ -3,6 +3,8 @@ class Partner < ApplicationRecord
     attr_accessor :user_position
   end
 
+  has_many :expected_orders, foreign_key: "selected_partner_id", class_name: "Order"
+
   reverse_geocoded_by :lat, :lng
 
   def distance_to_user_position

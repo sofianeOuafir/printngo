@@ -72,7 +72,7 @@ class ThankYouPage extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  partner: state.clientOrder.partner,
+  partner: state.clientOrder.selected_partner,
   clientOrder: state.clientOrder
 })
 

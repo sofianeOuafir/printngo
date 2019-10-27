@@ -34,7 +34,7 @@ class PaymentPage extends React.Component {
       )
     } else {
       const { clientCurrentOrder, orderItems } = this.props;
-      const { partner } = clientCurrentOrder;
+      const { selected_partner } = clientCurrentOrder;
       const currentState = 3;
       return (
         <OrderLayout
@@ -44,7 +44,7 @@ class PaymentPage extends React.Component {
           <div className="h5 content-container">
             <div className="p2 border border-color--grey mb2">
               <h2 className="h5 text-navy favourite-font-weight">Pick up Location</h2>
-              <Partner partner={partner} order={clientCurrentOrder} ></Partner>
+              <Partner partner={selected_partner} order={clientCurrentOrder} ></Partner>
               <div className="mt1">
                 <Link to="/order/pick-up-location" className="button button-outline button-outline--pink">&larr; Select Another Pick up Location</Link>
               </div>
