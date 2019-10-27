@@ -5,11 +5,12 @@ import thunk from 'redux-thunk';
 
 import orderItemsReducer from './reducers/orderItems';
 import productsReducer from './reducers/products';
-import ordersReducer from './reducers/orders';
+import clientCurrentorderReducer from './reducers/clientCurrentOrder';
 import partnersReducer from './reducers/partners';
 import authReducer from './reducers/auth';
 import clientOrdersReducer from './reducers/clientOrders';
 import documentsReducer from './reducers/documents';
+import clientOrderReducer from './reducers/clientOrder';
 
 let composeEnhancers;
 try {
@@ -23,11 +24,12 @@ export default function (initData) {
     combineReducers({
       orderItems: orderItemsReducer,
       products: productsReducer,
-      order: ordersReducer,
       partners: partnersReducer,
       auth: authReducer,
+      documents: documentsReducer,
+      clientCurrentOrder: clientCurrentorderReducer,
       clientOrders: clientOrdersReducer,
-      documents: documentsReducer
+      clientOrder: clientOrderReducer
     }),
     initData,
     composeEnhancers(applyMiddleware(thunk))

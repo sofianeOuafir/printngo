@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { updateOrder } from './../actions/orders';
+import { updateClientCurrentOrder } from './../actions/orders';
 
 export const startCreatePayment = token => dispatch => {
   return axios.post("/api/v1/payments", {
@@ -9,7 +9,7 @@ export const startCreatePayment = token => dispatch => {
       type: "CREATE_PAYMENT",
       payment: response.data
     });
-    dispatch(updateOrder(response.data.order));
+    dispatch(updateClientCurrentOrder(response.data.order));
     return response.data
   })
 }

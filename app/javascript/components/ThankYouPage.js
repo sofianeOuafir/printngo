@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 
 import OrderLayout from "./OrderLayout";
 import images from './../images';
-import { startSetOrder } from './../actions/orders';
+import { startSetClientOrder } from './../actions/orders';
 import Loader from "./App";
 import Partner from "./Partner";
 
@@ -18,8 +18,8 @@ class ThankYouPage extends React.Component {
   }
 
   componentDidMount() {
-    const { startSetOrder } = this.props;
-    startSetOrder(this.props.match.params.id).then(() => {
+    const { startSetClientOrder } = this.props;
+    startSetClientOrder(this.props.match.params.id).then(() => {
       this.setState(() => ({ loadingData: false }))
     })
   }
@@ -30,8 +30,8 @@ class ThankYouPage extends React.Component {
         <Loader />
       )
     } else {
-      const { partner, order } = this.props;
-      const { user, invoice } = order;
+      const { partner, clientOrder } = this.props;
+      const { user, invoice, id, secret_code } = clientOrder;
       const { firstname } = user;
       const currentState = 4;
   
@@ -46,15 +46,15 @@ class ThankYouPage extends React.Component {
               <div className="center">
                 <img src={images.success} alt="Success Icon" width={100}/>
               </div>
-              <h1 className="h4 center">Payment Success! Order #{order.id}</h1>
+              <h1 className="h4 center">Payment Success! Order #{id}</h1>
               <div>
-                <p>A big thank you for your purchase { firstname }. Your secret code for picking up your order is <strong>{order.secret_code}</strong>. </p>
+                <p>A big thank you for your purchase { firstname }. Your secret code for picking up your order is <strong>{secret_code}</strong>. </p>
                 <p>Please provide this code at the pick up location.</p> 
                 <p>You can now gather your documents at the following address:</p>
 
                 <Partner 
                   partner={partner} 
-                  order={order} 
+                  order={clientOrder} 
                 />
 
                 <p className="m0"><i>As we care about your privacy: <br /><strong>If you are unable to provide the secret code, please note that a proof of ID will be required for gathering your order.</strong></i></p>
@@ -72,12 +72,12 @@ class ThankYouPage extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  partner: state.order.partner,
-  order: state.order
+  partner: state.clientOrder.partner,
+  clientOrder: state.clientOrder
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  startSetOrder: (id) => dispatch(startSetOrder(id))
+  startSetClientOrder: (id) => dispatch(startSetClientOrder(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ThankYouPage))

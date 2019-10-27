@@ -1,12 +1,14 @@
 import React from "react"
 import axios from "axios";
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Layout from "./Layout";
 import OrderItemList from "./OrderItemList";
 import Loader from "./Loader";
 import { withRouter } from 'react-router-dom';
 import Partner from './Partner';
+import { startSetClientOrder } from './../actions/orders';
 
 class OrderShowPage extends React.Component {
   constructor(props) {
@@ -17,12 +19,14 @@ class OrderShowPage extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`/api/v1/orders/${this.props.match.params.id}`).then((response) => {
-      this.setState(() => ({loadingData: false, order: response.data, orderItems: response.data.order_items}))
+    const { startSetClientOrder } = this.props;
+    startSetClientOrder(this.props.match.params.id).then(() => {
+      this.setState(() => ({ loadingData: false }))
     })
   }
 
   render () {
+    const { clientOrder: order, orderItems } = this.props;
     return (
       <Layout>
         {this.state.loadingData ? (
@@ -31,16 +35,16 @@ class OrderShowPage extends React.Component {
           <div className="h5 content-container my2">
             <Link to="/orders" className="text-navy">&larr; See All Orders</Link>
             <div className="flex justify-content--between align-items--center">
-              <h1 className="h4 text-navy favourite-font-weight">Order #{this.state.order.id} - Secret Code: {this.state.order.secret_code}</h1>
-              <Link target="_blank" className="text-navy" to={`/invoice/${this.state.order.invoice.id}`}>See Invoice</Link>
+              <h1 className="h4 text-navy favourite-font-weight">Order #{order.id} - Secret Code: {order.secret_code}</h1>
+              <Link target="_blank" className="text-navy" to={`/invoice/${order.invoice.id}`}>See Invoice</Link>
             </div>
             <div className="p2 border border-color--grey mb2">
               <h2 className="h5 text-navy favourite-font-weight">Pick up Location</h2>
-              <Partner partner={this.state.order.partner} order={this.state.order} ></Partner>
+              <Partner partner={order.partner} order={order} ></Partner>
             </div>
             <div className="p2 border border-color--grey">
               <h2 className="h5 text-navy favourite-font-weight">Your Order</h2>
-              <OrderItemList readOnly={true} orderItems={this.state.orderItems} order={this.state.order} />
+              <OrderItemList readOnly={true} orderItems={orderItems} order={order} />
             </div>
           </div>
         )}
@@ -49,4 +53,12 @@ class OrderShowPage extends React.Component {
   }
 }
 
-export default withRouter(OrderShowPage)
+const mapStateToProps = ({ clientOrder }) => ({
+  clientOrder: clientOrder,
+  orderItems: clientOrder.order_items
+})
+const mapDispatchToProps = (dispatch) => ({
+  startSetClientOrder: (id) => dispatch(startSetClientOrder(id))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(OrderShowPage))

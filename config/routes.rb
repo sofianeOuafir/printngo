@@ -1,18 +1,19 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1, defaults: { format: 'json' } do
-      resources :users, only: [:create] do
-        resources :orders, only: [:index], controller: 'users/orders'
+      resources :users, only: [:create]
+      namespace :users do
+        resources :orders, only: [:index, :show]
+        resources :sessions, only: [:create, :destroy, :show]
       end
-      resources :sessions, only: [:create, :destroy, :show]
       resources :order_items, only: [:create, :update, :destroy]
-      resources :documents, only: [:create, :update, :destroy]
       resources :products, only: [:index]
       resources :partners, only: [:index]
       resources :documents, only: [:show, :index]
       resources :payments, only: [:create]
-      resources :orders do
-        resources :documents, only: [:create, :update, :destroy], controller: 'orders/documents'
+      resources :orders
+      namespace :orders do
+        resources :documents, only: [:create]
       end
       resources :invoices, only: [:show]
     end

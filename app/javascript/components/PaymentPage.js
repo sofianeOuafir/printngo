@@ -6,7 +6,7 @@ import {Elements, StripeProvider} from 'react-stripe-elements';
 import OrderLayout from './OrderLayout';
 import OrderItemList from './OrderItemList';
 import CheckoutForm from './CheckoutForm';
-import { startSetOrder } from './../actions/orders';
+import { startSetClientCurrentOrder } from './../actions/orders';
 import { startSetProducts } from './../actions/products';
 import Loader from "./Loader";
 import Partner from './Partner';
@@ -21,8 +21,8 @@ class PaymentPage extends React.Component {
   }
 
   componentDidMount() {
-    const { startSetOrder, startSetProducts } = this.props;
-    Promise.all([startSetProducts(), startSetOrder()]).then(() => {
+    const { startSetClientCurrentOrder, startSetProducts } = this.props;
+    Promise.all([startSetProducts(), startSetClientCurrentOrder()]).then(() => {
       this.setState(() => ({ loadingData: false }))
     })
   }
@@ -33,8 +33,8 @@ class PaymentPage extends React.Component {
         <Loader />
       )
     } else {
-      const { order, orderItems } = this.props;
-      const { partner } = order;
+      const { clientCurrentOrder, orderItems } = this.props;
+      const { partner } = clientCurrentOrder;
       const currentState = 3;
       return (
         <OrderLayout
@@ -44,14 +44,14 @@ class PaymentPage extends React.Component {
           <div className="h5 content-container">
             <div className="p2 border border-color--grey mb2">
               <h2 className="h5 text-navy favourite-font-weight">Pick up Location</h2>
-              <Partner partner={partner} order={order} ></Partner>
+              <Partner partner={partner} order={clientCurrentOrder} ></Partner>
               <div className="mt1">
                 <Link to="/order/pick-up-location" className="button button-outline button-outline--pink">&larr; Select Another Pick up Location</Link>
               </div>
             </div>
             <div className="p2 border border-color--grey mb2">
               <h2 className="h5 text-navy favourite-font-weight">Your Order</h2>
-              <OrderItemList orderItems={orderItems} order={order} />
+              <OrderItemList orderItems={orderItems} order={clientCurrentOrder} />
             </div>
             <div className="p2 border border-color--grey">
               <h2 className="h5 text-navy favourite-font-weight">Payment</h2>
@@ -69,12 +69,12 @@ class PaymentPage extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  order: state.order,
+  clientCurrentOrder: state.clientCurrentOrder,
   orderItems: state.orderItems
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  startSetOrder: () => dispatch(startSetOrder()),
+  startSetClientCurrentOrder: () => dispatch(startSetClientCurrentOrder()),
   startSetProducts: () => dispatch(startSetProducts())
 })
 

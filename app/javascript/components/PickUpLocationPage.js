@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 
 import MapElement from "./MapElement";
 import OrderLayout from "./OrderLayout";
-import { startUpdateOrder, startSetOrder } from './../actions/orders';
+import { startUpdateClientCurrentOrder, startSetClientCurrentOrder } from './../actions/orders';
 import { startSetPartners } from './../actions/partners';
 import Loader from "./Loader";
 import Partner from './Partner';
@@ -29,8 +29,8 @@ class PickUpLocationPage extends React.Component {
   }
 
   componentDidMount() {
-    const { startSetOrder, startSetPartners } = this.props;
-    Promise.all([startSetOrder(), startSetPartners()]).then((response) => {
+    const { startSetClientCurrentOrder, startSetPartners } = this.props;
+    Promise.all([startSetClientCurrentOrder(), startSetPartners()]).then((response) => {
       const order = response[0].data;
       const { partner } = order;
       const mapCenter = partner ? { lat: partner.lat, lng: partner.lng } : this.state.mapCenter;
@@ -40,7 +40,7 @@ class PickUpLocationPage extends React.Component {
   }
 
   onLocationSelect = (partnerId) => {
-    this.props.startUpdateOrder({ partner_id: partnerId }).then(() => {
+    this.props.startUpdateClientCurrentOrder({ partner_id: partnerId }).then(() => {
       this.props.history.push('/order/payment');
     })
   }
@@ -50,8 +50,8 @@ class PickUpLocationPage extends React.Component {
   }
 
   onPartnerMouseLeave = () => {
-    const { order } = this.props;
-    const { partner } = order;
+    const { clientCurrentOrder } = this.props;
+    const { partner } = clientCurrentOrder;
     if (partner) {
       const { lat, lng } = partner;
       this.setState((prevState) => ({ ...prevState, mapCenter: { lat, lng }, highlightedPartner: partner }))
@@ -104,13 +104,13 @@ class PickUpLocationPage extends React.Component {
         <Loader/>
       )
     } else {
-      const { partners, order } = this.props;
+      const { partners, clientCurrentOrder } = this.props;
       const currentState = 2;
       return (
         <OrderLayout
           currentState={currentState}
           title="Select Pick Up Location"
-          nextButton={{ link: '/order/payment', text: 'Go to Payment', disabled: order.partner_id == null }} 
+          nextButton={{ link: '/order/payment', text: 'Go to Payment', disabled: clientCurrentOrder.partner_id == null }} 
         >
           <div className="content-container flex flex-direction--column">
             <div>
@@ -128,7 +128,7 @@ class PickUpLocationPage extends React.Component {
                       readOnly={false}
                       onLocationSelect={() => this.onLocationSelect(partner.id)} 
                       partner={partner} 
-                      order={order} 
+                      order={clientCurrentOrder} 
                       onMouseLeave={this.onPartnerMouseLeave} 
                       onMouseEnter={() => this.onPartnerMouseEnter(partner)} 
                       key={index} 
@@ -155,12 +155,12 @@ class PickUpLocationPage extends React.Component {
 
 const mapStateToProps = (state) => ({
   partners: state.partners,
-  order: state.order
+  clientCurrentOrder: state.clientCurrentOrder
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  startUpdateOrder: (updates) => dispatch(startUpdateOrder(updates)),
-  startSetOrder: () => dispatch(startSetOrder()),
+  startUpdateClientCurrentOrder: (updates) => dispatch(startUpdateClientCurrentOrder(updates)),
+  startSetClientCurrentOrder: () => dispatch(startSetClientCurrentOrder()),
   startSetPartners: (position) => dispatch(startSetPartners(position))
 })
 

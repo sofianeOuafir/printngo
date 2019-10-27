@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { updateOrder } from './orders';
+import { updateClientCurrentOrder } from './orders';
 
 export const setOrderItems = orderItems => dispatch => {
   return dispatch({
@@ -19,7 +19,7 @@ export const startAddOrderItem = (document_id) => dispatch => {
 }
 
 export const addOrderItem = orderItem => dispatch => {
-  dispatch(updateOrder(orderItem.order));
+  dispatch(updateClientCurrentOrder(orderItem.order));
   dispatch({
     type: "ADD_ORDER_ITEM",
     orderItem
@@ -28,7 +28,7 @@ export const addOrderItem = orderItem => dispatch => {
 
 export const startRemoveOrderItem = orderItemId => dispatch => {
   return axios.delete(`/api/v1/order_items/${orderItemId}`).then(response => {
-    dispatch(updateOrder(response.data.order));
+    dispatch(updateClientCurrentOrder(response.data.order));
     dispatch(removeOrderItem(orderItemId));
   })
 };
@@ -42,7 +42,7 @@ export const removeOrderItem = orderItemId => dispatch => {
 
 export const startUpdateOrderItem = ({ id, updates }) => dispatch => {
   return axios.patch(`/api/v1/order_items/${id}`, updates).then(response => {
-    dispatch(updateOrder(response.data.order));
+    dispatch(updateClientCurrentOrder(response.data.order));
     dispatch({
       type: "UPDATE_ORDER_ITEM",
       id,

@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 import images from './../images';
 import { startSignUp } from './../actions/auth';
 import { startCreatePayment } from './../actions/payments';
-import { startUpdateOrder } from './../actions/orders';
+import { startUpdateClientCurrentOrder } from './../actions/orders';
 import TextInput from './TextInput';
 import SignInLink from './SignInLink';
 
@@ -29,7 +29,7 @@ class CheckoutForm extends Component {
         payment: '',
         termsAndCondition: ''
       },
-      agreedToTermsAndConditions: props.order.agreed_to_terms_and_conditions || false,
+      agreedToTermsAndConditions: props.clientCurrentOrder.agreed_to_terms_and_conditions || false,
       processingPayment: false 
     }
   }
@@ -37,7 +37,7 @@ class CheckoutForm extends Component {
   onTermsAndConditionsAgreementChange = (e) => {
     this.setState((prevState) => ({ errors: { ...prevState.errors, termsAndCondition: '' } }))
     const value = e.target.checked;
-    this.props.startUpdateOrder({ agreed_to_terms_and_conditions: value }).then(() => {
+    this.props.startUpdateClientCurrentOrder({ agreed_to_terms_and_conditions: value }).then(() => {
       this.setState(() => ({ agreedToTermsAndConditions: value }))
     })
   }
@@ -171,13 +171,13 @@ class CheckoutForm extends Component {
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
-  order: state.order
+  clientCurrentOrder: state.clientCurrentOrder
 });
 
 const mapDispatchToProps = (dispatch) => ({
   startSignUp: (user) => dispatch(startSignUp(user)),
   startCreatePayment: (token) => dispatch(startCreatePayment(token)),
-  startUpdateOrder: (updates) => dispatch(startUpdateOrder(updates))
+  startUpdateClientCurrentOrder: (updates) => dispatch(startUpdateClientCurrentOrder(updates))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectStripe(withRouter(CheckoutForm)));

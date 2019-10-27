@@ -1,48 +1,79 @@
-import axios from 'axios';
+import axios from "axios";
+import createHistory from "history/createBrowserHistory";
 
-export const startLogin = ({email, password}) => dispatch => {
-  return axios.post('/api/v1/sessions', {
-    email,
-    password
-  }).then((response) => {
-    dispatch({
-      type: 'LOGIN',
-      user: response.data
+const getContext = () => {
+  const history = createHistory();
+  const context = history.location.pathname.slice(1).split("/")[0];
+  return context;
+};
+
+export const startLogin = ({ email, password }) => dispatch => {
+  const context = getContext();
+  let uri;
+  if (context === "partner") {
+    uri = "/api/v1/partners/sessions";
+  } else {
+    uri = "/api/v1/users/sessions";
+  }
+  return axios
+    .post(uri, {
+      email,
+      password
+    })
+    .then(response => {
+      dispatch({
+        type: "LOGIN",
+        user: response.data
+      });
+      return response;
     });
-    return response;
-  })
-}
+};
 
-export const startSignUp = (user) => dispatch => {
-  return axios.post('/api/v1/users', user).then((response) => {
+export const startSignUp = user => dispatch => {
+  return axios.post("/api/v1/users", user).then(() => {
     const { email, password } = user;
     return dispatch(startLogin({ email, password }));
-  })
-}
+  });
+};
 
 export const startGetCurrentUser = () => dispatch => {
-  return axios.get('/api/v1/sessions/undefined').then((response) => {
-    if(response.data) {
+  const context = getContext();
+  let uri;
+  if (context === "partner") {
+    uri = "/api/v1/partners/sessions/current";
+  } else {
+    uri = "/api/v1/users/sessions/current";
+  }
+  return axios.get(uri).then(response => {
+    if (response.data) {
       dispatch({
-        type: 'LOGIN',
+        type: "LOGIN",
         user: response.data
       });
       return response;
     } else {
       return dispatch(logout());
     }
-  })
-}
+  });
+};
 
 export const logout = () => dispatch => {
   return dispatch({
-    type: 'LOGOUT'
+    type: "LOGOUT"
   });
-}
+};
 
 export const startLogout = () => dispatch => {
-  return axios.delete('/api/v1/sessions/undefined').then((response) => {
+  const context = getContext();
+  let uri;
+  if (context === "partner") {
+    uri = "/api/v1/partners/sessions/current";
+  } else {
+    uri = "/api/v1/users/sessions/current";
+  }
+
+  return axios.delete(uri).then(response => {
     dispatch(logout());
-    return response
-  })
-}
+    return response;
+  });
+};

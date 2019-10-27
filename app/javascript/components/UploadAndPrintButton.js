@@ -65,7 +65,7 @@ class UploadAndPrintButton extends React.Component {
           const percentage = Math.round(((i + 1) / files.length) * 100);
           try {
             const response = await axios.post(
-              "/api/v1/orders/undefined/documents",
+              "/api/v1/orders/documents",
               formData,
               {
                 headers: {
@@ -147,14 +147,14 @@ class UploadAndPrintButton extends React.Component {
             {this.state.isUploading ? (
               <div>
                 <p className="text-navy m0 mb1 h4">
-                  Progress: {this.state.percentage}%
+                  Progress: {this.state.percentage}% (this can take several minutes)
                 </p>
                 <Line
                   percent={this.state.percentage}
                   strokeWidth="4"
                   strokeColor="#FF757C"
                 />
-                <div className="mt1">
+                <div className="mt1" style={{overflowY: 'scroll', height:'200px'}}>
                   {this.state.uploadedFiles.map((uploadedFile, index) => (
                     <div className="flex flex-direction--column" key={index}>
                       <div className="flex align-items--center">
@@ -190,7 +190,7 @@ class UploadAndPrintButton extends React.Component {
                 </div>
               </Fragment>
             )}
-            {this.uploadUnsuccessful() && (
+            {this.uploadUnsuccessful() && this.state.percentage === 100 &&  (
               <div className="flex justify-content--between mt1">
                 <a
                   onClick={this.triggerFileDialog}

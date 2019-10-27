@@ -4,4 +4,8 @@ class Api::V1::Users::OrdersController < ApplicationController
   def index
     render json: current_user.orders.paid.to_json(include: [:payment, :invoice])
   end
+
+  def show
+    render json: current_user.orders.find(params[:id]).to_json(include: [{ order_items: { include: [:document, :product] } }, :partner, :user, :invoice])
+  end
 end

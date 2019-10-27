@@ -1,24 +1,37 @@
-import axios from 'axios';
+import axios from "axios";
 
-import { setOrderItems } from './../actions/orderItems';
+import { setOrderItems } from "./../actions/orderItems";
 
-export const startSetOrder = (id = undefined) => dispatch => {
-  return axios.get(`/api/v1/orders/${id}`).then((response) => {
-    dispatch(setOrder(response.data));
+export const startSetClientCurrentOrder = () => dispatch => {
+  return axios.get(`/api/v1/orders/current`).then(response => {
+    dispatch(setClientCurrentOrder(response.data));
     dispatch(setOrderItems(response.data.order_items));
     return response;
-  })
+  });
+};
 
-}
-
-export const setOrder = order => dispatch => {
+const setClientCurrentOrder = order => dispatch => {
   return dispatch({
-    type: "SET_ORDER",
+    type: "SET_CLIENT_CURRENT_ORDER",
     order
   });
 };
 
-export const setClientOrders = (clientOrders) => dispatch => {
+const setClientOrder = order => dispatch => {
+  return dispatch({
+    type: "SET_CLIENT_ORDER",
+    order
+  });
+};
+
+export const startSetClientOrder = id => dispatch => {
+  return axios.get(`/api/v1/users/orders/${id}`).then(response => {
+    dispatch(setClientOrder(response.data));
+    return response;
+  });
+};
+
+const setClientOrders = clientOrders => dispatch => {
   return dispatch({
     type: "SET_CLIENT_ORDERS",
     clientOrders
@@ -26,22 +39,21 @@ export const setClientOrders = (clientOrders) => dispatch => {
 };
 
 export const startSetClientOrders = () => dispatch => {
-  return axios.get('/api/v1/users/undefined/orders').then(response => {
-    dispatch(setClientOrders(response.data))
+  return axios.get("/api/v1/users/orders").then(response => {
+    dispatch(setClientOrders(response.data));
     return response;
-  })
+  });
 };
 
-export const updateOrder = updates => dispatch => {
+export const updateClientCurrentOrder = updates => dispatch => {
   return dispatch({
-    type: "UPDATE_ORDER",
+    type: "UPDATE_CLIENT_CURRENT_ORDER",
     updates
   });
 };
 
-export const startUpdateOrder = updates => dispatch => {
+export const startUpdateClientCurrentOrder = updates => dispatch => {
   return axios.patch(`/api/v1/orders/undefined`, updates).then(response => {
-    dispatch(updateOrder(response.data));
+    dispatch(updateClientCurrentOrder(response.data));
   });
-}
-
+};

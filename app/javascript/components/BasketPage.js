@@ -6,7 +6,7 @@ import pluralize from 'pluralize';
 import OrderLayout from "./OrderLayout";
 import OrderItemList from './OrderItemList';
 import { startSetProducts } from './../actions/products';
-import { startSetOrder } from './../actions/orders';
+import { startSetClientCurrentOrder } from './../actions/orders';
 import Loader from "./Loader";
 import { fromCentsToDollars } from './../utils/money';
 
@@ -19,8 +19,8 @@ class BasketPage extends React.Component {
   }
 
   componentDidMount() {
-    const { startSetOrder, startSetProducts } = this.props;
-    Promise.all([startSetOrder(), startSetProducts()]).then(() => {
+    const { startSetClientCurrentOrder, startSetProducts } = this.props;
+    Promise.all([startSetClientCurrentOrder(), startSetProducts()]).then(() => {
       this.setState(() => ({ loadingData: false }))
     })
   }
@@ -31,8 +31,8 @@ class BasketPage extends React.Component {
         <Loader />
       )
     } else {
-      const  { orderItems, order } = this.props;
-      let { sub_total, number_of_items } = order;
+      const  { orderItems, clientCurrentOrder } = this.props;
+      let { sub_total, number_of_items } = clientCurrentOrder;
       sub_total = fromCentsToDollars(sub_total);
       const currentState = number_of_items > 0 ? 1 : 0;
       return (
@@ -43,7 +43,7 @@ class BasketPage extends React.Component {
           info={`Subtotal (${number_of_items} ${pluralize('Item', number_of_items)}): ${sub_total}`}
         >
         <div className="content-container">
-          <OrderItemList orderItems={orderItems} order={order} />
+          <OrderItemList orderItems={orderItems} order={clientCurrentOrder} />
         </div>
       </OrderLayout>
       );
@@ -54,13 +54,13 @@ class BasketPage extends React.Component {
 const mapStateToProps = (state) => {
   return {
     orderItems: state.orderItems,
-    order: state.order
+    clientCurrentOrder: state.clientCurrentOrder
   }
 }
 
 const mapDispatchToProps = dispatch => ({
   startSetProducts: () => dispatch(startSetProducts()),
-  startSetOrder: () => dispatch(startSetOrder())
+  startSetClientCurrentOrder: () => dispatch(startSetClientCurrentOrder())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(BasketPage);

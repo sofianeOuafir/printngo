@@ -1,4 +1,4 @@
-class Api::V1::SessionsController < ApplicationController
+class Api::V1::Users::SessionsController < ApplicationController
   before_action :authenticate_user!, only: [:destroy]
 
   def show
