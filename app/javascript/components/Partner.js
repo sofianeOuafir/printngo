@@ -1,6 +1,6 @@
 import React from "react";
 
-import { numberToDistance } from "./../utils/distance";
+import { numberToDistance } from "../lib/distance";
 import MapElement from "./MapElement";
 
 const Partner = ({

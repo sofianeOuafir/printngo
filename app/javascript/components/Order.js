@@ -1,8 +1,8 @@
 import React from "react"
 import { Link } from 'react-router-dom';
 
-import { fromCentsToDollars } from './../utils/money';
-import { getDateTimeFormat } from './../utils/date';
+import { fromCentsToDollars } from '../lib/money';
+import { getDateTimeFormat } from '../lib/date';
 
 const Order = ({ order }) => {
   const { total, id, payment, printed, invoice } = order

@@ -11,6 +11,7 @@ import authReducer from './reducers/auth';
 import clientOrdersReducer from './reducers/clientOrders';
 import documentsReducer from './reducers/documents';
 import clientOrderReducer from './reducers/clientOrder';
+import partnerOrderReducer from './reducers/partnerOrder';
 
 let composeEnhancers;
 try {
@@ -29,7 +30,8 @@ export default function (initData) {
       documents: documentsReducer,
       clientCurrentOrder: clientCurrentorderReducer,
       clientOrders: clientOrdersReducer,
-      clientOrder: clientOrderReducer
+      clientOrder: clientOrderReducer,
+      partnerOrder: partnerOrderReducer
     }),
     initData,
     composeEnhancers(applyMiddleware(thunk))

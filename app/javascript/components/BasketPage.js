@@ -8,7 +8,7 @@ import OrderItemList from './OrderItemList';
 import { startSetProducts } from './../actions/products';
 import { startSetClientCurrentOrder } from './../actions/orders';
 import Loader from "./Loader";
-import { fromCentsToDollars } from './../utils/money';
+import { fromCentsToDollars } from '../lib/money';
 
 class BasketPage extends React.Component {
   constructor(props) {

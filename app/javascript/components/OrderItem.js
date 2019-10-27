@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 
 import images from './../images';
 import { startRemoveOrderItem, startUpdateOrderItem, removeOrderItem } from './../actions/orderItems';
-import { fromCentsToDollars } from './../utils/money';
+import { fromCentsToDollars } from '../lib/money';
 
 class OrderItem extends React.Component {
   onRemove = (orderItemId) => {

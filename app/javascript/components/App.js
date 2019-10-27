@@ -13,7 +13,7 @@ import configureStore from './../configureStore';
 import PaymentPage from './PaymentPage';
 import Loader from './Loader';
 import ThankYouPage from './ThankYouPage';
-import LoginPage from './LoginPage';
+import UserLoginPage from './UserLoginPage';
 import OrdersPage from './OrdersPage';
 import DocumentsPage from './DocumentsPage';
 import OrderShowPage from './OrderShowPage';
@@ -21,6 +21,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import PublicRoute from '../routers/PublicRoute';
 import PrivateRoute from '../routers/PrivateRoute';
 import InvoicePage from './InvoicePage';
+import PartnerLoginPage from './PartnerLoginPage';
+import PartnerHomePage from './PartnerHomepage';
+import PartnerOrderPage from './PartnerOrderPage';
 
 const store = configureStore();
 
@@ -38,9 +41,12 @@ class App extends React.Component {
             <Route path="/order/:id/thank-you" render={() => <PrivateRoute component={ThankYouPage} />  }/>
             <Route path="/orders" render={() => <PrivateRoute component={OrdersPage} />  }/>
             <Route path="/documents" render={() => <PrivateRoute component={DocumentsPage} />  }/>
-            <Route path="/login" render={() => <PublicRoute component={LoginPage} />  }/>
+            <Route path="/login" render={() => <PublicRoute component={UserLoginPage} />  }/>
             <Route path="/order/:id" render={() => <PrivateRoute component={OrderShowPage} />  }/>
             <Route path="/invoice/:id" render={() => <PrivateRoute component={InvoicePage} /> } />
+            <Route path="/partner/login" render={() => <PublicRoute component={PartnerLoginPage} /> } />
+            <Route exact path="/partner" render={() => <PrivateRoute component={PartnerHomePage} /> } />
+            <Route path="/partner/order/:secretCode" render={() => <PrivateRoute component={PartnerOrderPage} /> } />
           </Switch>
           <ToastContainer autoClose={2000} />
         </BrowserRouter>

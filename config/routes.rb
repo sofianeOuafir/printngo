@@ -6,6 +6,10 @@ Rails.application.routes.draw do
         resources :orders, only: [:index, :show]
         resources :sessions, only: [:create, :destroy, :show]
       end
+      namespace :partners do
+        resources :sessions, only: [:create, :destroy, :show]
+        resources :orders, only: [:show]
+      end
       resources :order_items, only: [:create, :update, :destroy]
       resources :products, only: [:index]
       resources :partners, only: [:index]

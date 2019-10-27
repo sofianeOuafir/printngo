@@ -3,7 +3,7 @@ import pluralize from 'pluralize';
 import OrderItem from './OrderItem';
 
 import UploadAndPrintButton from './UploadAndPrintButton';
-import { fromCentsToDollars } from './../utils/money';
+import { fromCentsToDollars } from '../lib/money';
 
 class OrderItemList extends React.Component {
   render () {

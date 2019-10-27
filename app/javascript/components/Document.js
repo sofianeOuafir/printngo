@@ -4,7 +4,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 import images from './../images';
-import { getDateTimeFormat } from './../utils/date';
+import { getDateTimeFormat } from '../lib/date';
 import { startAddOrderItem } from './../actions/orderItems';
 
 

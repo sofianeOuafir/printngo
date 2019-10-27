@@ -6,8 +6,8 @@ import { withRouter } from 'react-router-dom';
 import images from './../images';
 
 import Loader from './Loader';
-import { fromCentsToDollars } from './../utils/money';
-import { getDateFormat } from './../utils/date';
+import { fromCentsToDollars } from '../lib/money';
+import { getDateFormat } from '../lib/date';
 
 const styles = StyleSheet.create({
   page: { flexDirection: "column", padding: 25 },

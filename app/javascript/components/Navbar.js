@@ -2,7 +2,7 @@ import React, { Fragment } from "react"
 import { HashLink as Link } from 'react-router-hash-link';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { animateScroll as scroll, scroller} from 'react-scroll'
+import { scroller } from 'react-scroll'
 
 import { startLogout } from './../actions/auth';
 import { startSetClientCurrentOrder } from './../actions/orders';
