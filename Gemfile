@@ -22,6 +22,7 @@ gem 'pdf-reader'
 gem 'stripe'
 gem 'mimemagic'
 gem 'prawn'
+gem 'combine_pdf'
 gem "aws-sdk-s3", require: false
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'

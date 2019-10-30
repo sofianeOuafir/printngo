@@ -30,11 +30,15 @@ class PartnerHomePage extends React.Component {
     const { secretCode } = this.state;
     return (
       <PartnerLayout>
-        <PartnerSeachBar
-          secretCode={secretCode}
-          onSubmit={this.onSubmit}
-          onChange={this.onSecretCodeChange}
-        />
+        <div className="content-container flex flex-direction--column fullscreen align-items--center justify-content--center">
+          <div>
+            <PartnerSeachBar
+              secretCode={secretCode}
+              onSubmit={this.onSubmit}
+              onChange={this.onSecretCodeChange}
+            />
+          </div>
+        </div>
       </PartnerLayout>
     );
   }

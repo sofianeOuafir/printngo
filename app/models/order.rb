@@ -5,6 +5,8 @@ class Order < ApplicationRecord
   has_many :order_items
   has_one :payment
   has_one :invoice, through: :payment
+  has_many :documents, through: :order_items
+  has_many :deliverables
 
   before_save :set_secret_code
 

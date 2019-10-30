@@ -3,9 +3,9 @@ class Api::V1::Partners::OrdersController < ApplicationController
 
   def show
     secret_code = params[:id].strip.upcase
-    order = Order.find_by(secret_code: secret_code)
+    order = Order.paid.find_by(secret_code: secret_code)
     if order.present?
-      render json: order.to_json, status: 200
+      render json: order.to_json(include: [{deliverables: { include: :product }}, :user]), status: 200
     else
       render json: {}, status: 404
     end

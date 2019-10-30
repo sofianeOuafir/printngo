@@ -62,13 +62,10 @@ export const startSetPartnerOrder = secretCode => dispatch => {
   return axios.get(`/api/v1/partners/orders/${secretCode}`).then(response => {
     dispatch(setPartnerOrder(response.data));
     return response;
-  }).catch((e) => {
-    dispatch(setPartnerOrder({}));
-    return e;
   })
 };
 
-const setPartnerOrder = order => dispatch => {
+export const setPartnerOrder = order => dispatch => {
   return dispatch({
     type: "SET_PARTNER_ORDER",
     order

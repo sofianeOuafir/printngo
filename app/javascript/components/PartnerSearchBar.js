@@ -4,8 +4,9 @@ import TextInput from "./TextInput";
 
 const PartnerSearchBar = ({ onSubmit, onChange, secretCode }) => {
   return (
-    <form className="form__input-container" onSubmit={onSubmit}>
+    <form className="fullwidth flex form__input-container" onSubmit={onSubmit}>
       <TextInput
+        className="fullwidth"
         type="text"
         placeholder="Secret Code"
         value={secretCode}
