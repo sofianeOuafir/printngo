@@ -1,5 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import pluralize from 'pluralize';
 
 import PartnerLayout from "./PartnerLayout";
 import PartnerSearchBar from "./PartnerSearchBar";
@@ -64,17 +65,17 @@ class PartnerOrderPage extends React.Component {
               onSubmit={this.onSubmit}
             />
 
-            {order.id && !displayError && <div>
-              <div className="border">
-                <span>{ user.fullname} - Order #{ order.id }</span>
+            {order.id && !displayError && <div className="mt1">
+              <div className="flex pl1 bg-navy">
+                <h2 className="h4 favourite-font-weight text-white">{ user.fullname} - Order #{ order.id }</h2>
               </div>
-              { deliverables.map((deliverable) => (
-                <div className="flex align-items--center justify-content--between border">
+              { deliverables.map((deliverable, index) => (
+                <div key={index} className="px1 flex align-items--center justify-content--between border border-color--grey">
                   <div>
-                    <span>{deliverable.product.name} - Number of Page {deliverable.number_of_page}</span>
+                    <span className="h5 text-navy">{deliverable.product.name} ({pluralize(`${deliverable.number_of_page} page`, deliverable.number_of_page)})</span>
                   </div>
                   <div>
-                    <button onClick={this.onPrintClick} className="button button--navy">Print</button>
+                    <button className="my1 button button--navy">Print</button>
                   </div>
                 </div>
               )) }
@@ -83,7 +84,7 @@ class PartnerOrderPage extends React.Component {
             {displayError && (
               <div className="text-pink h5">
                 <p>
-                  We couldn't find any order corresponding order with the
+                  We couldn't find any order corresponding with the
                   following secret code: <strong>{secretCode}</strong>. <br />
                   Possible reasons:
                 </p>
