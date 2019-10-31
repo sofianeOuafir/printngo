@@ -1,6 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import pluralize from 'pluralize';
+import pluralize from "pluralize";
 
 import PartnerLayout from "./PartnerLayout";
 import PartnerSearchBar from "./PartnerSearchBar";
@@ -36,11 +36,11 @@ class PartnerOrderPage extends React.Component {
     this.setState(() => ({ secretCode }));
   };
 
-  onPrintClick = (e) => {
-    e.preventDefault()
-    // do something
-
-  }
+  onPrintClick = deliverableId => {
+    const id = `deliverable${deliverableId}`;
+    window.frames[id].focus();
+    window.frames[id].print();
+  };
 
   onSubmit = e => {
     e.preventDefault();
@@ -65,27 +65,54 @@ class PartnerOrderPage extends React.Component {
               onSubmit={this.onSubmit}
             />
 
-            {order.id && !displayError && <div className="mt1">
-              <div className="flex pl1 bg-navy">
-                <h2 className="h4 favourite-font-weight text-white">{ user.fullname} - Order #{ order.id }</h2>
-              </div>
-              { deliverables.map((deliverable, index) => (
-                <div key={index} className="px1 flex align-items--center justify-content--between border border-color--grey">
-                  <div>
-                    <span className="h5 text-navy">{deliverable.product.name} ({pluralize(`${deliverable.number_of_page} page`, deliverable.number_of_page)})</span>
-                  </div>
-                  <div>
-                    <button className="my1 button button--navy">Print</button>
-                  </div>
+            {order.id && !displayError && (
+              <div className="mt1">
+                <div className="flex pl1 bg-navy">
+                  <h2 className="h4 favourite-font-weight text-white">
+                    {user.fullname} - Order #{order.id}
+                  </h2>
                 </div>
-              )) }
-
-            </div>}
+                {deliverables.map((deliverable) => {
+                  const { id } = deliverable;
+                  return (
+                    <div
+                      key={id}
+                      className="px1 flex align-items--center justify-content--between border border-color--grey"
+                    >
+                      <iframe
+                        className="hide"
+                        id={`deliverable${id}`}
+                        src={`/api/v1/partners/deliverables/${id}`}
+                        name={`deliverable${id}`}
+                      ></iframe>
+                      <div>
+                        <span className="h5 text-navy">
+                          {deliverable.product.name} (
+                          {pluralize(
+                            `${deliverable.number_of_page} page`,
+                            deliverable.number_of_page
+                          )}
+                          )
+                        </span>
+                      </div>
+                      <div>
+                        <button
+                          onClick={() => this.onPrintClick(id)}
+                          className="my1 button button--navy"
+                        >
+                          Print
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
             {displayError && (
               <div className="text-pink h5">
                 <p>
-                  We couldn't find any order corresponding with the
-                  following secret code: <strong>{secretCode}</strong>. <br />
+                  We couldn't find any order corresponding with the following
+                  secret code: <strong>{secretCode}</strong>. <br />
                   Possible reasons:
                 </p>
                 <ul>
