@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_29_183652) do
+ActiveRecord::Schema.define(version: 2019_10_31_151424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -129,6 +129,8 @@ ActiveRecord::Schema.define(version: 2019_10_29_183652) do
     t.boolean "archived", default: false
     t.string "secret_code"
     t.bigint "selected_partner_id"
+    t.bigint "printer_id"
+    t.index ["printer_id"], name: "index_orders_on_printer_id"
     t.index ["selected_partner_id"], name: "index_orders_on_selected_partner_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
@@ -160,6 +162,16 @@ ActiveRecord::Schema.define(version: 2019_10_29_183652) do
     t.index ["order_id"], name: "index_payments_on_order_id"
   end
 
+  create_table "printing_attempts", force: :cascade do |t|
+    t.bigint "partner_id", null: false
+    t.bigint "deliverable_id", null: false
+    t.boolean "printed", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["deliverable_id"], name: "index_printing_attempts_on_deliverable_id"
+    t.index ["partner_id"], name: "index_printing_attempts_on_partner_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.integer "price"
     t.string "format"
@@ -186,7 +198,10 @@ ActiveRecord::Schema.define(version: 2019_10_29_183652) do
   add_foreign_key "order_items", "documents"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
+  add_foreign_key "orders", "partners", column: "printer_id"
   add_foreign_key "orders", "partners", column: "selected_partner_id"
   add_foreign_key "orders", "users"
   add_foreign_key "payments", "orders"
+  add_foreign_key "printing_attempts", "deliverables"
+  add_foreign_key "printing_attempts", "partners"
 end

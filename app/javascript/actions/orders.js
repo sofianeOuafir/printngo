@@ -62,12 +62,45 @@ export const startSetPartnerOrder = secretCode => dispatch => {
   return axios.get(`/api/v1/partners/orders/${secretCode}`).then(response => {
     dispatch(setPartnerOrder(response.data));
     return response;
-  })
+  });
 };
 
 export const setPartnerOrder = order => dispatch => {
   return dispatch({
     type: "SET_PARTNER_ORDER",
     order
+  });
+};
+
+export const startUpdatePartnerOrder = ({
+  secretCode,
+  updates
+}) => dispatch => {
+  return axios
+    .patch(`/api/v1/partners/orders/${secretCode}`, updates)
+    .then(response => {
+      dispatch(updatePartnerOrder(response.data));
+      return response;
+    });
+};
+
+const updatePartnerOrder = updates => dispatch => {
+  return dispatch({
+    type: "UPDATE_PARTNER_ORDER",
+    updates
+  });
+};
+
+export const startSetPartnerOrders = () => dispatch => {
+  return axios.get("/api/v1/partners/orders").then(response => {
+    dispatch(setPartnerOrders(response.data));
+    return response;
+  });
+};
+
+const setPartnerOrders = partnerOrders => dispatch => {
+  return dispatch({
+    type: "SET_PARTNER_ORDERS",
+    partnerOrders
   });
 };

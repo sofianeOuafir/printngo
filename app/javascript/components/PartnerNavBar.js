@@ -3,6 +3,7 @@ import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { startLogout } from "../actions/auth";
+import { startSetPartnerOrders } from "../actions/orders";
 
 class PartnerNavBar extends React.Component {
   onLogout = () => {
@@ -11,8 +12,13 @@ class PartnerNavBar extends React.Component {
     });
   };
 
+  componentDidMount() {
+    const { startSetPartnerOrders } = this.props;
+    startSetPartnerOrders();
+  }
+
   render() {
-    const { auth } = this.props;
+    const { auth, printedOrders, awaitingConfirmationOrders } = this.props;;
     const { authenticated, firstname } = auth;
     return (
       <div
@@ -31,9 +37,14 @@ class PartnerNavBar extends React.Component {
                 <Link to="/partner">Print</Link>
                 <Link to="/partner/invoices">Invoices</Link>
                 <Link to="/partner/location">My Location</Link>
-                <Link to="/partner/printed-orders">Printed Orders</Link>
+                <Link to="/partner/printed-orders">
+                  Printed Orders ({printedOrders.length})
+                </Link>
                 <Link to="/partner/awaiting-confirmation">
-                  Awaiting Confirmation
+                  Awaiting Confirmation{" "}
+                  <span className="text-orange">
+                    ({awaitingConfirmationOrders.length})
+                  </span>
                 </Link>
                 <Link to="/partner">{firstname}</Link>
                 <Link to="#" onClick={this.onLogout}>
@@ -53,11 +64,16 @@ class PartnerNavBar extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  printedOrders: state.partnerOrders.filter(order => order.printer_id !== null),
+  awaitingConfirmationOrders: state.partnerOrders.filter(
+    order => order.awaiting_confirmation === true
+  )
 });
 
 const mapDispatchToProps = dispatch => ({
-  startLogout: () => dispatch(startLogout())
+  startLogout: () => dispatch(startLogout()),
+  startSetPartnerOrders: () => dispatch(startSetPartnerOrders())
 });
 
 export default connect(

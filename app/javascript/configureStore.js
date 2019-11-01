@@ -12,6 +12,7 @@ import clientOrdersReducer from './reducers/clientOrders';
 import documentsReducer from './reducers/documents';
 import clientOrderReducer from './reducers/clientOrder';
 import partnerOrderReducer from './reducers/partnerOrder';
+import partnerOrdersReducer from './reducers/partnerOrders';
 
 let composeEnhancers;
 try {
@@ -31,7 +32,8 @@ export default function (initData) {
       clientCurrentOrder: clientCurrentorderReducer,
       clientOrders: clientOrdersReducer,
       clientOrder: clientOrderReducer,
-      partnerOrder: partnerOrderReducer
+      partnerOrder: partnerOrderReducer,
+      partnerOrders: partnerOrdersReducer
     }),
     initData,
     composeEnhancers(applyMiddleware(thunk))

@@ -4,6 +4,10 @@ class Partner < ApplicationRecord
   end
 
   has_many :expected_orders, foreign_key: "selected_partner_id", class_name: "Order"
+  has_many :printed_orders, foreign_key: "printer_id", class_name: "Order"
+  has_many :printing_attempts
+  has_many :deliverables, through: :printing_attempts
+  has_many :orders, -> { distinct }, through: :deliverables
 
   reverse_geocoded_by :lat, :lng
 

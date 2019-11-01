@@ -8,8 +8,9 @@ Rails.application.routes.draw do
       end
       namespace :partners do
         resources :sessions, only: [:create, :destroy, :show]
-        resources :orders, only: [:show]
+        resources :orders, only: [:show, :update, :index]
         resources :deliverables, only: [:show]
+        resources :printing_attempts, only: [:create]
       end
       resources :order_items, only: [:create, :update, :destroy]
       resources :products, only: [:index]
