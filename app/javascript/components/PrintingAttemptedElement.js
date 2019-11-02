@@ -7,7 +7,7 @@ const ReadyToPrintElement = () => (
       <IoIosPrint className="h3" />
     </div>
     <div>
-      <span>Printing Attempted</span>
+      <span>Printing</span>
     </div>
   </div>
 );

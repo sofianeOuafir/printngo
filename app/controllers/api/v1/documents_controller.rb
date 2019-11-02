@@ -2,7 +2,7 @@ class Api::V1::DocumentsController < ApplicationController
   before_action :authenticate_user!, only: [:index]
 
   def index
-    render json: current_user.documents.to_json
+    render json: current_user.documents.order(created_at: :desc).to_json
   end
 
   def show
