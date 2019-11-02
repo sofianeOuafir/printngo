@@ -147,7 +147,7 @@ class UploadAndPrintButton extends React.Component {
             {this.state.isUploading ? (
               <div>
                 <p className="text-navy m0 mb1 h4">
-                  Progress: {this.state.percentage}% (this can take several minutes)
+                  Progress: {this.state.percentage}% (It can take a little moment)
                 </p>
                 <Line
                   percent={this.state.percentage}

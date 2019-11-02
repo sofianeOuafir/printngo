@@ -2,14 +2,47 @@ import React from "react";
 import pluralize from "pluralize";
 import { toast } from "react-toastify";
 import { connect } from "react-redux";
+import { IoIosWarning } from "react-icons/io";
 
 import {
   startUpdatePartnerOrder,
   startSetPartnerOrders
 } from "./../actions/orders";
 import { startAddPrintingAttempt } from "./../actions/printingAttempts";
+import ReadyToPrintElement from "./ReadyToPrintElement";
+import PrintedElement from "./PrintedElement";
+import PrintingAttemptedElement from "./PrintingAttemptedElement";
 
 class PartnerOrder extends React.Component {
+  orderStatus = () => {
+    const { order } = this.props;
+    return !order.printer_id ? (
+      this.allDeliverableWithPrintAttempts() ? (
+        <button
+          onClick={this.onMarkAsPrinted}
+          className="flex align-items--center button button--orange button--no-border-radius my1"
+        >
+          <IoIosWarning className="h3" /> <span>Mark as printed</span>
+        </button>
+      ) : (
+        <ReadyToPrintElement />
+      )
+    ) : (
+      <PrintedElement />
+    );
+  };
+  deliverableStatus = deliverable => {
+    const { order } = this.props;
+    if (order.printer_id) {
+      return <PrintedElement />;
+    } else {
+      return deliverable.printing_attempts.length ? (
+        <PrintingAttemptedElement />
+      ) : (
+        <ReadyToPrintElement />
+      );
+    }
+  };
   allDeliverableWithPrintAttempts = () => {
     const { order } = this.props;
     return (
@@ -70,30 +103,19 @@ class PartnerOrder extends React.Component {
             </strong>
           </p>
         )}
-        <div className="flex px1 border border-color--navy align-items--center justify-content--between">
+        <div className="flex px1 border border--thick border-color--grey align-items--center justify-content--between">
           <h2 className="h4 favourite-font-weight text-navy">
             {user.fullname} - Order #{order.id}
           </h2>
 
-          {!order.printer_id ? (
-            this.allDeliverableWithPrintAttempts() && (
-              <button
-                onClick={this.onMarkAsPrinted}
-                className="button button--orange button--no-border-radius my1"
-              >
-                Mark as printed
-              </button>
-            )
-          ) : (
-            <button className="button button--navy button--no-border-radius">Printed</button>
-          )}
+          {this.orderStatus()}
         </div>
         {deliverables.map(deliverable => {
           const { id } = deliverable;
           return (
             <div
               key={id}
-              className="p1 flex align-items--center justify-content--between border border-color--navy"
+              className="p1 flex align-items--center justify-content--between border border-top--none border-color--grey"
             >
               {!order.printer_id && !readOnly && (
                 <iframe
@@ -103,7 +125,7 @@ class PartnerOrder extends React.Component {
                   name={`deliverable${id}`}
                 ></iframe>
               )}
-              <div>
+              <div className="flex align-items--center">
                 <span className="h5 text-navy mr1">
                   {deliverable.product.name} (
                   {pluralize(
@@ -112,13 +134,8 @@ class PartnerOrder extends React.Component {
                   )}
                   )
                 </span>
-                {order.printer_id ? (
-                  <span>Printed!</span>
-                ) : deliverable.printing_attempts.length > 0 ? (
-                  <span>Print attempted</span>
-                ) : (
-                  <span>Ready to print</span>
-                )}
+
+                {this.deliverableStatus(deliverable)}
               </div>
               <div>
                 {!order.printer_id && !readOnly && (

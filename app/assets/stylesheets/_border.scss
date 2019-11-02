@@ -12,8 +12,15 @@
   border-color: white;
 }
 
+.border-top--none {
+  border-top: none;
+}
+
 .border-color--navy {
   border-color: $navy;
+}
+.border-color--pink {
+  border-color: $pink;
 }
 
 .border-color--grey {
