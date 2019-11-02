@@ -12,6 +12,7 @@ import { startAddPrintingAttempt } from "./../actions/printingAttempts";
 import ReadyToPrintElement from "./ReadyToPrintElement";
 import PrintedElement from "./PrintedElement";
 import PrintingAttemptedElement from "./PrintingAttemptedElement";
+import ReportIssue from "./ReportIssue";
 
 class PartnerOrder extends React.Component {
   orderStatus = () => {
@@ -103,13 +104,19 @@ class PartnerOrder extends React.Component {
             </strong>
           </p>
         )}
-        <div className="flex px1 border border--thick border-color--grey align-items--center justify-content--between">
-          <h2 className="h4 favourite-font-weight text-navy">
-            {user.fullname} - Order #{order.id}
-          </h2>
+        <div className="px1 border border--thick border-color--grey">
+          <div className="flex align-items--center justify-content--between">
+            <h2 className="h4 m0 py1 favourite-font-weight text-navy">
+              {user.fullname} - Order #{order.id}
+            </h2>
 
-          {this.orderStatus()}
+            {this.orderStatus()}
+          </div>
+          <div className="mb1">
+            <ReportIssue className="text-pink" order={order} />
+          </div>
         </div>
+
         {deliverables.map(deliverable => {
           const { id } = deliverable;
           return (
