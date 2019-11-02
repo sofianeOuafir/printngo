@@ -24,6 +24,9 @@ import InvoicePage from './InvoicePage';
 import PartnerLoginPage from './PartnerLoginPage';
 import PartnerHomePage from './PartnerHomepage';
 import PartnerOrderPage from './PartnerOrderPage';
+import OrderAwaitingConfirmationPage from './OrderAwaitingConfirmationPage';
+import PrintedOrderPage from './PrintedOrderPage';
+import PartnerLocationPage from './PartnerLocationPage';
 
 const store = configureStore();
 
@@ -47,6 +50,9 @@ class App extends React.Component {
             <Route path="/partner/login" render={() => <PublicRoute component={PartnerLoginPage} /> } />
             <Route exact path="/partner" render={() => <PrivateRoute component={PartnerHomePage} /> } />
             <Route path="/partner/order/:secretCode" render={() => <PrivateRoute component={PartnerOrderPage} /> } />
+            <Route path="/partner/awaiting-confirmation" render={() => <PrivateRoute component={OrderAwaitingConfirmationPage} /> } />
+            <Route path="/partner/printed-orders" render={() => <PrivateRoute component={PrintedOrderPage} /> } />
+            <Route path="/partner/location" render={() => <PrivateRoute component={PartnerLocationPage} /> } />
           </Switch>
           <ToastContainer autoClose={2000} />
         </BrowserRouter>

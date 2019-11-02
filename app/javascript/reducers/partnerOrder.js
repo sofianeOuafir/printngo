@@ -9,11 +9,11 @@ const partnerOrderReducer = (
       return {
         ...action.order
       };
-    case "UPDATE_PARTNER_ORDER": 
+    case "UPDATE_PARTNER_ORDER":
       return {
         ...state,
         ...action.updates
-      }
+      };
     case "ADD_PRINTING_ATTEMPT":
       return {
         ...state,

@@ -55,6 +55,7 @@ export const updateClientCurrentOrder = updates => dispatch => {
 export const startUpdateClientCurrentOrder = updates => dispatch => {
   return axios.patch(`/api/v1/orders/undefined`, updates).then(response => {
     dispatch(updateClientCurrentOrder(response.data));
+    return response;
   });
 };
 

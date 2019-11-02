@@ -2,7 +2,7 @@ class Api::V1::Partners::OrdersController < ApplicationController
   before_action :authenticate_partner!
 
   def index
-    render json: current_partner.orders.to_json
+    render json: current_partner.orders.order(created_at: :desc).to_json(include: [{ deliverables: { include: [:product, :printing_attempts] } }, :user])
   end
 
   def show

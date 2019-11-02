@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 
+import { awaitingConfirmationOrders, printedOrders } from "./../lib/filters";
 import { startLogout } from "../actions/auth";
 import { startSetPartnerOrders } from "../actions/orders";
 
@@ -18,7 +19,7 @@ class PartnerNavBar extends React.Component {
   }
 
   render() {
-    const { auth, printedOrders, awaitingConfirmationOrders } = this.props;;
+    const { auth, printedOrders, awaitingConfirmationOrders } = this.props;
     const { authenticated, firstname } = auth;
     return (
       <div
@@ -35,7 +36,6 @@ class PartnerNavBar extends React.Component {
             {authenticated ? (
               <Fragment>
                 <Link to="/partner">Print</Link>
-                <Link to="/partner/invoices">Invoices</Link>
                 <Link to="/partner/location">My Location</Link>
                 <Link to="/partner/printed-orders">
                   Printed Orders ({printedOrders.length})
@@ -63,12 +63,10 @@ class PartnerNavBar extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  auth: state.auth,
-  printedOrders: state.partnerOrders.filter(order => order.printer_id !== null),
-  awaitingConfirmationOrders: state.partnerOrders.filter(
-    order => order.awaiting_confirmation === true
-  )
+const mapStateToProps = ({ auth, partnerOrders }) => ({
+  auth: auth,
+  printedOrders: printedOrders(partnerOrders),
+  awaitingConfirmationOrders: awaitingConfirmationOrders(partnerOrders)
 });
 
 const mapDispatchToProps = dispatch => ({

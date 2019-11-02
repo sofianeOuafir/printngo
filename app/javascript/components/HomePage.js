@@ -9,8 +9,8 @@ import UploadAndPrintButton from './UploadAndPrintButton';
 class HomePage extends React.Component {
   render () {
     const sections = [{
-      title: "Upload documents, Choose your closest pick up point, Print n' Go", 
-      description: "Don't have access to a printer? We got you covered! Printing documents has never been so convenient.",
+      title: "Upload your documents, Choose your closest pick up point, Print n' Go", 
+      description: "Don't have access to a working printer? We got you covered! <br /><br />Print n' go is the <strong class='text-pink h4'>quickest</strong>, <strong class='text-pink h4'>closest</strong>, and <strong class='text-pink h4'>most convenient</strong> way to print documents out there! Beside being all that, we are <strong class='text-pink h4'>privacy oriented</strong> and provide a <strong class='text-pink h4'>secure payment system</strong> so you never need coins for printing documents again! <br /><br /> Printing documents has never been <strong class='text-pink h4'>so convenient</strong>.",
       imgSrc: images.printer,
       imgAlt: "Printer Icon",
       bgColour: 'bg-navy',
