@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_02_060912) do
+ActiveRecord::Schema.define(version: 2019_11_02_232418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(version: 2019_11_02_060912) do
     t.bigint "selected_partner_id"
     t.bigint "printer_id"
     t.index ["printer_id"], name: "index_orders_on_printer_id"
+    t.index ["secret_code"], name: "index_orders_on_secret_code", unique: true
     t.index ["selected_partner_id"], name: "index_orders_on_selected_partner_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
@@ -150,6 +151,7 @@ ActiveRecord::Schema.define(version: 2019_11_02_060912) do
     t.string "email"
     t.string "password_hash"
     t.string "password_salt"
+    t.index ["email"], name: "index_partners_on_email", unique: true
   end
 
   create_table "payments", force: :cascade do |t|
@@ -187,6 +189,7 @@ ActiveRecord::Schema.define(version: 2019_11_02_060912) do
     t.string "password_salt"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

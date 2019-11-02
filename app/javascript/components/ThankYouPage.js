@@ -58,7 +58,7 @@ class ThankYouPage extends React.Component {
                 </p>
                 <p>Do not share the secret code with anyone. </p>
                 <p>
-                  You can now gather your documents at the following address:
+                  You can now gather your documents at the following address (or in any of our pick up location):
                 </p>
 
                 <Partner partner={partner} order={clientOrder} />
