@@ -57,7 +57,10 @@ class UploadAndPrintButton extends React.Component {
     this.setState(
       () => ({ isUploading: true, uploadedFiles: [], percentage: 0 }),
       async () => {
+        const uploadedFilesElement = document.getElementById("uploadedFiles");
+
         for (var i = 0; i < files.length; i++) {
+          uploadedFilesElement.scrollTop = uploadedFilesElement.scrollHeight;
           const file = files[i];
           const { name: filename } = file;
           const formData = new FormData();
@@ -147,14 +150,19 @@ class UploadAndPrintButton extends React.Component {
             {this.state.isUploading ? (
               <div>
                 <p className="text-navy m0 mb1 h4">
-                  Progress: {this.state.percentage}% (It can take a little moment)
+                  Progress: {this.state.percentage}% (It can take a little
+                  moment)
                 </p>
                 <Line
                   percent={this.state.percentage}
                   strokeWidth="4"
                   strokeColor="#FF757C"
                 />
-                <div className="mt1" style={{overflowY: 'scroll', height:'200px'}}>
+                <div
+                  id="uploadedFiles"
+                  className="mt1"
+                  style={{ overflowY: "scroll", height: "200px" }}
+                >
                   {this.state.uploadedFiles.map((uploadedFile, index) => (
                     <div className="flex flex-direction--column" key={index}>
                       <div className="flex align-items--center">
@@ -190,7 +198,7 @@ class UploadAndPrintButton extends React.Component {
                 </div>
               </Fragment>
             )}
-            {this.uploadUnsuccessful() && this.state.percentage === 100 &&  (
+            {this.uploadUnsuccessful() && this.state.percentage === 100 && (
               <div className="flex justify-content--between mt1">
                 <a
                   onClick={this.triggerFileDialog}

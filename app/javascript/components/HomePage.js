@@ -24,7 +24,7 @@ class HomePage extends React.Component {
         id: "why-print-n-go",
         title: "We are the closest printing service near you",
         description:
-          "How? Our pick up locations are your favourite convenient stores, pharmacies and any kind of shops that has a printing machine.",
+          "How? Our pick up locations are your favourite convenient stores, pharmacies and any kind of shop that has a printing machine.",
         imgSrc: images.pinpoint,
         imgAlt: "Closest printing service icon",
         bgColour: "bg-grapefruit",
@@ -33,7 +33,7 @@ class HomePage extends React.Component {
       {
         title: "The quickest process and simplest way for printing documents",
         description:
-          "We suppress the need of both commuting and accessing a computer.",
+          "We suppress the need of commuting, carrying your digital documents and accessing a computer.",
         imgSrc: images.runningMan,
         imgAlt: "Quickest printing service icon",
         bgColour: "bg-green",
@@ -41,7 +41,7 @@ class HomePage extends React.Component {
       },
       {
         title: "No need to have coins anymore",
-        description: "Simply pay online with our secure payment system.",
+        description: "Simply pay online before hand with our secure payment system.",
         imgSrc: images.debitCard,
         imgAlt: "no more coins icon",
         bgColour: "bg-mustard",

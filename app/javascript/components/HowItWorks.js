@@ -27,7 +27,7 @@ class HowItWorks extends React.Component {
       src: images.file,
       alt: "Gather Documents Icon",
       width: 180,
-      title: "Provide the secret code at the selected location and gather your documents",
+      title: "Provide the secret code at the pick up location and gather your documents",
       number: 4
     }]
     return (
