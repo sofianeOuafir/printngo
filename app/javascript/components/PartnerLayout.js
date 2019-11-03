@@ -1,18 +1,22 @@
-import React, { Fragment } from "react"
+import React, { Fragment } from "react";
 import ScrollUpButton from "react-scroll-up-button";
+import { Helmet } from "react-helmet";
 
-import PartnerNavBar from './PartnerNavBar';
+import PartnerNavBar from "./PartnerNavBar";
 
 class PartnerLayout extends React.Component {
-  render () {
+  render() {
     return (
       <Fragment>
+        <Helmet>
+          <title>Print N' Go - {this.props.title}</title>
+        </Helmet>
         <PartnerNavBar />
-        { this.props.children }
+        {this.props.children}
         <ScrollUpButton />
       </Fragment>
     );
   }
 }
 
-export default PartnerLayout
+export default PartnerLayout;

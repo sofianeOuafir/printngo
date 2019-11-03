@@ -2,7 +2,6 @@ import React, { Fragment } from "react";
 
 import HowItWorks from "./HowItWorks";
 import LandingPageSection from "./LandingPageSection";
-import Layout from "./Layout";
 import images from "./../images";
 import UploadAndPrintButton from "./UploadAndPrintButton";
 
@@ -41,7 +40,8 @@ class HomePage extends React.Component {
       },
       {
         title: "No need to have coins anymore",
-        description: "Simply pay online before hand with our secure payment system.",
+        description:
+          "Simply pay online before hand with our secure payment system.",
         imgSrc: images.debitCard,
         imgAlt: "no more coins icon",
         bgColour: "bg-mustard",
@@ -88,7 +88,7 @@ class HomePage extends React.Component {
       }
     ];
     return (
-      <Layout>
+      <Fragment>
         {sections.map((section, index) => {
           if (index === 1) {
             return (
@@ -101,7 +101,7 @@ class HomePage extends React.Component {
             return <LandingPageSection key={index} {...section} />;
           }
         })}
-      </Layout>
+      </Fragment>
     );
   }
 }

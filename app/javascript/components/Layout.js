@@ -1,17 +1,21 @@
-import React from "react"
-import Navbar from "./Navbar"
+import React from "react";
+import Navbar from "./Navbar";
 import ScrollUpButton from "react-scroll-up-button";
+import { Helmet } from "react-helmet";
 
 class Layout extends React.Component {
-  render () {
+  render() {
     return (
       <React.Fragment>
+        <Helmet>
+          <title>Print N' Go - {this.props.title}</title>
+        </Helmet>
         <Navbar />
-        { this.props.children }
+        {this.props.children}
         <ScrollUpButton />
       </React.Fragment>
     );
   }
 }
 
-export default Layout
+export default Layout;

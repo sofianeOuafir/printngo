@@ -1,19 +1,15 @@
-import React from "react"
+import React from "react";
 
-import LoginForm from './LoginForm';
-import PartnerLayout from './PartnerLayout';
+import LoginForm from "./LoginForm";
 
 class UserLoginPage extends React.Component {
-  render () {
+  render() {
     return (
-      <PartnerLayout>
-        <div className="flex fullscreen align-items--center justify-content--center">
-          <LoginForm defaultRedirectTo="/partner" />
-        </div>
-      </PartnerLayout>
+      <div className="flex fullscreen align-items--center justify-content--center">
+        <LoginForm defaultRedirectTo="/partner" />
+      </div>
     );
   }
 }
 
 export default UserLoginPage;
-

@@ -109,7 +109,7 @@ class PickUpLocationPage extends React.Component {
       return (
         <OrderLayout
           currentState={currentState}
-          title="Select Pick Up Location"
+          title="Select a Pick Up Location"
           nextButton={{ link: '/order/payment', text: 'Go to Payment', disabled: clientCurrentOrder.selected_partner_id == null }} 
         >
           <div className="content-container flex flex-direction--column">

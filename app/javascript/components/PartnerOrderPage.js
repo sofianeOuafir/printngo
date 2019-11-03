@@ -2,7 +2,6 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
-import PartnerLayout from "./PartnerLayout";
 import PartnerSearchBar from "./PartnerSearchBar";
 import { startSetPartnerOrder, setPartnerOrder } from "./../actions/orders";
 import PartnerOrder from "./PartnerOrder";
@@ -55,34 +54,32 @@ class PartnerOrderPage extends React.Component {
     const { secretCode, displayError } = this.state;
     const { order } = this.props;
     return (
-      <PartnerLayout>
-        <div className="content-container flex flex-direction--column fullscreen align-items--center justify-content--center">
-          <div className="halfwidth">
-            <div className="mb1">
-              <PartnerSearchBar
-                secretCode={secretCode}
-                onChange={this.onSecretCodeChange}
-                onSubmit={this.onSubmit}
-              />
-            </div>
-
-            {order.id && !displayError && <PartnerOrder order={order} />}
-            {displayError && (
-              <div className="text-pink h5">
-                <p>
-                  We couldn't find any order corresponding with the following
-                  secret code: <strong>{secretCode}</strong>. <br />
-                  Possible reasons:
-                </p>
-                <ul>
-                  <li>The spelling is wrong.</li>
-                  <li>The order has already been printed.</li>
-                </ul>
-              </div>
-            )}
+      <div className="content-container flex flex-direction--column fullscreen align-items--center justify-content--center">
+        <div className="halfwidth">
+          <div className="mb1">
+            <PartnerSearchBar
+              secretCode={secretCode}
+              onChange={this.onSecretCodeChange}
+              onSubmit={this.onSubmit}
+            />
           </div>
+
+          {order.id && !displayError && <PartnerOrder order={order} />}
+          {displayError && (
+            <div className="text-pink h5">
+              <p>
+                We couldn't find any order corresponding with the following
+                secret code: <strong>{secretCode}</strong>. <br />
+                Possible reasons:
+              </p>
+              <ul>
+                <li>The spelling is wrong.</li>
+                <li>The order has already been printed.</li>
+              </ul>
+            </div>
+          )}
         </div>
-      </PartnerLayout>
+      </div>
     );
   }
 }

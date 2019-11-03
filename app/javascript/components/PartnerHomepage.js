@@ -1,7 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 
-import PartnerLayout from "./PartnerLayout";
 import PartnerSeachBar from "./PartnerSearchBar";
 
 class PartnerHomePage extends React.Component {
@@ -29,17 +28,15 @@ class PartnerHomePage extends React.Component {
   render() {
     const { secretCode } = this.state;
     return (
-      <PartnerLayout>
-        <div className="content-container flex flex-direction--column fullscreen align-items--center justify-content--center">
-          <div>
-            <PartnerSeachBar
-              secretCode={secretCode}
-              onSubmit={this.onSubmit}
-              onChange={this.onSecretCodeChange}
-            />
-          </div>
+      <div className="content-container flex flex-direction--column fullscreen align-items--center justify-content--center">
+        <div>
+          <PartnerSeachBar
+            secretCode={secretCode}
+            onSubmit={this.onSubmit}
+            onChange={this.onSecretCodeChange}
+          />
         </div>
-      </PartnerLayout>
+      </div>
     );
   }
 }
