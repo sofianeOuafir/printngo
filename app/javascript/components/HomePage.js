@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
 
 import HowItWorks from "./HowItWorks";
 import LandingPageSection from "./LandingPageSection";
@@ -66,10 +67,8 @@ class HomePage extends React.Component {
         reverse: true
       },
       {
-        id: "pricing",
-        title: "Pricing - Best value",
-        description:
-          "Our service is awesome, it doesn't mean it should be more expensive! We provide you with the best printing service at the best price: $0.20 for black & white and $0.50 for colour.",
+        title: "Best value",
+        description: `Our service is awesome, it doesn't mean it should be more expensive! We provide you with the best printing service at the best price.`,
         imgSrc: images.moneyBag,
         imgAlt: "Best printing service at best price icon",
         bgColour: "bg-christmas-tree",

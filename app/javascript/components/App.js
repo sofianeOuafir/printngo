@@ -29,7 +29,7 @@ import PrintedOrderPage from "./PrintedOrderPage";
 import PartnerLocationPage from "./PartnerLocationPage";
 import Layout from "./Layout";
 import PartnerLayout from "./PartnerLayout";
-import OrderLayout from "./OrderLayout";
+import PricingPage from "./PricingPage";
 
 const store = configureStore();
 
@@ -100,6 +100,13 @@ class App extends React.Component {
               layout={Layout}
               title="Home"
               component={HomePage}
+            />
+            <AppRoute
+              exact
+              path="/pricing"
+              layout={Layout}
+              title="Pricing"
+              component={PricingPage}
             />
             <AppRoute
               title="Become a Partner"

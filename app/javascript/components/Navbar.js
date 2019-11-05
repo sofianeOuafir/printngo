@@ -45,14 +45,7 @@ class Navbar extends React.Component {
   render() {
     const { auth, clientCurrentOrder } = this.props;
     const { authenticated, firstname } = auth;
-    const pricingElement = (
-      <Link
-        onClick={e => this.navigateAndScroll({ e, element: "pricing" })}
-        to="#"
-      >
-        Pricing
-      </Link>
-    );
+    const pricingElement = <Link to="pricing">Pricing</Link>;
 
     return (
       <div
