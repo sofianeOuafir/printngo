@@ -61,7 +61,7 @@ class OrderShowPage extends React.Component {
               />
             </div>
           </div>
-        )}{" "}
+        )}
       </Fragment>
     );
   }

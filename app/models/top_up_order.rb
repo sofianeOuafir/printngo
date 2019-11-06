@@ -1,0 +1,3 @@
+class TopUpOrder < Order
+
+end

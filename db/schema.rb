@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_02_232418) do
+ActiveRecord::Schema.define(version: 2019_11_06_044134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -129,6 +129,7 @@ ActiveRecord::Schema.define(version: 2019_11_02_232418) do
     t.string "secret_code"
     t.bigint "selected_partner_id"
     t.bigint "printer_id"
+    t.string "type"
     t.index ["printer_id"], name: "index_orders_on_printer_id"
     t.index ["secret_code"], name: "index_orders_on_secret_code", unique: true
     t.index ["selected_partner_id"], name: "index_orders_on_selected_partner_id"
