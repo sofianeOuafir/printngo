@@ -68,7 +68,7 @@ class UploadAndPrintButton extends React.Component {
           const percentage = Math.round(((i + 1) / files.length) * 100);
           try {
             const response = await axios.post(
-              "/api/v1/orders/documents",
+              "/api/v1/print_orders/documents",
               formData,
               {
                 headers: {
@@ -121,9 +121,9 @@ class UploadAndPrintButton extends React.Component {
     const { text = "Upload & Print Now", className } = this.props;
     return (
       <Fragment>
-        <a className={`${className} pointer`} onClick={this.openModal}>
+        <Link to='#' className={`${className} pointer`} onClick={this.openModal}>
           {text}
-        </a>
+        </Link>
         <Modal
           className="modal modal--large"
           ariaHideApp={false}

@@ -1,7 +1,7 @@
 import axios from 'axios'; 
 
 export const startSetProducts = () => dispatch => {
-  return axios.get('/api/v1/products').then((response) => {
+  return axios.get('/api/v1/print_products').then((response) => {
     dispatch(setProducts(response.data));
     return response;
   })

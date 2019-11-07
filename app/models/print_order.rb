@@ -1,9 +1,10 @@
 class PrintOrder < Order
   belongs_to :selected_partner, class_name: 'Partner', optional: true
   belongs_to :printer, class_name: 'Partner', optional: true
-  has_many :deliverables
+  has_many :print_order_items, class_name: 'PrintOrderItem', foreign_key: 'order_id'
+  has_many :deliverables, class_name: 'Deliverable', foreign_key: 'order_id'
   has_many :printing_attempts, through: :deliverables
-  has_many :documents, through: :order_items # should be printing_order_items
+  has_many :documents, through: :print_order_items
 
   scope :archived, -> { where(archived: true) }
   scope :unarchived, -> { where(archived: false) }
@@ -13,9 +14,20 @@ class PrintOrder < Order
   before_save :set_secret_code
   before_save :set_printing_attempts_as_printed
 
-
   def awaiting_confirmation
     !deliverables.map(&:printing_attempted?).include?(false) && printer_id.blank?
+  end
+
+  def serializable_hash(options = {})
+    h = super(options)
+    h[:awaiting_confirmation] = awaiting_confirmation
+    h
+  end
+
+  def as_json(options = {})
+    h = super(options)
+    h[:awaiting_confirmation] = awaiting_confirmation
+    h
   end
 
   private

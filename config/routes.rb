@@ -3,22 +3,23 @@ Rails.application.routes.draw do
     namespace :v1, defaults: { format: 'json' } do
       resources :users, only: [:create]
       namespace :users do
-        resources :orders, only: [:index, :show]
+        resources :print_orders, only: [:index, :show]
         resources :sessions, only: [:create, :destroy, :show]
       end
       namespace :partners do
         resources :sessions, only: [:create, :destroy, :show]
-        resources :orders, only: [:show, :update, :index]
+        resources :print_orders, only: [:show, :update, :index]
         resources :deliverables, only: [:show]
         resources :printing_attempts, only: [:create]
       end
-      resources :order_items, only: [:create, :update, :destroy]
-      resources :products, only: [:index]
+      resources :print_order_items, only: [:create, :update, :destroy]
+      resources :print_products, only: [:index]
+      resources :top_up_products, only: [:index]
       resources :partners, only: [:index]
       resources :documents, only: [:show, :index]
       resources :payments, only: [:create]
-      resources :orders
-      namespace :orders do
+      resources :print_orders
+      namespace :print_orders do
         resources :documents, only: [:create]
       end
       resources :invoices, only: [:show]

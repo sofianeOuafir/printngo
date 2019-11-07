@@ -11,10 +11,9 @@ class Api::V1::PaymentsController < ApplicationController
                                        source: params['payment']['token'])
         ActiveRecord::Base.transaction do
           SendgridMailer.order_confirmed_email(current_order)
-
           payment = current_order.create_payment(amount: charge.amount, stripe_id: charge.id)
           payment.create_invoice
-          current_order.order_items.group_by(&:product_id).each do |product_id, order_items|
+          current_order.print_order_items.group_by(&:product_id).each do |product_id, order_items|
             combined_file = CombinePDF.new
             order_items.each do |order_item|
               file = CombinePDF.parse(Net::HTTP.get_response(URI.parse(order_item.document.file.service_url)).body)
@@ -30,7 +29,7 @@ class Api::V1::PaymentsController < ApplicationController
             deliverable.save
           end
           current_order.update_columns(paid: true)
-          current_user.orders.update_all(archived: true)
+          current_user.print_orders.update_all(archived: true)
           payment.reload
           render json: payment.to_json(include: { order: { include: :user } })
         end

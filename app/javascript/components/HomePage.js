@@ -6,6 +6,11 @@ import LandingPageSection from "./LandingPageSection";
 import images from "./../images";
 import UploadAndPrintButton from "./UploadAndPrintButton";
 
+const GoToPricingPageElement = () => (
+  <Link to="/pricing" className="button button-outline button-text--medium">
+    Check out our Pricing
+  </Link>
+);
 class HomePage extends React.Component {
   render() {
     const sections = [
@@ -72,7 +77,8 @@ class HomePage extends React.Component {
         imgSrc: images.moneyBag,
         imgAlt: "Best printing service at best price icon",
         bgColour: "bg-christmas-tree",
-        reverse: false
+        reverse: false,
+        CallToActionButton: GoToPricingPageElement
       },
       {
         id: "contact-us",
