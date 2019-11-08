@@ -30,6 +30,7 @@ import PartnerLocationPage from "./PartnerLocationPage";
 import Layout from "./Layout";
 import PartnerLayout from "./PartnerLayout";
 import PricingPage from "./PricingPage";
+import TopUpProductCheckoutPage from "./TopUpProductCheckoutPage";
 
 const store = configureStore();
 
@@ -107,6 +108,13 @@ class App extends React.Component {
               layout={Layout}
               title="Pricing"
               component={PricingPage}
+            />
+            <AppRoute
+              exact
+              path="/top-up/:id"
+              layout={Layout}
+              title="Top up"
+              component={TopUpProductCheckoutPage}
             />
             <AppRoute
               title="Become a Partner"

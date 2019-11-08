@@ -1,4 +1,4 @@
-class Api::V1::PaymentsController < ApplicationController 
+class Api::V1::PrintOrders::PaymentsController < ApplicationController
   wrap_parameters :payment, include: [:token]
   before_action :authenticate_user!
 
@@ -11,6 +11,7 @@ class Api::V1::PaymentsController < ApplicationController
                                        source: params['payment']['token'])
         ActiveRecord::Base.transaction do
           SendgridMailer.order_confirmed_email(current_order)
+          current_order.update(agreed_to_terms_and_conditions: true)
           payment = current_order.create_payment(amount: charge.amount, stripe_id: charge.id)
           payment.create_invoice
           current_order.print_order_items.group_by(&:product_id).each do |product_id, order_items|

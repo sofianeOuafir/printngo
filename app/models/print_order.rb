@@ -41,7 +41,7 @@ class PrintOrder < Order
     return unless user_id_changed? && user_id.present?
 
     secret_code = generate_secret_code
-    while Order.find_by(secret_code: secret_code).present?
+    while PrintOrder.find_by(secret_code: secret_code).present?
       secret_code = generate_secret_code
     end
     self.secret_code = secret_code

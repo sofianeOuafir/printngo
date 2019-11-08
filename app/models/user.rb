@@ -10,4 +10,5 @@ class User < ApplicationRecord
   has_many :print_order_items, through: :print_orders, source: 'print_order_item'
   has_many :top_up_order_items, through: :top_up_orders, source: 'top_up_order_item'
   has_many :invoices, through: :orders
+  has_many :transactions
 end

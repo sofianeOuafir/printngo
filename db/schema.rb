@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_07_035346) do
+ActiveRecord::Schema.define(version: 2019_11_08_000235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -162,6 +162,7 @@ ActiveRecord::Schema.define(version: 2019_11_07_035346) do
     t.bigint "order_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "type"
     t.index ["order_id"], name: "index_payments_on_order_id"
   end
 
@@ -184,6 +185,25 @@ ActiveRecord::Schema.define(version: 2019_11_07_035346) do
     t.string "description"
     t.integer "allocated_credit"
     t.boolean "most_popular"
+  end
+
+  create_table "selling_points", force: :cascade do |t|
+    t.string "description"
+    t.bigint "product_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_selling_points_on_product_id"
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "payment_id"
+    t.integer "amount"
+    t.string "type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["payment_id"], name: "index_transactions_on_payment_id"
+    t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -211,4 +231,7 @@ ActiveRecord::Schema.define(version: 2019_11_07_035346) do
   add_foreign_key "payments", "orders"
   add_foreign_key "printing_attempts", "deliverables"
   add_foreign_key "printing_attempts", "partners"
+  add_foreign_key "selling_points", "products"
+  add_foreign_key "transactions", "payments"
+  add_foreign_key "transactions", "users"
 end

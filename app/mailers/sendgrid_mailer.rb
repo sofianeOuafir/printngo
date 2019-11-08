@@ -1,5 +1,4 @@
 class SendgridMailer
-
   def self.order_confirmed_email(order)
     user = order.user
     partner = order.selected_partner

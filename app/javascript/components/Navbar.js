@@ -24,7 +24,6 @@ class Navbar extends React.Component {
 
   onLogout = () => {
     this.props.startLogout().then(() => {
-      this.props.history.push("/");
       location.reload();
     });
   };
@@ -45,7 +44,7 @@ class Navbar extends React.Component {
   render() {
     const { auth, clientCurrentOrder } = this.props;
     const { authenticated, firstname } = auth;
-    const pricingElement = <Link to="pricing">Pricing</Link>;
+    const pricingElement = <Link to="/pricing">Pricing</Link>;
 
     return (
       <div

@@ -4,8 +4,8 @@ class Order < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :visit, optional: true
   has_many :order_items
-  has_many :print_order_item, class_name: 'PrintOrderItem', foreign_key: 'order_id'
-  has_many :top_up_order_item, class_name: 'TopUpOrderItem', foreign_key: 'order_id'
+  has_many :print_order_items, class_name: 'PrintOrderItem', foreign_key: 'order_id'
+  has_many :top_up_order_items, class_name: 'TopUpOrderItem', foreign_key: 'order_id'
   has_one :payment
   has_one :invoice, through: :payment
 
@@ -22,17 +22,17 @@ class Order < ApplicationRecord
 
   def sub_total
     if print_order?
-      print_order_item.sum(&:sub_total)
+      print_order_items.sum(&:sub_total)
     else
-      top_up_order_item.sum(&:sub_total)
+      top_up_order_items.sum(&:sub_total)
     end
   end
 
   def number_of_items
     if print_order?
-      print_order_item.sum(:quantity)
+      print_order_items.sum(:quantity)
     else
-      top_up_order_item.sum(:quantity)
+      top_up_order_items.sum(:quantity)
     end
   end
 

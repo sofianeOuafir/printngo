@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 
 import TopUpProduct from "./TopUpProduct";
 import Loader from "./Loader";
@@ -8,15 +9,37 @@ import UploadAndPrintButton from "./UploadAndPrintButton";
 const payAsYouGoProduct = {
   name: "Pay as you go",
   description: "Very Flexible",
-  sellingPoints: [
-    "/",
-    "Minimum $0,50 per order",
-    "Printing in black cost $0,25 per document.",
-    "Printing in color cost $0,50 per document."
+  selling_points: [
+    {
+      description: "/"
+    },
+    {
+      description: "Minimum $0,50 per order"
+    },
+    {
+      description: "Printing in black cost $0,25 per document."
+    },
+    {
+      description: "Printing in color cost $0,50 per document."
+    }
   ]
 };
 
-const PayAsYouGoCallToAction = () => <UploadAndPrintButton className="button button-outline button-outline--pink" />;
+const allPlanSellingPoints = [
+  [
+    "Ability to Print any document in A4 color or black.",
+    "Pick up your documents at the closest locations."
+  ],
+  [
+    "High focus on confidentiality.",
+    "Store your document for printing even quicker next time."
+  ],
+  ["Find easily the closest pick up location."]
+];
+
+const PayAsYouGoCallToAction = () => (
+  <UploadAndPrintButton className="button button-outline button-outline--pink" />
+);
 
 class PricingPage extends React.Component {
   constructor(props) {
@@ -49,44 +72,47 @@ class PricingPage extends React.Component {
         ) : (
           <div className="content-container">
             <div className="flex">
-              <div className={`border border-color--navy border-right--none`}>
-                <TopUpProduct
-                  CallToAction={PayAsYouGoCallToAction}
-                  topUpProduct={payAsYouGoProduct}
-                />
+              <div className="col-3">
+                <div style={{ paddingLeft: "2px", paddingRight: "2px" }}>
+                  <TopUpProduct
+                    CallToAction={PayAsYouGoCallToAction}
+                    topUpProduct={payAsYouGoProduct}
+                  />
+                </div>
               </div>
               {topUpProducts.map((topUpProduct, index) => {
                 return (
                   <div key={index} className="col-3">
-                    <div
-                      className={`border border-color--navy ${
-                        topUpProducts.length - 1 === index
-                          ? ""
-                          : "border-right--none"
-                      }`}
-                    >
+                    <div style={{ paddingLeft: "2px", paddingRight: "2px" }}>
                       <TopUpProduct topUpProduct={topUpProduct} />
                     </div>
                   </div>
                 );
               })}
             </div>
-            <div className="border border-color--navy mt1 text-navy">
+            <div
+              className="border border-color--grey text-navy mb3"
+              style={{ marginTop: "3px" }}
+            >
               <h1 className="center">All plan includes...</h1>
-              <ul>
-                <li>Ability to Print any document in A4 color or black</li>
-                <li>
-                  Pick up your documents at the closest any of our pick up
-                  locations
-                </li>
-              </ul>
-              <ul>
-                <li>High focus on confidentiality</li>
-                <li>Store your document for printing even quicker next time</li>
-              </ul>
-              <ul>
-                <li>Find closest pick up location.</li>
-              </ul>
+              <div>
+                <ul className="flex justify-content--around">
+                  {allPlanSellingPoints.map(allPlanSellingPoints => (
+                    <div>
+                      {allPlanSellingPoints.map(
+                        (allPlanSellingPoint, index) => (
+                          <li className="mt1 text-navy flex" key={index}>
+                            <div className="mr1">
+                              <IoIosCheckmarkCircleOutline />
+                            </div>
+                            <div>{allPlanSellingPoint}</div>
+                          </li>
+                        )
+                      )}
+                    </div>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         )}
