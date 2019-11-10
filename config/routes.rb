@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :users, only: [:create]
       namespace :users do
         resources :print_orders, only: %i[index show]
+        resources :top_up_orders, only: :index
         resources :sessions, only: %i[create destroy show]
       end
       namespace :partners do

@@ -12,10 +12,12 @@ const Order = ({ order }) => {
   return (
     <div className="border border-color--grey p1 mb1">
       <div className="h5 flex justify-content--between align-items--center center">
-        <div className="flex flex-direction--column">
-          <span className="mb1">Status</span>
-          <OrderStatus order={order} />
-        </div>
+        {order.print_order && (
+          <div className="flex flex-direction--column">
+            <span className="mb1">Status</span>
+            <OrderStatus order={order} />
+          </div>
+        )}
         <div className="flex flex-direction--column">
           <span className="mb1">Order placed</span>
           <span>{getDateTimeFormat(payment.created_at)}</span>
@@ -28,12 +30,12 @@ const Order = ({ order }) => {
         <div className="flex flex-direction--column">
           <span className="mb1">Order #{id}</span>
           <div>
-            <Link
+            {order.print_order && <Link
               to={`/order/${id}`}
               className="text-decoration--none text-black mr1"
             >
               Order details
-            </Link>
+            </Link>}
             <Link
               target="_blank"
               to={`/invoice/${invoiceId}`}

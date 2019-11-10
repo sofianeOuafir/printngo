@@ -19,7 +19,6 @@ class Api::V1::PrintOrders::PaymentsController < ApplicationController
             payment.create_debit(amount: payment.amount, user: current_user)
           end
           SendgridMailer.order_confirmed_email(current_order)
-          current_order.update(agreed_to_terms_and_conditions: true)
           payment.create_invoice
           current_order.print_order_items.group_by(&:product_id).each do |product_id, order_items|
             combined_file = CombinePDF.new
@@ -36,7 +35,7 @@ class Api::V1::PrintOrders::PaymentsController < ApplicationController
             deliverable.file.attach(io: open(pathname), filename: filename, content_type: 'application/pdf')
             deliverable.save
           end
-          current_order.update_columns(paid: true)
+          current_order.update(paid: true, agreed_to_terms_and_conditions: true)
           current_user.print_orders.update_all(archived: true)
           payment.reload
           render json: payment.to_json(include: { order: { include: :user } })

@@ -62,6 +62,7 @@ class Order < ApplicationRecord
     h[:number_of_items] = number_of_items
     h[:total_paid] = total_paid
     h[:total_due] = total_due
+    h[:print_order] = print_order?
     h
   end
 
@@ -73,6 +74,7 @@ class Order < ApplicationRecord
     h[:number_of_items] = number_of_items
     h[:total_paid] = total_paid
     h[:total_due] = total_due
+    h[:print_order] = print_order?
     h
   end
 end

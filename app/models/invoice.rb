@@ -7,11 +7,11 @@ class Invoice < ApplicationRecord
   has_one :user, through: :order
 
   def top_up_order_invoice?
-    order.type == 'TopUpOrder'
+    order.top_up_order?
   end
 
   def print_order_invoice?
-    order.type == 'PrintOrder'
+    order.print_order?
   end
 
   def serializable_hash(options = {})

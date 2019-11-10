@@ -14,7 +14,8 @@ import PaymentPage from "./PaymentPage";
 import Loader from "./Loader";
 import ThankYouPage from "./ThankYouPage";
 import UserLoginPage from "./UserLoginPage";
-import OrdersPage from "./OrdersPage";
+import PrintingOrdersPage from "./PrintingOrdersPage";
+import TopUpOrdersPage from "./TopUpOrdersPage";
 import DocumentsPage from "./DocumentsPage";
 import OrderShowPage from "./OrderShowPage";
 import "react-toastify/dist/ReactToastify.css";
@@ -52,7 +53,13 @@ const AppRoute = ({
   />
 );
 
-const PrivateOrdersPage = () => <PrivateRoute component={OrdersPage} />;
+const PrivatePrintingOrdersPage = () => (
+  <PrivateRoute component={PrintingOrdersPage} />
+);
+const PrivateTopUpOrdersPage = () => (
+  <PrivateRoute component={TopUpOrdersPage} />
+);
+
 const PrivateDocumentsPage = () => <PrivateRoute component={DocumentsPage} />;
 const PrivateOrderShowPage = () => <PrivateRoute component={OrderShowPage} />;
 const PrivateInvoicePage = () => <PrivateRoute component={InvoicePage} />;
@@ -131,10 +138,16 @@ class App extends React.Component {
               component={PartnerPage}
             />
             <AppRoute
-              title="Your Orders"
+              title="Your Printing Orders"
               layout={Layout}
-              path="/orders"
-              component={PrivateOrdersPage}
+              path="/printing-orders"
+              component={PrivatePrintingOrdersPage}
+            />
+            <AppRoute
+              title="Your Top Up Orders"
+              layout={Layout}
+              path="/top-up-orders"
+              component={PrivateTopUpOrdersPage}
             />
             <AppRoute
               title="Your Documents"

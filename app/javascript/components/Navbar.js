@@ -78,7 +78,7 @@ class Navbar extends React.Component {
             {authenticated ? (
               <Fragment>
                 <Link to="/documents">Documents</Link>
-                <Link to="/orders">Orders</Link>
+                <Link to="/printing-orders">Orders</Link>
                 {pricingElement}
                 <UploadAndPrintButton text="Upload & Print" />
                 <Link to="/become-partner">Become Partner</Link>

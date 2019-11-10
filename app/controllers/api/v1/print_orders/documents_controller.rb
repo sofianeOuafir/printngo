@@ -16,6 +16,8 @@ class Api::V1::PrintOrders::DocumentsController < ApplicationController
         price: print_product.price
       )
       render json: print_order_item.to_json(include: [:document, :order])
+    rescue PDF::Reader::MalformedPDFError => e
+      render json: 'File format not supported. Please convert your file into PDF and try again!', status: 415
     rescue ArgumentError => e
       render json: e.message, status: 415
     end

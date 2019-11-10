@@ -38,8 +38,10 @@ const setClientOrders = clientOrders => dispatch => {
   });
 };
 
-export const startSetClientOrders = () => dispatch => {
-  return axios.get("/api/v1/users/print_orders").then(response => {
+export const startSetClientOrders = (
+  url = "/api/v1/users/print_orders"
+) => dispatch => {
+  return axios.get(url).then(response => {
     dispatch(setClientOrders(response.data));
     return response;
   });
