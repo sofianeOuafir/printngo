@@ -9,12 +9,14 @@ class OrderItem < ApplicationRecord
   def serializable_hash(options = {})
     h = super(options)
     h[:sub_total] = sub_total
+    h[:description] = description
     h
   end
 
   def as_json(options = {})
     h = super(options)
     h[:sub_total] = sub_total
+    h[:description] = description
     h
   end
 

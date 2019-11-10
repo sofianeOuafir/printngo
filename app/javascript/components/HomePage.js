@@ -38,10 +38,19 @@ class HomePage extends React.Component {
       {
         title: "The quickest process and simplest way for printing documents",
         description:
-          "We suppress the need of commuting, carrying your digital documents and accessing a computer.",
+          "We suppress the need of commuting to the nearest library, carrying digital documents on an USB key and accessing a computer.",
         imgSrc: images.runningMan,
         imgAlt: "Quickest printing service icon",
         bgColour: "bg-green",
+        reverse: false
+      },
+      {
+        title: "We are privacy and confidentiality oriented",
+        description:
+          "Because we suppress the need of carrying USB keys, sending documents via email or downloading documents in an unknown computer at the library, our service is naturally privacy oriented.",
+        imgSrc: images.lock,
+        imgAlt: "privacy oriented icon",
+        bgColour: "bg-dark-grey",
         reverse: false
       },
       {
@@ -52,15 +61,6 @@ class HomePage extends React.Component {
         imgAlt: "no more coins icon",
         bgColour: "bg-mustard",
         reverse: true
-      },
-      {
-        title: "We are privacy and confidentiality oriented",
-        description:
-          "Because we suppress the need of carrying USB keys, sending documents via email or downloading documents in an unknown computer at the library, our service is naturally privacy oriented.",
-        imgSrc: images.lock,
-        imgAlt: "privacy oriented icon",
-        bgColour: "bg-dark-grey",
-        reverse: false
       },
       {
         title: "A service that is always quicker",
@@ -84,7 +84,7 @@ class HomePage extends React.Component {
         id: "contact-us",
         title: "We love hearing from you",
         description:
-          "Have questions or feedback? You can contact us anytime at contact@printngo.ca",
+          "Having questions, want to give a feedback or just say hello? You can contact us anytime at contact@printngo.ca",
         imgSrc: images.contact,
         imgAlt: "Contact Us",
         bgColour: "bg-white",
