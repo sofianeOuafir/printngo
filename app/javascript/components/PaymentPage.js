@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Elements, StripeProvider } from "react-stripe-elements";
 
+import { fromCentsToDollars } from "./../lib/money";
 import OrderLayout from "./OrderLayout";
 import OrderItemList from "./OrderItemList";
 import CheckoutForm from "./CheckoutForm";
@@ -32,14 +33,18 @@ class PaymentPage extends React.Component {
     if (this.state.loadingData) {
       return <Loader />;
     } else {
-      const { clientCurrentOrder, orderItems } = this.props;
+      const { clientCurrentOrder, orderItems, walletBalance } = this.props;
       const { selected_partner } = clientCurrentOrder;
       const currentState = 3;
       return (
         <OrderLayout
-          stickyBar={false}
           currentState={currentState}
           title="Review your order and pay"
+          info={`Wallet: ${
+            walletBalance
+              ? fromCentsToDollars(walletBalance)
+              : fromCentsToDollars(0)
+          }`}
         >
           <div className="h5 content-container">
             <div className="p2 border border-color--grey mb2">
@@ -71,7 +76,6 @@ class PaymentPage extends React.Component {
               <StripeProvider apiKey={process.env.STRIPE_PUBLIC_KEY}>
                 <Elements>
                   <CheckoutForm
-                    redirectUrlAfterSuccess={`/order/${clientCurrentOrder.id}/thank-you`}
                     orderType={PRINT_ORDER}
                   />
                 </Elements>
@@ -86,7 +90,8 @@ class PaymentPage extends React.Component {
 
 const mapStateToProps = state => ({
   clientCurrentOrder: state.clientCurrentOrder,
-  orderItems: state.orderItems
+  orderItems: state.orderItems,
+  walletBalance: state.auth.wallet_balance
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { IoIosCheckmarkCircleOutline } from "react-icons/io";
+
+import SellingPointList from "./SellingPointList";
 
 const TopUpProduct = ({ CallToAction, topUpProduct }) => {
   const { selling_points, description, name, most_popular, id } = topUpProduct;
@@ -8,8 +9,9 @@ const TopUpProduct = ({ CallToAction, topUpProduct }) => {
     <div>
       <div
         className={
-          topUpProduct.most_popular &&
-          "flex flex-direction--vertical justify-content--center align-items--center bg-pink text-white center"
+          topUpProduct.most_popular
+            ? "flex flex-direction--vertical justify-content--center align-items--center bg-pink text-white center"
+            : ""
         }
         style={{ height: "40px" }}
       >
@@ -59,19 +61,7 @@ const TopUpProduct = ({ CallToAction, topUpProduct }) => {
             </Link>
           )}
         </div>
-        <ul style={{ height: "100px" }}>
-          {selling_points &&
-            selling_points.map((sellingPoint, index) => (
-              <li className="mt1 text-navy flex" key={index}>
-                <span className="mr1">
-                  <IoIosCheckmarkCircleOutline />
-                </span>
-                <div>
-                  <strong>{sellingPoint.description}</strong>
-                </div>
-              </li>
-            ))}
-        </ul>
+        <SellingPointList style={{ height: "100px" }} sellingPoints={selling_points} />
       </div>
     </div>
   );

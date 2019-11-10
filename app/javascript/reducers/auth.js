@@ -6,11 +6,17 @@ const authReducer = (state = authReducerDefaultState, action) => {
       return {
         authenticated: true,
         ...action.user
-      }
-    case "LOGOUT": 
+      };
+    case "UPDATE_WALLET_BALANCE": {
       return {
-        authenticated: false,
-      }
+        ...state,
+        wallet_balance: action.walletBalance
+      };
+    }
+    case "LOGOUT":
+      return {
+        authenticated: false
+      };
     default:
       return state;
   }

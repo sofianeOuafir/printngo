@@ -58,6 +58,10 @@
   @extend .pt2, .pb2;
 }
 
+.py3 {
+  @extend .pt3, .pb3;
+}
+
 .px1 {
   @extend .pr1, .pl1;
 }
@@ -66,8 +70,16 @@
   @extend .pr2, .pl2;
 }
 
+.px3 {
+  @extend .pr3, .pl3;
+}
+
 .p2 {
   @extend .px2, .py2;
+}
+
+.p3 {
+  @extend .px3, .py3;
 }
 
 .p1 {

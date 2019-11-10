@@ -17,7 +17,7 @@ const setClientCurrentOrder = order => dispatch => {
   });
 };
 
-const setClientOrder = order => dispatch => {
+export const setClientOrder = order => dispatch => {
   return dispatch({
     type: "SET_CLIENT_ORDER",
     order
@@ -53,17 +53,21 @@ export const updateClientCurrentOrder = updates => dispatch => {
 };
 
 export const startUpdateClientCurrentOrder = updates => dispatch => {
-  return axios.patch(`/api/v1/print_orders/undefined`, updates).then(response => {
-    dispatch(updateClientCurrentOrder(response.data));
-    return response;
-  });
+  return axios
+    .patch(`/api/v1/print_orders/undefined`, updates)
+    .then(response => {
+      dispatch(updateClientCurrentOrder(response.data));
+      return response;
+    });
 };
 
 export const startSetPartnerOrder = secretCode => dispatch => {
-  return axios.get(`/api/v1/partners/print_orders/${secretCode}`).then(response => {
-    dispatch(setPartnerOrder(response.data));
-    return response;
-  });
+  return axios
+    .get(`/api/v1/partners/print_orders/${secretCode}`)
+    .then(response => {
+      dispatch(setPartnerOrder(response.data));
+      return response;
+    });
 };
 
 export const setPartnerOrder = order => dispatch => {

@@ -65,7 +65,7 @@ class HomePage extends React.Component {
       {
         title: "A service that is always quicker",
         description:
-          "Once you have uploaded your documents once, we will save them on your account so that you can print them even quicker next time.",
+          "Once you have uploaded your documents once, we will save them on your account so that you can print them even quicker next time. <br /> <br /> Want to print even quicker? Top up your wallet with our amazing top up deals and skip the need of providing your card details each time.",
         imgSrc: images.hourglass,
         imgAlt: "Printing service always quicker icon",
         bgColour: "bg-blue-sky",

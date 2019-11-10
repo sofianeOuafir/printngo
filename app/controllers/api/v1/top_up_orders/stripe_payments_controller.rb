@@ -16,6 +16,7 @@ class Api::V1::TopUpOrders::StripePaymentsController < ApplicationController
       stripe_payment = top_up_order.create_stripe_payment(amount: charge.amount, stripe_id: charge.id)
       stripe_payment.create_invoice
       stripe_payment.create_credit(amount: top_up_product.allocated_credit, user: current_user)
+      render json: stripe_payment.to_json(include: %i[user order])
     end
   rescue Stripe::CardError => e
     render json: e.message.to_json, status: e.http_status

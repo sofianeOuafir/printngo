@@ -1,10 +1,10 @@
 import React from "react";
 import axios from "axios";
-import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 
 import TopUpProduct from "./TopUpProduct";
 import Loader from "./Loader";
 import UploadAndPrintButton from "./UploadAndPrintButton";
+import AllPlanIncludes from "./AllPlanIncludes";
 
 const payAsYouGoProduct = {
   name: "Pay as you go",
@@ -24,18 +24,6 @@ const payAsYouGoProduct = {
     }
   ]
 };
-
-const allPlanSellingPoints = [
-  [
-    "Ability to Print any document in A4 color or black.",
-    "Pick up your documents at the closest locations."
-  ],
-  [
-    "High focus on confidentiality.",
-    "Store your document for printing even quicker next time."
-  ],
-  ["Find easily the closest pick up location."]
-];
 
 const PayAsYouGoCallToAction = () => (
   <UploadAndPrintButton className="button button-outline button-outline--pink" />
@@ -91,28 +79,10 @@ class PricingPage extends React.Component {
               })}
             </div>
             <div
-              className="border border-color--grey text-navy mb3"
+              className="mb3 border border-color--grey"
               style={{ marginTop: "3px" }}
             >
-              <h1 className="center">All plan includes...</h1>
-              <div>
-                <ul className="flex justify-content--around">
-                  {allPlanSellingPoints.map(allPlanSellingPoints => (
-                    <div>
-                      {allPlanSellingPoints.map(
-                        (allPlanSellingPoint, index) => (
-                          <li className="mt1 text-navy flex" key={index}>
-                            <div className="mr1">
-                              <IoIosCheckmarkCircleOutline />
-                            </div>
-                            <div>{allPlanSellingPoint}</div>
-                          </li>
-                        )
-                      )}
-                    </div>
-                  ))}
-                </ul>
-              </div>
+              <AllPlanIncludes />
             </div>
           </div>
         )}

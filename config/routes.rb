@@ -16,10 +16,11 @@ Rails.application.routes.draw do
       end
       resources :print_order_items, only: %i[create update destroy]
       resources :print_products, only: [:index]
-      resources :top_up_products, only: [:index]
+      resources :top_up_products, only: %i[index show]
       resources :partners, only: [:index]
       resources :documents, only: %i[show index]
       resources :print_orders
+      resources :top_up_orders, only: :show
       namespace :print_orders do
         resources :documents, only: [:create]
         resources :payments, only: [:create]

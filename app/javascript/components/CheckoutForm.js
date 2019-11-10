@@ -95,13 +95,7 @@ class CheckoutForm extends Component {
   };
 
   attemptPayment = () => {
-    const {
-      auth,
-      stripe,
-      history,
-      startCreatePayment,
-      redirectUrlAfterSuccess
-    } = this.props;
+    const { auth, stripe } = this.props;
     const { fullname, id } = auth;
     const { cardComplete } = this.state;
     if (!this.state.agreedToTermsAndConditions) {
@@ -114,27 +108,44 @@ class CheckoutForm extends Component {
       }));
       return;
     }
-    if (cardComplete) {
-      stripe.createToken({ name: `${fullname}, id: ${id}` }).then(response => {
-        let { token } = response;
-        startCreatePayment(token.id)
-          .then(() => {
-            history.push(redirectUrlAfterSuccess);
-            this.setState(() => ({ processingPayment: false }));
-          })
-          .catch(e => {
-            this.setState(prevState => ({
-              errors: { ...prevState.errors, payment: e.response.data },
-              processingPayment: false
-            }));
+    if (!this.isStripePayment() || cardComplete) {
+      if (this.isStripePayment()) {
+        stripe
+          .createToken({ name: `${fullname}, id: ${id}` })
+          .then(response => {
+            let { token } = response;
+            this.makePayment(token.id);
           });
-      });
+      } else {
+        this.makePayment();
+      }
     } else {
       this.setState(prevState => ({
         errors: { ...prevState.errors, payment: "Please provide card details" },
         processingPayment: false
       }));
     }
+  };
+
+  makePayment = (tokenId = null) => {
+    const { history, startCreatePayment, orderType } = this.props;
+    startCreatePayment(tokenId)
+      .then(response => {
+        console.log(response);
+        const { order } = response.data;
+        const redirectUrlAfterSuccess =
+          orderType === PRINT_ORDER
+            ? `/order/${order.id}/thank-you`
+            : `/top-up-order/${order.id}/thank-you`;
+        history.push(redirectUrlAfterSuccess);
+        this.setState(() => ({ processingPayment: false }));
+      })
+      .catch(e => {
+        this.setState(prevState => ({
+          errors: { ...prevState.errors, payment: e.response.data },
+          processingPayment: false
+        }));
+      });
   };
 
   onSubmit = e => {
@@ -189,6 +200,15 @@ class CheckoutForm extends Component {
             });
         }
       }
+    );
+  };
+
+  isStripePayment = () => {
+    const { clientCurrentOrder, auth, orderType } = this.props;
+    return (
+      orderType === TOP_UP_ORDER ||
+      !auth.authenticated ||
+      auth.wallet_balance < clientCurrentOrder.total
     );
   };
 
@@ -279,7 +299,9 @@ class CheckoutForm extends Component {
           />
           <img src={images.visa} alt="MasterCard Icon" width={50} />
         </div>
-        <CardElement hidePostalCode={true} onChange={this.onCardChange} />
+        {this.isStripePayment() && (
+          <CardElement hidePostalCode={true} onChange={this.onCardChange} />
+        )}
         <p className="text-pink">{errors.payment}</p>
         <div className="my2">
           <label>

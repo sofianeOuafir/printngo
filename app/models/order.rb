@@ -7,6 +7,8 @@ class Order < ApplicationRecord
   has_many :print_order_items, class_name: 'PrintOrderItem', foreign_key: 'order_id'
   has_many :top_up_order_items, class_name: 'TopUpOrderItem', foreign_key: 'order_id'
   has_one :payment
+  has_one :stripe_payment, class_name: 'StripePayment', foreign_key: 'order_id'
+  has_one :credit_payment, class_name: 'CreditPayment', foreign_key: 'order_id'
   has_one :invoice, through: :payment
 
   scope :paid, -> { where(paid: true) }
