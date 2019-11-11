@@ -27,14 +27,14 @@ const TopUpProduct = ({ CallToAction, topUpProduct }) => {
           background: `${most_popular && "rgba(255, 117, 124, 0.2)"}`
         }}
       >
-        <div style={{ height: "50px" }}>
-          <h1
+        <div className="center" style={{ height: "50px" }}>
+          <span
             className={`m0
             text-navy
-           h3 center`}
+           h4 `}
           >
-            {name}
-          </h1>
+            <strong>{name}</strong>
+          </span>
         </div>
         <div
           className="mb1 border--bottom border-color--navy pb1"
@@ -61,7 +61,10 @@ const TopUpProduct = ({ CallToAction, topUpProduct }) => {
             </Link>
           )}
         </div>
-        <SellingPointList style={{ height: "100px" }} sellingPoints={selling_points} />
+        <SellingPointList
+          style={{ height: "100px" }}
+          sellingPoints={selling_points}
+        />
       </div>
     </div>
   );
