@@ -8,12 +8,24 @@
   border-bottom: 1px black solid;
 }
 
+.border-top {
+  border-top: 1px black solid;
+}
+
+.border-right {
+  border-right: 1px black solid;
+}
+
 .border-color--white {
   border-color: white;
 }
 
 .border-top--none {
   border-top: none;
+}
+
+.border-right--none {
+  border-right: none;
 }
 
 .border-color--navy {

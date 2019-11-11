@@ -20,7 +20,7 @@ class Document extends React.Component {
     e.preventDefault();
     const { startAddOrderItem } = this.props;
     startAddOrderItem(documentId).then(() => {
-      toast.info("Added to basket successfully!", {
+      toast.success("Added to basket successfully!", {
         position: toast.POSITION.BOTTOM_RIGHT
       });
     })

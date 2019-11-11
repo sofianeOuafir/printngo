@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import Steps, { Step } from "rc-steps";
 import { Helmet } from "react-helmet";
 
+import WalletElement from "./WalletElement";
+
 const OrderLayout = ({
   title,
   info = null,
@@ -23,6 +25,9 @@ const OrderLayout = ({
         <Link to="/" className="website-name">
           Print N' Go
         </Link>
+        <div className="center">
+          <WalletElement />
+        </div>
       </div>
     </div>
     <div className="mt2 content-container">

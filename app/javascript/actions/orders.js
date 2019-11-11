@@ -3,9 +3,9 @@ import axios from "axios";
 import { setOrderItems } from "./../actions/orderItems";
 
 export const startSetClientCurrentOrder = () => dispatch => {
-  return axios.get(`/api/v1/orders/current`).then(response => {
+  return axios.get(`/api/v1/print_orders/current`).then(response => {
     dispatch(setClientCurrentOrder(response.data));
-    dispatch(setOrderItems(response.data.order_items));
+    dispatch(setOrderItems(response.data.print_order_items));
     return response;
   });
 };
@@ -17,7 +17,7 @@ const setClientCurrentOrder = order => dispatch => {
   });
 };
 
-const setClientOrder = order => dispatch => {
+export const setClientOrder = order => dispatch => {
   return dispatch({
     type: "SET_CLIENT_ORDER",
     order
@@ -25,7 +25,7 @@ const setClientOrder = order => dispatch => {
 };
 
 export const startSetClientOrder = id => dispatch => {
-  return axios.get(`/api/v1/users/orders/${id}`).then(response => {
+  return axios.get(`/api/v1/users/print_orders/${id}`).then(response => {
     dispatch(setClientOrder(response.data));
     return response;
   });
@@ -38,8 +38,10 @@ const setClientOrders = clientOrders => dispatch => {
   });
 };
 
-export const startSetClientOrders = () => dispatch => {
-  return axios.get("/api/v1/users/orders").then(response => {
+export const startSetClientOrders = (
+  url = "/api/v1/users/print_orders"
+) => dispatch => {
+  return axios.get(url).then(response => {
     dispatch(setClientOrders(response.data));
     return response;
   });
@@ -53,17 +55,21 @@ export const updateClientCurrentOrder = updates => dispatch => {
 };
 
 export const startUpdateClientCurrentOrder = updates => dispatch => {
-  return axios.patch(`/api/v1/orders/undefined`, updates).then(response => {
-    dispatch(updateClientCurrentOrder(response.data));
-    return response;
-  });
+  return axios
+    .patch(`/api/v1/print_orders/undefined`, updates)
+    .then(response => {
+      dispatch(updateClientCurrentOrder(response.data));
+      return response;
+    });
 };
 
 export const startSetPartnerOrder = secretCode => dispatch => {
-  return axios.get(`/api/v1/partners/orders/${secretCode}`).then(response => {
-    dispatch(setPartnerOrder(response.data));
-    return response;
-  });
+  return axios
+    .get(`/api/v1/partners/print_orders/${secretCode}`)
+    .then(response => {
+      dispatch(setPartnerOrder(response.data));
+      return response;
+    });
 };
 
 export const setPartnerOrder = order => dispatch => {
@@ -78,7 +84,7 @@ export const startUpdatePartnerOrder = ({
   updates
 }) => dispatch => {
   return axios
-    .patch(`/api/v1/partners/orders/${secretCode}`, updates)
+    .patch(`/api/v1/partners/print_orders/${secretCode}`, updates)
     .then(response => {
       dispatch(updatePartnerOrder(response.data));
       return response;
@@ -93,7 +99,7 @@ const updatePartnerOrder = updates => dispatch => {
 };
 
 export const startSetPartnerOrders = () => dispatch => {
-  return axios.get("/api/v1/partners/orders").then(response => {
+  return axios.get("/api/v1/partners/print_orders").then(response => {
     dispatch(setPartnerOrders(response.data));
     return response;
   });

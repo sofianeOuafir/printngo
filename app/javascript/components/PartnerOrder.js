@@ -134,7 +134,7 @@ class PartnerOrder extends React.Component {
               )}
               <div className="flex align-items--center">
                 <span className="h5 text-navy mr1">
-                  {deliverable.product.name} (
+                  {deliverable.print_product.name} (
                   {pluralize(
                     `${deliverable.number_of_page} page`,
                     deliverable.number_of_page

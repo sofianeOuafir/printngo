@@ -51,9 +51,16 @@ export const startGetCurrentUser = () => dispatch => {
   });
 };
 
-export const logout = () => dispatch => {
+const logout = () => dispatch => {
   return dispatch({
     type: "LOGOUT"
+  });
+};
+
+export const updateWalletBalance = walletBalance => dispatch => {
+  return dispatch({
+    type: "UPDATE_WALLET_BALANCE",
+    walletBalance
   });
 };
 
