@@ -9,41 +9,45 @@ class LandingPageSection extends React.Component {
       title,
       description = null,
       CallToActionButton = null,
+      SecondCallToActionButton = null,
       imgSrc,
       imgAlt,
       bgColour,
       reverse = false
     } = this.props;
     return (
-      <div
-        id={id}
-        className={`${bgColour} fullscreen border--bottom border-color--white align-items--center ${color} flex`}
-      >
+      <div>
+        <a id={id}></a>
         <div
-          className={`content-container flex justify-content--center ${
-            reverse ? "flex-direction--row-reverse" : null
-          }`}
+          className={`${bgColour} fullscreen border--bottom border-color--white align-items--center ${color} flex`}
         >
           <div
-            className={`${reverse ? "ml3" : "mr3"}`}
-            style={{ width: "60%" }}
+            className={`content-container flex justify-content--center ${
+              reverse ? "flex-direction--row-reverse" : null
+            }`}
           >
-            <h1 className="m0 h3 favourite-font-weight">
-              <strong>{ReactHtmlParser(title)}</strong>
-            </h1>
-            {description && (
-              <p className="favourite-font-weight h4">
-                {ReactHtmlParser(description)}
-              </p>
-            )}
-          </div>
-          <div className="flex flex-direction--column center">
-            {CallToActionButton ? (
-              <div className="mb3">
-                <CallToActionButton className="button button-outline button-text--medium" />
-              </div>
-            ) : null}
-            <img src={imgSrc} alt={imgAlt} width={330} />
+            <div
+              className={`${reverse ? "ml3" : "mr3"}`}
+              style={{ width: "60%" }}
+            >
+              <h1 className="m0 h3 favourite-font-weight">
+                <strong>{ReactHtmlParser(title)}</strong>
+              </h1>
+              {description && (
+                <p className="favourite-font-weight h4">
+                  {ReactHtmlParser(description)}
+                </p>
+              )}
+              {SecondCallToActionButton ? <SecondCallToActionButton /> : null}
+            </div>
+            <div className="flex flex-direction--column center">
+              {CallToActionButton ? (
+                <div className="mb3">
+                  <CallToActionButton className="button button-outline button-text--medium" />
+                </div>
+              ) : null}
+              <img src={imgSrc} alt={imgAlt} width={330} />
+            </div>
           </div>
         </div>
       </div>

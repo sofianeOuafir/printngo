@@ -1,11 +1,20 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
+
 
 import HowItWorks from "./HowItWorks";
 import LandingPageSection from "./LandingPageSection";
 import images from "./../images";
 import UploadAndPrintButton from "./UploadAndPrintButton";
 
+const SeeHowItWorksButtonMainSection = () => (
+  <HashLink to='/#how-it-works' className="button button-outline">See How It Works &darr;</HashLink>
+)
+
+const UploadAndPrintButtonMainSection = () => (
+  <UploadAndPrintButton className="button button--pink button-text--medium" />
+)
 const GoToPricingPageElement = () => (
   <Link to="/pricing" className="button button-outline button-text--medium">
     Check out our Pricing
@@ -23,12 +32,13 @@ class HomePage extends React.Component {
         title:
           "Upload your documents, <br /> Choose your closest pick up location, Print n' Go",
         description:
-          "Don't have access to a working printer? We got you covered! <br />Print n' go is the <strong class='text-pink h4'>quickest</strong>, <strong class='text-pink h4'>closest</strong>, and <strong class='text-pink h4'>most convenient</strong> way to print documents out there! <br/><br />Beside being all that, we are <strong class='text-pink h4'>privacy oriented</strong> and provide a <strong class='text-pink h4'>secure payment system</strong> so you never need coins for printing documents again! <br /><br />Printing documents has never been <strong class='text-pink h4'>so convenient</strong>.",
+          "Don't have access to a working printer? We got you covered! <br />Print n' go is the <strong class='text-pink h4'>quickest</strong>, <strong class='text-pink h4'>closest</strong>, and <strong class='text-pink h4'>most convenient</strong> way to print documents out there! <br/><br />Beside being all that, we are <strong class='text-pink h4'>privacy oriented</strong> and provide a <strong class='text-pink h4'>secure payment system</strong> so you never need coins for printing documents again!",
         imgSrc: images.printer,
         imgAlt: "Printer Icon",
         bgColour: "bg-navy",
         reverse: false,
-        CallToActionButton: UploadAndPrintButton
+        CallToActionButton: UploadAndPrintButtonMainSection,
+        SecondCallToActionButton: SeeHowItWorksButtonMainSection
       },
       {
         id: "why-print-n-go",
@@ -52,7 +62,7 @@ class HomePage extends React.Component {
       {
         title: "We are privacy and confidentiality oriented",
         description:
-          "Your privacy is the most important for us. We will provide you with a secret code so that only you can access and trigger the print of your documents. <br /></br />Our partners, at the pick up location, will never be able to see your documents without that secret code. <br /><br />Moreover, Because we suppress the need of carrying USB keys, sending documents via email or downloading documents in an unknown computer at the library, our service is naturally privacy oriented.",
+          "Your privacy is the most important for us. We will provide you with a secret code so that only you can access and trigger the print of your documents. <br /></br />Our partners, at the pick up location, will never be able to print your documents without that secret code. <br /><br />Moreover, Because we suppress the need of carrying USB keys, sending documents via email or downloading documents in an unknown computer at the library, our service is naturally privacy oriented.",
         imgSrc: images.lock,
         imgAlt: "privacy oriented icon",
         bgColour: "bg-dark-grey",
