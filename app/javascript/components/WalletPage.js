@@ -54,7 +54,7 @@ class WalletPage extends React.Component {
         {transactions.length > 0 && (
           <div className="border border-color--grey py1 mt1 px1">
             {transactions.map((transaction, index) => {
-              const { order, created_at, type } = transaction;
+              const { order, created_at, type, new_balance } = transaction;
               const transactionContext = order.print_order ? "Print" : "Top Up";
               const amount =
                 type == "Credit"
@@ -81,14 +81,15 @@ class WalletPage extends React.Component {
                     </div>
                   </div>
 
-                  <div className="h4">
+                  <div className="flex flex-direction--column align-items--end">
                     <span
                       className={
-                        type == "Credit" ? "text-christmas-tree" : "text-red"
+                        type == "Credit" ? "text-christmas-tree h4" : "text-red h4"
                       }
                     >
                       {amount}
                     </span>
+                    <span className="text-grey">+{fromCentsToDollars(new_balance)}</span>
                   </div>
                 </div>
               );

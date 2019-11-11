@@ -5,6 +5,8 @@ class Transaction < ApplicationRecord
 
   validates_presence_of :amount
 
+  after_save :set_new_balance
+
   def serializable_hash(options = {})
     h = super(options)
     h[:type] = type
@@ -15,5 +17,11 @@ class Transaction < ApplicationRecord
     h = super(options)
     h[:type] = type
     h
+  end
+
+  private
+
+  def set_new_balance
+    update_columns(new_balance: user.wallet_balance)
   end
 end
