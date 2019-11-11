@@ -15,10 +15,9 @@ Rails.application.routes.draw do
       resources :order_items, only: [:create, :update, :destroy]
       resources :products, only: [:index]
       resources :partners, only: [:index]
-      resources :documents, only: [:show, :index]
-      resources :payments, only: [:create]
-      resources :orders
-      namespace :orders do
+      resources :documents, only: %i[show index]
+      resources :print_orders
+      namespace :print_orders do
         resources :documents, only: [:create]
       end
       resources :invoices, only: [:show]

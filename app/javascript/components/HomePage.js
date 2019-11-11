@@ -79,7 +79,7 @@ class HomePage extends React.Component {
         id: "contact-us",
         title: "We love hearing from you",
         description:
-          "Have questions or feedback? You can contact us anytime at contact@printngo.ca",
+          "Having questions, want to give a feedback or just want to say hello? You can contact us anytime at contact@printngo.ca",
         imgSrc: images.contact,
         imgAlt: "Contact Us",
         bgColour: "bg-white",
