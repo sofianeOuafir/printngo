@@ -20,7 +20,7 @@ class TopUpOrderThankYouPage extends React.Component {
   componentDidMount() {
     const { setClientOrder } = this.props;
     axios
-      .get(`/api/v1/top_up_orders/${this.props.match.params.id}`)
+      .get(`/api/v1/users/top_up_orders/${this.props.match.params.id}`)
       .then(response => {
         setClientOrder(response.data);
         this.setState(() => ({ loadingData: false }));

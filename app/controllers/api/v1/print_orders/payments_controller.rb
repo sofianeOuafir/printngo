@@ -18,7 +18,7 @@ class Api::V1::PrintOrders::PaymentsController < ApplicationController
             payment = current_order.create_credit_payment(amount: current_order.total)
             payment.create_debit(amount: payment.amount, user: current_user)
           end
-          SendgridMailer.order_confirmed_email(current_order)
+          SendgridMailer.print_order_confirmed_email(current_order)
           payment.create_invoice
           current_order.print_order_items.group_by(&:product_id).each do |product_id, order_items|
             combined_file = CombinePDF.new

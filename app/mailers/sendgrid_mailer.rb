@@ -1,5 +1,5 @@
 class SendgridMailer
-  def self.order_confirmed_email(order)
+  def self.print_order_confirmed_email(order)
     user = order.user
     partner = order.selected_partner
     data = {
@@ -29,6 +29,29 @@ class SendgridMailer
         "email": 'contact@printngo.ca'
       },
       "template_id": 'd-37305aec46ae4898a40df3ad3ce89e13'
+    }
+    send_email(data)
+  end
+  def self.top_up_order_confirmed_email(order)
+    user = order.user
+    data = {
+      "personalizations": [
+        {
+          "to": [
+            {
+              "email": user.email
+            }
+          ],
+          "dynamic_template_data": {
+            firstname: user.firstname,
+            wallet_balance: user.wallet_balance.to_f / 100,
+          }
+        }
+      ],
+      "from": {
+        "email": 'contact@printngo.ca'
+      },
+      "template_id": 'd-7646a1995e3144ecb17201290e978a40'
     }
     send_email(data)
   end
