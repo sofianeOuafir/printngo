@@ -114,7 +114,7 @@ class PickUpLocationPage extends React.Component {
         >
           <div className="content-container flex flex-direction--column">
             <div>
-              <a className="button button-outline--navy button--no-border-radius mb1" onClick={this.onFindClosest}>Sort from Closest to Furthest</a>
+              <a className="button button--navy button--no-border-radius mb1" onClick={this.onFindClosest}>Sort from Closest to Furthest</a>
             </div>
             <div className="flex">
               <div className="col-8">
