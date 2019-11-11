@@ -32,14 +32,14 @@ const Order = ({ order }) => {
           <div>
             {order.print_order && <Link
               to={`/order/${id}`}
-              className="text-decoration--none text-black mr1"
+              className="text-navy mr1"
             >
               Order details
             </Link>}
             <Link
               target="_blank"
               to={`/invoice/${invoiceId}`}
-              className="text-decoration--none text-black mr1"
+              className="text-navy mr1"
             >
               Invoice
             </Link>
