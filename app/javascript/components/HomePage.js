@@ -52,7 +52,7 @@ class HomePage extends React.Component {
       {
         title: "We are privacy and confidentiality oriented",
         description:
-          "Because we suppress the need of carrying USB keys, sending documents via email or downloading documents in an unknown computer at the library, our service is naturally privacy oriented.",
+          "Your privacy is the most important for us. We will provide you with a secret code so that only you can access and trigger the print of your documents. <br /></br />Our partners, at the pick up location, will never be able to see your documents without that secret code. <br /><br />Moreover, Because we suppress the need of carrying USB keys, sending documents via email or downloading documents in an unknown computer at the library, our service is naturally privacy oriented.",
         imgSrc: images.lock,
         imgAlt: "privacy oriented icon",
         bgColour: "bg-dark-grey",
