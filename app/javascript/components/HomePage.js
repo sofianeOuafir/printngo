@@ -11,6 +11,11 @@ const GoToPricingPageElement = () => (
     Check out our Pricing
   </Link>
 );
+const ContactUsButton = () => (
+  <a href="mailto:contact@printngo.ca" className="button button-outline button-outline--navy button-text--medium">
+    Contact Us
+  </a>
+);
 class HomePage extends React.Component {
   render() {
     const sections = [
@@ -89,6 +94,7 @@ class HomePage extends React.Component {
         imgAlt: "Contact Us",
         bgColour: "bg-white",
         color: "text-navy",
+        CallToActionButton: ContactUsButton,
         reverse: true
       }
     ];
