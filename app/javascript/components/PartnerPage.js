@@ -27,7 +27,7 @@ class PartnerPage extends React.Component {
       {
         title: "Attract new customers in your shop and grow your sells",
         description:
-          "You will attract some people that might never have heard of you or come to your shop before. It will be an opportunity for them to discover you maybe buy your products or services one day.",
+          "You will attract some people that might never have heard of you or come to your shop before. It will be an opportunity for them to discover you and increase the chances that they buy your products or services one day.",
         imgSrc: images.attract,
         imgAlt: "Attract new customers Icon",
         bgColour: "bg-blue-sky",
@@ -36,7 +36,7 @@ class PartnerPage extends React.Component {
       {
         title: "It is hassle free and won't impact your business",
         description:
-          "All you have to do is pressing the printing button and handling the documents to the customers after a verification of ID.",
+          "All you need to do is pressing the printing button and handle the documents to the customer.",
         imgSrc: images.yoga,
         imgAlt: "Hassle free Icon",
         bgColour: "bg-navy",

@@ -310,10 +310,9 @@ class CheckoutForm extends Component {
               checked={agreedToTermsAndConditions}
               onChange={this.onTermsAndConditionsAgreementChange}
             />
-            I agree to terms and conditions
+            I agree to terms and conditions.
             {orderType === PRINT_ORDER &&
-              "I have double checked my document preview and specification. I understand that my order will be printed in line with the preview and specification I have chosen"}
-            .
+              " I have double checked my document preview and specification. I understand that my order will be printed in line with the preview and specification I have chosen."}
           </label>
           {errors.termsAndCondition && (
             <p className="text-pink">{errors.termsAndCondition}</p>

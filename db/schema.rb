@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_08_000235) do
+ActiveRecord::Schema.define(version: 2019_11_11_161130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -169,7 +169,6 @@ ActiveRecord::Schema.define(version: 2019_11_08_000235) do
   create_table "printing_attempts", force: :cascade do |t|
     t.bigint "partner_id", null: false
     t.bigint "deliverable_id", null: false
-    t.boolean "printed", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["deliverable_id"], name: "index_printing_attempts_on_deliverable_id"

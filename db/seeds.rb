@@ -39,7 +39,7 @@ SellingPoint.create(description: 'Print even quicker by skipping the need of pro
                     top_up_product: TopUpProduct.ten_dollars_top_up)
 
 
-SellingPoint.create(description: 'You get an extra $3 of priting credit for free (+15% free).',
+SellingPoint.create(description: 'You get an extra $3 of printing credit for free (+15% free).',
                     top_up_product: TopUpProduct.twenty_dollars_top_up)
 SellingPoint.create(description: 'No minimum * amount per order.',
                     top_up_product: TopUpProduct.twenty_dollars_top_up)
@@ -50,7 +50,7 @@ SellingPoint.create(description: 'Printing in color would cost a bit less than 0
 SellingPoint.create(description: 'Print even quicker by skipping the need of providing your credit card details each time.',
                     top_up_product: TopUpProduct.twenty_dollars_top_up)
 
-SellingPoint.create(description: 'You get an extra 6 dollars of priting credit for free (+20% free)',
+SellingPoint.create(description: 'You get an extra 6 dollars of printing credit for free (+20% free)',
                     top_up_product: TopUpProduct.thirty_dollars_top_up)
 SellingPoint.create(description: 'No minimum * amount per order.',
                     top_up_product: TopUpProduct.thirty_dollars_top_up)

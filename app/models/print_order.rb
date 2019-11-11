@@ -12,7 +12,6 @@ class PrintOrder < Order
   scope :searchable_by_partner, -> { paid.not_printed }
 
   before_save :set_secret_code
-  before_save :set_printing_attempts_as_printed
 
   def awaiting_confirmation
     !deliverables.map(&:printing_attempted?).include?(false) && printer_id.blank?
@@ -31,11 +30,6 @@ class PrintOrder < Order
   end
 
   private
-
-  def set_printing_attempts_as_printed
-    return unless printer_id_changed? && printer_id.present?
-    printing_attempts.update_all(printed: true)
-  end
 
   def set_secret_code
     return unless user_id_changed? && user_id.present?

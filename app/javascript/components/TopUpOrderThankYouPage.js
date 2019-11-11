@@ -43,7 +43,7 @@ class TopUpOrderThankYouPage extends React.Component {
             <h1 className="h4 center">Payment Success!</h1>
 
             <p>
-              Thank you {user.firstname}! Your wallet has been successfull
+              Thank you {user.firstname}! Your wallet has been successful
               credited. Your balance is now{" "}
               {fromCentsToDollars(user.wallet_balance)}. Happy Printing!
             </p>

@@ -38,7 +38,7 @@ class HomePage extends React.Component {
       {
         title: "The quickest process and simplest way for printing documents",
         description:
-          "We suppress the need of commuting to the nearest library, carrying digital documents on an USB key and accessing a computer.",
+          "We suppress the need of commuting to the nearest library, carrying digital documents on an USB key and accessing a computer to start the printing.",
         imgSrc: images.runningMan,
         imgAlt: "Quickest printing service icon",
         bgColour: "bg-green",
@@ -65,7 +65,7 @@ class HomePage extends React.Component {
       {
         title: "A service that is always quicker",
         description:
-          "Once you have uploaded your documents once, we will save them on your account so that you can print them even quicker next time. <br /> <br /> Want to print even quicker? Top up your wallet with our amazing top up deals and skip the need of providing your card details each time.",
+          "Once you have uploaded your documents once, we will save them on your account so that you can print them even quicker next time. <br /> <br /> And if you want to be even quicker, top up your wallet with our amazing top up deals and skip the need of providing your card details each time.",
         imgSrc: images.hourglass,
         imgAlt: "Printing service always quicker icon",
         bgColour: "bg-blue-sky",
