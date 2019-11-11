@@ -5,7 +5,7 @@ class Api::V1::Partners::DeliverablesController < ApplicationController
     OpenURI::Buffer.send :remove_const, 'StringMax' if OpenURI::Buffer.const_defined?('StringMax')
     OpenURI::Buffer.const_set 'StringMax', 0
     deliverable = Deliverable.find(params[:id])
-    if deliverable.order.printer_id.present?
+    if deliverable.print_order.printer_id.present?
       render json: { message: 'This action is not allowed' }, status: 403
     else
       pdf_content = open(deliverable.file.service_url)

@@ -8,6 +8,7 @@ import { startLogout } from "./../actions/auth";
 import { startSetClientCurrentOrder } from "./../actions/orders";
 import UploadAndPrintButton from "./UploadAndPrintButton";
 import SignInLink from "./SignInLink";
+import WalletElement from "./WalletElement";
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -24,7 +25,6 @@ class Navbar extends React.Component {
 
   onLogout = () => {
     this.props.startLogout().then(() => {
-      this.props.history.push("/");
       location.reload();
     });
   };
@@ -45,12 +45,21 @@ class Navbar extends React.Component {
   render() {
     const { auth, clientCurrentOrder } = this.props;
     const { authenticated, firstname } = auth;
-    const pricingElement = (
+    const pricingElement = <Link to="/pricing">Pricing</Link>;
+    const contactUsElement = (
       <Link
-        onClick={e => this.navigateAndScroll({ e, element: "pricing" })}
+        onClick={e => this.navigateAndScroll({ e, element: "contact-us" })}
         to="#"
       >
-        Pricing
+        Contact Us
+      </Link>
+    );
+    const basketElement = (
+      <Link to="/order/basket">
+        <span className="text-orange">
+          Basket (
+          {this.state.loadingData ? 0 : clientCurrentOrder.number_of_items})
+        </span>
       </Link>
     );
 
@@ -69,14 +78,17 @@ class Navbar extends React.Component {
             {authenticated ? (
               <Fragment>
                 <Link to="/documents">Documents</Link>
-                <Link to="/orders">Orders</Link>
+                <Link to="/printing-orders">Orders</Link>
                 {pricingElement}
-                <UploadAndPrintButton />
+                <UploadAndPrintButton text="Upload & Print" />
                 <Link to="/become-partner">Become Partner</Link>
+                {contactUsElement}
                 <Link to="/">{firstname}</Link>
                 <Link to="#" onClick={this.onLogout}>
                   Log out
                 </Link>
+                {basketElement}
+                <WalletElement />
               </Fragment>
             ) : (
               <Fragment>
@@ -86,7 +98,7 @@ class Navbar extends React.Component {
                   }
                   to="#"
                 >
-                  How it works?
+                  How it works
                 </Link>
                 <Link
                   onClick={e =>
@@ -94,31 +106,17 @@ class Navbar extends React.Component {
                   }
                   to="#"
                 >
-                  Why Print n' go?
+                  Why Print n' go
                 </Link>
                 {pricingElement}
-                <UploadAndPrintButton />
+                <UploadAndPrintButton text="Upload & Print" />
                 <Link to="/become-partner">Become Partner</Link>
+                {contactUsElement}
                 <SignInLink />
+                {basketElement}
+                <WalletElement />
               </Fragment>
             )}
-            <Link
-              onClick={e =>
-                this.navigateAndScroll({ e, element: "contact-us" })
-              }
-              to="#"
-            >
-              Contact Us
-            </Link>
-            <Link to="/order/basket">
-              <span className="text-orange">
-                Basket (
-                {this.state.loadingData
-                  ? 0
-                  : clientCurrentOrder.number_of_items}
-                )
-              </span>
-            </Link>
           </div>
         </div>
       </div>

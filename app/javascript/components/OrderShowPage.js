@@ -31,7 +31,7 @@ class OrderShowPage extends React.Component {
           <Loader />
         ) : (
           <div className="h5 content-container my2">
-            <Link to="/orders" className="text-navy">
+            <Link to="/printing-orders" className="text-navy">
               &larr; See All Orders
             </Link>
             <div className="flex justify-content--between align-items--center">
@@ -61,7 +61,7 @@ class OrderShowPage extends React.Component {
               />
             </div>
           </div>
-        )}{" "}
+        )}
       </Fragment>
     );
   }

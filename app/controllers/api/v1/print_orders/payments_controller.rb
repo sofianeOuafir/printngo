@@ -1,4 +1,6 @@
-class Api::V1::PaymentsController < ApplicationController 
+# frozen_string_literal: true
+
+class Api::V1::PrintOrders::PaymentsController < ApplicationController
   wrap_parameters :payment, include: [:token]
   before_action :authenticate_user!
 
@@ -6,15 +8,19 @@ class Api::V1::PaymentsController < ApplicationController
     if !current_order.paid?
       begin
         current_order_before_update = current_order
-        charge = Stripe::Charge.create(amount: current_order.total,
-                                       currency: 'cad',
-                                       source: params['payment']['token'])
         ActiveRecord::Base.transaction do
-          SendgridMailer.order_confirmed_email(current_order)
-
-          payment = current_order.create_payment(amount: charge.amount, stripe_id: charge.id)
+          if current_user.wallet_balance < current_order.total
+            charge = Stripe::Charge.create(amount: current_order.total,
+                                           currency: 'cad',
+                                           source: params['payment']['token'])
+            payment = current_order.create_stripe_payment(amount: charge.amount, stripe_id: charge.id)
+          else
+            payment = current_order.create_credit_payment(amount: current_order.total)
+            payment.create_debit(amount: payment.amount, user: current_user)
+          end
+          SendgridMailer.print_order_confirmed_email(current_order)
           payment.create_invoice
-          current_order.order_items.group_by(&:product_id).each do |product_id, order_items|
+          current_order.print_order_items.group_by(&:product_id).each do |product_id, order_items|
             combined_file = CombinePDF.new
             order_items.each do |order_item|
               file = CombinePDF.parse(Net::HTTP.get_response(URI.parse(order_item.document.file.service_url)).body)
@@ -29,8 +35,8 @@ class Api::V1::PaymentsController < ApplicationController
             deliverable.file.attach(io: open(pathname), filename: filename, content_type: 'application/pdf')
             deliverable.save
           end
-          current_order.update_columns(paid: true)
-          current_user.orders.update_all(archived: true)
+          current_order.update(paid: true, agreed_to_terms_and_conditions: true)
+          current_user.print_orders.update_all(archived: true)
           payment.reload
           render json: payment.to_json(include: { order: { include: :user } })
         end
@@ -58,7 +64,7 @@ class Api::V1::PaymentsController < ApplicationController
         # Display a very generic error to the user, and maybe send
         # yourself an email
         render json: e.message.to_json, status: e.http_status
-      rescue => e
+      rescue StandardError => e
         # Something else happened, completely unrelated to Stripe
         render json: 'Oops! Sorry, something went wrong... We are doing our best to solve the problem!', status: 500
       end

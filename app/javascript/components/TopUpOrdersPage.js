@@ -1,11 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 
+import { Link } from "react-router-dom";
 import Loader from "./Loader";
-import { startSetClientOrders } from "./../actions/orders";
+import { startSetClientOrders } from "../actions/orders";
 import OrderList from "./OrderList";
 
-class OrdersPage extends React.Component {
+class TopUpOrdersPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,7 +16,7 @@ class OrdersPage extends React.Component {
 
   componentDidMount() {
     const { startSetClientOrders } = this.props;
-    startSetClientOrders().then(() => {
+    startSetClientOrders("/api/v1/users/top_up_orders").then(() => {
       this.setState(() => ({ loadingData: false }));
     });
   }
@@ -26,7 +27,19 @@ class OrdersPage extends React.Component {
     } else {
       return (
         <div className="content-container">
-          <h1 className="h4 text-navy favourite-font-weight">Your Orders</h1>
+          <div className="my1">
+            <Link
+              to="/printing-orders"
+              className="mr1 button button-outline button-outline--navy"
+            >
+              Printing Orders
+            </Link>
+
+            <Link to="/top-up-orders" className="button button--navy button">
+              Top Up Orders
+            </Link>
+          </div>
+
           <OrderList />
         </div>
       );
@@ -35,10 +48,10 @@ class OrdersPage extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  startSetClientOrders: () => dispatch(startSetClientOrders())
+  startSetClientOrders: url => dispatch(startSetClientOrders(url))
 });
 
 export default connect(
   null,
   mapDispatchToProps
-)(OrdersPage);
+)(TopUpOrdersPage);

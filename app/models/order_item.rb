@@ -1,26 +1,22 @@
 class OrderItem < ApplicationRecord
   belongs_to :product
-  belongs_to :document
   belongs_to :order
-  
   validates_numericality_of :quantity, greater_than_or_equal_to: 0
 
   before_save :change_price
   after_save :destroy_order_item_if_quantity_is_zero
 
-  def sub_total
-    document.number_of_page * quantity * price
-  end
-
   def serializable_hash(options = {})
     h = super(options)
     h[:sub_total] = sub_total
+    h[:description] = description
     h
   end
 
   def as_json(options = {})
     h = super(options)
     h[:sub_total] = sub_total
+    h[:description] = description
     h
   end
 

@@ -5,10 +5,10 @@ class Partner < ApplicationRecord
     attr_accessor :user_position
   end
 
-  has_many :printed_orders, foreign_key: "printer_id", class_name: "Order"
+  has_many :printed_orders, foreign_key: "printer_id", class_name: "PrintOrder"
   has_many :printing_attempts
   has_many :deliverables, through: :printing_attempts
-  has_many :orders, -> { distinct }, through: :deliverables
+  has_many :print_orders, -> { distinct }, through: :deliverables
 
   reverse_geocoded_by :lat, :lng
 

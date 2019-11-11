@@ -1,10 +1,16 @@
 import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
 
 import HowItWorks from "./HowItWorks";
 import LandingPageSection from "./LandingPageSection";
 import images from "./../images";
 import UploadAndPrintButton from "./UploadAndPrintButton";
 
+const GoToPricingPageElement = () => (
+  <Link to="/pricing" className="button button-outline button-text--medium">
+    Check out our Pricing
+  </Link>
+);
 class HomePage extends React.Component {
   render() {
     const sections = [
@@ -32,10 +38,19 @@ class HomePage extends React.Component {
       {
         title: "The quickest process and simplest way for printing documents",
         description:
-          "We suppress the need of commuting, carrying your digital documents and accessing a computer.",
+          "We suppress the need of commuting to the nearest library, carrying digital documents on an USB key and accessing a computer.",
         imgSrc: images.runningMan,
         imgAlt: "Quickest printing service icon",
         bgColour: "bg-green",
+        reverse: false
+      },
+      {
+        title: "We are privacy and confidentiality oriented",
+        description:
+          "Because we suppress the need of carrying USB keys, sending documents via email or downloading documents in an unknown computer at the library, our service is naturally privacy oriented.",
+        imgSrc: images.lock,
+        imgAlt: "privacy oriented icon",
+        bgColour: "bg-dark-grey",
         reverse: false
       },
       {
@@ -48,38 +63,28 @@ class HomePage extends React.Component {
         reverse: true
       },
       {
-        title: "We are privacy and confidentiality oriented",
-        description:
-          "Because we suppress the need of carrying USB keys, sending documents via email or downloading documents in an unknown computer at the library, our service is naturally privacy oriented.",
-        imgSrc: images.lock,
-        imgAlt: "privacy oriented icon",
-        bgColour: "bg-dark-grey",
-        reverse: false
-      },
-      {
         title: "A service that is always quicker",
         description:
-          "Once you have uploaded your documents once, we will save them on your account so that you can print them even quicker next time.",
+          "Once you have uploaded your documents once, we will save them on your account so that you can print them even quicker next time. <br /> <br /> Want to print even quicker? Top up your wallet with our amazing top up deals and skip the need of providing your card details each time.",
         imgSrc: images.hourglass,
         imgAlt: "Printing service always quicker icon",
         bgColour: "bg-blue-sky",
         reverse: true
       },
       {
-        id: "pricing",
-        title: "Pricing - Best value",
-        description:
-          "Our service is awesome, it doesn't mean it should be more expensive! We provide you with the best printing service at the best price: $0.20 for black & white and $0.50 for colour.",
+        title: "Best value",
+        description: `Our service is awesome, it doesn't mean it should be more expensive! We provide you with the best printing service at the best price.`,
         imgSrc: images.moneyBag,
         imgAlt: "Best printing service at best price icon",
         bgColour: "bg-christmas-tree",
-        reverse: false
+        reverse: false,
+        CallToActionButton: GoToPricingPageElement
       },
       {
         id: "contact-us",
         title: "We love hearing from you",
         description:
-          "Have questions or feedback? You can contact us anytime at contact@printngo.ca",
+          "Having questions, want to give a feedback or just say hello? You can contact us anytime at contact@printngo.ca",
         imgSrc: images.contact,
         imgAlt: "Contact Us",
         bgColour: "bg-white",

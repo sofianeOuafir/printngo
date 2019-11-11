@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_02_232418) do
+ActiveRecord::Schema.define(version: 2019_11_08_000235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,10 +109,11 @@ ActiveRecord::Schema.define(version: 2019_11_02_232418) do
     t.integer "quantity", default: 1
     t.integer "price"
     t.bigint "product_id", null: false
-    t.bigint "document_id", null: false
+    t.bigint "document_id"
     t.bigint "order_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "type"
     t.index ["document_id"], name: "index_order_items_on_document_id"
     t.index ["order_id"], name: "index_order_items_on_order_id"
     t.index ["product_id"], name: "index_order_items_on_product_id"
@@ -129,6 +130,7 @@ ActiveRecord::Schema.define(version: 2019_11_02_232418) do
     t.string "secret_code"
     t.bigint "selected_partner_id"
     t.bigint "printer_id"
+    t.string "type"
     t.index ["printer_id"], name: "index_orders_on_printer_id"
     t.index ["secret_code"], name: "index_orders_on_secret_code", unique: true
     t.index ["selected_partner_id"], name: "index_orders_on_selected_partner_id"
@@ -160,6 +162,7 @@ ActiveRecord::Schema.define(version: 2019_11_02_232418) do
     t.bigint "order_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "type"
     t.index ["order_id"], name: "index_payments_on_order_id"
   end
 
@@ -175,10 +178,32 @@ ActiveRecord::Schema.define(version: 2019_11_02_232418) do
 
   create_table "products", force: :cascade do |t|
     t.integer "price"
-    t.string "format"
-    t.boolean "color"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "type"
+    t.string "name"
+    t.string "description"
+    t.integer "allocated_credit"
+    t.boolean "most_popular"
+  end
+
+  create_table "selling_points", force: :cascade do |t|
+    t.string "description"
+    t.bigint "product_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_selling_points_on_product_id"
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "payment_id"
+    t.integer "amount"
+    t.string "type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["payment_id"], name: "index_transactions_on_payment_id"
+    t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -206,4 +231,7 @@ ActiveRecord::Schema.define(version: 2019_11_02_232418) do
   add_foreign_key "payments", "orders"
   add_foreign_key "printing_attempts", "deliverables"
   add_foreign_key "printing_attempts", "partners"
+  add_foreign_key "selling_points", "products"
+  add_foreign_key "transactions", "payments"
+  add_foreign_key "transactions", "users"
 end

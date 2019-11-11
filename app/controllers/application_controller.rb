@@ -31,6 +31,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_order
-    current_person.orders.unpaid.unarchived.order(created_at: :desc).first || current_person.orders.create(ahoy_visit_id: current_visit.id)
+    current_person.print_orders.unpaid.unarchived.order(created_at: :desc).first ||
+      current_person.print_orders.create(ahoy_visit_id: current_visit.id)
   end
 end

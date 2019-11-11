@@ -490,11 +490,17 @@ class InvoicePage extends React.Component {
                   >
                     Description
                   </Text>
-                  <Text
-                    style={[styles.headerText, styles.cell, styles.cellHeader]}
-                  >
-                    Number Of Page
-                  </Text>
+                  {invoice.print_order_invoice && (
+                    <Text
+                      style={[
+                        styles.headerText,
+                        styles.cell,
+                        styles.cellHeader
+                      ]}
+                    >
+                      Number Of Page
+                    </Text>
+                  )}
                   <Text
                     style={[styles.headerText, styles.cell, styles.cellHeader]}
                   >
@@ -529,11 +535,13 @@ class InvoicePage extends React.Component {
                         styles.cellDescription
                       ]}
                     >
-                      {orderItem.document.name}
+                      {orderItem.description}
                     </Text>
-                    <Text style={[styles.headerText, styles.cell]}>
-                      {orderItem.document.number_of_page}
-                    </Text>
+                    {orderItem.document && (
+                      <Text style={[styles.headerText, styles.cell]}>
+                        {orderItem.document.number_of_page}
+                      </Text>
+                    )}
                     <Text style={[styles.headerText, styles.cell]}>
                       {orderItem.quantity}
                     </Text>
