@@ -6,7 +6,7 @@ import { setClientOrder } from "./../actions/orders";
 
 import { fromCentsToDollars } from "./../lib/money";
 import images from "./../images";
-import Loader from "./App";
+import Loader from "./Loader";
 import UploadAndPrintButton from "./UploadAndPrintButton";
 
 class TopUpOrderThankYouPage extends React.Component {

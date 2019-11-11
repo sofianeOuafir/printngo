@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { startSetDocuments } from "./../actions/documents";
-import Loader from "./App";
+import Loader from "./Loader";
 import UploadAndPrintButton from "./UploadAndPrintButton";
 import DocumentList from "./DocumentList";
 

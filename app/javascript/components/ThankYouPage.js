@@ -5,7 +5,7 @@ import { Link, withRouter } from "react-router-dom";
 import OrderLayout from "./OrderLayout";
 import images from "./../images";
 import { startSetClientOrder } from "./../actions/orders";
-import Loader from "./App";
+import Loader from "./Loader";
 import Partner from "./Partner";
 
 class ThankYouPage extends React.Component {
