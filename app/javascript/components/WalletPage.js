@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import axios from "axios";
 import { IoIosAddCircleOutline, IoMdPrint } from "react-icons/io";
 
@@ -16,6 +16,15 @@ class WalletPage extends React.Component {
       loadingData: true
     };
   }
+
+  onTransactionClick = transaction => {
+    const { order, invoice } = transaction;
+    if (order.print_order) {
+      this.props.history.push(`/order/${order.id}`);
+    } else {
+      window.open(`/invoice/${invoice.id}`);
+    }
+  };
 
   componentDidMount() {
     const { authenticated } = this.props;
@@ -62,8 +71,9 @@ class WalletPage extends React.Component {
                   : `-${fromCentsToDollars(transaction.amount)}`;
               return (
                 <div
-                  className="flex justify-content--between px2 border border-color--grey mb1 py1"
+                  className="pointer flex justify-content--between px2 border border-color--grey mb1 py1"
                   key={index}
+                  onClick={() => this.onTransactionClick(transaction)}
                 >
                   <div className="flex align-items--center ">
                     <div className="mr1 text-navy h3">
@@ -84,12 +94,16 @@ class WalletPage extends React.Component {
                   <div className="flex flex-direction--column align-items--end">
                     <span
                       className={
-                        type == "Credit" ? "text-christmas-tree h4" : "text-red h4"
+                        type == "Credit"
+                          ? "text-christmas-tree h4"
+                          : "text-red h4"
                       }
                     >
                       {amount}
                     </span>
-                    <span className="text-grey">+{fromCentsToDollars(new_balance)}</span>
+                    <span className="text-grey">
+                      +{fromCentsToDollars(new_balance)}
+                    </span>
                   </div>
                 </div>
               );
@@ -106,4 +120,4 @@ const mapStateToProps = state => ({
   authenticated: state.auth.authenticated
 });
 
-export default connect(mapStateToProps)(WalletPage);
+export default connect(mapStateToProps)(withRouter(WalletPage));

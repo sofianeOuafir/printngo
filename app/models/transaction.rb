@@ -2,6 +2,7 @@ class Transaction < ApplicationRecord
   belongs_to :user
   belongs_to :payment
   has_one :order, through: :payment
+  has_one :invoice, through: :payment
 
   validates_presence_of :amount
 
