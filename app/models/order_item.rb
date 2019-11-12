@@ -4,6 +4,7 @@ class OrderItem < ApplicationRecord
   validates_numericality_of :quantity, greater_than_or_equal_to: 0
 
   before_save :change_price
+  before_save :set_description
   after_save :destroy_order_item_if_quantity_is_zero
 
   def paid?
@@ -13,14 +14,12 @@ class OrderItem < ApplicationRecord
   def serializable_hash(options = {})
     h = super(options)
     h[:sub_total] = sub_total
-    h[:description] = description
     h
   end
 
   def as_json(options = {})
     h = super(options)
     h[:sub_total] = sub_total
-    h[:description] = description
     h
   end
 
