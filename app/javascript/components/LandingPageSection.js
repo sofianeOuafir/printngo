@@ -38,7 +38,7 @@ class LandingPageSection extends React.Component {
                   {ReactHtmlParser(description)}
                 </p>
               )}
-              {SecondCallToActionButton ? <SecondCallToActionButton /> : null}
+              {SecondCallToActionButton ? <SecondCallToActionButton className="button button-outline" /> : null}
             </div>
             <div className="flex flex-direction--column center">
               {CallToActionButton ? (

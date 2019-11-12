@@ -63,7 +63,8 @@ class HomePage extends React.Component {
         imgSrc: images.runningMan,
         imgAlt: "Quickest printing service icon",
         bgColour: "bg-green",
-        reverse: false
+        reverse: false,
+        SecondCallToActionButton: UploadAndPrintButton
       },
       {
         title: "We are privacy and confidentiality oriented",
@@ -72,7 +73,8 @@ class HomePage extends React.Component {
         imgSrc: images.lock,
         imgAlt: "privacy oriented icon",
         bgColour: "bg-dark-grey",
-        reverse: false
+        reverse: false,
+        CallToActionButton: UploadAndPrintButton
       },
       {
         title: "No need to have coins anymore",
@@ -81,7 +83,8 @@ class HomePage extends React.Component {
         imgSrc: images.debitCard,
         imgAlt: "no more coins icon",
         bgColour: "bg-mustard",
-        reverse: true
+        reverse: true,
+        SecondCallToActionButton: UploadAndPrintButton
       },
       {
         title: "A service that is always quicker",
@@ -90,7 +93,8 @@ class HomePage extends React.Component {
         imgSrc: images.hourglass,
         imgAlt: "Printing service always quicker icon",
         bgColour: "bg-blue-sky",
-        reverse: true
+        reverse: true,
+        SecondCallToActionButton: UploadAndPrintButton
       },
       {
         title: "Best value",
