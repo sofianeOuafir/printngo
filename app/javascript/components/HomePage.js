@@ -20,6 +20,11 @@ const GoToPricingPageElement = () => (
     Check out our Pricing &rarr;
   </Link>
 );
+const GoToLocationPageElement = () => (
+  <Link to="/pick-up-locations" className="button button-outline button-text--medium">
+    Find a Pick Up Location &rarr;
+  </Link>
+);
 const ContactUsButton = () => (
   <a href="mailto:contact@printngo.ca" className="button button-outline button-outline--navy button-text--medium">
     Contact Us
@@ -48,7 +53,8 @@ class HomePage extends React.Component {
         imgSrc: images.pinpoint,
         imgAlt: "Closest printing service icon",
         bgColour: "bg-grapefruit",
-        reverse: true
+        reverse: true,
+        SecondCallToActionButton: GoToLocationPageElement
       },
       {
         title: "The quickest process and simplest way for printing documents",
