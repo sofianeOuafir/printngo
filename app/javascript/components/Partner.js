@@ -6,19 +6,16 @@ import MapElement from "./MapElement";
 const Partner = ({
   readOnly = true,
   partner,
-  onLocationSelect,
-  order,
+  onLocationSelect = null,
   highlighted = false,
+  showMap = true,
   ...rest
 }) => {
-  const highlight =
-    (readOnly === false && order.selected_partner_id === partner.id) ||
-    highlighted;
   return (
     <div
       {...rest}
       className={`${
-        highlight ? "bg-navy text-white" : ""
+        highlighted ? "bg-navy text-white" : ""
       } mb2 flex justify-content--between p2 border border-color--grey flex align-items--center`}
     >
       <div className="h5 col-8">
@@ -30,12 +27,12 @@ const Partner = ({
           <span>Opening Hours: {partner.opening_hours}</span>
           <div className="pt1">
             {partner.distance_to_user_position && (
-              <span className="mr1">{`${numberToDistance(
+              <span className="mr1 text-pink">{`${numberToDistance(
                 partner.distance_to_user_position
               )} away`}</span>
             )}
             <a
-              className={`${highlight ? "text-white" : "text-navy"}`}
+              className={`${highlighted ? "text-white" : "text-navy"}`}
               target="_blank"
               href={`https://www.google.com/maps/search/?api=1&query=${partner.lat},${partner.lng}`}
             >
@@ -45,19 +42,21 @@ const Partner = ({
         </div>
       </div>
       {readOnly ? (
-        <div className="col-4" style={{ height: "200px" }}>
-          <MapElement
-            defaultZoom={14}
-            defaultCenter={{ lat: partner.lat, lng: partner.lng }}
-            center={{ lat: partner.lat, lng: partner.lng }}
-            data={[partner]}
-          />
-        </div>
+        showMap && (
+          <div className="col-4" style={{ height: "200px" }}>
+            <MapElement
+              defaultZoom={14}
+              defaultCenter={{ lat: partner.lat, lng: partner.lng }}
+              center={{ lat: partner.lat, lng: partner.lng }}
+              data={[partner]}
+            />
+          </div>
+        )
       ) : (
         <div>
           <a
             className={`button pointer ${
-              highlight ? "button-outline" : "button--navy"
+              highlighted ? "button-outline" : "button--navy"
             }`}
             onClick={() => onLocationSelect(partner.id)}
           >

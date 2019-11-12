@@ -30,9 +30,9 @@ class LandingPageSection extends React.Component {
               className={`${reverse ? "ml3" : "mr3"}`}
               style={{ width: "60%" }}
             >
-              <h1 className="m0 h3 favourite-font-weight">
-                <strong>{ReactHtmlParser(title)}</strong>
-              </h1>
+              <span className="m0 h3 favourite-font-weight">
+                {ReactHtmlParser(title)}
+              </span>
               {description && (
                 <p className="favourite-font-weight h4">
                   {ReactHtmlParser(description)}

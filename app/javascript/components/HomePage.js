@@ -17,7 +17,7 @@ const UploadAndPrintButtonMainSection = () => (
 )
 const GoToPricingPageElement = () => (
   <Link to="/pricing" className="button button-outline button-text--medium">
-    Check out our Pricing
+    Check out our Pricing &rarr;
   </Link>
 );
 const ContactUsButton = () => (
@@ -93,7 +93,7 @@ class HomePage extends React.Component {
         imgAlt: "Best printing service at best price icon",
         bgColour: "bg-christmas-tree",
         reverse: false,
-        CallToActionButton: GoToPricingPageElement
+        SecondCallToActionButton: GoToPricingPageElement
       },
       {
         id: "contact-us",
@@ -104,7 +104,7 @@ class HomePage extends React.Component {
         imgAlt: "Contact Us",
         bgColour: "bg-white",
         color: "text-navy",
-        CallToActionButton: ContactUsButton,
+        SecondCallToActionButton: ContactUsButton,
         reverse: true
       }
     ];

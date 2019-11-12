@@ -30,7 +30,7 @@ SellingPoint.create(description: 'You get an extra 1$ dollar for free (+10% free
                     top_up_product: TopUpProduct.ten_dollars_top_up)
 SellingPoint.create(description: 'Top up whenever you want. No monthly commitment.',
                     top_up_product: TopUpProduct.ten_dollars_top_up)
-SellingPoint.create(description: 'No minimum * amount per order.',
+SellingPoint.create(description: 'No minimum amount per order.',
                     top_up_product: TopUpProduct.ten_dollars_top_up)
 SellingPoint.create(description: 'Printing in black would cost a bit less than 0,23$ / document.',
                     top_up_product: TopUpProduct.ten_dollars_top_up)
@@ -44,7 +44,7 @@ SellingPoint.create(description: 'You get an extra $3 of printing credit for fre
                     top_up_product: TopUpProduct.twenty_dollars_top_up)
 SellingPoint.create(description: 'Top up whenever you want. No monthly commitment.',
                     top_up_product: TopUpProduct.twenty_dollars_top_up)
-SellingPoint.create(description: 'No minimum * amount per order.',
+SellingPoint.create(description: 'No minimum amount per order.',
                     top_up_product: TopUpProduct.twenty_dollars_top_up)
 SellingPoint.create(description: 'Printing in black would cost a bit less than 0,22$ / document.',
                     top_up_product: TopUpProduct.twenty_dollars_top_up)
@@ -57,7 +57,7 @@ SellingPoint.create(description: 'You get an extra 6 dollars of printing credit 
                     top_up_product: TopUpProduct.thirty_dollars_top_up)
 SellingPoint.create(description: 'Top up whenever you want. No monthly commitment.',
                     top_up_product: TopUpProduct.thirty_dollars_top_up)
-SellingPoint.create(description: 'No minimum * amount per order.',
+SellingPoint.create(description: 'No minimum amount per order.',
                     top_up_product: TopUpProduct.thirty_dollars_top_up)
 SellingPoint.create(description: 'Printing in black would cost a bit less than 0,21$ / document.',
                     top_up_product: TopUpProduct.thirty_dollars_top_up)

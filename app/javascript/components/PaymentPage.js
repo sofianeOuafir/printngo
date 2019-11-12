@@ -53,8 +53,7 @@ class PaymentPage extends React.Component {
               </h2>
               <Partner
                 partner={selected_partner}
-                order={clientCurrentOrder}
-              ></Partner>
+              />
               <div className="mt1">
                 <Link
                   to="/order/pick-up-location"

@@ -7,7 +7,7 @@ import { ToastContainer } from "react-toastify";
 import { startGetCurrentUser } from "./../actions/auth";
 import PartnerPage from "./PartnerPage";
 import HomePage from "./HomePage";
-import PickUpLocationPage from "./PickUpLocationPage";
+import OrderPickUpLocationPage from "./OrderPickUpLocationPage";
 import BasketPage from "./BasketPage";
 import configureStore from "./../configureStore";
 import PaymentPage from "./PaymentPage";
@@ -35,6 +35,7 @@ import TopUpProductCheckoutPage from "./TopUpProductCheckoutPage";
 import TopUpOrderThankYouPage from "./TopUpOrderThankYouPage";
 import WalletPage from "./WalletPage";
 import ScrollToTop from "./ScrollToTop";
+import PickUpLocationsPage from "./PickUpLocationsPage";
 
 const store = configureStore();
 
@@ -100,7 +101,7 @@ class App extends React.Component {
               <Route path="/order/basket" render={() => <BasketPage />} />
               <Route
                 path="/order/pick-up-location"
-                render={() => <PickUpLocationPage />}
+                render={() => <OrderPickUpLocationPage />}
               />
               <Route path="/order/payment" render={() => <PaymentPage />} />
               <Route
@@ -116,6 +117,13 @@ class App extends React.Component {
                 layout={Layout}
                 title="Home"
                 component={HomePage}
+              />
+              <AppRoute
+                exact
+                path="/pick-up-locations"
+                layout={Layout}
+                title="Pick Up Locations"
+                component={PickUpLocationsPage}
               />
               <AppRoute
                 exact
@@ -250,4 +258,6 @@ store.dispatch(startGetCurrentUser()).then(() => {
   renderApp();
 });
 
-ReactDOM.render(<Loader />, document.getElementById('app'));
+ReactDOM.render(<Loader />, document.getElementById("app"));
+
+export default Loader;

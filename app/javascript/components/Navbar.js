@@ -46,12 +46,13 @@ class Navbar extends React.Component {
     const { auth, clientCurrentOrder } = this.props;
     const { authenticated, firstname } = auth;
     const pricingElement = <Link to="/pricing">Pricing</Link>;
+    const pickUpLocationsElement = <Link to="/pick-up-locations">Locations</Link>
     const contactUsElement = (
       <Link
         onClick={e => this.navigateAndScroll({ e, element: "contact-us" })}
         to="#"
       >
-        Contact Us
+        Contact
       </Link>
     );
     const basketElement = (
@@ -80,8 +81,9 @@ class Navbar extends React.Component {
                 <Link to="/documents">Documents</Link>
                 <Link to="/printing-orders">Orders</Link>
                 {pricingElement}
-                <UploadAndPrintButton text="Upload & Print" />
+                <UploadAndPrintButton text="Print Now" />
                 <Link to="/become-partner">Become Partner</Link>
+                {pickUpLocationsElement}
                 {contactUsElement}
                 <Link to="/">{firstname}</Link>
                 <Link to="#" onClick={this.onLogout}>
@@ -109,8 +111,9 @@ class Navbar extends React.Component {
                   Why Print n' go
                 </Link>
                 {pricingElement}
-                <UploadAndPrintButton text="Upload & Print" />
+                <UploadAndPrintButton text="Print Now" />
                 <Link to="/become-partner">Become Partner</Link>
+                {pickUpLocationsElement}
                 {contactUsElement}
                 <SignInLink />
                 {basketElement}

@@ -50,7 +50,7 @@ class OrderShowPage extends React.Component {
               <h2 className="h5 text-navy favourite-font-weight">
                 Pick up Location
               </h2>
-              <Partner partner={order.selected_partner} order={order}></Partner>
+              <Partner partner={order.selected_partner} />
             </div>
             <div className="p2 border border-color--grey">
               <h2 className="h5 text-navy favourite-font-weight">Your Order</h2>

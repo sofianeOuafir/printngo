@@ -61,7 +61,7 @@ class ThankYouPage extends React.Component {
                   You can now gather your documents at the following address (or in any of our pick up location):
                 </p>
 
-                <Partner partner={partner} order={clientOrder} />
+                <Partner partner={partner} />
 
                 <p className="m0">
                   <i>
