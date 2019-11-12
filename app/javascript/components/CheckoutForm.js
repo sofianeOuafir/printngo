@@ -131,7 +131,6 @@ class CheckoutForm extends Component {
     const { history, startCreatePayment, orderType } = this.props;
     startCreatePayment(tokenId)
       .then(response => {
-        console.log(response);
         const { order } = response.data;
         const redirectUrlAfterSuccess =
           orderType === PRINT_ORDER

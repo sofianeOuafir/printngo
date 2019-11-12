@@ -6,6 +6,10 @@ class OrderItem < ApplicationRecord
   before_save :change_price
   after_save :destroy_order_item_if_quantity_is_zero
 
+  def paid?
+    order.paid?
+  end
+
   def serializable_hash(options = {})
     h = super(options)
     h[:sub_total] = sub_total
