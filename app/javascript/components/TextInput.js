@@ -1,16 +1,18 @@
-import React, { Fragment } from 'react';
+import React, { Fragment } from "react";
 
-const TextInput = ({errors, ...props}) => {
+const TextInput = ({ errors, ...props }) => {
   return (
-    <Fragment>
+    <div className="flex flex-direction--column">
       <input {...props} />
-      { errors && <ul className="errors">  
-        { errors.map((error, index) => (
-          <li key={index}>{error}</li>
-        )) }
-      </ul> }
-    </Fragment>
-  )
-}
+      {errors && (
+        <ul className="errors">
+          {errors.map((error, index) => (
+            <li key={index}>{error}</li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+};
 
 export default TextInput;

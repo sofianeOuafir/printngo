@@ -8,6 +8,7 @@ import SellingPointList from "./SellingPointList";
 import CheckoutForm from "./CheckoutForm";
 import Loader from "./Loader";
 import { TOP_UP_ORDER } from "./../constants/constants";
+import PageBanner from "./PageBanner";
 
 class TopUpProductCheckoutPage extends React.Component {
   constructor(props) {
@@ -32,10 +33,11 @@ class TopUpProductCheckoutPage extends React.Component {
           <Loader />
         ) : (
           <Fragment>
-            <div className="center text-navy">
-              <h1 className="m0 pt3 h3">{product.name}</h1>
-              <h2 className="pb2 h5">{product.description}</h2>
-            </div>
+            <PageBanner
+              title={product.name}
+              description={product.description}
+            />
+
             <div className="flex border border-color--grey">
               <div className="col-6 px3 border-right border-color--grey">
                 <h3 className="text-navy">Payment</h3>
@@ -57,9 +59,7 @@ class TopUpProductCheckoutPage extends React.Component {
                     sellingPoints={product.selling_points}
                   />
                 </div>
-                <div
-                  className="mb3 border-top border-color--grey"
-                >
+                <div className="mb3 border-top border-color--grey">
                   <AllPlanIncludes />
                 </div>
               </div>

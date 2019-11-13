@@ -5,6 +5,7 @@ import TopUpProduct from "./TopUpProduct";
 import Loader from "./Loader";
 import UploadAndPrintButton from "./UploadAndPrintButton";
 import AllPlanIncludes from "./AllPlanIncludes";
+import PageBanner from "./PageBanner";
 
 const payAsYouGoProduct = {
   name: "Pay as you go",
@@ -49,12 +50,11 @@ class PricingPage extends React.Component {
     const { loadingData, topUpProducts } = this.state;
     return (
       <div>
-        <div className="center text-navy">
-          <h1 className="m0 pt3 h3">Simple, honest and affordable price</h1>
-          <h2 className="pb2 h5">
-            The most convenient printing solution adapted to your needs!
-          </h2>
-        </div>
+        <PageBanner
+          title="Simple, honest and affordable price"
+          description="The most convenient printing solution adapted to your needs!"
+        />
+
         {loadingData ? (
           <Loader />
         ) : (

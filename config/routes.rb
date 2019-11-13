@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       resources :partners, only: [:index]
       resources :documents, only: %i[show index]
       resources :print_orders
+      resources :partner_applications, only: :create
       namespace :print_orders do
         resources :documents, only: [:create]
         resources :payments, only: [:create]

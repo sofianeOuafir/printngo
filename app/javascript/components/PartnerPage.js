@@ -1,10 +1,27 @@
 import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
 
 import LandingPageSection from "./LandingPageSection";
 import images from "./../images";
 
 class PartnerPage extends React.Component {
   render() {
+    const GoToPartnerApplicationPageButton = () => (
+      <Link
+        to="/become-partner/application"
+        className="button button--pink button-text--medium"
+      >
+        Become Partner Now &rarr;
+      </Link>
+    );
+    const SecondGoToPartnerApplicationPageButton = () => (
+      <Link
+        to="/become-partner/application"
+        className="button button-outline button-text--medium"
+      >
+        Become Partner Now &rarr;
+      </Link>
+    );
     const sections = [
       {
         title:
@@ -14,7 +31,8 @@ class PartnerPage extends React.Component {
         imgSrc: images.handShake,
         imgAlt: "Become Partner Icon",
         bgColour: "bg-navy",
-        reverse: false
+        reverse: false,
+        CallToActionButton: GoToPartnerApplicationPageButton
       },
       {
         title: "Create a new source of revenue",
@@ -22,7 +40,8 @@ class PartnerPage extends React.Component {
         imgSrc: images.money,
         imgAlt: "New Source Revenue Icon",
         bgColour: "bg-grapefruit",
-        reverse: true
+        reverse: true,
+        SecondCallToActionButton: SecondGoToPartnerApplicationPageButton
       },
       {
         title: "Attract new customers in your shop and grow your sells",
@@ -31,7 +50,8 @@ class PartnerPage extends React.Component {
         imgSrc: images.attract,
         imgAlt: "Attract new customers Icon",
         bgColour: "bg-blue-sky",
-        reverse: false
+        reverse: false,
+        SecondCallToActionButton: SecondGoToPartnerApplicationPageButton
       },
       {
         title: "It is hassle free and won't impact your business",
@@ -40,7 +60,8 @@ class PartnerPage extends React.Component {
         imgSrc: images.yoga,
         imgAlt: "Hassle free Icon",
         bgColour: "bg-navy",
-        reverse: true
+        reverse: true,
+        SecondCallToActionButton: SecondGoToPartnerApplicationPageButton
       },
       {
         title: "Reinforce your relationship with your existing customers",
@@ -49,7 +70,8 @@ class PartnerPage extends React.Component {
         imgSrc: images.exercise,
         imgAlt: "Reinforce relationship Icon",
         bgColour: "bg-dark-grey",
-        reverse: false
+        reverse: false,
+        SecondCallToActionButton: SecondGoToPartnerApplicationPageButton
       },
       {
         title: "Get free promotion",
@@ -58,7 +80,8 @@ class PartnerPage extends React.Component {
         imgSrc: images.shout,
         imgAlt: "Get free promotion Icon",
         bgColour: "bg-christmas-tree",
-        reverse: true
+        reverse: true,
+        SecondCallToActionButton: SecondGoToPartnerApplicationPageButton
       }
     ];
     return (

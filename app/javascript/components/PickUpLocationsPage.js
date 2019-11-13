@@ -5,6 +5,7 @@ import PartnerList from "./PartnerList";
 import { TORONTO_LOCATION, DEFAULT_ZOOM_MAP } from "./../constants/constants";
 import { startSetPartners } from "../actions/partners";
 import Loader from "./Loader";
+import PageBanner from "./PageBanner";
 
 class PickUpLocationsPage extends React.Component {
   constructor(props) {
@@ -24,12 +25,11 @@ class PickUpLocationsPage extends React.Component {
   render() {
     return (
       <div>
-        <div className="center text-navy">
-          <h1 className="m0 pt3 h3">Our Pick Up Locations</h1>
-          <h2 className="pb2 h5">
-            Find the most convenient pick up point for printing your documents
-          </h2>
-        </div>
+        <PageBanner
+          title="Our Pick Up Locations"
+          description="Find the most convenient pick up point for printing your documents"
+        />
+
         {this.state.loadingData ? (
           <Loader />
         ) : (

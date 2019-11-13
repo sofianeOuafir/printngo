@@ -228,7 +228,7 @@ class CheckoutForm extends Component {
         {!auth.authenticated && (
           <Fragment>
             <div className="flex">
-              <div className="flex flex-direction--column col-6 mr1">
+              <div className="col-6 mr1">
                 <TextInput
                   errors={errors.firstname}
                   className="mb1"
@@ -238,7 +238,7 @@ class CheckoutForm extends Component {
                   onChange={this.onFirstnameChange}
                 />
               </div>
-              <div className="flex flex-direction--column col-6">
+              <div className="col-6">
                 <TextInput
                   errors={errors.lastname}
                   className="mb1"
@@ -250,7 +250,7 @@ class CheckoutForm extends Component {
               </div>
             </div>
 
-            <div className="flex flex-direction--column pt1">
+            <div className="pt1">
               <TextInput
                 errors={errors.email}
                 className="mb1"
@@ -261,7 +261,7 @@ class CheckoutForm extends Component {
               />
             </div>
             <div className="flex pt1">
-              <div className="flex flex-direction--column col-6 mr1">
+              <div className="col-6 mr1">
                 <TextInput
                   errors={errors.password}
                   className="mb1"
@@ -271,7 +271,7 @@ class CheckoutForm extends Component {
                   onChange={this.onPasswordChange}
                 />
               </div>
-              <div className="flex flex-direction--column col-6">
+              <div className="col-6">
                 <TextInput
                   errors={errors.passwordConfirmation}
                   className="mb1"

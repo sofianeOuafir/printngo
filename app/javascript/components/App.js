@@ -36,6 +36,7 @@ import TopUpOrderThankYouPage from "./TopUpOrderThankYouPage";
 import WalletPage from "./WalletPage";
 import ScrollToTop from "./ScrollToTop";
 import PickUpLocationsPage from "./PickUpLocationsPage";
+import PartnerApplicationPage from "./PartnerApplicationPage";
 
 const store = configureStore();
 
@@ -117,6 +118,13 @@ class App extends React.Component {
                 layout={Layout}
                 title="Home"
                 component={HomePage}
+              />
+              <AppRoute
+                exact
+                path="/become-partner/application"
+                layout={Layout}
+                title="Become Partner - Application"
+                component={PartnerApplicationPage}
               />
               <AppRoute
                 exact
