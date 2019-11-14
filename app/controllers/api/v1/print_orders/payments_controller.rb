@@ -7,7 +7,6 @@ class Api::V1::PrintOrders::PaymentsController < ApplicationController
   def create
     if !current_order.paid?
       begin
-        current_order_before_update = current_order
         ActiveRecord::Base.transaction do
           if current_user.wallet_balance < current_order.total
             charge = Stripe::Charge.create(amount: current_order.total,
@@ -39,11 +38,6 @@ class Api::V1::PrintOrders::PaymentsController < ApplicationController
           current_user.print_orders.update_all(archived: true)
           payment.reload
           render json: payment.to_json(include: { order: { include: :user } })
-        end
-        current_order_before_update.deliverables.each do |deliverable|
-          o = open(deliverable.file.service_url)
-          reader = PDF::Reader.new(o)
-          deliverable.update_columns(number_of_page: reader.page_count)
         end
       rescue Stripe::CardError => e
         render json: e.message.to_json, status: e.http_status

@@ -1,4 +1,6 @@
 class Deliverable < ApplicationRecord
+  # after_create_commit must come before has_one_attached :file
+  after_create_commit :set_number_of_page
   has_one_attached :file
 
   belongs_to :print_product, class_name: 'PrintProduct', foreign_key: 'product_id'
@@ -7,5 +9,13 @@ class Deliverable < ApplicationRecord
 
   def printing_attempted?
     printing_attempts.present?
+  end
+
+  private
+
+  def set_number_of_page
+    o = open(file.service_url)
+    reader = PDF::Reader.new(o)
+    update_columns(number_of_page: reader.page_count)
   end
 end
