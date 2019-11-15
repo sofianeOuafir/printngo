@@ -1,5 +1,7 @@
 import axios from "axios";
 
+import { setPartnerOrder } from "./../actions/orders";
+
 const addPrintingAttempt = printingAttempt => dispatch => {
   dispatch({
     type: "ADD_PRINTING_ATTEMPT",
@@ -18,6 +20,7 @@ export const startAddPrintingAttempt = ({
     })
     .then(response => {
       dispatch(addPrintingAttempt(response.data));
+      dispatch(setPartnerOrder(response.data.print_order));
       return response;
     });
 };

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PrintOrder < Order
   belongs_to :selected_partner, class_name: 'Partner', optional: true
   belongs_to :printer, class_name: 'Partner', optional: true
@@ -13,19 +15,36 @@ class PrintOrder < Order
 
   before_save :set_secret_code
 
+  def preparing?
+    paid? &&
+      (!deliverables.present? ||
+        deliverables.map { |deliverable| deliverable.number_of_page.present? }.include?(false))
+  end
+
+  def printed?
+    printer_id.present?
+  end
+
   def awaiting_confirmation
-    !deliverables.map(&:printing_attempted?).include?(false) && printer_id.blank?
+    paid? &&
+      !preparing? &&
+      !deliverables.map(&:printing_attempted?).include?(false) &&
+      !printed?
   end
 
   def serializable_hash(options = {})
     h = super(options)
     h[:awaiting_confirmation] = awaiting_confirmation
+    h[:preparing] = preparing?
+    h[:printed] = printed?
     h
   end
 
   def as_json(options = {})
     h = super(options)
     h[:awaiting_confirmation] = awaiting_confirmation
+    h[:preparing] = preparing?
+    h[:printed] = printed?
     h
   end
 

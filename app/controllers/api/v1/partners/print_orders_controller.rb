@@ -18,7 +18,7 @@ class Api::V1::Partners::PrintOrdersController < ApplicationController
     print_order = PrintOrder.searchable_by_partner.find_by(secret_code: params[:id])
     print_order.update(printer_id: current_partner.id)
     print_order.reload
-    render json: print_order.to_json
+    render json: print_order.to_json(include: [{deliverables: { include: [:print_product, :printing_attempts] }}, :user]), status: 200
   end
 
   private
