@@ -5,11 +5,28 @@ class Deliverable < ApplicationRecord
 
   belongs_to :print_product, class_name: 'PrintProduct', foreign_key: 'product_id'
   belongs_to :print_order, class_name: 'PrintOrder', foreign_key: 'order_id'
-  has_many :printing_attempts
+  has_many :printing_attempts, dependent: :destroy
 
   def printing_attempted?
     printing_attempts.present?
   end
+
+  def serializable_hash(options = {})
+    h = super(options)
+    h[:printed] = print_order.printed?
+    h[:awaiting_confirmation] = print_order.awaiting_confirmation
+    h[:preparing] = print_order.preparing?
+    h
+  end
+
+  def as_json(options = {})
+    h = super(options)
+    h[:printed] = print_order.printed?
+    h[:awaiting_confirmation] = print_order.awaiting_confirmation
+    h[:preparing] = print_order.preparing?
+    h
+  end
+
 
   private
 

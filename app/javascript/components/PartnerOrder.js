@@ -2,57 +2,16 @@ import React from "react";
 import pluralize from "pluralize";
 import { toast } from "react-toastify";
 import { connect } from "react-redux";
-import { IoIosWarning } from "react-icons/io";
 
 import {
   startUpdatePartnerOrder,
   startSetPartnerOrders
 } from "./../actions/orders";
 import { startAddPrintingAttempt } from "./../actions/printingAttempts";
-import ReadyToPrintElement from "./ReadyToPrintElement";
-import PrintedElement from "./PrintedElement";
-import PrintingAttemptedElement from "./PrintingAttemptedElement";
 import ReportIssue from "./ReportIssue";
+import OrderStatus from "./OrderStatus";
 
 class PartnerOrder extends React.Component {
-  orderStatus = () => {
-    const { order } = this.props;
-    return !order.printer_id ? (
-      this.allDeliverableWithPrintAttempts() ? (
-        <button
-          onClick={this.onMarkAsPrinted}
-          className="flex align-items--center button button--orange button--no-border-radius my1"
-        >
-          <IoIosWarning className="h3" /> <span>Mark as printed</span>
-        </button>
-      ) : (
-        <ReadyToPrintElement />
-      )
-    ) : (
-      <PrintedElement />
-    );
-  };
-  deliverableStatus = deliverable => {
-    const { order } = this.props;
-    if (order.printer_id) {
-      return <PrintedElement />;
-    } else {
-      return deliverable.printing_attempts.length ? (
-        <PrintingAttemptedElement />
-      ) : (
-        <ReadyToPrintElement />
-      );
-    }
-  };
-  allDeliverableWithPrintAttempts = () => {
-    const { order } = this.props;
-    return (
-      order.deliverables.length ===
-      order.deliverables.filter(
-        deliverable => deliverable.printing_attempts.length > 0
-      ).length
-    );
-  };
   onMarkAsPrinted = () => {
     const {
       startUpdatePartnerOrder,
@@ -94,7 +53,7 @@ class PartnerOrder extends React.Component {
     const { user, deliverables } = order;
     return (
       <div className="mb1">
-        {this.allDeliverableWithPrintAttempts() && !order.printer_id && (
+        {order.awaiting_confirmation && (
           <p className="h6 text-orange m0 mb1">
             <strong>
               IMPORTANT: Please remember to mark the order as printed once the
@@ -110,7 +69,10 @@ class PartnerOrder extends React.Component {
               {user.fullname} - Order #{order.id}
             </h2>
 
-            {this.orderStatus()}
+            <OrderStatus
+              printable={order}
+              onMarkAsPrinted={this.onMarkAsPrinted}
+            />
           </div>
           <div className="mb1">
             <ReportIssue className="text-pink" order={order} />
@@ -141,8 +103,7 @@ class PartnerOrder extends React.Component {
                   )}
                   )
                 </span>
-
-                {this.deliverableStatus(deliverable)}
+                <OrderStatus printable={deliverable} />
               </div>
               <div>
                 {!order.printer_id && !readOnly && (
@@ -170,7 +131,4 @@ const mapDispatchToProps = dispatch => ({
   startSetPartnerOrders: () => dispatch(startSetPartnerOrders())
 });
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(PartnerOrder);
+export default connect(null, mapDispatchToProps)(PartnerOrder);

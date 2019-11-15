@@ -15,7 +15,7 @@ const Order = ({ order }) => {
         {order.print_order && (
           <div className="flex flex-direction--column">
             <span className="mb1">Status</span>
-            <OrderStatus order={order} />
+            <OrderStatus printable={order} />
           </div>
         )}
         <div className="flex flex-direction--column">
@@ -46,7 +46,7 @@ const Order = ({ order }) => {
           </div>
         </div>
       </div>
-      <div>
+      <div className="mt1">
         <ReportIssue className="text-pink" order={order} />
       </div>
     </div>
