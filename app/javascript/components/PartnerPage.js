@@ -6,20 +6,18 @@ import images from "./../images";
 
 class PartnerPage extends React.Component {
   render() {
-    const GoToPartnerApplicationPageButton = () => (
+    const GoToPartnerApplicationPageButton = props => (
       <Link
         to="/become-partner/application"
-        className="button button--pink button-text--medium"
+        {...props}
+        className="fullwidth px0 button button--pink"
       >
-        Become Partner Now &rarr;
+        Become Partner Now
       </Link>
     );
-    const SecondGoToPartnerApplicationPageButton = () => (
-      <Link
-        to="/become-partner/application"
-        className="button button-outline button-text--medium"
-      >
-        Become Partner Now &rarr;
+    const SecondGoToPartnerApplicationPageButton = props => (
+      <Link to="/become-partner/application" {...props}>
+        Become Partner Now
       </Link>
     );
     const sections = [

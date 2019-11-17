@@ -1,13 +1,51 @@
 @import 'variables/size'; 
 @import 'variables/colours'; 
+@import 'variables/breakpoints'; 
+@import '../padding'; 
+@import '../backgrounds'; 
+@import '../border'; 
+@import '../colours'; 
+@import '../font_size'; 
 
 .navbar a {
-  margin-right: $m-size;
+  margin-right: 0.9rem;
   text-decoration: none;
-  font-size: $s-size;
+  font-size: 16px;
   color: white;
 }
 
 .navbar .website-name {
-  font-size: $ml-size;
+  font-size: 1.5rem;
+}
+
+.navbar-links {
+  @media(max-width: $laptop-breakpoint) {
+    display: none;
+  }
+}
+
+.hamburger-menu {
+  display: block;
+  @media(min-width: $laptop-breakpoint) {
+    display: none;
+  }
+}
+
+.hamburger-menu-items {
+  display: block;
+  @media(min-width: $laptop-breakpoint) {
+    display: none;
+  }
+}
+
+.hamburger-menu-items a {
+  display: block;
+  @extend .py1;
+  @extend .bg-navy;
+  @extend .border--bottom;
+  @extend .border-color--white;
+  @extend .text-white;
+  text-decoration: none;  
+  @extend .pl1;
+  @extend .h5;
 }
