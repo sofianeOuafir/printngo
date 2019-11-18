@@ -119,7 +119,8 @@ class Navbar extends React.Component {
       {
         ShowWhenAuthenticated: true,
         ShowWhenNonAuthenticated: true,
-        element: <UploadAndPrintButton text="Print" />
+        element: <UploadAndPrintButton text="Print Now" />,
+        printElement: true
       },
       {
         ShowWhenAuthenticated: true,
@@ -202,7 +203,9 @@ class Navbar extends React.Component {
         {this.state.hamburgerMenuOpen && (
           <div className="hamburger-menu-items">
             {navBarItems.map((item, key) => {
-              var jsx = (
+              var jsx = item.printElement ? (
+                item.element
+              ) : (
                 <div key={key} onClick={this.onHamburgerMenuClick}>
                   {item.element}
                 </div>

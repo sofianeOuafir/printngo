@@ -56,7 +56,7 @@ class HomePage extends React.Component {
         title:
           "Upload your documents, <br /> Choose your closest pick up location, Print n' Go",
         description:
-          "Don't have access to a working printer or running out of ink? We got you covered! Print n' go is the <strong class='text-pink h4'>quickest</strong>, <strong class='text-pink h4'>closest</strong>, and <strong class='text-pink h4'>most convenient</strong> way to print documents out there! <br/><br />We are <strong class='text-pink h4'>privacy oriented</strong> and provide a <strong class='text-pink h4'>secure payment system</strong> so you never need coins for printing documents again!",
+          "Don't have access to a working printer or running out of ink? We got you covered! Print n' go is the <strong class='keyword text-pink h4'>quickest</strong>, <strong class='keyword text-pink h4'>closest</strong>, and <strong class='keyword text-pink h4'>most convenient</strong> way to print documents out there! <br/><br />We are <strong class='keyword text-pink h4'>privacy oriented</strong> and provide a <strong class='keyword text-pink h4'>secure payment system</strong> so you never need coins for printing documents again!",
         imgSrc: images.printer,
         imgAlt: "Printer Icon",
         bgColour: "bg-navy",
@@ -86,7 +86,7 @@ class HomePage extends React.Component {
         SecondCallToActionButton: UploadAndPrintButton
       },
       {
-        title: "We are privacy and confidentiality oriented",
+        title: "We are privacy oriented",
         description:
           "Your privacy is the most important for us. We will provide you with a secret code so that only you can access and trigger the print of your documents.",
         imgSrc: images.lock,
@@ -143,7 +143,7 @@ class HomePage extends React.Component {
           if (index === 1) {
             return (
               <Fragment key={index}>
-                {/*<HowItWorks />*/}
+                <HowItWorks />
                 <LandingPageSection {...section} />
               </Fragment>
             );

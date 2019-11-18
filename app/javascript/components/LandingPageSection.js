@@ -29,7 +29,7 @@ const LandingPageSection = ({
               reverse ? "ml3" : "mr3"
             }`}
           >
-            <span className="m0 h3 favourite-font-weight">
+            <span className="m0 h3 favourite-font-weight title">
               {ReactHtmlParser(title)}
             </span>
             {CallToActionButton ? (
@@ -40,8 +40,7 @@ const LandingPageSection = ({
 
             {description && (
               <p
-                className="favourite-font-weight"
-                style={{ fontSize: "1.4rem" }}
+                className="favourite-font-weight description"
               >
                 {ReactHtmlParser(description)}
               </p>

@@ -2,6 +2,7 @@
 @import 'variables/font_weights';
 @import 'variables/size';
 @import 'padding';
+@import 'variables/breakpoints';
 
 .button {
   border-radius: 10px;
@@ -15,6 +16,15 @@
   @extend .px3;
   text-align: center;
   cursor: pointer;
+  @media(max-width: $tablet-breakpoint) {
+    padding-left: 13px;
+    padding-right: 13px;
+  }
+  @media(max-width: $mobile-breakpoint) {
+    padding-left: 11px;
+    padding-right: 11px;
+    font-size: 1rem;
+  }
 }
 
 .button--no-border-radius {

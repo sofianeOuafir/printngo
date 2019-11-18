@@ -31,3 +31,4 @@ yarn-debug.log*
 .yarn-integrity
 .env.development
 .env.test
+dump.rdb
