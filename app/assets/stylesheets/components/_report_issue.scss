@@ -1,0 +1,9 @@
+@import 'variables/size';
+@import 'variables/breakpoints';
+
+.report-issue {
+  font-size: $s-size;
+  @media(max-width: $tablet-breakpoint) {
+    font-size: 1rem;
+  }
+}

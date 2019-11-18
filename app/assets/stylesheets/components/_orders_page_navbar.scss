@@ -1,0 +1,14 @@
+@import './../variables//breakpoints';
+
+.orders-page-navbar {
+  @media (max-width: $mobile-breakpoint) {
+    flex-direction: column;
+  }
+}
+
+.orders-page-navbar a {
+  @media (max-width: $mobile-breakpoint) {
+    margin-right: 0;
+    margin-top: 10px;
+  }
+}
