@@ -17,3 +17,11 @@
     margin-bottom: $s-size;
   }
 }
+
+.order-item--quantity {
+  @media(max-width: $tablet-breakpoint) {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+}

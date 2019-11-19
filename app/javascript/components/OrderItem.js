@@ -2,11 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { IoMdRemoveCircle, IoIosAddCircle } from "react-icons/io";
 
-import images from "./../images";
 import { startUpdateOrderItem, removeOrderItem } from "./../actions/orderItems";
 import { fromCentsToDollars } from "../lib/money";
 import Document from "./Document";
+import QuantityButton from "./QuantityButton";
 
 class OrderItem extends React.Component {
   onProductChange = ({ e, orderItemId }) => {
@@ -24,6 +25,7 @@ class OrderItem extends React.Component {
   };
 
   onQuantityChange = ({ e, action, currentQuantity, orderItemId }) => {
+    e.preventDefault();
     const { startUpdateOrderItem, removeOrderItem } = this.props;
     let quantity =
       action === "plus" ? currentQuantity + 1 : currentQuantity - 1;
@@ -92,9 +94,8 @@ class OrderItem extends React.Component {
             {readOnly ? (
               <span className="center">{quantity}</span>
             ) : (
-              <div className="flex justify-content--around">
-                <a
-                  className="pointer"
+              <div className="flex justify-content--around align-items--center">
+                <QuantityButton
                   onClick={e => {
                     this.onQuantityChange({
                       e,
@@ -103,12 +104,10 @@ class OrderItem extends React.Component {
                       action: "minus"
                     });
                   }}
-                >
-                  <img src={images.minus} alt="Document Icon" width={25} />
-                </a>
-                <span className="px1">{quantity}</span>
-                <a
-                  className="pointer"
+                  Icon={IoMdRemoveCircle}
+                />
+                <span className="px1 order-item--quantity">{quantity}</span>
+                <QuantityButton
                   onClick={e => {
                     this.onQuantityChange({
                       e,
@@ -117,9 +116,8 @@ class OrderItem extends React.Component {
                       action: "plus"
                     });
                   }}
-                >
-                  <img src={images.plus} alt="Document Icon" width={25} />
-                </a>
+                  Icon={IoIosAddCircle}
+                />
               </div>
             )}
           </div>

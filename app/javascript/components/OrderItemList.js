@@ -18,11 +18,11 @@ class OrderItemList extends React.Component {
         { orderItems.length ? orderItems.map((orderItem, index) => (
           <OrderItem key={index} orderItem={orderItem} readOnly={readOnly} />
         )) : (
-          <p className="h5">You basket is currently empty.</p>
+          <p className="h5 order-item-list--empty">You basket is currently empty.</p>
         ) }
-        <div className={`flex ${readOnly ? 'justify-content--end' : 'justify-content--between' }  h5`}>
+        <div className={`order-item-list--totals flex ${readOnly ? 'justify-content--end' : 'justify-content--between' }  h5`}>
           {!readOnly && <div>
-            <UploadAndPrintButton className="button button--navy" text="Upload Documents" />
+            <UploadAndPrintButton className="button button--navy" text="Upload" />
           </div>}
           <div className={`flex flex-direction--column`}>
             <div className="flex justify-content--between">

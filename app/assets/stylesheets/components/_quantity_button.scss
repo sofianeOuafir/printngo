@@ -1,0 +1,9 @@
+@import './../variables/breakpoints';
+@import './../variables/size';
+
+.quantity-button {
+  font-size: $m-size;
+  @media(max-width: $mobile-breakpoint) {
+    width: $s-size;
+  }
+}

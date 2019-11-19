@@ -35,7 +35,8 @@ class ThankYouPage extends React.Component {
       return (
         <OrderLayout
           currentState={currentState}
-          title="Thank you & happy printing!"
+          title="Thank you"
+          info="Happy printing!"
           nextButton={{ link: `/`, text: "Home" }}
         >
           <div className="mx1 content-container border border-color--grey h5 flex justify-content--center">
