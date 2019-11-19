@@ -1,0 +1,29 @@
+@import './../variables/breakpoints';
+@import './../variables/size';
+
+.document-item {
+  @media(max-width: $tablet-breakpoint) {
+    flex-direction: column;
+    font-size: $s-size;
+  }
+
+  @media(max-width: $mobile-breakpoint) {
+    font-size: $xs-size;
+  }
+}
+
+.document-item .created-at span {
+  @media(max-width: $tablet-breakpoint) {
+    font-size: 1rem !important;
+  }
+
+  @media(max-width: $mobile-breakpoint) {
+    font-size: $xs-size !important;
+  }
+}
+
+.document-item .add-button a span {
+  @media(max-width: $mobile-breakpoint) {
+    display: none;
+  }
+}

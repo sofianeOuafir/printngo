@@ -35,9 +35,9 @@ class HowItWorks extends React.Component {
       <div>
         <a id="how-it-works"></a>
         <div
-          className={`bg-orange content-container fullscreen border--bottom border-color--white justify-content--center text-white flex flex-direction--column align-items--center`}
+          className={`bg-orange fullscreen border--bottom border-color--white justify-content--center text-white flex flex-direction--column align-items--center`}
         >
-          <div className="how-it-works">
+          <div className="how-it-works content-container">
             <p className="title fullwidth m0 h3 favourite-font-weight mb3 center">
               How It Works?
             </p>

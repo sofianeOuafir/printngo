@@ -43,22 +43,20 @@ class ThankYouPage extends React.Component {
               <div className="center">
                 <img src={images.success} alt="Success Icon" width={100} />
               </div>
-              <h1 className="h4 center">
-                Payment Success! Your secret code:{" "}
-                <strong>{secret_code}</strong>
-              </h1>
+              <h1 className="h4 center">Payment Success!</h1>
               <div>
                 <p>
                   A big thank you for your purchase {firstname}! <br />
                   <br /> As we really care about your privacy, we have generated
                   for you a secret code that you will need to provide when
-                  picking up your order. <br />
+                  picking up your order. <br /><br />
                   Your secret code is <strong>{secret_code}</strong> and your
                   order number is <strong>#{id}</strong>.{" "}
                 </p>
                 <p>Do not share the secret code with anyone. </p>
                 <p>
-                  You can now gather your documents at the following address (or in any of our pick up location):
+                  You can now gather your documents at the following address (or
+                  in any of our pick up location):
                 </p>
 
                 <Partner partner={partner} />

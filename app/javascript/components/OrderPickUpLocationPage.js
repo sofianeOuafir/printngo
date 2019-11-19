@@ -60,6 +60,7 @@ class OrderPickUpLocationPage extends React.Component {
         <OrderLayout
           currentState={currentState}
           title="Select a Pick Up Location"
+          info="Print anywhere"
           nextButton={{
             link: "/order/payment",
             text: "Go to Payment",

@@ -3,7 +3,7 @@
 
 .documents-page--title {
   @media(max-width: $mobile-breakpoint) {
-    font-size: 1.2rem;
+    font-size: 1.2rem !important;
   }
 }
 

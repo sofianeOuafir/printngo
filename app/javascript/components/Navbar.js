@@ -171,7 +171,7 @@ class Navbar extends React.Component {
         >
           <div className="content-container flex justify-content--between align-items--center fullwidth">
             <div>
-              <Link className="website-name" to="/">
+              <Link onClick={this.onHamburgerMenuClick} className="website-name" to="/">
                 Print n' Go
               </Link>
             </div>

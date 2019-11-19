@@ -1,0 +1,39 @@
+@import './../variables/breakpoints';
+
+.rc-steps-item-description {
+  @media(max-width: $tablet-breakpoint) {
+    display:none;
+  }
+}
+
+.rc-steps-item-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.rc-steps-item-title {
+  @media(max-width: $tablet-breakpoint) {
+    font-size: 12px;
+  }
+  @media(max-width: $mobile-breakpoint) {
+    font-size: 10px;
+  }
+}
+
+.order-layout--title {
+  @media(max-width: $tablet-breakpoint) {
+    display: none;
+  }
+}
+
+.order-layout--info {
+  @media(max-width: $mobile-breakpoint) {
+    font-size: 14px;
+  }
+}
+
+.order-layout--next-button {
+  @media(max-width: $mobile-breakpoint) {
+    font-size: 14px;
+  }
+}
