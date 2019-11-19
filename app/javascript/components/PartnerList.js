@@ -97,57 +97,55 @@ class PartnerList extends React.Component {
       partners
     } = this.props;
     return (
-      <div className="flex flex-direction--column">
-        <div>
-          <a
-            className="button button--navy button--no-border-radius mb1"
-            onClick={this.onFindClosest}
-          >
-            Sort from Closest to Furthest
-          </a>
-        </div>
+      <div className="flex partner-list">
+        <div className="col-7 partner-list--list-container">
+          <div>
+            <a
+              className="button button--navy button--no-border-radius mb1 fullwidth px0"
+              onClick={this.onFindClosest}
+            >
+              Sort from Closest to Furthest
+            </a>
+          </div>
 
-        {sortingData && permissionStatus && (
-          <p className="h5 m0 mb1 text-navy">
-            {permissionStatus == "granted"
-              ? "Loading... Please wait."
-              : "Please enable geolocation so we can find the nearest printing machine for you!"}
-          </p>
-        )}
-        {sortingError && <p className="h5 m0 mb1 text-navy">{sortingError}</p>}
-        <div className="flex">
-          <div className="col-8">
-            {partners.map((partner, index) => (
-              <Partner
-                showMap={showEachMap}
-                highlighted={
-                  (highlightedPartner &&
-                    partner.id === highlightedPartner.id) ||
-                  (!readOnly &&
-                    selectedPartner &&
-                    selectedPartner.id === partner.id)
-                }
-                readOnly={readOnly}
-                onLocationSelect={onLocationSelect}
-                partner={partner}
-                onMouseLeave={this.onPartnerMouseLeave}
-                onMouseEnter={() => this.onPartnerMouseEnter(partner)}
-                key={index}
-              />
-            ))}
-          </div>
-          <div
-            className="col-4 pl1 sticky sticky--map"
-            style={{ height: "400px" }}
-          >
-            <MapElement
-              defaultZoom={defaultMapZoom}
-              defaultMapCenter={mapCenter}
-              center={mapCenter}
-              data={partners}
-              highlightedElement={highlightedPartner}
+          {sortingData && permissionStatus && (
+            <p className="h5 m0 mb1 text-navy">
+              {permissionStatus == "granted"
+                ? "Loading... Please wait."
+                : "Please enable geolocation so we can find the nearest printing machine for you!"}
+            </p>
+          )}
+          {sortingError && (
+            <p className="h5 m0 mb1 text-navy">{sortingError}</p>
+          )}
+          {partners.map((partner, index) => (
+            <Partner
+              showMap={showEachMap}
+              highlighted={
+                (highlightedPartner && partner.id === highlightedPartner.id) ||
+                (!readOnly &&
+                  selectedPartner &&
+                  selectedPartner.id === partner.id)
+              }
+              readOnly={readOnly}
+              onLocationSelect={onLocationSelect}
+              partner={partner}
+              onMouseLeave={this.onPartnerMouseLeave}
+              onMouseEnter={() => this.onPartnerMouseEnter(partner)}
+              key={index}
             />
-          </div>
+          ))}
+        </div>
+        <div
+          className="col-5 partner-list--map-container pl1 sticky sticky--map"
+        >
+          <MapElement
+            defaultZoom={defaultMapZoom}
+            defaultMapCenter={mapCenter}
+            center={mapCenter}
+            data={partners}
+            highlightedElement={highlightedPartner}
+          />
         </div>
       </div>
     );

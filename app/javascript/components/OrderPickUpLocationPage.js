@@ -77,7 +77,7 @@ class OrderPickUpLocationPage extends React.Component {
             />
           </div>
 
-          <div className={`content-container my3`}>
+          <div className={`content-container mb3`}>
             <Link className="button button-outline--pink" to="/order/basket">
               &larr; Go back to Basket
             </Link>

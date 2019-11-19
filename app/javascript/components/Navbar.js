@@ -48,6 +48,10 @@ class Navbar extends React.Component {
     this.setState(() => ({ hamburgerMenuOpen: !this.state.hamburgerMenuOpen }));
   };
 
+  onCompanyNameClick = () => {
+    this.setState(() => ({ hamburgerMenuOpen: false }));
+  };
+
   render() {
     const { auth, clientCurrentOrder } = this.props;
     const { authenticated } = auth;
@@ -171,7 +175,11 @@ class Navbar extends React.Component {
         >
           <div className="content-container flex justify-content--between align-items--center fullwidth">
             <div>
-              <Link onClick={this.onHamburgerMenuClick} className="website-name" to="/">
+              <Link
+                onClick={this.onCompanyNameClick}
+                className="website-name"
+                to="/"
+              >
                 Print n' Go
               </Link>
             </div>

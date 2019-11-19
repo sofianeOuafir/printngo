@@ -52,6 +52,16 @@ class PartnerPage extends React.Component {
         SecondCallToActionButton: SecondGoToPartnerApplicationPageButton
       },
       {
+        title: "Get free promotion",
+        description:
+          "Because you will be listed as a pick up location on our website, it will be an opportunity for our customers to get to know you and go to your selling point for the first time.",
+        imgSrc: images.shout,
+        imgAlt: "Get free promotion Icon",
+        bgColour: "bg-christmas-tree",
+        reverse: true,
+        SecondCallToActionButton: SecondGoToPartnerApplicationPageButton
+      },
+      {
         title: "It is hassle free and won't impact your business",
         description:
           "All you need to do is pressing the printing button and handle the documents to the customer.",
@@ -67,18 +77,8 @@ class PartnerPage extends React.Component {
           "By providing the best printing service, your existing customers will have one more reason for you to be their favourite shop!",
         imgSrc: images.exercise,
         imgAlt: "Reinforce relationship Icon",
-        bgColour: "bg-dark-grey",
+        bgColour: "bg-orange",
         reverse: false,
-        SecondCallToActionButton: SecondGoToPartnerApplicationPageButton
-      },
-      {
-        title: "Get free promotion",
-        description:
-          "Because you will be listed as a pick up location on our website, it will be an opportunity for our customers to get to know you and go to your selling point for the first time.",
-        imgSrc: images.shout,
-        imgAlt: "Get free promotion Icon",
-        bgColour: "bg-christmas-tree",
-        reverse: true,
         SecondCallToActionButton: SecondGoToPartnerApplicationPageButton
       }
     ];
