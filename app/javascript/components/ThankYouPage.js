@@ -42,35 +42,34 @@ class ThankYouPage extends React.Component {
           <div className="mx1 content-container border border-color--grey h5 flex justify-content--center">
             <div className="my2">
               <div className="center">
-                <img src={images.success} alt="Success Icon" width={100} />
+                <img src={images.success} alt="Success Icon" width={80} />
               </div>
-              <h1 className="h4 center">Payment Success!</h1>
-              <div>
+              <h1 className="h4 center thank-you-page--title">Payment Success!</h1>
+              <div className="thank-you-page--info">
                 <p>
                   A big thank you for your purchase {firstname}! <br />
                   <br /> As we really care about your privacy, we have generated
                   for you a secret code that you will need to provide when
-                  picking up your order. <br /><br />
+                  picking up your order. <br />
+                  <br />
                   Your secret code is <strong>{secret_code}</strong> and your
                   order number is <strong>#{id}</strong>.{" "}
                 </p>
                 <p>Do not share the secret code with anyone. </p>
                 <p>
-                  You can now gather your documents at the following address (or
-                  in any of our pick up location):
+                  You can now gather your documents at the following address: (or
+                  in any of our pick up locations)
                 </p>
 
                 <Partner partner={partner} />
 
                 <p className="m0">
-                  <i>
-                    As we care about your privacy: <br />
-                    <strong>
-                      If you are unable to provide the secret code, please note
-                      that a proof of ID will be required for gathering your
-                      order.
-                    </strong>
-                  </i>
+                  As we care about your privacy: <br />
+                  <strong>
+                    If you are unable to provide the secret code, please note
+                    that a proof of ID will be required for gathering your
+                    order.
+                  </strong>
                 </p>
               </div>
               <div className="flex justify-content--between">

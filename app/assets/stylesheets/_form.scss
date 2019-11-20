@@ -1,5 +1,6 @@
 @import 'variables/size';
 @import 'variables/colours';
+@import 'variables/breakpoints';
 
 .form__input-container input {
   border: 1px $grey solid;
@@ -9,6 +10,12 @@
 }
 
 .form__input-container input[type=checkbox] {
-  width: 20px;
   height: 20px;
+  @media(max-width: $tablet-breakpoint) {
+    font-size: $s-size;
+  }
+
+  @media(max-width: $mobile-breakpoint) {
+    font-size: $xs-size;
+  }
 }

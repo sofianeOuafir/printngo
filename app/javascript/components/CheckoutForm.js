@@ -224,10 +224,10 @@ class CheckoutForm extends Component {
       processingPayment
     } = this.state;
     return (
-      <form className="form__input-container" onSubmit={this.onSubmit}>
+      <form className="checkout--form form__input-container" onSubmit={this.onSubmit}>
         {!auth.authenticated && (
           <Fragment>
-            <div className="flex">
+            <div className="checkout-form--input-container flex">
               <div className="col-6 mr1">
                 <TextInput
                   errors={errors.firstname}
@@ -250,17 +250,17 @@ class CheckoutForm extends Component {
               </div>
             </div>
 
-            <div className="pt1">
+            <div>
               <TextInput
                 errors={errors.email}
-                className="mb1"
                 type="text"
+                className="mb1"
                 placeholder="Email"
                 value={email}
                 onChange={this.onEmailChange}
               />
             </div>
-            <div className="flex pt1">
+            <div className="flex checkout-form--input-container">
               <div className="col-6 mr1">
                 <TextInput
                   errors={errors.password}

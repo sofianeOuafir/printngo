@@ -5,7 +5,7 @@ const TextInput = ({ errors, ...props }) => {
     <div className="flex flex-direction--column">
       <input {...props} />
       {errors && (
-        <ul className="errors">
+        <ul className="errors mb1">
           {errors.map((error, index) => (
             <li key={index}>{error}</li>
           ))}
