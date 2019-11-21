@@ -1,0 +1,14 @@
+@import './../variables/breakpoints';
+@import './../variables/size';
+
+.page-banner--title {
+  @media(max-width: $tablet-breakpoint) {
+    font-size: $m-size;
+  }
+}
+
+.page-banner--description {
+  @media(max-width: $tablet-breakpoint) {
+    font-size: 1rem;
+  }
+}

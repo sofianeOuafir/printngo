@@ -1,0 +1,38 @@
+@import './../variables/breakpoints';
+@import './../variables/size';
+
+.top-up-product {
+  @media(max-width: $tablet-breakpoint) {
+    margin-top: 15px;
+  }
+}
+
+.top-up-product--name-container {
+  height: 50px;
+  @media(max-width: 957px) {
+    height: 80px
+  }
+  @media(max-width: $tablet-breakpoint) {
+    height: 100%;
+  }
+}
+
+.top-up-product--description-container {
+  height: 80px;
+  @media(max-width: 957px) {
+    height: 110px
+  }
+  @media(max-width: $tablet-breakpoint) {
+    height: 100%;
+  }
+}
+
+.top-up-product--most-popular, .top-up-product--not-most-popular {
+  height: 40px;
+}
+
+.top-up-product--not-most-popular {
+  @media(max-width: $tablet-breakpoint) {
+    height: 0px;
+  }
+}

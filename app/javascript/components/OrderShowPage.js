@@ -30,12 +30,12 @@ class OrderShowPage extends React.Component {
         {this.state.loadingData ? (
           <Loader />
         ) : (
-          <div className="h5 content-container my2">
+          <div className="h5 content-container my2 order-show-page">
             <Link to="/printing-orders" className="text-navy">
               &larr; See All Orders
             </Link>
             <div className="flex justify-content--between align-items--center">
-              <h1 className="h4 text-navy favourite-font-weight">
+              <h1 className="order-show-page--title text-navy favourite-font-weight">
                 Order #{order.id} - Secret Code: {order.secret_code}
               </h1>
               <Link

@@ -9,13 +9,13 @@ import PageBanner from "./PageBanner";
 
 const payAsYouGoProduct = {
   name: "Pay as you go",
-  description: "Very Flexible",
+  description: "Pay for what you need, whenever you want!",
   selling_points: [
     {
-      description: "/"
+      description: "Very flexible, adapted for your needs."
     },
     {
-      description: "Minimum $0,50 per order"
+      description: "Minimum $0,50 per order."
     },
     {
       description: "Printing in black cost $0,25 per document."
@@ -27,7 +27,7 @@ const payAsYouGoProduct = {
 };
 
 const PayAsYouGoCallToAction = () => (
-  <UploadAndPrintButton className="button button-outline button-outline--pink" />
+  <UploadAndPrintButton text="Print Now" className="button button-outline button-outline--pink" />
 );
 
 class PricingPage extends React.Component {
@@ -59,9 +59,9 @@ class PricingPage extends React.Component {
           <Loader />
         ) : (
           <div className="content-container">
-            <div className="flex">
+            <div className="flex products--container">
               <div className="col-3">
-                <div style={{ paddingLeft: "2px", paddingRight: "2px" }}>
+                <div className="fullheight" style={{ paddingLeft: "2px", paddingRight: "2px" }}>
                   <TopUpProduct
                     CallToAction={PayAsYouGoCallToAction}
                     topUpProduct={payAsYouGoProduct}
@@ -71,7 +71,7 @@ class PricingPage extends React.Component {
               {topUpProducts.map((topUpProduct, index) => {
                 return (
                   <div key={index} className="col-3">
-                    <div style={{ paddingLeft: "2px", paddingRight: "2px" }}>
+                    <div className="fullheight" style={{ paddingLeft: "2px", paddingRight: "2px" }}>
                       <TopUpProduct topUpProduct={topUpProduct} />
                     </div>
                   </div>
@@ -79,8 +79,7 @@ class PricingPage extends React.Component {
               })}
             </div>
             <div
-              className="mb3 border border-color--grey"
-              style={{ marginTop: "3px" }}
+              className="flex justify-content--center mb3 border border-color--grey mt1"
             >
               <AllPlanIncludes />
             </div>
