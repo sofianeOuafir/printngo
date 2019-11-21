@@ -2,6 +2,7 @@
 @import './../variables/size';
 
 .checkout-form--input-container {
+  display: flex;
   div {
     @media(max-width: $tablet-breakpoint) {
       margin-right: 0px;

@@ -20,14 +20,14 @@ class HowItWorks extends React.Component {
       {
         src: images.creditCard,
         alt: "Pick Up Location Icon",
-        title: "Make a secure payment and get a secret code",
+        title: "Make a secure payment and get a access code",
         number: 3
       },
       {
         src: images.file,
         alt: "Gather Documents Icon",
         title:
-          "Provide the secret code at the pick up location and gather your documents",
+          "Provide the access code at the pick up location and gather your documents",
         number: 4
       }
     ];

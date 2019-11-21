@@ -28,7 +28,7 @@ const allPlanSellingPoints = [
 
 const AllPlanIncludes = () => (
   <div className="px1 pb1">
-    <h1 className="center text-navy h4">All plan includes...</h1>
+    <h3 className="center text-navy">All plan includes...</h3>
     <div className="flex all-plan-includes--selling-points-container justify-content--around">
       {allPlanSellingPoints.map((allPlanSellingPoints, index) => (
         <SellingPointList sellingPoints={allPlanSellingPoints} key={index} />

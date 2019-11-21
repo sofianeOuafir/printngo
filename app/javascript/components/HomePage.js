@@ -88,7 +88,7 @@ class HomePage extends React.Component {
       {
         title: "We are privacy oriented",
         description:
-          "Your privacy is the most important for us. We will provide you with a secret code so that only you can access and trigger the print of your documents.",
+          "Your privacy is the most important for us. We will provide you with a access code so that only you can access and trigger the print of your documents.",
         imgSrc: images.lock,
         imgAlt: "privacy oriented icon",
         bgColour: "bg-navy",

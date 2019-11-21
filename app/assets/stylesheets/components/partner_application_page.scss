@@ -1,0 +1,23 @@
+@import './../variables/breakpoints';
+@import './../variables/size';
+
+.partner-application-page-form, .partner-application-page--thank-you {
+  @media(max-width: $tablet-breakpoint) {
+    font-size: $s-size;
+  }
+
+  @media(max-width: $mobile-breakpoint) {
+    font-size: $xs-size;
+  }
+}
+
+.partner-application-page-form--input-container {
+  div {
+    @media(max-width: $tablet-breakpoint) {
+      margin-right: 0px;
+    }
+  }
+  @media(max-width: $tablet-breakpoint) {
+    flex-direction: column;
+  }
+}

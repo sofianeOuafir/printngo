@@ -227,7 +227,7 @@ class CheckoutForm extends Component {
       <form className="checkout--form form__input-container" onSubmit={this.onSubmit}>
         {!auth.authenticated && (
           <Fragment>
-            <div className="checkout-form--input-container flex">
+            <div className="checkout-form--input-container">
               <div className="col-6 mr1">
                 <TextInput
                   errors={errors.firstname}

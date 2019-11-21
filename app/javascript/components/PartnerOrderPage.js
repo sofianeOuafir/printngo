@@ -55,7 +55,7 @@ class PartnerOrderPage extends React.Component {
     const { order } = this.props;
     return (
       <div className="content-container flex flex-direction--column fullscreen align-items--center justify-content--center">
-        <div className="halfwidth">
+        <div className="fullwidth">
           <div className="mb1">
             <PartnerSearchBar
               secretCode={secretCode}
@@ -66,10 +66,10 @@ class PartnerOrderPage extends React.Component {
 
           {order.id && !displayError && <PartnerOrder order={order} />}
           {displayError && (
-            <div className="text-pink h5">
+            <div className="text-pink h5 ">
               <p>
                 We couldn't find any order corresponding with the following
-                secret code: <strong>{secretCode}</strong>. <br />
+                access code: <strong>{secretCode}</strong>. <br />
                 Possible reasons:
               </p>
               <ul>

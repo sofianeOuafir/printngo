@@ -1,0 +1,18 @@
+@import './../variables/breakpoints';
+@import './../variables/size';
+
+.wallet-page {
+  @media(max-width: $tablet-breakpoint) {
+    font-size: $s-size;
+  }
+
+  @media(max-width: $mobile-breakpoint) {
+    font-size: $xs-size;
+  }
+}
+
+.transaction--amount {
+  @media(max-width: $tablet-breakpoint) {
+    font-size: $s-size;
+  }
+}

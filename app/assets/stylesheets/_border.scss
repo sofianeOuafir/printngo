@@ -16,12 +16,19 @@
   border-right: 1px black solid;
 }
 
+.border-left {
+  border-left: 1px black solid;
+}
+
 .border-color--white {
   border-color: white;
 }
 
 .border-top--none {
   border-top: none;
+}
+.border-bottom--none {
+  border-bottom: none;
 }
 
 .border-right--none {

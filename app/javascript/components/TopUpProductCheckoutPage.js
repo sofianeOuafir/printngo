@@ -38,8 +38,8 @@ class TopUpProductCheckoutPage extends React.Component {
               description={product.description}
             />
 
-            <div className="flex border border-color--grey">
-              <div className="col-6 px3 border-right border-color--grey">
+            <div className="border top-up-product-checkout-page--payment--description-container flex border-color--grey border-bottom--none">
+              <div className="col-6 px1 border-right border-color--grey pb1 top-up-product-checkout-page--payment-container">
                 <h3 className="text-navy">Payment</h3>
                 <StripeProvider apiKey={process.env.STRIPE_PUBLIC_KEY}>
                   <Elements>
@@ -51,7 +51,7 @@ class TopUpProductCheckoutPage extends React.Component {
                 </StripeProvider>
               </div>
               <div className="col-6">
-                <div className="px3">
+                <div className="px3 flex flex-direction--column pb1">
                   <h3 className="text-navy">{product.name}</h3>
                   <p className="text-navy">{product.description}</p>
                   <SellingPointList
@@ -59,10 +59,10 @@ class TopUpProductCheckoutPage extends React.Component {
                     sellingPoints={product.selling_points}
                   />
                 </div>
-                <div className="mb3 border-top border-color--grey">
-                  <AllPlanIncludes />
-                </div>
               </div>
+            </div>
+            <div className="border border-color--grey mb3">
+              <AllPlanIncludes />
             </div>
           </Fragment>
         )}

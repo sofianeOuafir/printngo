@@ -36,7 +36,7 @@ class OrderShowPage extends React.Component {
             </Link>
             <div className="flex justify-content--between align-items--center">
               <h1 className="order-show-page--title text-navy favourite-font-weight">
-                Order #{order.id} - Secret Code: {order.secret_code}
+                Order #{order.id} - Access Code: {order.secret_code}
               </h1>
               <Link
                 target="_blank"

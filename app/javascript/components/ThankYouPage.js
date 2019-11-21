@@ -49,13 +49,13 @@ class ThankYouPage extends React.Component {
                 <p>
                   A big thank you for your purchase {firstname}! <br />
                   <br /> As we really care about your privacy, we have generated
-                  for you a secret code that you will need to provide when
+                  for you a access code that you will need to provide when
                   picking up your order. <br />
                   <br />
-                  Your secret code is <strong>{secret_code}</strong> and your
+                  Your access code is <strong>{secret_code}</strong> and your
                   order number is <strong>#{id}</strong>.{" "}
                 </p>
-                <p>Do not share the secret code with anyone. </p>
+                <p>Do not share the access code with anyone. </p>
                 <p>
                   You can now gather your documents at the following address: (or
                   in any of our pick up locations)
@@ -66,7 +66,7 @@ class ThankYouPage extends React.Component {
                 <p className="m0">
                   As we care about your privacy: <br />
                   <strong>
-                    If you are unable to provide the secret code, please note
+                    If you are unable to provide the access code, please note
                     that a proof of ID will be required for gathering your
                     order.
                   </strong>

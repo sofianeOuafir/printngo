@@ -19,8 +19,9 @@
 }
 
 .navbar-links {
-  @media(max-width: $laptop-breakpoint) {
-    display: none;
+  display: none;
+  @media(min-width: $laptop-breakpoint) {
+    display: block;
   }
 }
 

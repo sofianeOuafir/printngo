@@ -79,7 +79,7 @@ class PricingPage extends React.Component {
               })}
             </div>
             <div
-              className="flex justify-content--center mb3 border border-color--grey mt1"
+              className=" mb3 border border-color--grey mt1"
             >
               <AllPlanIncludes />
             </div>
