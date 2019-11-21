@@ -1,0 +1,21 @@
+@import 'variables/breakpoints';
+
+.order {
+  @media(max-width: $tablet-breakpoint) {
+    font-size: 1rem;
+  }
+  @media(max-width: $mobile-breakpoint) {
+    font-size: 0.8rem;
+  }
+}
+.order--created-at {
+  @media(max-width: $tablet-breakpoint) {
+    display: none;
+  }
+}
+
+.order--order-details span {
+  @media(max-width: $mobile-breakpoint) {
+    display: none;
+  }
+}

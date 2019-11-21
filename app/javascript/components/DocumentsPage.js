@@ -33,7 +33,7 @@ class DocumentsPage extends React.Component {
             className="sticky bg-white flex align-items--center justify-content--between"
             style={{ height: "75px" }}
           >
-            <h1 className="text-navy favourite-font-weight h4">
+            <h1 className="documents-page--title text-navy favourite-font-weight h4">
               Your Documents
             </h1>
             {orderItems.length > 0 && (

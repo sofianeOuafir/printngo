@@ -1,0 +1,9 @@
+@import './../variables/breakpoints';
+@import './../variables/size';
+
+.documents-page--title {
+  @media(max-width: $mobile-breakpoint) {
+    font-size: 1.2rem !important;
+  }
+}
+

@@ -1,0 +1,30 @@
+@import './../variables/breakpoints';
+@import './../variables/size';
+
+
+.document {
+  width: 150px;
+  font-size: $s-size;
+
+  @media(min-width: $tablet-breakpoint) {
+    flex-direction: column;
+  }
+
+  @media(max-width: $tablet-breakpoint) {
+    align-items: center;
+    flex-direction: row;
+    font-size: 1rem;
+    width: 90%;
+  }
+
+  @media(max-width: $mobile-breakpoint) {
+    font-size: $xs-size;
+  }
+}
+
+.document--info {
+  word-wrap: break-word;
+  @media(max-width: $tablet-breakpoint) {
+    margin-left: $xs-size;
+  }
+}

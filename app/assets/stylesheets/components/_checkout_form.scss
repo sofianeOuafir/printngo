@@ -1,0 +1,24 @@
+@import './../variables/breakpoints';
+@import './../variables/size';
+
+.checkout-form--input-container {
+  display: flex;
+  div {
+    @media(max-width: $tablet-breakpoint) {
+      margin-right: 0px;
+    }
+  }
+  @media(max-width: $tablet-breakpoint) {
+    flex-direction: column;
+  }
+}
+
+.checkout--form {
+  @media(max-width: $tablet-breakpoint) {
+    font-size: $s-size;
+  }
+
+  @media(max-width: $mobile-breakpoint) {
+    font-size: $xs-size;
+  }
+}

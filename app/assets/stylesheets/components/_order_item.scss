@@ -1,0 +1,27 @@
+@import './../variables/breakpoints';
+@import './../variables/size';
+
+.order-item {
+  @media(max-width: $tablet-breakpoint) {
+    flex-direction: column;
+    font-size: $s-size;
+  }
+
+  @media(max-width: $mobile-breakpoint) {
+    font-size: $xs-size;
+  }
+}
+
+.order-item--document {
+  @media(max-width: $tablet-breakpoint) {
+    margin-bottom: $s-size;
+  }
+}
+
+.order-item--quantity {
+  @media(max-width: $tablet-breakpoint) {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+}

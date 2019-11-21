@@ -38,7 +38,7 @@ const OrderLayout = ({
           description="Choose the right products and quantities"
         />
         <Step
-          title="Pick Location"
+          title="Location"
           description="Select the closest location for gathering your documents"
         />
         <Step title="Payment" description="Make a secure payment" />
@@ -49,17 +49,17 @@ const OrderLayout = ({
       className={`py1 content-container ${stickyBar ? "sticky" : ""} bg-white`}
     >
       <div className="flex h5 justify-content--between align-items--center">
-        <h1 className="h5 text-navy favourite-font-weight">{title}</h1>
-        {info && <span className="h5 text-navy">{info}</span>}
+        <h1 className="order-layout--title h5 text-navy favourite-font-weight">{title}</h1>
+        {info && <span className="order-layout--info h5 text-navy">{info}</span>}
         {nextButton && (
           <Link
             style={nextButton.disabled ? { pointerEvents: "none" } : null}
-            className={`button ${
+            className={`button order-layout--next-button ${
               nextButton.disabled ? "button--grey" : "button--pink"
             }`}
             to={nextButton.link}
           >
-            {nextButton.text} &rarr;
+            {nextButton.text}
           </Link>
         )}
       </div>

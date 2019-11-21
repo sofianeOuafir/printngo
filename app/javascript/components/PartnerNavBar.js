@@ -34,7 +34,7 @@ class PartnerNavBar extends React.Component {
           </div>
           <div>
             {authenticated ? (
-              <Fragment>
+              <div>
                 <Link to="/partner">Print</Link>
                 <Link to="/partner/location">My Location</Link>
                 <Link to="/partner/printed-orders">
@@ -50,7 +50,7 @@ class PartnerNavBar extends React.Component {
                 <Link to="#" onClick={this.onLogout}>
                   Log out
                 </Link>
-              </Fragment>
+              </div>
             ) : (
               <Fragment>
                 <Link to="/partner/login">Login</Link>

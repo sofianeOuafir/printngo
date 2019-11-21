@@ -1,0 +1,18 @@
+@import 'variables/breakpoints';
+@import 'variables/size';
+
+.thank-you-page--info {
+  @media(max-width: $tablet-breakpoint) {
+    font-size: $s-size;
+  }
+
+  @media(max-width: $mobile-breakpoint) {
+    font-size: $xs-size;
+  }
+}
+
+.thank-you-page--title {
+  @media(max-width: $tablet-breakpoint) {
+    font-size: $s-size;
+  }
+}

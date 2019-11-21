@@ -1,0 +1,18 @@
+@import 'variables/breakpoints';
+@import 'variables/size';
+
+.status {
+
+  @media(min-width: $tablet-breakpoint) {
+    align-items: center;
+  }
+  @media(max-width: $tablet-breakpoint) {
+    flex-direction: column;
+  }
+}
+
+.status--icon {
+  @media(max-width: $tablet-breakpoint) {
+    font-size: $m-size;
+  }
+}

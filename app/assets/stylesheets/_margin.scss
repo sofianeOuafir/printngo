@@ -59,3 +59,13 @@
 .my3 {
   @extend .mt3, .mb3;
 }
+
+.mx1 {
+  @extend .mr1, .ml1;
+}
+.mx2 {
+  @extend .mr2, .ml2;
+}
+.mx3 {
+  @extend .mr3, .ml3;
+}

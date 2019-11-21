@@ -6,7 +6,7 @@ class Api::V1::Partners::PrintOrdersController < ApplicationController
   end
 
   def show
-    print_order = PrintOrder.searchable_by_partner.find_by(secret_code: params[:id])
+    print_order = PrintOrder.searchable_by_partner.find_by(secret_code: params[:id].upcase)
     if print_order.present?
       render json: print_order.to_json(include: [{deliverables: { include: [:print_product, :printing_attempts] }}, :user]), status: 200
     else

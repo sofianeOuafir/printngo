@@ -1,0 +1,50 @@
+@import './../variables/breakpoints';
+@import './../border';
+@import './../flex';
+
+.how-it-works .title {
+  @media(max-width: $mobile-breakpoint) {
+    font-size: 1.4rem;
+  }
+}
+
+.how-it-works-steps-container {
+  @media(max-width: $tablet-breakpoint) {
+    flex-direction: column;
+  }
+}
+
+.how-it-works-step {
+  @media(max-width: $tablet-breakpoint) {
+    align-items: center;
+    flex-direction: row;
+  }
+}
+
+.how-it-works-step img {
+  @media(max-width: $tablet-breakpoint) {
+    margin-right: 15px;
+    width: 80px;
+  }
+  @media(max-width: $mobile-breakpoint) {
+    width: 60px;
+  }
+}
+
+.how-it-works-step .title {
+  @media(max-width: $tablet-breakpoint) {
+    text-align: left;
+  }
+  @media(max-width: $mobile-breakpoint) {
+    font-size: 1rem;
+  }
+}
+
+.how-it-works-step .step-number {
+  @media(max-width: $tablet-breakpoint) {
+    margin-right: 15px;
+  }
+  @media(max-width: $mobile-breakpoint) {
+    font-size: 1.2rem;
+  }
+}

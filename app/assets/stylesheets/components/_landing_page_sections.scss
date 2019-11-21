@@ -1,0 +1,52 @@
+@import './../variables/breakpoints';
+
+.landing-page-section--left {
+  width: 60%;
+  @media(max-width: $tablet-breakpoint) {
+    width: 100%;
+    margin:0;
+    text-align: center;
+  }
+}
+
+.landing-page-section--left .title {
+  @media(max-width: $mobile-breakpoint) {
+    font-size: 1.4rem;
+  }
+}
+
+.landing-page-section--left .description .keyword {
+  @media(max-width: $mobile-breakpoint) {
+    font-size: 1.2rem;
+  }
+}
+
+.landing-page-section--left .description {
+  font-size: 1.4rem;
+  @media(max-width: $mobile-breakpoint) {
+    font-size: 1rem;
+  }
+}
+
+.landing-page-section--right {
+  display: block;
+  @media(max-width: $tablet-breakpoint) {
+    display: none;
+  }
+}
+
+.landing-page-section--left .second-call-to-action {
+  @media(max-width: $tablet-breakpoint) {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.landing-page-section--left .call-to-action {
+  display: none;
+  @media(max-width: $tablet-breakpoint) {
+    display: block;
+    width: 100%;
+  }
+}

@@ -8,7 +8,7 @@ const PartnerSearchBar = ({ onSubmit, onChange, secretCode }) => {
       <div className="col-8">
         <TextInput
           type="text"
-          placeholder="Secret Code"
+          placeholder="Access Code"
           value={secretCode}
           onChange={onChange}
         />

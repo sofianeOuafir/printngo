@@ -1,0 +1,12 @@
+@import 'variables/breakpoints';
+@import 'variables/size';
+
+.order-show-page, .order-show-page--title {
+  font-size: $m-size;
+  @media(max-width: $tablet-breakpoint) {
+    font-size: $s-size;
+  }
+  @media(max-width: $mobile-breakpoint) {
+    font-size: $xs-size;
+  }
+}

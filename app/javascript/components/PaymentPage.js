@@ -45,15 +45,17 @@ class PaymentPage extends React.Component {
               ? fromCentsToDollars(walletBalance)
               : fromCentsToDollars(0)
           }`}
+          nextButton={{
+            text: "Almost There",
+            link: "/order/payment"
+          }}
         >
           <div className="h5 content-container">
             <div className="p2 border border-color--grey mb2">
               <h2 className="h5 text-navy favourite-font-weight">
                 Pick up Location
               </h2>
-              <Partner
-                partner={selected_partner}
-              />
+              <Partner partner={selected_partner} />
               <div className="mt1">
                 <Link
                   to="/order/pick-up-location"
@@ -74,9 +76,7 @@ class PaymentPage extends React.Component {
               <h2 className="h5 text-navy favourite-font-weight">Payment</h2>
               <StripeProvider apiKey={process.env.STRIPE_PUBLIC_KEY}>
                 <Elements>
-                  <CheckoutForm
-                    orderType={PRINT_ORDER}
-                  />
+                  <CheckoutForm orderType={PRINT_ORDER} />
                 </Elements>
               </StripeProvider>
             </div>

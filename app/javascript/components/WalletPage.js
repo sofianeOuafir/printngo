@@ -46,10 +46,10 @@ class WalletPage extends React.Component {
     return loadingData ? (
       <Loader />
     ) : (
-      <div className="content-container">
+      <div className="content-container wallet-page">
         <h1 className="text-navy">
-          <span className="mr1">Wallet</span>
-          <span className="h2">
+          <span className="mr1 h3">Wallet</span>
+          <span className="h3 wallet-page--balance">
             {`${
               walletBalance
                 ? fromCentsToDollars(walletBalance)
@@ -95,8 +95,8 @@ class WalletPage extends React.Component {
                     <span
                       className={
                         type == "Credit"
-                          ? "text-christmas-tree h4"
-                          : "text-red h4"
+                          ? "text-christmas-tree h4 transaction--amount"
+                          : "text-red h4 transaction--amount"
                       }
                     >
                       {amount}

@@ -1,0 +1,24 @@
+@import './../variables/breakpoints';
+
+.partner-list {
+  @media(max-width: $tablet-breakpoint) {
+    flex-direction: column-reverse;
+  }
+}
+
+.partner-list--list-container, .partner-list--map-container  {
+  @media(max-width: $tablet-breakpoint) {
+    flex-basis: none;
+  }
+}
+
+.partner-list--map-container {
+  height: 400px;
+  @media(max-width: $tablet-breakpoint) {
+    z-index: 0;
+    margin-bottom: 10px;
+    padding-left: 0px;
+    position: static;
+    height: 200px;
+  }
+}

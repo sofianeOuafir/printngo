@@ -10,15 +10,14 @@ const Order = ({ order }) => {
   const { total, id, payment, invoice } = order;
   const invoiceId = invoice ? invoice.id : null;
   return (
-    <div className="border border-color--grey p1 mb1">
-      <div className="h5 flex justify-content--between align-items--center center">
+    <div className="order--container border border-color--grey p1 mb1">
+      <div className="order h5 flex justify-content--between align-items--center center">
         {order.print_order && (
           <div className="flex flex-direction--column">
-            <span className="mb1">Status</span>
             <OrderStatus printable={order} />
           </div>
         )}
-        <div className="flex flex-direction--column">
+        <div className="order--created-at flex flex-direction--column">
           <span className="mb1">Order placed</span>
           <span>{getDateTimeFormat(payment.created_at)}</span>
         </div>
@@ -29,12 +28,12 @@ const Order = ({ order }) => {
 
         <div className="flex flex-direction--column">
           <span className="mb1">Order #{id}</span>
-          <div>
+          <div className="flex flex-direction--column">
             {order.print_order && <Link
               to={`/order/${id}`}
-              className="text-navy mr1"
+              className="text-navy mr1 order--order-details"
             >
-              Order details
+              <span>Order</span> Details
             </Link>}
             <Link
               target="_blank"
@@ -47,7 +46,7 @@ const Order = ({ order }) => {
         </div>
       </div>
       <div className="mt1">
-        <ReportIssue className="text-pink" order={order} />
+        <ReportIssue className="report-issue text-pink" order={order} />
       </div>
     </div>
   );

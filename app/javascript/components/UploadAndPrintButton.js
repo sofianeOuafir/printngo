@@ -186,7 +186,7 @@ class UploadAndPrintButton extends React.Component {
                   onClick={this.triggerFileDialog}
                   className="button button--navy button--no-border-radius center"
                 >
-                  Upload From Computer
+                  Upload From Device
                 </a>
                 <div className="flex justify-content--end mt1">
                   <a

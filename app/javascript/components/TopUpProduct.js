@@ -6,28 +6,27 @@ import SellingPointList from "./SellingPointList";
 const TopUpProduct = ({ CallToAction, topUpProduct }) => {
   const { selling_points, description, name, most_popular, id } = topUpProduct;
   return (
-    <div>
+    <div className="fullheight top-up-product" style={{ overflow: "hidden" }}>
       <div
         className={
           topUpProduct.most_popular
-            ? "flex flex-direction--vertical justify-content--center align-items--center bg-pink text-white center"
-            : ""
+            ? "top-up-product--most-popular flex flex-direction--vertical justify-content--center align-items--center bg-pink text-white center"
+            : "top-up-product--not-most-popular"
         }
-        style={{ height: "40px" }}
       >
         <span className="h4">
           {topUpProduct.most_popular ? "Most popular" : ""}
         </span>
       </div>
       <div
-        className={`px1 pt1 border border-color--grey ${topUpProduct.most_popular &&
-          "border-top--none"}`}
+        className={`px1 pt1 border fullheight border-color--grey ${
+          topUpProduct.most_popular ? "border-top--none" : ""
+        }`}
         style={{
-          height: "630px",
           background: `${most_popular && "rgba(255, 117, 124, 0.2)"}`
         }}
       >
-        <div className="center" style={{ height: "50px" }}>
+        <div className="center top-up-product--name-container">
           <span
             className={`m0
             text-navy
@@ -37,15 +36,14 @@ const TopUpProduct = ({ CallToAction, topUpProduct }) => {
           </span>
         </div>
         <div
-          className="mb1 border--bottom border-color--navy pb1"
-          style={{ height: "70px" }}
+          className="mb1 top-up-product--description-container border--bottom border-color--navy pb1"
         >
           <h2 className="px1 text-navy h5 favourite-font-weight center">
             <strong>{description}</strong>
           </h2>
         </div>
 
-        <div style={{ height: "50px" }} className="center">
+        <div style={{ height: "60px" }} className="center">
           {CallToAction ? (
             <CallToAction />
           ) : (
@@ -61,10 +59,10 @@ const TopUpProduct = ({ CallToAction, topUpProduct }) => {
             </Link>
           )}
         </div>
-        <SellingPointList
-          style={{ height: "100px" }}
-          sellingPoints={selling_points}
-        />
+        <div className="pb1"> 
+          <SellingPointList sellingPoints={selling_points} />
+
+        </div>
       </div>
     </div>
   );

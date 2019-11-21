@@ -1,0 +1,12 @@
+@import './../variables/breakpoints';
+@import './../variables/size';
+
+.order-item-list--totals, .order-item-list--empty {
+  @media(max-width: $tablet-breakpoint) {
+    font-size: $s-size;
+  }
+
+  @media(max-width: $mobile-breakpoint) {
+    font-size: $xs-size;
+  }
+}

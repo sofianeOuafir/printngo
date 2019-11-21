@@ -1,0 +1,15 @@
+@import 'variables/breakpoints';
+@import 'variables/colours';
+
+.top-up-product-checkout-page--payment--description-container {
+  @media(max-width: $tablet-breakpoint) {
+    flex-direction: column;
+  }
+}
+
+.top-up-product-checkout-page--payment-container {
+  @media(max-width: $tablet-breakpoint) {
+    border-right: none;
+    border-bottom: 1px $grey solid;
+  }
+}

@@ -3,6 +3,7 @@ import { HashLink as Link } from "react-router-hash-link";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { scroller } from "react-scroll";
+import HamburgerMenu from "react-hamburger-menu";
 
 import { startLogout } from "./../actions/auth";
 import { startSetClientCurrentOrder } from "./../actions/orders";
@@ -14,7 +15,8 @@ class Navbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loadingData: true
+      loadingData: true,
+      hamburgerMenuOpen: false
     };
   }
   componentDidMount() {
@@ -42,11 +44,21 @@ class Navbar extends React.Component {
     });
   };
 
+  onHamburgerMenuClick = () => {
+    this.setState(() => ({ hamburgerMenuOpen: !this.state.hamburgerMenuOpen }));
+  };
+
+  onCompanyNameClick = () => {
+    this.setState(() => ({ hamburgerMenuOpen: false }));
+  };
+
   render() {
     const { auth, clientCurrentOrder } = this.props;
-    const { authenticated, firstname } = auth;
+    const { authenticated } = auth;
     const pricingElement = <Link to="/pricing">Pricing</Link>;
-    const pickUpLocationsElement = <Link to="/pick-up-locations">Locations</Link>
+    const pickUpLocationsElement = (
+      <Link to="/pick-up-locations">Locations</Link>
+    );
     const contactUsElement = (
       <Link
         onClick={e => this.navigateAndScroll({ e, element: "contact-us" })}
@@ -64,65 +76,158 @@ class Navbar extends React.Component {
       </Link>
     );
 
+    const navBarItems = [
+      {
+        ShowWhenAuthenticated: true,
+        ShowWhenNonAuthenticated: false,
+        element: <Link to="/documents">Documents</Link>
+      },
+      {
+        ShowWhenAuthenticated: true,
+        ShowWhenNonAuthenticated: false,
+        element: <Link to="/printing-orders">Orders</Link>
+      },
+      {
+        ShowWhenAuthenticated: false,
+        ShowWhenNonAuthenticated: true,
+        element: (
+          <Link
+            onClick={e =>
+              this.navigateAndScroll({ e, element: "how-it-works" })
+            }
+            to="#"
+          >
+            How it works
+          </Link>
+        )
+      },
+      {
+        ShowWhenAuthenticated: false,
+        ShowWhenNonAuthenticated: true,
+        element: (
+          <Link
+            onClick={e =>
+              this.navigateAndScroll({ e, element: "why-print-n-go" })
+            }
+            to="#"
+          >
+            Why Print n' Go
+          </Link>
+        )
+      },
+      {
+        ShowWhenAuthenticated: true,
+        ShowWhenNonAuthenticated: true,
+        element: pricingElement
+      },
+      {
+        ShowWhenAuthenticated: true,
+        ShowWhenNonAuthenticated: true,
+        element: <UploadAndPrintButton text="Print Now" />,
+        printElement: true
+      },
+      {
+        ShowWhenAuthenticated: true,
+        ShowWhenNonAuthenticated: true,
+        element: <Link to="/become-partner">Become Partner</Link>
+      },
+      {
+        ShowWhenAuthenticated: true,
+        ShowWhenNonAuthenticated: true,
+        element: pickUpLocationsElement
+      },
+      {
+        ShowWhenAuthenticated: true,
+        ShowWhenNonAuthenticated: true,
+        element: contactUsElement
+      },
+      {
+        ShowWhenAuthenticated: false,
+        ShowWhenNonAuthenticated: true,
+        element: <SignInLink />
+      },
+      {
+        ShowWhenAuthenticated: true,
+        ShowWhenNonAuthenticated: false,
+        element: (
+          <Link to="#" onClick={this.onLogout}>
+            Log out
+          </Link>
+        )
+      },
+      {
+        ShowWhenAuthenticated: true,
+        ShowWhenNonAuthenticated: true,
+        element: basketElement
+      },
+      {
+        ShowWhenAuthenticated: true,
+        ShowWhenNonAuthenticated: true,
+        element: <WalletElement />
+      }
+    ];
+
     return (
-      <div
-        style={{ height: "75px" }}
-        className="navbar bg-navy fullwidth flex align-items--center border--bottom border-color--white"
-      >
-        <div className="content-container flex justify-content--between align-items--center fullwidth">
-          <div>
-            <Link className="website-name" to="/">
-              Print N' Go
-            </Link>
-          </div>
-          <div>
-            {authenticated ? (
-              <Fragment>
-                <Link to="/documents">Documents</Link>
-                <Link to="/printing-orders">Orders</Link>
-                {pricingElement}
-                <UploadAndPrintButton text="Print Now" />
-                <Link to="/become-partner">Become Partner</Link>
-                {pickUpLocationsElement}
-                {contactUsElement}
-                <Link to="/">{firstname}</Link>
-                <Link to="#" onClick={this.onLogout}>
-                  Log out
-                </Link>
-                {basketElement}
-                <WalletElement />
-              </Fragment>
-            ) : (
-              <Fragment>
-                <Link
-                  onClick={e =>
-                    this.navigateAndScroll({ e, element: "how-it-works" })
-                  }
-                  to="#"
-                >
-                  How it works
-                </Link>
-                <Link
-                  onClick={e =>
-                    this.navigateAndScroll({ e, element: "why-print-n-go" })
-                  }
-                  to="#"
-                >
-                  Why Print n' go
-                </Link>
-                {pricingElement}
-                <UploadAndPrintButton text="Print Now" />
-                <Link to="/become-partner">Become Partner</Link>
-                {pickUpLocationsElement}
-                {contactUsElement}
-                <SignInLink />
-                {basketElement}
-                <WalletElement />
-              </Fragment>
-            )}
+      <Fragment>
+        <div
+          style={{ height: "75px" }}
+          className="navbar bg-navy fullwidth flex align-items--center border--bottom border-color--white"
+        >
+          <div className="content-container flex justify-content--between align-items--center fullwidth">
+            <div>
+              <Link
+                onClick={this.onCompanyNameClick}
+                className="website-name"
+                to="/"
+              >
+                Print n' Go
+              </Link>
+            </div>
+            <div className="navbar-links">
+              {navBarItems.map((item, key) => {
+                var jsx = <Fragment key={key}>{item.element}</Fragment>;
+                if (authenticated && item.ShowWhenAuthenticated) {
+                  return jsx;
+                } else if (!authenticated && item.ShowWhenNonAuthenticated) {
+                  return jsx;
+                }
+              })}
+            </div>
+            <div className="hamburger-menu pointer">
+              <HamburgerMenu
+                isOpen={this.state.hamburgerMenuOpen}
+                menuClicked={this.onHamburgerMenuClick}
+                width={30}
+                height={20}
+                strokeWidth={3}
+                rotate={0}
+                color="white"
+                borderRadius={0}
+                animationDuration={0.4}
+              />
+            </div>
           </div>
         </div>
-      </div>
+        {this.state.hamburgerMenuOpen && (
+          <div className="hamburger-menu-items">
+            {navBarItems.map((item, key) => {
+              var jsx = item.printElement ? (
+                item.element
+              ) : (
+                <div key={key} onClick={this.onHamburgerMenuClick}>
+                  {item.element}
+                </div>
+              );
+
+              if (authenticated && item.ShowWhenAuthenticated) {
+                return jsx;
+              } else if (!authenticated && item.ShowWhenNonAuthenticated) {
+                return jsx;
+              }
+            })}
+          </div>
+        )}
+      </Fragment>
     );
   }
 }
@@ -137,7 +242,4 @@ const mapDispatchToProps = dispatch => ({
   startSetClientCurrentOrder: () => dispatch(startSetClientCurrentOrder())
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withRouter(Navbar));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Navbar));

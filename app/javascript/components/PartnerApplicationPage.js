@@ -140,7 +140,7 @@ class PartnerApplicationPage extends React.Component {
           description="Want to attract more customers in your shop while making money off your printing machine? Your are in the right place! Simply fill up the form and we will get back to you as soon as possible. "
         />
         {applied ? (
-          <div className="content-container border border-color--grey h5 flex justify-content--center">
+          <div className="partner-application-page--thank-you content-container border border-color--grey h5 flex justify-content--center">
             <div className="my2">
               <div className="center">
                 <img src={images.success} alt="Success Icon" width={100} />
@@ -162,9 +162,9 @@ class PartnerApplicationPage extends React.Component {
         ) : (
           <div>
             <div className="border border-color--grey p1">
-              <form className="form__input-container" onSubmit={this.onSubmit}>
+              <form className="form__input-container partner-application-page-form" onSubmit={this.onSubmit}>
                 <h2 className="text-navy h5">About you:</h2>
-                <div className="flex">
+                <div className="flex partner-application-page-form--input-container">
                   <div className="col-6 mr1">
                     <TextInput
                       errors={errors.firstname}
@@ -184,7 +184,7 @@ class PartnerApplicationPage extends React.Component {
                     />
                   </div>
                 </div>
-                <div className="pt1">
+                <div>
                   <TextInput
                     errors={errors.email}
                     onChange={this.onEmailChange}
@@ -195,7 +195,7 @@ class PartnerApplicationPage extends React.Component {
                   />
                 </div>
                 <h2 className="text-navy h5">About your company:</h2>
-                <div className="flex">
+                <div className="flex partner-application-page-form--input-container">
                   <div className="col-6 mr1">
                     <TextInput
                       errors={errors.companyName}
@@ -215,7 +215,7 @@ class PartnerApplicationPage extends React.Component {
                     />
                   </div>
                 </div>
-                <div className="pt1">
+                <div>
                   <TextInput
                     errors={errors.companyAddress}
                     onChange={this.onCompanyAddressChange}
@@ -226,7 +226,7 @@ class PartnerApplicationPage extends React.Component {
                   />
                 </div>
                 <button
-                  className={`mt1 fullwidth button button--pink
+                  className={`fullwidth button button--pink
       }`}
                   text="Submit"
                 >
