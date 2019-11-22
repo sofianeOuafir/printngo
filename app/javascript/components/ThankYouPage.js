@@ -49,7 +49,7 @@ class ThankYouPage extends React.Component {
                 <p>
                   A big thank you for your purchase {firstname}! <br />
                   <br /> As we really care about your privacy, we have generated
-                  for you a access code that you will need to provide when
+                  for you an access code that you will need to provide when
                   picking up your order. <br />
                   <br />
                   Your access code is <strong>{secret_code}</strong> and your

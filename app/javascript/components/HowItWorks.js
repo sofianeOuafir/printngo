@@ -20,7 +20,7 @@ class HowItWorks extends React.Component {
       {
         src: images.creditCard,
         alt: "Pick Up Location Icon",
-        title: "Make a secure payment and get a access code",
+        title: "Make a secure payment and get an access code",
         number: 3
       },
       {
