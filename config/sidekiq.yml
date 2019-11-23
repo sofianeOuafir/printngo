@@ -23,6 +23,6 @@
   - low
 
 production:
-  :concurrency: 2
+  :concurrency: 25
 staging:
-  :concurrency: 2
+  :concurrency: 15
