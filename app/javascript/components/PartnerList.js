@@ -23,31 +23,38 @@ class PartnerList extends React.Component {
       () => ({ sortingData: true }),
       () => {
         new Promise((resolve, reject) => {
-          if (navigator.geolocation) {
-            navigator.permissions
-              .query({ name: "geolocation" })
-              .then(permissionStatus => {
-                this.setState(() => ({
-                  permissionStatus: permissionStatus.state
-                }));
-              })
-              .then(() => {
-                navigator.geolocation.getCurrentPosition(
-                  data => {
-                    const { latitude: lat, longitude: lng } = data.coords;
-                    startSetPartners({ lat, lng }).then(() => {
-                      resolve();
-                    });
-                  },
-                  () => {
-                    reject(
-                      "Geolocation is not enabled. Please enable Geolocation and try again."
-                    );
-                  },
-                  { enableHighAccuracy: true, timeout: 10000 }
-                );
-              });
-          } else {
+          try {
+            if (navigator.geolocation) {
+              navigator.permissions
+                .query({ name: "geolocation" })
+                .then(permissionStatus => {
+                  this.setState(() => ({
+                    permissionStatus: permissionStatus.state
+                  }));
+                })
+                .then(() => {
+                  navigator.geolocation.getCurrentPosition(
+                    data => {
+                      const { latitude: lat, longitude: lng } = data.coords;
+                      startSetPartners({ lat, lng }).then(() => {
+                        resolve();
+                      });
+                    },
+                    () => {
+                      reject(
+                        "Geolocation is not enabled. Please enable Geolocation and try again."
+                      );
+                    },
+                    { enableHighAccuracy: true, timeout: 10000 }
+                  );
+                })
+                .catch(e => {
+                  console.log(e);
+                });
+            } else {
+              reject("Geolocation is not supported by this browser.");
+            }
+          } catch {
             reject("Geolocation is not supported by this browser.");
           }
         })
@@ -136,9 +143,7 @@ class PartnerList extends React.Component {
             />
           ))}
         </div>
-        <div
-          className="col-5 partner-list--map-container pl1 sticky sticky--map"
-        >
+        <div className="col-5 partner-list--map-container pl1 sticky sticky--map">
           <MapElement
             defaultZoom={defaultMapZoom}
             defaultMapCenter={mapCenter}
