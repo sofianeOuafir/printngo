@@ -18,7 +18,6 @@ import PrintingOrdersPage from "./PrintingOrdersPage";
 import TopUpOrdersPage from "./TopUpOrdersPage";
 import DocumentsPage from "./DocumentsPage";
 import OrderShowPage from "./OrderShowPage";
-import "react-toastify/dist/ReactToastify.css";
 import PublicRoute from "../routers/PublicRoute";
 import PrivateRoute from "../routers/PrivateRoute";
 import InvoicePage from "./InvoicePage";
