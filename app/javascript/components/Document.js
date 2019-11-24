@@ -9,7 +9,7 @@ const Document = ({ name, numberOfPage, onViewClick = null }) => (
       <img src={images.pdf} alt="Document Icon" width={40} />
     </a>
 
-    <a onClick={onViewClick} className="pointer document--info">
+    <a onClick={onViewClick} className="pointer document--info flex flex-direction--column">
       <span title={name}>
         {name.length > 30 ? `${name.substring(0, 30)}...` : name}
       </span>
