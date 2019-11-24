@@ -12,7 +12,7 @@ class Layout extends React.Component {
         </Helmet>
         <Navbar />
         {this.props.children}
-        <ScrollUpButton />
+        <ScrollUpButton ToggledStyle={{ left: 30 }} />
       </React.Fragment>
     );
   }
