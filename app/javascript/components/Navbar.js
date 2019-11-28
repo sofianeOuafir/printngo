@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { scroller } from "react-scroll";
 import HamburgerMenu from "react-hamburger-menu";
+import ModalVideo from "react-modal-video";
 
 import { startLogout } from "./../actions/auth";
 import { startSetClientCurrentOrder } from "./../actions/orders";
@@ -17,7 +18,8 @@ class Navbar extends React.Component {
     super(props);
     this.state = {
       loadingData: true,
-      hamburgerMenuOpen: false
+      hamburgerMenuOpen: false,
+      videoModalOpen: false
     };
   }
   componentDidMount() {
@@ -107,9 +109,10 @@ class Navbar extends React.Component {
         ShowWhenNonAuthenticated: true,
         element: (
           <Link
-            onClick={e =>
-              this.navigateAndScroll({ e, element: "why-print-n-go" })
-            }
+            onClick={e => {
+              e.preventDefault();
+              this.setState(() => ({ videoModalOpen: true }));
+            }}
             to="#"
           >
             Why Print n' Go
@@ -176,10 +179,7 @@ class Navbar extends React.Component {
         >
           <div className="content-container flex justify-content--between align-items--center fullwidth">
             <div>
-              <Link
-                onClick={this.onCompanyNameClick}
-                to="/"
-              >
+              <Link onClick={this.onCompanyNameClick} to="/">
                 <Logo />
               </Link>
             </div>
@@ -207,6 +207,13 @@ class Navbar extends React.Component {
               />
             </div>
           </div>
+          <ModalVideo
+            channel="youtube"
+            autoplay={1}
+            isOpen={this.state.videoModalOpen}
+            videoId="AxhhsoDcai0"
+            onClose={() => this.setState({ videoModalOpen: false })}
+          />
         </div>
         {this.state.hamburgerMenuOpen && (
           <div className="hamburger-menu-items">
