@@ -10,6 +10,7 @@ import { startSetClientCurrentOrder } from "./../actions/orders";
 import UploadAndPrintButton from "./UploadAndPrintButton";
 import SignInLink from "./SignInLink";
 import WalletElement from "./WalletElement";
+import Logo from "./Logo";
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -177,10 +178,9 @@ class Navbar extends React.Component {
             <div>
               <Link
                 onClick={this.onCompanyNameClick}
-                className="website-name"
                 to="/"
               >
-                Print n' Go
+                <Logo />
               </Link>
             </div>
             <div className="navbar-links">

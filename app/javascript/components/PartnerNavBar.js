@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 
+import Logo from "./Logo";
 import { awaitingConfirmationOrders, printedOrders } from "./../lib/filters";
 import { startLogout } from "../actions/auth";
 import { startSetPartnerOrders } from "../actions/orders";
@@ -28,8 +29,8 @@ class PartnerNavBar extends React.Component {
       >
         <div className="content-container flex justify-content--between align-items--center fullwidth">
           <div>
-            <Link className="website-name" to="/partner">
-              Print N' Go
+            <Link to="/partner">
+              <Logo />
             </Link>
           </div>
           <div>

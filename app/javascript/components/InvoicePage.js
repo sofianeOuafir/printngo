@@ -121,7 +121,7 @@ class InvoicePage extends React.Component {
                 }
               >
                 <View style={[styles.row, styles.rowWithoutBorder]}>
-                  <Image src={images.printer} style={[{ width: 100 }]} />
+                  <Image src={images.logoOnly} style={[{ width: 100 }]} />
                   <Text
                     style={[
                       styles.headerText,
