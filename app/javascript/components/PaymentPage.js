@@ -47,7 +47,8 @@ class PaymentPage extends React.Component {
           }`}
           nextButton={{
             text: "Almost There",
-            link: "/order/payment"
+            link: "/order/payment",
+            disabled: true
           }}
         >
           <div className="h5 content-container">
