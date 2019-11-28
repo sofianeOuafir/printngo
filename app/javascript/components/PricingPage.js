@@ -27,7 +27,7 @@ const payAsYouGoProduct = {
 };
 
 const PayAsYouGoCallToAction = () => (
-  <UploadAndPrintButton text="Print Now" className="button button-outline button-outline--pink" />
+  <UploadAndPrintButton text="Instant Quote" className="button button-outline button-outline--pink" />
 );
 
 class PricingPage extends React.Component {
