@@ -35,6 +35,7 @@
     "react-spinners": "^0.6.1",
     "react-stripe-elements": "^5.0.1",
     "react-toastify": "^5.4.0",
+    "react-youtube": "^7.9.0",
     "react_ujs": "^2.6.0",
     "recompose": "^0.30.0",
     "redux": "^4.0.4",

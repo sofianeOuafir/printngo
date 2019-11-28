@@ -12,6 +12,7 @@ import UploadAndPrintButton from "./UploadAndPrintButton";
 import SignInLink from "./SignInLink";
 import WalletElement from "./WalletElement";
 import Logo from "./Logo";
+import { INTRODUCTION_VIDEO_ID } from "./../constants/constants";
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -211,7 +212,7 @@ class Navbar extends React.Component {
             channel="youtube"
             autoplay={1}
             isOpen={this.state.videoModalOpen}
-            videoId="AxhhsoDcai0"
+            videoId={INTRODUCTION_VIDEO_ID}
             onClose={() => this.setState({ videoModalOpen: false })}
           />
         </div>

@@ -4,6 +4,7 @@ import { HashLink } from "react-router-hash-link";
 import { scroller } from "react-scroll";
 
 import HowItWorks from "./HowItWorks";
+import WhyPrintnGo from "./WhyPrintnGo";
 import LandingPageSection from "./LandingPageSection";
 import images from "./../images";
 import UploadAndPrintButton from "./UploadAndPrintButton";
@@ -65,25 +66,24 @@ class HomePage extends React.Component {
         SecondCallToActionButton: SeeHowItWorksButtonMainSection
       },
       {
-        id: "why-print-n-go",
-        title: "We are the closest printing service near you",
-        description:
-          "How? Our pick up locations are your favourite convenient stores, cafes, pharmacies and any kind of shop that has a printing machine.",
-        imgSrc: images.pinpoint,
-        imgAlt: "Closest printing service icon",
-        bgColour: "bg-grapefruit",
-        reverse: true,
-        SecondCallToActionButton: GoToLocationPageElement
-      },
-      {
         title: "The quickest process and simplest way for printing documents",
         description:
           "We're close to you, we cut down your travel time.<br /><br />No need to carry around your USB key any longer. Just upload, arrive and print.<br /><br />Once your documents are uploaded, you will no longer need a computer for completing the printing. Our partners, at the pick up locations, will do the printing for you.",
         imgSrc: images.runningMan,
         imgAlt: "Quickest printing service icon",
         bgColour: "bg-green",
-        reverse: false,
+        reverse: true,
         SecondCallToActionButton: UploadAndPrintButton
+      },
+      {
+        title: "We are the closest printing service near you",
+        description:
+          "How? Our pick up locations are your favourite convenient stores, cafes, pharmacies and any kind of shop that has a printing machine.",
+        imgSrc: images.pinpoint,
+        imgAlt: "Closest printing service icon",
+        bgColour: "bg-grapefruit",
+        reverse: false,
+        SecondCallToActionButton: GoToLocationPageElement
       },
       {
         title: "We are privacy oriented",
@@ -92,7 +92,7 @@ class HomePage extends React.Component {
         imgSrc: images.lock,
         imgAlt: "privacy oriented icon",
         bgColour: "bg-navy",
-        reverse: false,
+        reverse: true,
         SecondCallToActionButton: UploadAndPrintButton
       },
       {
@@ -102,7 +102,7 @@ class HomePage extends React.Component {
         imgSrc: images.debitCard,
         imgAlt: "no more coins icon",
         bgColour: "bg-mustard",
-        reverse: true,
+        reverse: false,
         SecondCallToActionButton: UploadAndPrintButton
       },
       {
@@ -143,6 +143,7 @@ class HomePage extends React.Component {
           if (index === 1) {
             return (
               <Fragment key={index}>
+                <WhyPrintnGo />
                 <HowItWorks />
                 <LandingPageSection {...section} />
               </Fragment>
