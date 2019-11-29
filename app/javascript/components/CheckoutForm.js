@@ -64,7 +64,10 @@ class CheckoutForm extends Component {
   };
 
   onEmailChange = e => {
-    const email = e.target.value;
+    let email = e.target.value;
+    if(email) {
+      email = email.toLowerCase();
+    }
     this.setState(prevState => ({
       email,
       errors: { ...prevState.errors, email: [] }

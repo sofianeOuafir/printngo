@@ -19,7 +19,7 @@ module Authenticatable
 
   module ClassMethods
     def authenticate(email, password)
-      user = find_by_email(email)
+      user = find_by_email(email.downcase)
       if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
         user
       end
