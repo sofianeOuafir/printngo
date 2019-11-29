@@ -36,6 +36,7 @@ import WalletPage from "./WalletPage";
 import ScrollToTop from "./ScrollToTop";
 import PickUpLocationsPage from "./PickUpLocationsPage";
 import PartnerApplicationPage from "./PartnerApplicationPage";
+import TermsAndConditions from "./TermsAndConditions";
 
 const store = configureStore();
 
@@ -118,6 +119,14 @@ class App extends React.Component {
                 title="Home"
                 component={HomePage}
               />
+              <AppRoute
+                exact
+                path="/terms-and-conditions"
+                layout={Layout}
+                title="Terms And Conditions"
+                component={TermsAndConditions}
+              />
+              
               <AppRoute
                 exact
                 path="/become-partner/application"
