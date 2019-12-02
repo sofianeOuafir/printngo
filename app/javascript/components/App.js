@@ -37,6 +37,7 @@ import ScrollToTop from "./ScrollToTop";
 import PickUpLocationsPage from "./PickUpLocationsPage";
 import PartnerApplicationPage from "./PartnerApplicationPage";
 import TermsAndConditions from "./TermsAndConditions";
+import DocumentShowPage from "./DocumentShowPage";
 
 const store = configureStore();
 
@@ -85,6 +86,9 @@ const PrivateOrderAwaitingConfirmationPage = () => (
 const PrivateTopUpOrderThankYouPage = () => (
   <PrivateRoute component={TopUpOrderThankYouPage} />
 );
+const PrivateDocumentShowPage = () => (
+  <PrivateRoute component={DocumentShowPage} />
+);
 
 const PublicUserLoginPage = () => <PublicRoute component={UserLoginPage} />;
 const PublicPartnerLoginPage = () => (
@@ -126,7 +130,7 @@ class App extends React.Component {
                 title="Terms And Conditions"
                 component={TermsAndConditions}
               />
-              
+
               <AppRoute
                 exact
                 path="/become-partner/application"
@@ -185,6 +189,12 @@ class App extends React.Component {
                 path="/documents"
                 layout={Layout}
                 component={PrivateDocumentsPage}
+              />
+              <AppRoute
+                title="Document"
+                path="/document/:id"
+                layout={Layout}
+                component={PrivateDocumentShowPage}
               />
               <AppRoute
                 title="Login"

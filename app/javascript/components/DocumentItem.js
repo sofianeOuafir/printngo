@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import axios from "axios";
 import { toast } from "react-toastify";
 
 import { getDateTimeFormat } from "../lib/date";
@@ -8,13 +7,6 @@ import { startAddOrderItem } from "../actions/orderItems";
 import Document from "./Document";
 
 class DocumentItem extends React.Component {
-  onViewClick(id) {
-    axios.get(`/api/v1/documents/${id}`).then(response => {
-      var win = window.open(response.data.url, "_blank");
-      win.focus();
-    });
-  }
-
   onAddToBasket({ e, id: documentId }) {
     e.preventDefault();
     const { startAddOrderItem } = this.props;
@@ -31,11 +23,7 @@ class DocumentItem extends React.Component {
     return (
       <div className="document-item h5 flex align-items--center border border-color--grey p2 mb1">
         <div className="col-5">
-          <Document
-            name={name}
-            numberOfPage={number_of_page}
-            onViewClick={() => this.onViewClick(id)}
-          />
+          <Document name={name} numberOfPage={number_of_page} id={id} />
         </div>
         <div className="flex justify-content--between col-7 fullwidth align-items--center">
           <div className="created-at">

@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import axios from "axios";
 import { toast } from "react-toastify";
 import { IoMdRemoveCircle, IoIosAddCircle } from "react-icons/io";
 
@@ -41,13 +40,6 @@ class OrderItem extends React.Component {
     );
   };
 
-  onViewClick = id => {
-    axios.get(`/api/v1/documents/${id}`).then(response => {
-      var win = window.open(response.data.url, "_blank");
-      win.focus();
-    });
-  };
-
   render() {
     const { orderItem, products, readOnly } = this.props;
     const {
@@ -62,11 +54,7 @@ class OrderItem extends React.Component {
     return (
       <div className="center order-item border border-color--grey flex align-items--center px1  py2 mb1 h5">
         <div className="order-item--document">
-          <Document
-            name={name}
-            numberOfPage={number_of_page}
-            onViewClick={() => this.onViewClick(documentId)}
-          />
+          <Document name={name} numberOfPage={number_of_page} id={documentId} />
         </div>
         <div className="flex justify-content--around fullwidth">
           <div className="flex flex-direction--column justify-content--center">
