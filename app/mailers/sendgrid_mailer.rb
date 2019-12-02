@@ -45,7 +45,7 @@ class SendgridMailer
           "dynamic_template_data": {
             firstname: user.firstname,
             wallet_balance: user.wallet_balance.to_f / 100,
-            id: order.id
+            invoice_id: order.invoice.id
           }
         }
       ],
