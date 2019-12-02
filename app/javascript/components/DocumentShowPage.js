@@ -10,8 +10,8 @@ class DocumentShowPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: "",
-      loadingData: true,
+      url: props.url || "",
+      loadingData: this.props.url ? false : true,
       width: null
     };
   }
@@ -20,23 +20,33 @@ class DocumentShowPage extends React.Component {
   }
 
   setDivSize = () => {
-    this.setState({ width: this.pdfWrapper.getBoundingClientRect().width });
+    this.setState({
+      width: this.pdfWrapper
+        ? this.pdfWrapper.getBoundingClientRect().width
+        : null
+    });
   };
 
   componentDidMount() {
+    window.addEventListener("resize", throttle(this.setDivSize, 500));
+
     const id = this.props.match.params.id;
-    axios.get(`/api/v1/documents/${id}`).then(response => {
-      this.setState(() => ({
-        url: response.data.url,
-        loadingData: false
-      }));
-      this.setDivSize();
-      window.addEventListener("resize", throttle(this.setDivSize, 500));
-    });
+    !this.state.url
+      ? axios
+          .get(`/api/v1/documents/${id}`)
+          .then(response => {
+            this.setState(() => ({
+              url: response.data.url,
+              loadingData: false
+            }));
+          })
+          .then(() => {
+            this.setDivSize();
+          })
+      : this.setDivSize();
   }
   render() {
     const { url, loadingData } = this.state;
-
     return loadingData ? (
       <Loader />
     ) : (

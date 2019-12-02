@@ -81,10 +81,9 @@ class ThankYouPage extends React.Component {
                 </Link>
                 <Link
                   className="mt3 button button-outline--pink"
-                  target="_blank"
                   to={`/invoice/${invoice.id}`}
                 >
-                  Download Invoice
+                  See Invoice
                 </Link>
               </div>
             </div>

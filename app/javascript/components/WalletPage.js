@@ -22,7 +22,7 @@ class WalletPage extends React.Component {
     if (order.print_order) {
       this.props.history.push(`/order/${order.id}`);
     } else {
-      window.open(`/invoice/${invoice.id}`);
+      this.props.history.push(`/invoice/${invoice.id}`);
     }
   };
 

@@ -27,7 +27,7 @@ class DocumentViewer extends Component {
     const Nav = () => {
       return (
         <div
-          className={`flex justify-content--between mb1 sticky bg-white py1`}
+          className={`flex justify-content--between mb1 sticky bg-white pb1`}
         >
           <button
             className={`button ${
@@ -55,7 +55,7 @@ class DocumentViewer extends Component {
     };
     return (
       <Fragment>
-        <Nav />
+        {numPages > 1 && <Nav />}
         <Document
           file={this.props.file}
           loading={<Loader />}

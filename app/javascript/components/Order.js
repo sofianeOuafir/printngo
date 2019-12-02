@@ -36,7 +36,6 @@ const Order = ({ order }) => {
               <span>Order</span> Details
             </Link>}
             <Link
-              target="_blank"
               to={`/invoice/${invoiceId}`}
               className="text-navy mr1"
             >
