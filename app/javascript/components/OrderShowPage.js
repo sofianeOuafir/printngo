@@ -39,7 +39,6 @@ class OrderShowPage extends React.Component {
                 Order #{order.id} - Access Code: {order.secret_code}
               </h1>
               <Link
-                target="_blank"
                 className="text-navy"
                 to={`/invoice/${order.invoice.id}`}
               >
