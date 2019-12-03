@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   helper_method :current_user, :current_order, :current_partner, :current_person
-  skip_before_action :verify_authenticity_token
 
   private
 

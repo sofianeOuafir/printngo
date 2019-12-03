@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
+import axios from "axios";
 
 import { startGetCurrentUser } from "./../actions/auth";
 import PartnerPage from "./PartnerPage";
@@ -86,9 +87,6 @@ const PrivateOrderAwaitingConfirmationPage = () => (
 const PrivateTopUpOrderThankYouPage = () => (
   <PrivateRoute component={TopUpOrderThankYouPage} />
 );
-const PublicDocumentShowPage = () => (
-  <PublicRoute component={DocumentShowPage} />
-);
 
 const PublicUserLoginPage = () => <PublicRoute component={UserLoginPage} />;
 const PublicPartnerLoginPage = () => (
@@ -96,6 +94,10 @@ const PublicPartnerLoginPage = () => (
 );
 
 class App extends React.Component {
+  componentDidMount() {
+    const csrfToken = document.querySelector('[name="csrf-token"]').content;
+    axios.defaults.headers.common["X-CSRF-Token"] = csrfToken;
+  }
   render() {
     return (
       <Provider store={store}>
@@ -194,7 +196,7 @@ class App extends React.Component {
                 title="Document"
                 path="/document/:id"
                 layout={Layout}
-                component={PublicDocumentShowPage}
+                component={DocumentShowPage}
               />
               <AppRoute
                 title="Login"
