@@ -86,8 +86,8 @@ const PrivateOrderAwaitingConfirmationPage = () => (
 const PrivateTopUpOrderThankYouPage = () => (
   <PrivateRoute component={TopUpOrderThankYouPage} />
 );
-const PrivateDocumentShowPage = () => (
-  <PrivateRoute component={DocumentShowPage} />
+const PublicDocumentShowPage = () => (
+  <PublicRoute component={DocumentShowPage} />
 );
 
 const PublicUserLoginPage = () => <PublicRoute component={UserLoginPage} />;
@@ -194,7 +194,7 @@ class App extends React.Component {
                 title="Document"
                 path="/document/:id"
                 layout={Layout}
-                component={PrivateDocumentShowPage}
+                component={PublicDocumentShowPage}
               />
               <AppRoute
                 title="Login"
