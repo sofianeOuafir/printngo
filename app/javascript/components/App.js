@@ -286,4 +286,4 @@ store.dispatch(startGetCurrentUser()).then(() => {
 
 ReactDOM.render(<Loader />, document.getElementById("app"));
 
-export default Loader;
+export default App;
