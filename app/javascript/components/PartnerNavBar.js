@@ -1,66 +1,80 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import Logo from "./Logo";
 import { awaitingConfirmationOrders, printedOrders } from "./../lib/filters";
 import { startLogout } from "../actions/auth";
 import { startSetPartnerOrders } from "../actions/orders";
+import Navbar from "./Navbar";
 
 class PartnerNavBar extends React.Component {
-  onLogout = () => {
-    this.props.startLogout().then(() => {
-      this.props.history.push("/partner");
-    });
-  };
-
   componentDidMount() {
     const { startSetPartnerOrders } = this.props;
     startSetPartnerOrders();
   }
 
+  onLogout = () => {
+    this.props.startLogout().then(() => {
+      this.props.history.push("/partner/login");
+    });
+  };
+
   render() {
     const { auth, printedOrders, awaitingConfirmationOrders } = this.props;
-    const { authenticated, firstname } = auth;
-    return (
-      <div
-        style={{ height: "75px" }}
-        className="navbar bg-navy fullwidth flex align-items--center border--bottom border-color--white"
-      >
-        <div className="content-container flex justify-content--between align-items--center fullwidth">
-          <div>
-            <Link to="/partner">
-              <Logo />
-            </Link>
-          </div>
-          <div>
-            {authenticated ? (
-              <div>
-                <Link to="/partner">Print</Link>
-                <Link to="/partner/location">My Location</Link>
-                <Link to="/partner/printed-orders">
-                  Printed Orders ({printedOrders.length})
-                </Link>
-                <Link to="/partner/awaiting-confirmation">
-                  Awaiting Confirmation{" "}
-                  <span className="text-orange">
-                    ({awaitingConfirmationOrders.length})
-                  </span>
-                </Link>
-                <Link to="/partner">{firstname}</Link>
-                <Link to="#" onClick={this.onLogout}>
-                  Log out
-                </Link>
-              </div>
-            ) : (
-              <Fragment>
-                <Link to="/partner/login">Login</Link>
-              </Fragment>
-            )}
-          </div>
-        </div>
-      </div>
-    );
+    const { firstname } = auth;
+    const navBarItems = [
+      {
+        ShowWhenAuthenticated: true,
+        ShowWhenNonAuthenticated: false,
+        element: <Link to="/partner">Print</Link>
+      },
+      {
+        ShowWhenAuthenticated: true,
+        ShowWhenNonAuthenticated: false,
+        element: <Link to="/partner/location">My Location</Link>
+      },
+      {
+        ShowWhenAuthenticated: true,
+        ShowWhenNonAuthenticated: false,
+        element: (
+          <Link to="/partner/printed-orders">
+            Printed Orders ({printedOrders.length})
+          </Link>
+        )
+      },
+      {
+        ShowWhenAuthenticated: true,
+        ShowWhenNonAuthenticated: false,
+        element: (
+          <Link to="/partner/awaiting-confirmation">
+            Awaiting Confirmation{" "}
+            <span className="text-orange">
+              ({awaitingConfirmationOrders.length})
+            </span>
+          </Link>
+        )
+      },
+      {
+        ShowWhenAuthenticated: true,
+        ShowWhenNonAuthenticated: false,
+        element: <Link to="/partner">{firstname}</Link>
+      },
+      {
+        ShowWhenAuthenticated: true,
+        ShowWhenNonAuthenticated: false,
+        element: (
+          <Link to="#" onClick={this.onLogout}>
+            Log out
+          </Link>
+        )
+      },
+      {
+        ShowWhenAuthenticated: false,
+        ShowWhenNonAuthenticated: true,
+        element: <Link to="/partner/login">Login</Link>
+      }
+    ];
+    return <Navbar logoRedirectTo="/partner" navBarItems={navBarItems} />;
   }
 }
 

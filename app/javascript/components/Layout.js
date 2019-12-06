@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./Navbar";
+import CustomerNavbar from "./CustomerNavbar";
 import ScrollUpButton from "react-scroll-up-button";
 import { Helmet } from "react-helmet";
 
@@ -10,7 +10,7 @@ class Layout extends React.Component {
         <Helmet>
           <title>Print N' Go - {this.props.title}</title>
         </Helmet>
-        <Navbar />
+        <CustomerNavbar />
         {this.props.children}
         <ScrollUpButton ToggledStyle={{ left: 30 }} />
       </React.Fragment>

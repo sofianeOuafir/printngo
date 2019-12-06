@@ -20,16 +20,13 @@ const OrderLayout = ({
     </Helmet>
     <div
       style={{ height: "75px" }}
-      className="navbar flex justify-content--center bg-navy align-items--center"
+      className="navbar bg-navy fullwidth flex align-items--center border--bottom border-color--white"
     >
-      <div className="content-container">
-        <div className="flex align-items--center">
-          <Link to="/">
-            <Logo />
-          </Link>
-          <div className="text-white mr1"> - </div>
-          <WalletElement />
-        </div>
+      <div className="content-container justify-content--between flex align-items--center fullwidth">
+        <Link to="/">
+          <Logo />
+        </Link>
+        <WalletElement />
       </div>
     </div>
     <div className="mt2 content-container">
