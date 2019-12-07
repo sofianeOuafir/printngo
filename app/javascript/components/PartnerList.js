@@ -125,7 +125,7 @@ class PartnerList extends React.Component {
           {sortingError && (
             <p className="h5 m0 mb1 text-navy">{sortingError}</p>
           )}
-          {partners.map((partner, index) => (
+          {partners.length > 0 ? partners.map((partner, index) => (
             <Partner
               showMap={showEachMap}
               highlighted={
@@ -141,7 +141,9 @@ class PartnerList extends React.Component {
               onMouseEnter={() => this.onPartnerMouseEnter(partner)}
               key={index}
             />
-          ))}
+          )) : (
+            <p className="h5 text-navy m0">Printing locations coming soon!</p>
+          )}
         </div>
         <div className="col-5 partner-list--map-container pl1 sticky sticky--map">
           <MapElement
