@@ -157,9 +157,17 @@ class PartnerList extends React.Component {
   }
 }
 
-const mapStateToProps = ({ partners }) => ({
-  partners
-});
+const mapStateToProps = (
+  { partners: partnersFromReduxStore },
+  { partners: partnersFromProps }
+) => {
+  const partners = partnersFromProps
+    ? partnersFromProps
+    : partnersFromReduxStore;
+  return {
+    partners
+  };
+};
 
 const mapStateToDispatch = dispatch => ({
   startSetPartners: position => dispatch(startSetPartners(position))
