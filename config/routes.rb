@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1, defaults: { format: 'json' } do
       resources :users, only: [:create]
+      namespace :admins do
+        resources :sessions, only: %i[create destroy show]
+      end
       namespace :users do
         resources :print_orders, only: %i[index show]
         resources :top_up_orders, only: %i[index show]

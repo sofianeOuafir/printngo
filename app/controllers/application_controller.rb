@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user!
     return if current_user.present?
+
     render json: {
       error: 'Unauthorized'
     }, status: 401
@@ -12,6 +13,15 @@ class ApplicationController < ActionController::Base
 
   def authenticate_partner!
     return if current_partner.present?
+
+    render json: {
+      error: 'Unauthorized'
+    }, status: 401
+  end
+
+  def authenticate_admin!
+    return if current_admin.present?
+
     render json: {
       error: 'Unauthorized'
     }, status: 401
@@ -27,6 +37,10 @@ class ApplicationController < ActionController::Base
 
   def current_partner
     @current_partner ||= Partner.find(session[:partner_id]) if session[:partner_id]
+  end
+
+  def current_admin
+    @current_admin ||= Admin.find(session[:admin_id]) if session[:admin_id]
   end
 
   def current_order

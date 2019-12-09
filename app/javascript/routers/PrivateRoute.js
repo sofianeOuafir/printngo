@@ -13,6 +13,8 @@ export const PrivateRoute = ({
   let pathname;
   if (context === "partner") {
     pathname = "/partner/login";
+  } else if (context === "admin") {
+    pathname = "/admin/login";
   } else {
     pathname = "/login";
   }

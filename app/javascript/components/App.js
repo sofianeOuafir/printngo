@@ -39,6 +39,8 @@ import PickUpLocationsPage from "./PickUpLocationsPage";
 import PartnerApplicationPage from "./PartnerApplicationPage";
 import TermsAndConditions from "./TermsAndConditions";
 import DocumentShowPage from "./DocumentShowPage";
+import AdminLayout from "./AdminLayout";
+import AdminLoginPage from "./AdminLoginPage";
 
 const store = configureStore();
 
@@ -92,6 +94,8 @@ const PublicUserLoginPage = () => <PublicRoute component={UserLoginPage} />;
 const PublicPartnerLoginPage = () => (
   <PublicRoute component={PartnerLoginPage} />
 );
+
+const PublicAdminLoginPage = () => <PublicRoute component={AdminLoginPage} />;
 
 class App extends React.Component {
   componentDidMount() {
@@ -265,6 +269,15 @@ class App extends React.Component {
                 component={PrivatePartnerLocationPage}
               />
               {/* Partner Layout */}
+
+              {/* Admin Layout */}
+              <AppRoute
+                title="Login"
+                path="/admin/login"
+                layout={AdminLayout}
+                component={PublicAdminLoginPage}
+              />
+              {/* Admin Layout */}
             </Switch>
           </ScrollToTop>
           <ToastContainer autoClose={2000} />
