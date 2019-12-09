@@ -19,6 +19,11 @@ class AdminNavBar extends React.Component {
       {
         ShowWhenAuthenticated: true,
         ShowWhenNonAuthenticated: false,
+        element: <Link to="/admin/new-partner-applications">Partner Applications</Link>
+      },
+      {
+        ShowWhenAuthenticated: true,
+        ShowWhenNonAuthenticated: false,
         element: <Link to="/admin">{firstname}</Link>
       },
       {

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
@@ -9,6 +10,7 @@ Rails.application.routes.draw do
       resources :users, only: [:create]
       namespace :admins do
         resources :sessions, only: %i[create destroy show]
+        resources :partner_applications
       end
       namespace :users do
         resources :print_orders, only: %i[index show]

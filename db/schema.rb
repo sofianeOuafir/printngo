@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_07_203012) do
+ActiveRecord::Schema.define(version: 2019_12_09_032551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -152,14 +152,13 @@ ActiveRecord::Schema.define(version: 2019_12_07_203012) do
   create_table "partner_applications", force: :cascade do |t|
     t.string "firstname"
     t.string "lastname"
-    t.bigint "partner_id"
     t.string "email"
     t.string "company_name"
     t.string "postcode"
     t.string "company_address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["partner_id"], name: "index_partner_applications_on_partner_id"
+    t.boolean "archived", default: false
   end
 
   create_table "partners", force: :cascade do |t|
@@ -178,7 +177,9 @@ ActiveRecord::Schema.define(version: 2019_12_07_203012) do
     t.string "email"
     t.string "password_hash"
     t.string "password_salt"
+    t.bigint "partner_application_id"
     t.index ["email"], name: "index_partners_on_email", unique: true
+    t.index ["partner_application_id"], name: "index_partners_on_partner_application_id"
   end
 
   create_table "payments", force: :cascade do |t|
@@ -253,7 +254,7 @@ ActiveRecord::Schema.define(version: 2019_12_07_203012) do
   add_foreign_key "orders", "partners", column: "printer_id"
   add_foreign_key "orders", "partners", column: "selected_partner_id"
   add_foreign_key "orders", "users"
-  add_foreign_key "partner_applications", "partners"
+  add_foreign_key "partners", "partner_applications"
   add_foreign_key "payments", "orders"
   add_foreign_key "printing_attempts", "deliverables"
   add_foreign_key "printing_attempts", "partners"

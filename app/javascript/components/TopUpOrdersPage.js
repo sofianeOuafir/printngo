@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import Loader from "./Loader";
 import { startSetClientOrders } from "../actions/orders";
 import OrderList from "./OrderList";
-import OrdersPageNavbar from "./OrdersPageNavbar";
+import OrderSubNavBar from "./OrderSubNavBar";
 
 class TopUpOrdersPage extends React.Component {
   constructor(props) {
@@ -27,7 +27,7 @@ class TopUpOrdersPage extends React.Component {
     } else {
       return (
         <div className="content-container">
-          <OrdersPageNavbar />
+          <OrderSubNavBar />
           <OrderList />
         </div>
       );

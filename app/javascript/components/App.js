@@ -41,6 +41,9 @@ import TermsAndConditions from "./TermsAndConditions";
 import DocumentShowPage from "./DocumentShowPage";
 import AdminLayout from "./AdminLayout";
 import AdminLoginPage from "./AdminLoginPage";
+import NewPartnerApplicationsPage from "./NewPartnerApplicationsPage";
+import ArchivedPartnerApplicationsPage from "./ArchivedPartnerApplicationsPage";
+import AdminHomePage from "./AdminHomePage";
 
 const store = configureStore();
 
@@ -96,6 +99,16 @@ const PublicPartnerLoginPage = () => (
 );
 
 const PublicAdminLoginPage = () => <PublicRoute component={AdminLoginPage} />;
+const PrivateNewPartnerApplicationsPage = () => (
+  <PrivateRoute component={NewPartnerApplicationsPage} />
+);
+const PrivateArchivedPartnerApplicationsPage = () => (
+  <PrivateRoute component={ArchivedPartnerApplicationsPage} />
+);
+
+const PrivateAdminHomePage = () => (
+  <PrivateRoute component={AdminHomePage} />
+)
 
 class App extends React.Component {
   componentDidMount() {
@@ -272,10 +285,29 @@ class App extends React.Component {
 
               {/* Admin Layout */}
               <AppRoute
+                exact
+                title="Home"
+                path="/admin"
+                layout={AdminLayout}
+                component={PrivateAdminHomePage}
+              />
+              <AppRoute
                 title="Login"
                 path="/admin/login"
                 layout={AdminLayout}
                 component={PublicAdminLoginPage}
+              />
+              <AppRoute
+                title="New Applications"
+                path="/admin/new-partner-applications"
+                layout={AdminLayout}
+                component={PrivateNewPartnerApplicationsPage}
+              />
+              <AppRoute
+                title="Archived Applications"
+                path="/admin/archived-partner-applications"
+                layout={AdminLayout}
+                component={PrivateArchivedPartnerApplicationsPage}
               />
               {/* Admin Layout */}
             </Switch>

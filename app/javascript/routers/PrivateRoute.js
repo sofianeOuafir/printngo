@@ -5,7 +5,7 @@ import { Route, Redirect } from "react-router-dom";
 import { getContext } from "./../lib/context";
 
 export const PrivateRoute = ({
-  isAuthenticated,
+  isAuthenticated = true,
   component: Component,
   ...rest
 }) => {
@@ -18,14 +18,13 @@ export const PrivateRoute = ({
   } else {
     pathname = "/login";
   }
+
   return (
     <Route
       {...rest}
       component={props =>
         isAuthenticated ? (
-          <div>
-            <Component {...props} />
-          </div>
+          <Component {...props} />
         ) : (
           <Redirect
             to={{
