@@ -44,6 +44,8 @@ import AdminLoginPage from "./AdminLoginPage";
 import NewPartnerApplicationsPage from "./NewPartnerApplicationsPage";
 import ArchivedPartnerApplicationsPage from "./ArchivedPartnerApplicationsPage";
 import AdminHomePage from "./AdminHomePage";
+import AdminPartnerApplicationEditPage from "./AdminPartnerApplicationEditPage";
+import AdminPartnerApplicationsNewPage from "./AdminPartnerApplicationsNewPage";
 
 const store = configureStore();
 
@@ -106,9 +108,15 @@ const PrivateArchivedPartnerApplicationsPage = () => (
   <PrivateRoute component={ArchivedPartnerApplicationsPage} />
 );
 
-const PrivateAdminHomePage = () => (
-  <PrivateRoute component={AdminHomePage} />
-)
+const PrivateAdminHomePage = () => <PrivateRoute component={AdminHomePage} />;
+
+const PrivateAdminPartnerApplicationEditPage = () => (
+  <PrivateRoute component={AdminPartnerApplicationEditPage} />
+);
+
+const PrivateAdminPartnerApplicationsNewPage = () => (
+  <PrivateRoute component={AdminPartnerApplicationsNewPage} />
+);
 
 class App extends React.Component {
   componentDidMount() {
@@ -308,6 +316,18 @@ class App extends React.Component {
                 path="/admin/archived-partner-applications"
                 layout={AdminLayout}
                 component={PrivateArchivedPartnerApplicationsPage}
+              />
+              <AppRoute
+                title="Partner Application"
+                path="/admin/partner-application/:id"
+                layout={AdminLayout}
+                component={PrivateAdminPartnerApplicationEditPage}
+              />
+              <AppRoute
+                title="Partner Application - New"
+                path="/admin/partner-applications/new"
+                layout={AdminLayout}
+                component={PrivateAdminPartnerApplicationsNewPage}
               />
               {/* Admin Layout */}
             </Switch>

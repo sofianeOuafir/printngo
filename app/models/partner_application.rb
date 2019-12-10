@@ -14,4 +14,20 @@ class PartnerApplication < ApplicationRecord
   scope :with_partner, -> { where(id: Partner.all.map(&:partner_application_id)) }
   scope :archived, -> { where(archived: true).or(with_partner) }
   scope :not_archived, -> { where.not(id: archived.map(&:id)) }
+
+  def partner_created?
+    partner.present?
+  end
+
+  def serializable_hash(options = {})
+    h = super(options)
+    h[:partner_created] = partner_created?
+    h
+  end
+
+  def as_json(options = {})
+    h = super(options)
+    h[:partner_created] = partner_created?
+    h
+  end
 end

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       namespace :admins do
         resources :sessions, only: %i[create destroy show]
         resources :partner_applications
+        resources :partners
       end
       namespace :users do
         resources :print_orders, only: %i[index show]

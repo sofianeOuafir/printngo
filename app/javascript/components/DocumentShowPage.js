@@ -1,10 +1,11 @@
 import React from "react";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import axios from "axios";
 import throttle from "lodash.throttle";
 
 import Loader from "./Loader";
 import DocumentViewer from "./DocumentViewer";
+import BackButton from "./BackButton";
 
 class DocumentShowPage extends React.Component {
   constructor(props) {
@@ -58,16 +59,10 @@ class DocumentShowPage extends React.Component {
         }}
       >
         <div className="content-container">
-          <Link
-            to="#"
-            onClick={e => {
-              e.preventDefault();
-              this.props.history.goBack();
-            }}
-            className="button button--navy my1"
-          >
-            &larr; Back
-          </Link>
+          <div className="my1">
+            <BackButton />
+          </div>
+
           <div
             id="pdfWrapper"
             style={{ width: "100%" }}

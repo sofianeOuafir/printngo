@@ -4,6 +4,7 @@ import axios from "axios";
 import PartnerApplicationSubNavBar from "./PartnerApplicationSubNavBar";
 import PartnerApplicationList from "./PartnerApplicationList";
 import Loader from "./Loader";
+import { Link } from "react-router-dom";
 
 class NewPartnerApplicationsPage extends React.Component {
   constructor(props) {
@@ -15,12 +16,14 @@ class NewPartnerApplicationsPage extends React.Component {
   }
 
   componentDidMount() {
-    axios.get("/api/v1/admins/partner_applications?archived=false").then(response => {
-      this.setState(() => ({
-        partnerApplications: response.data,
-        loadingData: false
-      }));
-    });
+    axios
+      .get("/api/v1/admins/partner_applications?archived=false")
+      .then(response => {
+        this.setState(() => ({
+          partnerApplications: response.data,
+          loadingData: false
+        }));
+      });
   }
 
   render() {
@@ -32,6 +35,7 @@ class NewPartnerApplicationsPage extends React.Component {
       <div className="content-container">
         <PartnerApplicationSubNavBar />
         <PartnerApplicationList partnerApplications={partnerApplications} />
+        <Link to="/admin/partner-applications/new" className="button button--navy">Create New Application</Link>
       </div>
     );
   }
