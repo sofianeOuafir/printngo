@@ -10,6 +10,8 @@ class Activation < ApplicationRecord
   validates :password, presence: true, confirmation: true, on: :update
   validates_confirmation_of :password, on: :update
 
+  scope :not_activated, -> { where(activated: false) }
+
   attr_accessor :password
 
   private

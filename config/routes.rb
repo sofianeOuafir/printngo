@@ -20,6 +20,7 @@ Rails.application.routes.draw do
         resources :transactions, only: :index
       end
       namespace :partners do
+        resources :activations
         resources :sessions, only: %i[create destroy show]
         resources :print_orders, only: %i[show update index]
         resources :deliverables, only: [:show]
