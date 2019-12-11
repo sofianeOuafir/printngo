@@ -3,7 +3,7 @@ class Api::V1::Admins::PartnersController < ApplicationController
 
   def create
     partner_application = PartnerApplication.find(params[:partner_application_id])
-    partner = Partner.create(
+    partner = Partner.new(
       firstname: partner_application.firstname,
       lastname: partner_application.lastname,
       email: partner_application.email,
@@ -19,6 +19,7 @@ class Api::V1::Admins::PartnersController < ApplicationController
       password: 'abc123'
     )
     if partner.save
+      partner.activations.create
       render json: partner.to_json
     end
   end

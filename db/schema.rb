@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_09_215030) do
+ActiveRecord::Schema.define(version: 2019_12_10_185944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activations", force: :cascade do |t|
+    t.string "token"
+    t.boolean "activated", default: false
+    t.bigint "partner_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["partner_id"], name: "index_activations_on_partner_id"
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -183,6 +192,7 @@ ActiveRecord::Schema.define(version: 2019_12_09_215030) do
     t.string "password_hash"
     t.string "password_salt"
     t.bigint "partner_application_id"
+    t.boolean "activated", default: false
     t.index ["email"], name: "index_partners_on_email", unique: true
     t.index ["partner_application_id"], name: "index_partners_on_partner_application_id"
   end
@@ -248,6 +258,7 @@ ActiveRecord::Schema.define(version: 2019_12_09_215030) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "activations", "partners"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "deliverables", "orders"
   add_foreign_key "deliverables", "products"

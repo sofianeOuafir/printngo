@@ -46,6 +46,7 @@ import ArchivedPartnerApplicationsPage from "./ArchivedPartnerApplicationsPage";
 import AdminHomePage from "./AdminHomePage";
 import AdminPartnerApplicationEditPage from "./AdminPartnerApplicationEditPage";
 import AdminPartnerApplicationsNewPage from "./AdminPartnerApplicationsNewPage";
+import ActivationPage from "./ActivationPage";
 
 const store = configureStore();
 
@@ -116,6 +117,9 @@ const PrivateAdminPartnerApplicationEditPage = () => (
 
 const PrivateAdminPartnerApplicationsNewPage = () => (
   <PrivateRoute component={AdminPartnerApplicationsNewPage} />
+);
+const PublicActivationPage = () => (
+  <PublicRoute component={ActivationPage} />
 );
 
 class App extends React.Component {
@@ -288,6 +292,12 @@ class App extends React.Component {
                 path="/partner/location"
                 layout={PartnerLayout}
                 component={PrivatePartnerLocationPage}
+              />
+              <AppRoute
+                title="Activation"
+                path="/partner/activation/:token"
+                layout={PartnerLayout}
+                component={PublicActivationPage}
               />
               {/* Partner Layout */}
 

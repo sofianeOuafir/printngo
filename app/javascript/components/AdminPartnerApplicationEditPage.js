@@ -56,7 +56,7 @@ class AdminPartnerApplicationsEditPage extends React.Component {
           <BackButton />
           {!partnerApplication.partner_created && (
             <Link
-              className="button button--navy"
+              className="button button--pink"
               to="#"
               onClick={this.onCreatePartnerClick}
             >

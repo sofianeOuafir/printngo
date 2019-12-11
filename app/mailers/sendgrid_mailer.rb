@@ -1,4 +1,26 @@
 class SendgridMailer
+  def self.activation_email(firstname:, token:, email:)
+    data = {
+      "personalizations": [
+        {
+          "to": [
+            {
+              "email": email
+            }
+          ],
+          "dynamic_template_data": {
+            firstname: firstname,
+            token: token
+          }
+        }
+      ],
+      "from": {
+        "email": 'contact@printngo.ca'
+      },
+      "template_id": 'd-dcdb078019b34e53ba346e5997fe3ca0'
+    }
+    send_email(data)
+  end
   def self.print_order_confirmed_email(order)
     user = order.user
     partner = order.selected_partner
