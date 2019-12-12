@@ -7,7 +7,7 @@ class Activation < ApplicationRecord
   after_create :send_activation_email
   after_update :activate_partner
 
-  validates :password, presence: true, confirmation: true, on: :update
+  validates :password, presence: true, on: :update
   validates_confirmation_of :password, on: :update
 
   scope :not_activated, -> { where(activated: false) }
