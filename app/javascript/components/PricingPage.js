@@ -18,10 +18,10 @@ const payAsYouGoProduct = {
       description: "Minimum $0,50 per order."
     },
     {
-      description: "Printing in black cost $0,25 per document."
+      description: "Printing in black cost $0,25 per page."
     },
     {
-      description: "Printing in color cost $0,50 per document."
+      description: "Printing in color cost $0,50 per page."
     }
   ]
 };

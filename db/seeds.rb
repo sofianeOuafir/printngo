@@ -32,9 +32,9 @@ SellingPoint.create(description: 'Top up whenever you want. No monthly commitmen
                     top_up_product: TopUpProduct.ten_dollars_top_up)
 SellingPoint.create(description: 'No minimum amount per order.',
                     top_up_product: TopUpProduct.ten_dollars_top_up)
-SellingPoint.create(description: 'Printing in black would cost a bit less than 0,23$ / document.',
+SellingPoint.create(description: 'Printing in black would cost a bit less than 0,23$ / page.',
                     top_up_product: TopUpProduct.ten_dollars_top_up)
-SellingPoint.create(description: 'Printing in color would cost a bit less than 0,46$ / document.',
+SellingPoint.create(description: 'Printing in color would cost a bit less than 0,46$ / page.',
                     top_up_product: TopUpProduct.ten_dollars_top_up)
 SellingPoint.create(description: 'Print even quicker by skipping the need of providing your credit card details each time.',
                     top_up_product: TopUpProduct.ten_dollars_top_up)
@@ -46,9 +46,9 @@ SellingPoint.create(description: 'Top up whenever you want. No monthly commitmen
                     top_up_product: TopUpProduct.twenty_dollars_top_up)
 SellingPoint.create(description: 'No minimum amount per order.',
                     top_up_product: TopUpProduct.twenty_dollars_top_up)
-SellingPoint.create(description: 'Printing in black would cost a bit less than 0,22$ / document.',
+SellingPoint.create(description: 'Printing in black would cost a bit less than 0,22$ / page.',
                     top_up_product: TopUpProduct.twenty_dollars_top_up)
-SellingPoint.create(description: 'Printing in color would cost a bit less than 0,44$ / document.',
+SellingPoint.create(description: 'Printing in color would cost a bit less than 0,44$ / page.',
                     top_up_product: TopUpProduct.twenty_dollars_top_up)
 SellingPoint.create(description: 'Print even quicker by skipping the need of providing your credit card details each time.',
                     top_up_product: TopUpProduct.twenty_dollars_top_up)
@@ -59,9 +59,9 @@ SellingPoint.create(description: 'Top up whenever you want. No monthly commitmen
                     top_up_product: TopUpProduct.thirty_dollars_top_up)
 SellingPoint.create(description: 'No minimum amount per order.',
                     top_up_product: TopUpProduct.thirty_dollars_top_up)
-SellingPoint.create(description: 'Printing in black would cost a bit less than 0,21$ / document.',
+SellingPoint.create(description: 'Printing in black would cost a bit less than 0,21$ / page.',
                     top_up_product: TopUpProduct.thirty_dollars_top_up)
-SellingPoint.create(description: 'Printing in color would cost a bit less than 0,42$ / document.',
+SellingPoint.create(description: 'Printing in color would cost a bit less than 0,42$ / page.',
                     top_up_product: TopUpProduct.thirty_dollars_top_up)
 SellingPoint.create(description: 'Print even quicker by skipping the need of providing your credit card details each time.',
                     top_up_product: TopUpProduct.thirty_dollars_top_up)

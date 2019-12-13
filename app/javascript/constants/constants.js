@@ -6,4 +6,4 @@ export const TORONTO_LOCATION = {
   lng: -79.3892455
 };
 export const DEFAULT_ZOOM_MAP = 12;
-export const INTRODUCTION_VIDEO_ID = "AxhhsoDcai0";
+export const INTRODUCTION_VIDEO_ID = "rnkntq2P9vE";
