@@ -60,8 +60,8 @@ class ActivationPage extends React.Component {
         password_confirmation,
         activated: true
       })
-      .then(response => {
-        this.props.history.push("/partner/login");
+      .then(() => {
+        this.props.history.push("/partner/activation/thank-you");
       })
       .catch(e => {
         const errors = JSON.parse(e.response.data.errors);
