@@ -62,6 +62,11 @@ class PartnerNavBar extends React.Component {
       {
         ShowWhenAuthenticated: true,
         ShowWhenNonAuthenticated: false,
+        element: <Link to="/partner/test-printing">Test Printing</Link>
+      },
+      {
+        ShowWhenAuthenticated: true,
+        ShowWhenNonAuthenticated: false,
         element: (
           <Link to="#" onClick={this.onLogout}>
             Log out
