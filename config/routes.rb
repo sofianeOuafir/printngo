@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
@@ -7,6 +8,11 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1, defaults: { format: 'json' } do
       resources :users, only: [:create]
+      namespace :admins do
+        resources :sessions, only: %i[create destroy show]
+        resources :partner_applications
+        resources :partners
+      end
       namespace :users do
         resources :print_orders, only: %i[index show]
         resources :top_up_orders, only: %i[index show]
@@ -14,6 +20,7 @@ Rails.application.routes.draw do
         resources :transactions, only: :index
       end
       namespace :partners do
+        resources :activations
         resources :sessions, only: %i[create destroy show]
         resources :print_orders, only: %i[show update index]
         resources :deliverables, only: [:show]

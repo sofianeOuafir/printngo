@@ -6,6 +6,8 @@ export const startLogin = ({ email, password }) => dispatch => {
   let uri;
   if (context === "partner") {
     uri = "/api/v1/partners/sessions";
+  } else if (context === "admin") {
+    uri = "/api/v1/admins/sessions";
   } else {
     uri = "/api/v1/users/sessions";
   }
@@ -35,6 +37,8 @@ export const startGetCurrentUser = () => dispatch => {
   let uri;
   if (context === "partner") {
     uri = "/api/v1/partners/sessions/current";
+  } else if (context === "admin") {
+    uri = "/api/v1/admins/sessions/current";
   } else {
     uri = "/api/v1/users/sessions/current";
   }
@@ -69,6 +73,8 @@ export const startLogout = () => dispatch => {
   let uri;
   if (context === "partner") {
     uri = "/api/v1/partners/sessions/current";
+  } else if (context === "admin") {
+    uri = "/api/v1/admins/sessions/current";
   } else {
     uri = "/api/v1/users/sessions/current";
   }

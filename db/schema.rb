@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_13_205514) do
+ActiveRecord::Schema.define(version: 2019_12_10_185944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activations", force: :cascade do |t|
+    t.string "token"
+    t.boolean "activated", default: false
+    t.bigint "partner_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["partner_id"], name: "index_activations_on_partner_id"
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -34,6 +43,17 @@ ActiveRecord::Schema.define(version: 2019_11_13_205514) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "admins", force: :cascade do |t|
+    t.string "firstname"
+    t.string "lastname"
+    t.string "email", null: false
+    t.string "password_hash"
+    t.string "password_salt"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_admins_on_email", unique: true
   end
 
   create_table "ahoy_events", force: :cascade do |t|
@@ -141,14 +161,18 @@ ActiveRecord::Schema.define(version: 2019_11_13_205514) do
   create_table "partner_applications", force: :cascade do |t|
     t.string "firstname"
     t.string "lastname"
-    t.bigint "partner_id"
     t.string "email"
     t.string "company_name"
     t.string "postcode"
     t.string "company_address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["partner_id"], name: "index_partner_applications_on_partner_id"
+    t.boolean "archived", default: false
+    t.string "city"
+    t.string "country"
+    t.string "lat"
+    t.string "lng"
+    t.string "opening_hours"
   end
 
   create_table "partners", force: :cascade do |t|
@@ -167,7 +191,10 @@ ActiveRecord::Schema.define(version: 2019_11_13_205514) do
     t.string "email"
     t.string "password_hash"
     t.string "password_salt"
+    t.bigint "partner_application_id"
+    t.boolean "activated", default: false
     t.index ["email"], name: "index_partners_on_email", unique: true
+    t.index ["partner_application_id"], name: "index_partners_on_partner_application_id"
   end
 
   create_table "payments", force: :cascade do |t|
@@ -231,6 +258,7 @@ ActiveRecord::Schema.define(version: 2019_11_13_205514) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "activations", "partners"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "deliverables", "orders"
   add_foreign_key "deliverables", "products"
@@ -242,7 +270,7 @@ ActiveRecord::Schema.define(version: 2019_11_13_205514) do
   add_foreign_key "orders", "partners", column: "printer_id"
   add_foreign_key "orders", "partners", column: "selected_partner_id"
   add_foreign_key "orders", "users"
-  add_foreign_key "partner_applications", "partners"
+  add_foreign_key "partners", "partner_applications"
   add_foreign_key "payments", "orders"
   add_foreign_key "printing_attempts", "deliverables"
   add_foreign_key "printing_attempts", "partners"

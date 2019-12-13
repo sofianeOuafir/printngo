@@ -13,6 +13,8 @@ export const PublicRoute = ({
   let pathname;
   if (context === "partner") {
     pathname = "/partner";
+  } else if (context === "admin") {
+    pathname = "/admin";
   } else {
     pathname = "/";
   }

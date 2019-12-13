@@ -39,6 +39,15 @@ import PickUpLocationsPage from "./PickUpLocationsPage";
 import PartnerApplicationPage from "./PartnerApplicationPage";
 import TermsAndConditions from "./TermsAndConditions";
 import DocumentShowPage from "./DocumentShowPage";
+import AdminLayout from "./AdminLayout";
+import AdminLoginPage from "./AdminLoginPage";
+import NewPartnerApplicationsPage from "./NewPartnerApplicationsPage";
+import ArchivedPartnerApplicationsPage from "./ArchivedPartnerApplicationsPage";
+import AdminHomePage from "./AdminHomePage";
+import AdminPartnerApplicationEditPage from "./AdminPartnerApplicationEditPage";
+import AdminPartnerApplicationsNewPage from "./AdminPartnerApplicationsNewPage";
+import ActivationPage from "./ActivationPage";
+import ActivationThankYouPage from "./ActivationThankYouPage";
 
 const store = configureStore();
 
@@ -91,6 +100,28 @@ const PrivateTopUpOrderThankYouPage = () => (
 const PublicUserLoginPage = () => <PublicRoute component={UserLoginPage} />;
 const PublicPartnerLoginPage = () => (
   <PublicRoute component={PartnerLoginPage} />
+);
+
+const PublicAdminLoginPage = () => <PublicRoute component={AdminLoginPage} />;
+const PrivateNewPartnerApplicationsPage = () => (
+  <PrivateRoute component={NewPartnerApplicationsPage} />
+);
+const PrivateArchivedPartnerApplicationsPage = () => (
+  <PrivateRoute component={ArchivedPartnerApplicationsPage} />
+);
+
+const PrivateAdminHomePage = () => <PrivateRoute component={AdminHomePage} />;
+
+const PrivateAdminPartnerApplicationEditPage = () => (
+  <PrivateRoute component={AdminPartnerApplicationEditPage} />
+);
+
+const PrivateAdminPartnerApplicationsNewPage = () => (
+  <PrivateRoute component={AdminPartnerApplicationsNewPage} />
+);
+const PublicActivationPage = () => <PublicRoute component={ActivationPage} />;
+const PublicActivationThankYouPage = () => (
+  <PublicRoute component={ActivationThankYouPage} />
 );
 
 class App extends React.Component {
@@ -264,7 +295,61 @@ class App extends React.Component {
                 layout={PartnerLayout}
                 component={PrivatePartnerLocationPage}
               />
+              <AppRoute
+                exact
+                title="Activation"
+                path="/partner/activation/thank-you"
+                layout={PartnerLayout}
+                component={PublicActivationThankYouPage}
+              />
+              <AppRoute
+                title="Activation"
+                path="/partner/activation/:token"
+                layout={PartnerLayout}
+                component={PublicActivationPage}
+              />
+
               {/* Partner Layout */}
+
+              {/* Admin Layout */}
+              <AppRoute
+                exact
+                title="Home"
+                path="/admin"
+                layout={AdminLayout}
+                component={PrivateAdminHomePage}
+              />
+              <AppRoute
+                title="Login"
+                path="/admin/login"
+                layout={AdminLayout}
+                component={PublicAdminLoginPage}
+              />
+              <AppRoute
+                title="New Applications"
+                path="/admin/new-partner-applications"
+                layout={AdminLayout}
+                component={PrivateNewPartnerApplicationsPage}
+              />
+              <AppRoute
+                title="Archived Applications"
+                path="/admin/archived-partner-applications"
+                layout={AdminLayout}
+                component={PrivateArchivedPartnerApplicationsPage}
+              />
+              <AppRoute
+                title="Partner Application"
+                path="/admin/partner-application/:id"
+                layout={AdminLayout}
+                component={PrivateAdminPartnerApplicationEditPage}
+              />
+              <AppRoute
+                title="Partner Application - New"
+                path="/admin/partner-applications/new"
+                layout={AdminLayout}
+                component={PrivateAdminPartnerApplicationsNewPage}
+              />
+              {/* Admin Layout */}
             </Switch>
           </ScrollToTop>
           <ToastContainer autoClose={2000} />

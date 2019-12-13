@@ -9,6 +9,9 @@ class Partner < ApplicationRecord
   has_many :printing_attempts
   has_many :deliverables, through: :printing_attempts
   has_many :print_orders, -> { distinct }, through: :deliverables
+  has_many :activations
+
+  scope :activated, -> { where(activated: true) }
 
   reverse_geocoded_by :lat, :lng
 

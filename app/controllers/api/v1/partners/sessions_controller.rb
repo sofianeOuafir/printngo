@@ -7,12 +7,16 @@ class Api::V1::Partners::SessionsController < ApplicationController
 
   def create
     partner = Partner.authenticate(params[:email], params[:password])
-    if partner
+    if partner&.activated?
       session[:partner_id] = partner.id
       render json: partner.to_json
+    elsif partner
+      render json: {
+        error: 'Your account is not activated. Please activate.'
+      }, status: 404
     else
       render json: {
-        error: 'Email or password incorrect'
+        error: 'Email or password incorrect.'
       }, status: 404
     end
   end
