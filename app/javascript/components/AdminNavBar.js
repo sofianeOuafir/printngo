@@ -1,6 +1,7 @@
 import React from "react";
 import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { withTranslation } from "react-i18next";
 
 import { startLogout } from "../actions/auth";
 import Navbar from "./Navbar";
@@ -15,14 +16,14 @@ class AdminNavBar extends React.Component {
   };
 
   render() {
-    const { auth } = this.props;
+    const { auth, t } = this.props;
     const { firstname } = auth;
     const navBarItems = [
       {
         ShowWhenAuthenticated: true,
         ShowWhenNonAuthenticated: false,
         element: (
-          <Link to="/admin/new-partner-applications">Partner Applications</Link>
+          <Link to="/admin/new-partner-applications">{t('navbar.admin.partnerApplications')}</Link>
         )
       },
       {
@@ -56,4 +57,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(AdminNavBar));
+)(withRouter(withTranslation()(AdminNavBar)));

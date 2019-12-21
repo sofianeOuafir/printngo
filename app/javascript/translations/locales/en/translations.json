@@ -4,6 +4,7 @@
   "signInLink": "Sign In",
   "loginForm.email": "Email",
   "loginForm.password": "Password",
+  "navbar.admin.partnerApplications": "Parner Applications",
   "navbar.partner.print": "Print",
   "navbar.partner.myLocation": "My Location",
   "navbar.partner.awaitingConfirmation": "Awaiting Confirmation",
