@@ -1,6 +1,7 @@
 import React from "react";
 import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { withTranslation } from "react-i18next";
 
 import { awaitingConfirmationOrders, printedOrders } from "./../lib/filters";
 import { startLogout } from "../actions/auth";
@@ -22,25 +23,27 @@ class PartnerNavBar extends React.Component {
   };
 
   render() {
-    const { auth, printedOrders, awaitingConfirmationOrders } = this.props;
+    const { auth, printedOrders, awaitingConfirmationOrders, t } = this.props;
     const { firstname } = auth;
     const navBarItems = [
       {
         ShowWhenAuthenticated: true,
         ShowWhenNonAuthenticated: false,
-        element: <Link to="/partner">Print</Link>
+        element: <Link to="/partner">{t("navbar.partner.print")}</Link>
       },
       {
         ShowWhenAuthenticated: true,
         ShowWhenNonAuthenticated: false,
-        element: <Link to="/partner/location">My Location</Link>
+        element: (
+          <Link to="/partner/location">{t("navbar.partner.myLocation")}</Link>
+        )
       },
       {
         ShowWhenAuthenticated: true,
         ShowWhenNonAuthenticated: false,
         element: (
           <Link to="/partner/printed-orders">
-            Printed Orders ({printedOrders.length})
+            {t("navbar.partner.printedOrders")} ({printedOrders.length})
           </Link>
         )
       },
@@ -49,7 +52,7 @@ class PartnerNavBar extends React.Component {
         ShowWhenNonAuthenticated: false,
         element: (
           <Link to="/partner/awaiting-confirmation">
-            Awaiting Confirmation{" "}
+            {t("navbar.partner.awaitingConfirmation")}{" "}
             <span className="text-orange">
               ({awaitingConfirmationOrders.length})
             </span>
@@ -90,4 +93,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(PartnerNavBar));
+)(withRouter(withTranslation()(PartnerNavBar)));
