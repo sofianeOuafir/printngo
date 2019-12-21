@@ -48,6 +48,7 @@ import AdminPartnerApplicationEditPage from "./AdminPartnerApplicationEditPage";
 import AdminPartnerApplicationsNewPage from "./AdminPartnerApplicationsNewPage";
 import ActivationPage from "./ActivationPage";
 import ActivationThankYouPage from "./ActivationThankYouPage";
+import i18n from "./../translations/i18n";
 
 const store = configureStore();
 

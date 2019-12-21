@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { scroller } from "react-scroll";
 import ModalVideo from "react-modal-video";
+import { withTranslation } from "react-i18next";
 
 import { startLogout } from "../actions/auth";
 import { startSetClientCurrentOrder } from "../actions/orders";
@@ -45,6 +46,11 @@ class CustomerNavbar extends React.Component {
         smooth: true
       });
     });
+  };
+
+  onLanguageChange = async language => {
+    const { i18n } = this.props;
+    await i18n.changeLanguage(language);
   };
 
   render() {
@@ -159,15 +165,22 @@ class CustomerNavbar extends React.Component {
         ShowWhenAuthenticated: true,
         ShowWhenNonAuthenticated: true,
         element: <WalletElement />
+      },
+      {
+        ShowWhenAuthenticated: true,
+        ShowWhenNonAuthenticated: true,
+        element: <Link onClick={() => this.onLanguageChange("fr")}>Fr</Link>
+      },
+      {
+        ShowWhenAuthenticated: true,
+        ShowWhenNonAuthenticated: true,
+        element: <Link onClick={() => this.onLanguageChange("en")}>En</Link>
       }
     ];
 
     return (
       <Fragment>
-        <Navbar
-          logoRedirectTo="/"
-          navBarItems={navBarItems}
-        />
+        <Navbar logoRedirectTo="/" navBarItems={navBarItems} />
 
         <ModalVideo
           channel="youtube"
@@ -193,4 +206,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(CustomerNavbar));
+)(withRouter(withTranslation()(CustomerNavbar)));
