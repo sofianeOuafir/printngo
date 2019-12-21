@@ -287,7 +287,7 @@ class CheckoutForm extends Component {
             </div>
             <div className="mt2">
               <span>
-                Already customer? <SignInLink />
+                Already customer? <SignInLink to="/login" />
               </span>
             </div>
           </Fragment>

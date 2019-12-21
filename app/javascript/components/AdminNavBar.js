@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 
 import { startLogout } from "../actions/auth";
 import Navbar from "./Navbar";
+import SignOutLink from "./SignOutLink";
+import SignInLink from "./SignInLink";
 
 class AdminNavBar extends React.Component {
   onLogout = () => {
@@ -19,7 +21,9 @@ class AdminNavBar extends React.Component {
       {
         ShowWhenAuthenticated: true,
         ShowWhenNonAuthenticated: false,
-        element: <Link to="/admin/new-partner-applications">Partner Applications</Link>
+        element: (
+          <Link to="/admin/new-partner-applications">Partner Applications</Link>
+        )
       },
       {
         ShowWhenAuthenticated: true,
@@ -29,16 +33,12 @@ class AdminNavBar extends React.Component {
       {
         ShowWhenAuthenticated: true,
         ShowWhenNonAuthenticated: false,
-        element: (
-          <Link to="#" onClick={this.onLogout}>
-            Log out
-          </Link>
-        )
+        element: <SignOutLink onLogout={this.onLogout} />
       },
       {
         ShowWhenAuthenticated: false,
         ShowWhenNonAuthenticated: true,
-        element: <Link to="/admin/login">Login</Link>
+        element: <SignInLink to="/admin/login" />
       }
     ];
     return <Navbar logoRedirectTo="/admin" navBarItems={navBarItems} />;

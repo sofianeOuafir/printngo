@@ -7,6 +7,7 @@ import { IoIosAddCircleOutline, IoMdPrint } from "react-icons/io";
 import { fromCentsToDollars } from "./../lib/money";
 import { getDateTimeFormat } from "./../lib/date";
 import Loader from "./Loader";
+import WalletElement from "./WalletElement";
 
 class WalletPage extends React.Component {
   constructor(props) {
@@ -42,20 +43,12 @@ class WalletPage extends React.Component {
 
   render() {
     const { loadingData, transactions } = this.state;
-    const { walletBalance } = this.props;
     return loadingData ? (
       <Loader />
     ) : (
       <div className="content-container wallet-page">
-        <h1 className="text-navy">
-          <span className="mr1 h3">Wallet</span>
-          <span className="h3 wallet-page--balance">
-            {`${
-              walletBalance
-                ? fromCentsToDollars(walletBalance)
-                : fromCentsToDollars(0)
-            }`}
-          </span>
+        <h1>
+          <WalletElement className="text-navy" />
         </h1>
         <Link to="/pricing" className="button button--pink">
           Top Up Now

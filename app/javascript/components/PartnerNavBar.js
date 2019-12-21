@@ -6,6 +6,8 @@ import { awaitingConfirmationOrders, printedOrders } from "./../lib/filters";
 import { startLogout } from "../actions/auth";
 import { startSetPartnerOrders } from "../actions/orders";
 import Navbar from "./Navbar";
+import SignOutLink from "./SignOutLink";
+import SignInLink from "./SignInLink";
 
 class PartnerNavBar extends React.Component {
   componentDidMount() {
@@ -62,16 +64,12 @@ class PartnerNavBar extends React.Component {
       {
         ShowWhenAuthenticated: true,
         ShowWhenNonAuthenticated: false,
-        element: (
-          <Link to="#" onClick={this.onLogout}>
-            Log out
-          </Link>
-        )
+        element: <SignOutLink onLogout={this.onLogout} />
       },
       {
         ShowWhenAuthenticated: false,
         ShowWhenNonAuthenticated: true,
-        element: <Link to="/partner/login">Login</Link>
+        element: <SignInLink to="/partner/login" />
       }
     ];
     return <Navbar logoRedirectTo="/partner" navBarItems={navBarItems} />;

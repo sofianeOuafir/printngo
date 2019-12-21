@@ -64,15 +64,18 @@ const GoToLocationPageElement = props => {
     </Link>
   );
 };
-const ContactUsButton = props => (
-  <a
-    href="mailto:contact@printngo.ca"
-    {...props}
-    className="second-call-to-action button button-outline button-outline--navy"
-  >
-    Contact Us
-  </a>
-);
+const ContactUsButton = props => {
+  const { t } = useTranslation();
+  return (
+    <a
+      href="mailto:contact@printngo.ca"
+      {...props}
+      className="second-call-to-action button button-outline button-outline--navy"
+    >
+      {t('callToAction.contactUs')}
+    </a>
+  );
+};
 class HomePage extends React.Component {
   render() {
     const { t } = this.props;

@@ -26,7 +26,7 @@ const OrderLayout = ({
         <Link to="/">
           <Logo />
         </Link>
-        <WalletElement />
+        <WalletElement className="text-pink"  />
       </div>
     </div>
     <div className="mt2 content-container">

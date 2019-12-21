@@ -1,13 +1,16 @@
-import React from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import React from "react";
+import { withRouter, Link } from "react-router-dom";
+import { withTranslation } from "react-i18next";
 
-const SignInLink = (props) => (
-  <Link to={{
-    pathname: "/login",
-    state: {from: props.location}
-  }}>
-    Sign In
+const SignInLink = ({ location, t, to }) => (
+  <Link
+    to={{
+      pathname: to,
+      state: { from: location }
+    }}
+  >
+    {t("signInLink")}
   </Link>
-)
+);
 
-export default withRouter(SignInLink);
+export default withRouter(withTranslation()(SignInLink));
