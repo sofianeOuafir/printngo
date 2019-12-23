@@ -1,5 +1,6 @@
 import React from "react";
 import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
+import { withTranslation } from 'react-i18next';
 
 import { fromCentsToDollars } from "../lib/money";
 import { getDateFormat } from "../lib/date";
@@ -76,7 +77,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const Invoice = ({ orderItems, order, user, invoice }) => (
+const Invoice = ({ orderItems, order, user, invoice, t }) => (
   <Document>
     <Page style={styles.page} size="A4">
       <View
@@ -325,7 +326,7 @@ const Invoice = ({ orderItems, order, user, invoice }) => (
         {orderItems.map((orderItem, index) => (
           <View key={index} style={[styles.row]}>
             <Text style={[styles.headerText, styles.cell, styles.cellProduct]}>
-              {orderItem.product.name}
+              {t(`${orderItem.product.code}.name`)}
             </Text>
             <Text
               style={[styles.headerText, styles.cell, styles.cellDescription]}
@@ -576,4 +577,4 @@ const Invoice = ({ orderItems, order, user, invoice }) => (
   </Document>
 );
 
-export default Invoice;
+export default withTranslation()(Invoice);

@@ -11,6 +11,6 @@ class TopUpOrderItem < OrderItem
   private
 
   def set_description
-    self.description = top_up_product.description
+    self.description = top_up_product.code
   end
 end

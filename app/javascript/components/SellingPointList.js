@@ -1,8 +1,9 @@
 import React from "react";
+import { withTranslation } from "react-i18next";
 
 import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 
-const SellingPointList = ({ sellingPoints, ...rest }) => (
+const SellingPointList = ({ sellingPoints, t, tReady, ...rest }) => (
   <div {...rest}>
     {sellingPoints &&
       sellingPoints.map((sellingPoint, index) => (
@@ -11,11 +12,11 @@ const SellingPointList = ({ sellingPoints, ...rest }) => (
             <IoIosCheckmarkCircleOutline />
           </span>
           <div>
-            <strong>{sellingPoint.description}</strong>
+            <strong>{t(sellingPoint.description)}</strong>
           </div>
         </div>
       ))}
   </div>
 );
 
-export default SellingPointList;
+export default withTranslation()(SellingPointList);

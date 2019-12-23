@@ -9,6 +9,7 @@ import CheckoutForm from "./CheckoutForm";
 import Loader from "./Loader";
 import { TOP_UP_ORDER } from "./../constants/constants";
 import PageBanner from "./PageBanner";
+import { fromCentsToDollars } from "./../lib/money";
 
 class TopUpProductCheckoutPage extends React.Component {
   constructor(props) {
@@ -26,6 +27,7 @@ class TopUpProductCheckoutPage extends React.Component {
       });
   }
   render() {
+    const { t } = this.props;
     const { product } = this.state;
     return (
       <div className="content-container">
@@ -34,8 +36,10 @@ class TopUpProductCheckoutPage extends React.Component {
         ) : (
           <Fragment>
             <PageBanner
-              title={product.name}
-              description={product.description}
+              title={t(`${product.code}.name`, { price: fromCentsToDollars(product.price) })}
+              description={t(`${product.code}.description`, {
+                allocatedCredit: fromCentsToDollars(product.allocated_credit)
+              })}
             />
 
             <div className="border top-up-product-checkout-page--payment--description-container flex border-color--grey border-bottom--none">
@@ -52,8 +56,14 @@ class TopUpProductCheckoutPage extends React.Component {
               </div>
               <div className="col-6">
                 <div className="px3 flex flex-direction--column pb1">
-                  <h3 className="text-navy">{product.name}</h3>
-                  <p className="text-navy">{product.description}</p>
+                  <h3 className="text-navy">
+                    {t(`${product.code}.name`, { price: fromCentsToDollars(product.price) })}
+                  </h3>
+                  <p className="text-navy">
+                    {t(`${product.code}.description`, {
+                      allocatedCredit: fromCentsToDollars(product.allocated_credit)
+                    })}
+                  </p>
                   <SellingPointList
                     className="p0"
                     sellingPoints={product.selling_points}

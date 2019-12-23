@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { toast } from "react-toastify";
 import { IoMdRemoveCircle, IoIosAddCircle } from "react-icons/io";
+import { withTranslation } from "react-i18next";
 
 import { startUpdateOrderItem, removeOrderItem } from "./../actions/orderItems";
 import { fromCentsToDollars } from "../lib/money";
@@ -41,7 +42,7 @@ class OrderItem extends React.Component {
   };
 
   render() {
-    const { orderItem, products, readOnly } = this.props;
+    const { orderItem, products, readOnly, t } = this.props;
     const {
       id,
       document,
@@ -60,7 +61,7 @@ class OrderItem extends React.Component {
           <div className="flex flex-direction--column justify-content--center">
             <span className="mb2">Print In: </span>
             {readOnly ? (
-              <span>{product.name}</span>
+              <span>{t(`${product.code}.name`)}</span>
             ) : (
               <select
                 value={product_id}
@@ -70,7 +71,7 @@ class OrderItem extends React.Component {
               >
                 {products.map((product, index) => (
                   <option key={index} value={product.id}>
-                    {product.name}
+                    {t(`${product.code}.name`)}
                   </option>
                 ))}
               </select>
@@ -134,4 +135,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OrderItem);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withTranslation()(OrderItem));

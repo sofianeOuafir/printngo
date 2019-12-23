@@ -121,7 +121,7 @@ class CustomerNavbar extends React.Component {
         ShowWhenAuthenticated: true,
         ShowWhenNonAuthenticated: true,
         element: (
-          <Link to="/pick-up-locations">
+          <Link to="/print-shops-near-me">
             {t("navbar.customer.findPrinter")}
           </Link>
         )

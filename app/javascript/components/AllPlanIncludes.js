@@ -1,40 +1,42 @@
 import React from "react";
+import { withTranslation } from "react-i18next";
 
 import SellingPointList from "./SellingPointList";
 
-const allPlanSellingPoints = [
-  [
-    {
-      description: "Ability to Print any document in A4 color or black."
-    },
-    {
-      description: "Pick up your documents at the closest locations."
-    }
-  ],
-  [
-    {
-      description: "High focus on confidentiality."
-    },
-    {
-      description: "Store your document for printing even quicker next time."
-    }
-  ],
-  [
-    {
-      description: "Find easily the closest pick up location."
-    }
-  ]
-];
-
-const AllPlanIncludes = () => (
-  <div className="px1 pb1">
-    <h3 className="center text-navy">All plan includes...</h3>
-    <div className="flex all-plan-includes--selling-points-container justify-content--around">
-      {allPlanSellingPoints.map((allPlanSellingPoints, index) => (
-        <SellingPointList sellingPoints={allPlanSellingPoints} key={index} />
-      ))}
+const AllPlanIncludes = ({ t }) => {
+  const allPlanSellingPoints = [
+    [
+      {
+        description: t("allPlanIncludes.sellingPoint1")
+      },
+      {
+        description: t("allPlanIncludes.sellingPoint2")
+      }
+    ],
+    [
+      {
+        description: t("allPlanIncludes.sellingPoint3")
+      },
+      {
+        description: t("allPlanIncludes.sellingPoint4")
+      }
+    ],
+    [
+      {
+        description: t("allPlanIncludes.sellingPoint5")
+      }
+    ]
+  ];
+  return (
+    <div className="px1 pb1">
+      <h3 className="center text-navy">{t("allPlanIncludes.title")}</h3>
+      <div className="flex all-plan-includes--selling-points-container justify-content--around">
+        {allPlanSellingPoints.map((allPlanSellingPoints, index) => (
+          <SellingPointList sellingPoints={allPlanSellingPoints} key={index} />
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
-export default AllPlanIncludes;
+export default withTranslation()(AllPlanIncludes);

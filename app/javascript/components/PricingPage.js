@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 import TopUpProduct from "./TopUpProduct";
 import Loader from "./Loader";
@@ -8,27 +9,32 @@ import AllPlanIncludes from "./AllPlanIncludes";
 import PageBanner from "./PageBanner";
 
 const payAsYouGoProduct = {
-  name: "Pay as you go",
-  description: "Pay for what you need, whenever you want!",
+  code: "payAsYouGo",
   selling_points: [
     {
-      description: "Very flexible, adapted for your needs."
+      description: "payAsYouGo.sellingPoint1"
     },
     {
-      description: "Minimum $0,50 per order."
+      description: "payAsYouGo.sellingPoint2"
     },
     {
-      description: "Printing in black cost $0,25 per page."
+      description: "payAsYouGo.sellingPoint3"
     },
     {
-      description: "Printing in color cost $0,50 per page."
+      description: "payAsYouGo.sellingPoint4"
     }
   ]
 };
 
-const PayAsYouGoCallToAction = () => (
-  <UploadAndPrintButton text="Instant Quote" className="button button-outline button-outline--pink" />
-);
+const PayAsYouGoCallToAction = () => {
+  const { t } = useTranslation();
+  return (
+    <UploadAndPrintButton
+      text={t("callToAction.instantQuote")}
+      className="button button-outline button-outline--pink"
+    />
+  );
+};
 
 class PricingPage extends React.Component {
   constructor(props) {
@@ -47,12 +53,13 @@ class PricingPage extends React.Component {
     });
   }
   render() {
+    const { t } = this.props;
     const { loadingData, topUpProducts } = this.state;
     return (
       <div>
         <PageBanner
-          title="Simple, honest and affordable price"
-          description="The most convenient printing solution adapted to your needs!"
+          title={t("pricingPage.title")}
+          description={t("pricingPage.description")}
         />
 
         {loadingData ? (
@@ -61,7 +68,10 @@ class PricingPage extends React.Component {
           <div className="content-container">
             <div className="flex products--container">
               <div className="col-3">
-                <div className="fullheight" style={{ paddingLeft: "2px", paddingRight: "2px" }}>
+                <div
+                  className="fullheight"
+                  style={{ paddingLeft: "2px", paddingRight: "2px" }}
+                >
                   <TopUpProduct
                     CallToAction={PayAsYouGoCallToAction}
                     topUpProduct={payAsYouGoProduct}
@@ -71,16 +81,17 @@ class PricingPage extends React.Component {
               {topUpProducts.map((topUpProduct, index) => {
                 return (
                   <div key={index} className="col-3">
-                    <div className="fullheight" style={{ paddingLeft: "2px", paddingRight: "2px" }}>
+                    <div
+                      className="fullheight"
+                      style={{ paddingLeft: "2px", paddingRight: "2px" }}
+                    >
                       <TopUpProduct topUpProduct={topUpProduct} />
                     </div>
                   </div>
                 );
               })}
             </div>
-            <div
-              className=" mb3 border border-color--grey mt1"
-            >
+            <div className=" mb3 border border-color--grey mt1">
               <AllPlanIncludes />
             </div>
           </div>

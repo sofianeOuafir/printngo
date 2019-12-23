@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import { scroller } from "react-scroll";
-import { withTranslation, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 import HowItWorks from "./HowItWorks";
 import WhyPrintnGo from "./WhyPrintnGo";
@@ -59,7 +59,7 @@ const GoToLocationPageElement = props => {
   const { t } = useTranslation();
 
   return (
-    <Link to="/pick-up-locations" {...props}>
+    <Link to="/print-shops-near-me" {...props}>
       {t("callToAction.findPrinter")}
     </Link>
   );
@@ -72,7 +72,7 @@ const ContactUsButton = props => {
       {...props}
       className="second-call-to-action button button-outline button-outline--navy"
     >
-      {t('callToAction.contactUs')}
+      {t("callToAction.contactUs")}
     </a>
   );
 };
@@ -176,4 +176,4 @@ class HomePage extends React.Component {
   }
 }
 
-export default withTranslation()(HomePage);
+export default HomePage;

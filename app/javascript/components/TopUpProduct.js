@@ -1,10 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { withTranslation } from "react-i18next";
 
 import SellingPointList from "./SellingPointList";
+import { fromCentsToDollars } from "./../lib/money";
 
-const TopUpProduct = ({ CallToAction, topUpProduct }) => {
-  const { selling_points, description, name, most_popular, id } = topUpProduct;
+const TopUpProduct = ({ CallToAction, topUpProduct, t }) => {
+  const {
+    selling_points,
+    code,
+    most_popular,
+    id,
+    price,
+    allocated_credit: allocatedCredit
+  } = topUpProduct;
   return (
     <div className="fullheight top-up-product" style={{ overflow: "hidden" }}>
       <div
@@ -15,7 +24,7 @@ const TopUpProduct = ({ CallToAction, topUpProduct }) => {
         }
       >
         <span className="h4">
-          {topUpProduct.most_popular ? "Most popular" : ""}
+          {topUpProduct.most_popular ? t('mostPopular') : ""}
         </span>
       </div>
       <div
@@ -32,14 +41,18 @@ const TopUpProduct = ({ CallToAction, topUpProduct }) => {
             text-navy
            h4 `}
           >
-            <strong>{name}</strong>
+            <strong>
+              {t(`${code}.name`, { price: fromCentsToDollars(price) })}
+            </strong>
           </span>
         </div>
-        <div
-          className="mb1 top-up-product--description-container border--bottom border-color--navy pb1"
-        >
+        <div className="mb1 top-up-product--description-container border--bottom border-color--navy pb1">
           <h2 className="px1 text-navy h5 favourite-font-weight center">
-            <strong>{description}</strong>
+            <strong>
+              {t(`${code}.description`, {
+                allocatedCredit: fromCentsToDollars(allocatedCredit)
+              })}
+            </strong>
           </h2>
         </div>
 
@@ -55,17 +68,16 @@ const TopUpProduct = ({ CallToAction, topUpProduct }) => {
                   : "button--outline button-outline--pink"
               }`}
             >
-              Buy Now
+              {t('callToAction.buyNow')}
             </Link>
           )}
         </div>
-        <div className="pb1"> 
+        <div className="pb1">
           <SellingPointList sellingPoints={selling_points} />
-
         </div>
       </div>
     </div>
   );
 };
 
-export default TopUpProduct;
+export default withTranslation()(TopUpProduct);
