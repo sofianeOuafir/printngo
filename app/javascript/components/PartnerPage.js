@@ -4,91 +4,83 @@ import { Link } from "react-router-dom";
 import LandingPageSection from "./LandingPageSection";
 import images from "./../images";
 
-class PartnerPage extends React.Component {
-  render() {
-    const GoToPartnerApplicationPageButton = props => (
-      <Link
-        to="/become-partner/application"
-        {...props}
-        className="fullwidth px0 button button--pink"
-      >
-        Become Partner Now
-      </Link>
-    );
-    const SecondGoToPartnerApplicationPageButton = props => (
-      <Link to="/become-partner/application" {...props}>
-        Become Partner Now
-      </Link>
-    );
-    const sections = [
-      {
-        title:
-          "Become a Print n' Go partner, earn money and grow your business",
-        description:
-          "By providing the quickest and most convenient printing service, you will get paid while attracting more people in your selling point without impacting your main activity.",
-        imgSrc: images.handShake,
-        imgAlt: "Become Partner Icon",
-        bgColour: "bg-navy",
-        reverse: false,
-        CallToActionButton: GoToPartnerApplicationPageButton
-      },
-      {
-        title: "Create a new source of revenue",
-        description: "You will get paid for every single document printed.",
-        imgSrc: images.money,
-        imgAlt: "New Source Revenue Icon",
-        bgColour: "bg-grapefruit",
-        reverse: true,
-        SecondCallToActionButton: SecondGoToPartnerApplicationPageButton
-      },
-      {
-        title: "Attract new customers in your shop and grow your sells",
-        description:
-          "You will attract some people that might never have heard of you or come to your shop before. It will be an opportunity for them to discover you and increase the chances that they buy your products or services one day.",
-        imgSrc: images.attract,
-        imgAlt: "Attract new customers Icon",
-        bgColour: "bg-blue-sky",
-        reverse: false,
-        SecondCallToActionButton: SecondGoToPartnerApplicationPageButton
-      },
-      {
-        title: "Get free promotion",
-        description:
-          "Because you will be listed as a pick up location on our website, it will be an opportunity for our customers to get to know you and go to your selling point for the first time.",
-        imgSrc: images.shout,
-        imgAlt: "Get free promotion Icon",
-        bgColour: "bg-christmas-tree",
-        reverse: true,
-        SecondCallToActionButton: SecondGoToPartnerApplicationPageButton
-      },
-      {
-        title: "It is hassle free and won't impact your business",
-        description:
-          "All you need to do is pressing the printing button and handle the documents to the customer.",
-        imgSrc: images.yoga,
-        imgAlt: "Hassle free Icon",
-        bgColour: "bg-navy",
-        reverse: true,
-        SecondCallToActionButton: SecondGoToPartnerApplicationPageButton
-      },
-      {
-        title: "Reinforce your relationship with your existing customers",
-        description:
-          "By providing the best printing service, your existing customers will have one more reason for you to be their favourite shop!",
-        imgSrc: images.exercise,
-        imgAlt: "Reinforce relationship Icon",
-        bgColour: "bg-orange",
-        reverse: false,
-        SecondCallToActionButton: SecondGoToPartnerApplicationPageButton
-      }
-    ];
-    return (
-      <Fragment>
-        {sections.map((section, index) => (
-          <LandingPageSection key={index} {...section} />
-        ))}
-      </Fragment>
-    );
-  }
-}
+const PartnerPage = ({ t }) => {
+  const GoToPartnerApplicationPageButton = props => (
+    <Link
+      to="/become-partner/application"
+      {...props}
+      className="fullwidth px0 button button--pink"
+    >
+      {t("callToAction.becomePartner")}
+    </Link>
+  );
+  const SecondGoToPartnerApplicationPageButton = props => (
+    <Link to="/become-partner/application" {...props}>
+      {t("callToAction.becomePartner")}
+    </Link>
+  );
+  const sections = [
+    {
+      title: t("partnerPage.main.title"),
+      description: t("partnerPage.main.description"),
+      imgSrc: images.handShake,
+      imgAlt: "Become Partner Icon",
+      bgColour: "bg-navy",
+      reverse: false,
+      CallToActionButton: GoToPartnerApplicationPageButton
+    },
+    {
+      title: t("partnerPage.newSourceRevenue.title"),
+      description: t("partnerPage.newSourceRevenue.description"),
+      imgSrc: images.money,
+      imgAlt: "New Source Revenue Icon",
+      bgColour: "bg-grapefruit",
+      reverse: true,
+      SecondCallToActionButton: SecondGoToPartnerApplicationPageButton
+    },
+    {
+      title: t("partnerPage.attractCustomers.title"),
+      description: t("partnerPage.attractCustomers.description"),
+      imgSrc: images.attract,
+      imgAlt: "Attract new customers Icon",
+      bgColour: "bg-blue-sky",
+      reverse: false,
+      SecondCallToActionButton: SecondGoToPartnerApplicationPageButton
+    },
+    {
+      title: t("partnerPage.freePromotion.title"),
+      description: t("partnerPage.freePromotion.description"),
+      imgSrc: images.shout,
+      imgAlt: "Get free promotion Icon",
+      bgColour: "bg-christmas-tree",
+      reverse: true,
+      SecondCallToActionButton: SecondGoToPartnerApplicationPageButton
+    },
+    {
+      title: t("partnerPage.noImpact.title"),
+      description: t("partnerPage.noImpact.description"),
+      imgSrc: images.yoga,
+      imgAlt: "Hassle free Icon",
+      bgColour: "bg-navy",
+      reverse: true,
+      SecondCallToActionButton: SecondGoToPartnerApplicationPageButton
+    },
+    {
+      title: t("partnerPage.reinforceRelationship.title"),
+      description: t("partnerPage.reinforceRelationship.description"),
+      imgSrc: images.exercise,
+      imgAlt: "Reinforce relationship Icon",
+      bgColour: "bg-orange",
+      reverse: false,
+      SecondCallToActionButton: SecondGoToPartnerApplicationPageButton
+    }
+  ];
+  return (
+    <Fragment>
+      {sections.map((section, index) => (
+        <LandingPageSection key={index} {...section} />
+      ))}
+    </Fragment>
+  );
+};
 export default PartnerPage;
