@@ -2,12 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 
 import PartnerList from "./PartnerList";
-import { DEFAULT_ZOOM_MAP } from "./../constants/constants";
+import { DEFAULT_ZOOM_MAP, TORONTO_LOCATION } from "../constants/constants";
 import { startSetPartners } from "../actions/partners";
 import Loader from "./Loader";
 import PageBanner from "./PageBanner";
 
-class PickUpLocationsPage extends React.Component {
+class PrintShopNearMePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,11 +23,12 @@ class PickUpLocationsPage extends React.Component {
   }
 
   render() {
+    const { t } = this.props;
     return (
       <div>
         <PageBanner
-          title="Our Pick Up Locations"
-          description="Find the most convenient pick up point for printing your documents"
+          title={t('printShopNearMePage.title')}
+          description={t('printShopNearMePage.description')}
         />
 
         {this.state.loadingData ? (
@@ -36,7 +37,7 @@ class PickUpLocationsPage extends React.Component {
           <div className="content-container">
             <PartnerList
               readOnly={true}
-              mapCenter={{ lat: 43.6767357, lng: -79.3439973 }}
+              mapCenter={TORONTO_LOCATION}
               defaultMapZoom={DEFAULT_ZOOM_MAP}
             />
           </div>
@@ -49,4 +50,4 @@ class PickUpLocationsPage extends React.Component {
 const mapDispatchToProps = dispatch => ({
   startSetPartners: () => dispatch(startSetPartners())
 });
-export default connect(null, mapDispatchToProps)(PickUpLocationsPage);
+export default connect(null, mapDispatchToProps)(PrintShopNearMePage);

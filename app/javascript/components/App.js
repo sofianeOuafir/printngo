@@ -36,7 +36,7 @@ import TopUpProductCheckoutPage from "./TopUpProductCheckoutPage";
 import TopUpOrderThankYouPage from "./TopUpOrderThankYouPage";
 import WalletPage from "./WalletPage";
 import ScrollToTop from "./ScrollToTop";
-import PickUpLocationsPage from "./PickUpLocationsPage";
+import PrintShopNearMePage from "./PrintShopNearMePage";
 import PartnerApplicationPage from "./PartnerApplicationPage";
 import TermsAndConditions from "./TermsAndConditions";
 import DocumentShowPage from "./DocumentShowPage";
@@ -189,7 +189,7 @@ class App extends React.Component {
                 path="/print-shops-near-me"
                 Layout={Layout}
                 title="Print Shops Near Me"
-                component={PickUpLocationsPage}
+                component={PrintShopNearMePage}
               />
               <AppRoute
                 exact
