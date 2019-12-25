@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import Steps, { Step } from "rc-steps";
 import { Helmet } from "react-helmet";
+import { withTranslation } from "react-i18next";
 
 import Logo from "./Logo";
 import WalletElement from "./WalletElement";
@@ -12,7 +13,8 @@ const OrderLayout = ({
   children,
   nextButton = null,
   currentState,
-  stickyBar = true
+  stickyBar = true,
+  t
 }) => (
   <Fragment>
     <Helmet>
@@ -26,22 +28,31 @@ const OrderLayout = ({
         <Link to="/">
           <Logo />
         </Link>
-        <WalletElement className="text-pink"  />
+        <WalletElement className="text-pink" />
       </div>
     </div>
     <div className="mt2 content-container">
       <Steps current={currentState}>
-        <Step title="Upload" description="Upload your documents" />
         <Step
-          title="Basket"
-          description="Choose the right products and quantities"
+          title={t("orderLayout.uploadStep.title")}
+          description={t("orderLayout.uploadStep.description")}
         />
         <Step
-          title="Location"
-          description="Select the closest location for gathering your documents"
+          title={t("orderLayout.basketStep.title")}
+          description={t("orderLayout.basketStep.description")}
         />
-        <Step title="Payment" description="Make a secure payment" />
-        <Step title="Done" description="Thanks and happy printing!" />
+        <Step
+          title={t("orderLayout.locationStep.title")}
+          description={t("orderLayout.locationStep.description")}
+        />
+        <Step
+          title={t("orderLayout.paymentStep.title")}
+          description={t("orderLayout.paymentStep.title")}
+        />
+        <Step
+          title={t("orderLayout.thanksStep.title")}
+          description={t("orderLayout.thanksStep.description")}
+        />
       </Steps>
     </div>
     <div
@@ -71,4 +82,4 @@ const OrderLayout = ({
   </Fragment>
 );
 
-export default OrderLayout;
+export default withTranslation()(OrderLayout);
