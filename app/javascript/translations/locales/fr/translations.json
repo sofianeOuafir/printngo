@@ -114,6 +114,8 @@
   "orderShowPage.seeInvoice": "Voir facture",
   "orderShowPage.printShop": "Imprimerie",
   "orderShowPage.yourOrder": "Votre commande",
+  "orderSubNavBar.printingOrders": "Commandes d'impression",
+  "orderSubNavBar.topUpOrders": "Commandes de recharge",
   "orderLayout.uploadStep.title": "Télechargez",
   "orderLayout.uploadStep.description": "Soumettez vos documents",
   "orderLayout.basketStep.title": "Panier",

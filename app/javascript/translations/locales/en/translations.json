@@ -114,6 +114,8 @@
   "orderShowPage.seeInvoice": "See Invoice",
   "orderShowPage.printShop": "Print Shop",
   "orderShowPage.yourOrder": "Your Order",
+  "orderSubNavBar.printingOrders": "Printing Orders",
+  "orderSubNavBar.topUpOrders": "Top Up Orders",
   "orderLayout.uploadStep.title": "Upload",
   "orderLayout.uploadStep.description": "Upload your documents",
   "orderLayout.basketStep.title": "Basket",

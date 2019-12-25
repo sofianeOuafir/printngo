@@ -1,13 +1,15 @@
 import React from "react";
-import SubNavBar from "./SubNavBar";
 
-const OrderSubNavBar = () => (
+import SubNavBar from "./SubNavBar";
+import { withTranslation } from "react-i18next";
+
+const OrderSubNavBar = ({ t }) => (
   <SubNavBar
     links={[
-      { url: "/printing-orders", text: "Printing Orders" },
-      { url: "/top-up-orders", text: "Top Up Orders" }
+      { url: "/printing-orders", text: t("orderSubNavBar.printingOrders") },
+      { url: "/top-up-orders", text: t("orderSubNavBar.topUpOrders") }
     ]}
   />
 );
 
-export default OrderSubNavBar;
+export default withTranslation()(OrderSubNavBar);
