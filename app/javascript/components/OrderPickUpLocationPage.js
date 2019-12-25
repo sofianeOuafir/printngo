@@ -54,16 +54,16 @@ class OrderPickUpLocationPage extends React.Component {
     if (loadingData) {
       return <Loader />;
     } else {
-      const { clientCurrentOrder } = this.props;
+      const { clientCurrentOrder, t } = this.props;
       const currentState = 2;
       return (
         <OrderLayout
           currentState={currentState}
-          title="Select a Pick Up Location"
-          info="Print anywhere"
+          title={t("orderPickUpLocationPage.title")}
+          info={t("orderPickUpLocationPage.info")}
           nextButton={{
             link: "/order/payment",
-            text: "Go to Payment",
+            text: t("orderPickUpLocationPage.nextButton"),
             disabled: clientCurrentOrder.selected_partner_id == null
           }}
         >
@@ -79,7 +79,7 @@ class OrderPickUpLocationPage extends React.Component {
 
           <div className={`content-container mb3`}>
             <Link className="button button-outline--pink" to="/order/basket">
-              &larr; Go back to Basket
+              &larr; {t("orderPickUpLocationPage.backToBasket")}
             </Link>
           </div>
         </OrderLayout>
