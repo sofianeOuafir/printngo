@@ -77,64 +77,78 @@ const AppRoute = ({
   );
 };
 
-const PrivatePrintingOrdersPage = () => (
-  <PrivateRoute component={PrintingOrdersPage} />
+const PrivatePrintingOrdersPage = props => (
+  <PrivateRoute {...props} component={PrintingOrdersPage} />
 );
-const PrivateTopUpOrdersPage = () => (
-  <PrivateRoute component={TopUpOrdersPage} />
-);
-
-const PrivateDocumentsPage = () => <PrivateRoute component={DocumentsPage} />;
-const PrivateOrderShowPage = () => <PrivateRoute component={OrderShowPage} />;
-const PrivateInvoicePage = () => <PrivateRoute component={InvoicePage} />;
-const PrivatePartnerLocationPage = () => (
-  <PrivateRoute component={PartnerLocationPage} />
-);
-const PrivatePartnerHomePage = () => (
-  <PrivateRoute component={PartnerHomePage} />
-);
-const PrivatePartnerOrderPage = () => (
-  <PrivateRoute component={PartnerOrderPage} />
-);
-const PrivatePrintedOrderPage = () => (
-  <PrivateRoute component={PrintedOrderPage} />
-);
-const PrivateOrderAwaitingConfirmationPage = () => (
-  <PrivateRoute component={OrderAwaitingConfirmationPage} />
-);
-const PrivateTopUpOrderThankYouPage = () => (
-  <PrivateRoute component={TopUpOrderThankYouPage} />
+const PrivateTopUpOrdersPage = props => (
+  <PrivateRoute {...props} component={TopUpOrdersPage} />
 );
 
-const PublicUserLoginPage = () => <PublicRoute component={UserLoginPage} />;
-const PublicPartnerLoginPage = () => (
-  <PublicRoute component={PartnerLoginPage} />
+const PrivateDocumentsPage = props => (
+  <PrivateRoute {...props} component={DocumentsPage} />
+);
+const PrivateOrderShowPage = props => (
+  <PrivateRoute {...props} component={OrderShowPage} />
+);
+const PrivateInvoicePage = props => (
+  <PrivateRoute {...props} component={InvoicePage} />
+);
+const PrivatePartnerLocationPage = props => (
+  <PrivateRoute {...props} component={PartnerLocationPage} />
+);
+const PrivatePartnerHomePage = props => (
+  <PrivateRoute {...props} component={PartnerHomePage} />
+);
+const PrivatePartnerOrderPage = props => (
+  <PrivateRoute {...props} component={PartnerOrderPage} />
+);
+const PrivatePrintedOrderPage = props => (
+  <PrivateRoute {...props} component={PrintedOrderPage} />
+);
+const PrivateOrderAwaitingConfirmationPage = props => (
+  <PrivateRoute {...props} component={OrderAwaitingConfirmationPage} />
+);
+const PrivateTopUpOrderThankYouPage = props => (
+  <PrivateRoute {...props} component={TopUpOrderThankYouPage} />
 );
 
-const PublicAdminLoginPage = () => <PublicRoute component={AdminLoginPage} />;
-const PrivateNewPartnerApplicationsPage = () => (
-  <PrivateRoute component={NewPartnerApplicationsPage} />
+const PublicUserLoginPage = props => (
+  <PublicRoute {...props} component={UserLoginPage} />
 );
-const PrivateArchivedPartnerApplicationsPage = () => (
-  <PrivateRoute component={ArchivedPartnerApplicationsPage} />
-);
-
-const PrivateAdminHomePage = () => <PrivateRoute component={AdminHomePage} />;
-
-const PrivateAdminPartnerApplicationEditPage = () => (
-  <PrivateRoute component={AdminPartnerApplicationEditPage} />
+const PublicPartnerLoginPage = props => (
+  <PublicRoute {...props} component={PartnerLoginPage} />
 );
 
-const PrivatePrintOrderThankYouPage = () => (
-  <PrivateRoute component={ThankYouPage} />
+const PublicAdminLoginPage = props => (
+  <PublicRoute {...props} component={AdminLoginPage} />
+);
+const PrivateNewPartnerApplicationsPage = props => (
+  <PrivateRoute {...props} component={NewPartnerApplicationsPage} />
+);
+const PrivateArchivedPartnerApplicationsPage = props => (
+  <PrivateRoute {...props} component={ArchivedPartnerApplicationsPage} />
 );
 
-const PrivateAdminPartnerApplicationsNewPage = () => (
-  <PrivateRoute component={AdminPartnerApplicationsNewPage} />
+const PrivateAdminHomePage = props => (
+  <PrivateRoute {...props} component={AdminHomePage} />
 );
-const PublicActivationPage = () => <PublicRoute component={ActivationPage} />;
-const PublicActivationThankYouPage = () => (
-  <PublicRoute component={ActivationThankYouPage} />
+
+const PrivateAdminPartnerApplicationEditPage = props => (
+  <PrivateRoute {...props} component={AdminPartnerApplicationEditPage} />
+);
+
+const PrivatePrintOrderThankYouPage = props => (
+  <PrivateRoute {...props} component={ThankYouPage} />
+);
+
+const PrivateAdminPartnerApplicationsNewPage = props => (
+  <PrivateRoute {...props} component={AdminPartnerApplicationsNewPage} />
+);
+const PublicActivationPage = props => (
+  <PublicRoute {...props} component={ActivationPage} />
+);
+const PublicActivationThankYouPage = props => (
+  <PublicRoute {...props} component={ActivationThankYouPage} />
 );
 
 class App extends React.Component {

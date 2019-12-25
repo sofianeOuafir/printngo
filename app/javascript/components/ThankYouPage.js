@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
+import ReactHtmlParser from "react-html-parser";
 
 import OrderLayout from "./OrderLayout";
 import images from "./../images";
@@ -27,7 +28,7 @@ class ThankYouPage extends React.Component {
     if (this.state.loadingData) {
       return <Loader />;
     } else {
-      const { partner, clientOrder } = this.props;
+      const { partner, clientOrder, t } = this.props;
       const { user, invoice, id, secret_code } = clientOrder;
       const { firstname } = user;
       const currentState = 4;
@@ -35,55 +36,45 @@ class ThankYouPage extends React.Component {
       return (
         <OrderLayout
           currentState={currentState}
-          title="Thank you"
-          info="Happy printing!"
-          nextButton={{ link: `/`, text: "Home" }}
+          title={t("printOrderThankYouPage.thankYou")}
+          info={t("printOrderThankYouPage.happyPrinting")}
+          nextButton={{
+            link: `/`,
+            text: t("printOrderThankYouPage.nextButton")
+          }}
         >
           <div className="mx1 content-container border border-color--grey h5 flex justify-content--center">
             <div className="my2">
               <div className="center">
                 <img src={images.success} alt="Success Icon" width={80} />
               </div>
-              <h1 className="h4 center thank-you-page--title">Payment Success!</h1>
+              <h1 className="h4 center thank-you-page--title">
+                {t("printOrderThankYouPage.paymentSuccess")}
+              </h1>
               <div className="thank-you-page--info">
-                <p>
-                  A big thank you for your purchase {firstname}! <br />
-                  <br /> As we really care about your privacy, we have generated
-                  for you an access code that you will need to provide when
-                  picking up your order. <br />
-                  <br />
-                  Your access code is <strong>{secret_code}</strong> and your
-                  order number is <strong>#{id}</strong>.{" "}
-                </p>
-                <p>Do not share the access code with anyone. </p>
-                <p>
-                  You can now gather your documents at the following address: (or
-                  in any of our pick up locations)
-                </p>
+                {ReactHtmlParser(
+                  t("printOrderThankYouPage.info", {
+                    firstname,
+                    secret_code,
+                    id
+                  })
+                )}
 
                 <Partner partner={partner} />
-
-                <p className="m0">
-                  As we care about your privacy: <br />
-                  <strong>
-                    If you are unable to provide the access code, please note
-                    that a proof of ID will be required for gathering your
-                    order.
-                  </strong>
-                </p>
+                <p>{t("printOrderThankYouPage.doNotShare")}</p>
               </div>
               <div className="flex justify-content--between">
                 <Link
                   className="mt3 button button-outline--pink"
                   to={`/order/${this.props.match.params.id}`}
                 >
-                  See Order
+                  {t("printOrderThankYouPage.seeOrder")}
                 </Link>
                 <Link
                   className="mt3 button button-outline--pink"
                   to={`/invoice/${invoice.id}`}
                 >
-                  See Invoice
+                  {t("printOrderThankYouPage.seeInvoice")}
                 </Link>
               </div>
             </div>
