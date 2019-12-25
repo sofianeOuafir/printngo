@@ -24,7 +24,7 @@ class OrderShowPage extends React.Component {
   }
 
   render() {
-    const { clientOrder: order, orderItems } = this.props;
+    const { clientOrder: order, orderItems, t } = this.props;
     return (
       <Fragment>
         {this.state.loadingData ? (
@@ -32,27 +32,29 @@ class OrderShowPage extends React.Component {
         ) : (
           <div className="h5 content-container my2 order-show-page">
             <Link to="/printing-orders" className="text-navy">
-              &larr; See All Orders
+              &larr; {t("orderShowPage.seeAllOrders")}
             </Link>
             <div className="flex justify-content--between align-items--center">
               <h1 className="order-show-page--title text-navy favourite-font-weight">
-                Order #{order.id} - Access Code: {order.secret_code}
+                {t("orderShowPage.title", {
+                  orderId: order.id,
+                  secretCode: order.secret_code
+                })}
               </h1>
-              <Link
-                className="text-navy"
-                to={`/invoice/${order.invoice.id}`}
-              >
-                See Invoice
+              <Link className="text-navy" to={`/invoice/${order.invoice.id}`}>
+                {t("orderShowPage.seeInvoice")}
               </Link>
             </div>
             <div className="p2 border border-color--grey mb2">
               <h2 className="h5 text-navy favourite-font-weight">
-                Pick up Location
+                {t("orderShowPage.printShop")}
               </h2>
               <Partner partner={order.selected_partner} />
             </div>
             <div className="p2 border border-color--grey">
-              <h2 className="h5 text-navy favourite-font-weight">Your Order</h2>
+              <h2 className="h5 text-navy favourite-font-weight">
+                {t("orderShowPage.yourOrder")}
+              </h2>
               <OrderItemList
                 readOnly={true}
                 orderItems={orderItems}
