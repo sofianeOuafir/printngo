@@ -116,6 +116,7 @@
   "orderShowPage.yourOrder": "Votre commande",
   "orderSubNavBar.printingOrders": "Commandes d'impression",
   "orderSubNavBar.topUpOrders": "Commandes de recharge",
+  "orderList.noOrder": "Vous n'avez pas encore de commande.",
   "orderLayout.uploadStep.title": "Télechargez",
   "orderLayout.uploadStep.description": "Soumettez vos documents",
   "orderLayout.basketStep.title": "Panier",
@@ -171,5 +172,18 @@
   "home.bestValue.title": "Le meilleur rapport qualité/prix",
   "home.bestValue.description": "Notre service est génial, cela ne signifie pas qu'il devrait être cher! Nous vous offrons le meilleur service d'impression au meilleur prix.",
   "home.contact.title": "Nous aimons discuter avec vous",
-  "home.contact.description": "Vous avez des questions, souhaitez donner un avis ou simplement dire bonjour? Vous pouvez nous contacter à tout moment à l'adresse suivante: contact@printngo.fr"
+  "home.contact.description": "Vous avez des questions, souhaitez donner un avis ou simplement dire bonjour? Vous pouvez nous contacter à tout moment à l'adresse suivante: contact@printngo.fr",
+  "orderStatus.printed": "Imprimé",
+  "orderStatus.markAsPrinted": "Marquer comme imprimé",
+  "orderStatus.printing": "En cours d'impression",
+  "orderStatus.preparing": "En preparation",
+  "orderStatus.readyToPrint": "Prêt à l'impression",
+  "order.orderPlacedAt": "Date de Commande",
+  "order.total": "Total",
+  "order.orderNumber": "Commande #{{id}}",
+  "order.details": "Détails",
+  "order.invoice": "Facture",
+  "reportIssue.text": "Signaler un problème",
+  "reportIssue.subject": "Problème avec la commande #{{orderId}}",
+  "reportIssue.href": "mailto:probleme@printandgo.fr?subject={{subject}}"
 }

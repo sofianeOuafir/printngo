@@ -116,6 +116,7 @@
   "orderShowPage.yourOrder": "Your Order",
   "orderSubNavBar.printingOrders": "Printing Orders",
   "orderSubNavBar.topUpOrders": "Top Up Orders",
+  "orderList.noOrder": "You don't have any order yet.",
   "orderLayout.uploadStep.title": "Upload",
   "orderLayout.uploadStep.description": "Upload your documents",
   "orderLayout.basketStep.title": "Basket",
@@ -171,5 +172,19 @@
   "home.bestValue.title": "Best value",
   "home.bestValue.description": "Our service is awesome, it doesn't mean it should be more expensive! We provide you with the best printing service at the best price.",
   "home.contact.title": "We love hearing from you",
-  "home.contact.description": "Having questions, want to give a feedback or just say hello? You can contact us anytime at contact@printngo.ca"
+  "home.contact.description": "Having questions, want to give a feedback or just say hello? You can contact us anytime at contact@printngo.ca",
+  "orderStatus.printed": "Printed",
+  "orderStatus.markAsPrinted": "Mark as printed",
+  "orderStatus.printing": "Printing",
+  "orderStatus.preparing": "Preparing",
+  "orderStatus.readyToPrint": "Ready to Print",
+  "order.orderPlacedAt": "Order Date",
+  "order.total": "Total",
+  "order.orderNumber": "Order #{{id}}",
+  "order.details": "Details",
+  "order.invoice": "Invoice",
+  "reportIssue.text": "Report an issue",
+  "reportIssue.subject": "Issue with order #{{orderId}}",
+  "reportIssue.href": "mailto:issue@printngo.ca?subject={{subject}}"
+
 }
