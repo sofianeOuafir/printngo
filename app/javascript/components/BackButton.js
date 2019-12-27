@@ -1,17 +1,18 @@
 import React from "react";
 import { withRouter, Link } from "react-router-dom";
+import { withTranslation } from "react-i18next";
 
-const BackButton = props => (
+const BackButton = ({ history, t }) => (
   <Link
     to="#"
     onClick={e => {
       e.preventDefault();
-      props.history.goBack();
+      history.goBack();
     }}
     className="button button--navy"
   >
-    &larr; Back
+    &larr; {t("backButton.text")}
   </Link>
 );
 
-export default withRouter(BackButton);
+export default withRouter(withTranslation()(BackButton));
