@@ -68,6 +68,7 @@
   "callToAction.findPrinter": "Find a print shop near me",
   "callToAction.checkOutPricing": "Check out our pricing",
   "callToAction.contactUs": "Contact us",
+  "callToAction.topUpNow": "Top Up Now",
   "checkoutForm.firstname": "First Name",
   "checkoutForm.lastname": "Last Name",
   "checkoutForm.email": "Email",
@@ -222,5 +223,9 @@
   "partnerApplicationForm.submit": "Submit",
   "partnerApplicationForm.aboutYourCompany": "About your company",
   "partnerApplicationForm.aboutYou": "About you",
-  "backButton.text": "Back"
+  "backButton.text": "Back",
+  "topUpProductCheckoutPage.payment": "Payment",
+  "topUpOrderThankYouPage.paymentSuccess": "Payment Success!",
+  "topUpOrderThankYouPage.thankYou": "Thank you {{firstname}}! Your wallet has been successful credited. Your balance is now {{walletBalance}}. Happy Printing!",
+  "topUpOrderThankYouPage.seeInvoice": "See Invoice"
 }

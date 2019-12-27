@@ -43,6 +43,7 @@ class WalletPage extends React.Component {
 
   render() {
     const { loadingData, transactions } = this.state;
+    const { t } = this.props;
     return loadingData ? (
       <Loader />
     ) : (
@@ -51,7 +52,7 @@ class WalletPage extends React.Component {
           <WalletElement className="text-navy" />
         </h1>
         <Link to="/pricing" className="button button--pink">
-          Top Up Now
+          {t("callToAction.topUpNow")}
         </Link>
         {transactions.length > 0 && (
           <div className="border border-color--grey py1 mt1 px1">

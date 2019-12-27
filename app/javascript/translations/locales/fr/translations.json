@@ -68,6 +68,7 @@
   "callToAction.findPrinter": "Trouver un imprimeur près de chez moi",
   "callToAction.checkOutPricing": "Consultez nos tarifs",
   "callToAction.contactUs": "Contactez-nous",
+  "callToAction.topUpNow": "Recharger Maintenant",
   "checkoutForm.firstname": "Prénom",
   "checkoutForm.lastname": "Nom",
   "checkoutForm.email": "E-mail",
@@ -222,5 +223,9 @@
   "partnerApplicationForm.submit": "Valider",
   "partnerApplicationForm.aboutYourCompany": "À propos de votre entreprise",
   "partnerApplicationForm.aboutYou": "À propos de vous",
-  "backButton.text": "Retour"
+  "backButton.text": "Retour",
+  "topUpProductCheckoutPage.payment": "Paiement",
+  "topUpOrderThankYouPage.paymentSuccess": "Paiement réussi!",
+  "topUpOrderThankYouPage.thankYou": "Merci {{firstname}}! Votre portefeuille a bien été crédité. Votre solde est maintenant {{walletBalance}}. Bonne impression!",
+  "topUpOrderThankYouPage.seeInvoice": "Voir Facture"
 }
