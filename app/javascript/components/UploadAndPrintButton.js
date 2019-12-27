@@ -25,7 +25,8 @@ class UploadAndPrintButton extends React.Component {
     document.getElementById("fileInput").click();
   };
 
-  openModal = () => {
+  openModal = e => {
+    e.preventDefault();
     this.setState({ modalIsOpen: true });
   };
 
@@ -121,7 +122,11 @@ class UploadAndPrintButton extends React.Component {
     const { text = "Upload & Print Now", className } = this.props;
     return (
       <Fragment>
-        <Link to='#' className={`${className} pointer`} onClick={this.openModal}>
+        <Link
+          to="#"
+          className={`${className} pointer`}
+          onClick={this.openModal}
+        >
           {text}
         </Link>
         <Modal

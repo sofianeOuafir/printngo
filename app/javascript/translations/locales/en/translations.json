@@ -77,7 +77,7 @@
   "checkoutForm.agreeTermsAndConditions": "I agree to terms and conditions.",
   "checkoutForm.doubleCheck": "I have double checked my documents preview and specifications. I understand that my order will be printed in line with the preview and specification I have chosen.",
   "checkoutForm.processingPayment": "Processing Payment...",
-  "checkoutForm.payNow": "Processing Payment...",
+  "checkoutForm.payNow": "Pay Now",
   "paymentPage.payment": "Payment",
   "paymentPage.yourOrder": "Your Order",
   "paymentPage.backToPrintShop": "Select Another Print Shop",
@@ -99,6 +99,7 @@
   "orderItem.price": "Price:",
   "orderItem.quantity": "Quantity:",
   "orderItem.chooseFormat": "Choose format:",
+  "orderItem.removeSuccessNotification": "Item removed successfully!",
   "orderItemList.total": "Total",
   "orderItemList.taxes": "Taxes",
   "orderItemList.subtotal": "Subtotal ({{count}} Item)",
@@ -185,6 +186,12 @@
   "order.invoice": "Invoice",
   "reportIssue.text": "Report an issue",
   "reportIssue.subject": "Issue with order #{{orderId}}",
-  "reportIssue.href": "mailto:issue@printngo.ca?subject={{subject}}"
-
+  "reportIssue.href": "mailto:issue@printngo.ca?subject={{subject}}",
+  "documentsPage.title": "Your Documents",
+  "documentsPage.checkout": "Check out",
+  "documentsPage.upload": "Upload & Add To Basket",
+  "documentList.noDocumentYet": "You don't have any document yet.",
+  "documentItem.addToBasket": "Add <span>To Basket</span>",
+  "documentItem.successNotification": "Added to basket successfully!",
+  "partnerOrder.confirmationSuccess": "Thank you for confirming!"
 }

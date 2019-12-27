@@ -19,7 +19,8 @@ class OrderItem extends React.Component {
   };
 
   displayRemovalNotification = () => {
-    toast.success("Item removed successfully!", {
+    const { t } = this.props;
+    toast.success(t("orderItem.removeSuccessNotification"), {
       position: toast.POSITION.BOTTOM_RIGHT
     });
   };
@@ -59,7 +60,7 @@ class OrderItem extends React.Component {
         </div>
         <div className="flex justify-content--around fullwidth">
           <div className="flex flex-direction--column justify-content--center">
-            <span className="mb2">{t('orderItem.chooseFormat')} </span>
+            <span className="mb2">{t("orderItem.chooseFormat")} </span>
             {readOnly ? (
               <span>{t(`${product.code}.name`)}</span>
             ) : (
@@ -79,7 +80,7 @@ class OrderItem extends React.Component {
           </div>
 
           <div className="flex flex-direction--column justify-content--center">
-            <span className="mb2">{t('orderItem.quantity')}</span>
+            <span className="mb2">{t("orderItem.quantity")}</span>
             {readOnly ? (
               <span className="center">{quantity}</span>
             ) : (
@@ -112,7 +113,7 @@ class OrderItem extends React.Component {
           </div>
 
           <div className="flex flex-direction--column justify-content--center">
-            <span className="mb2">{t('orderItem.price')}</span>
+            <span className="mb2">{t("orderItem.price")}</span>
             <span>{fromCentsToDollars(sub_total)}</span>
           </div>
         </div>

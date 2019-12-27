@@ -1,5 +1,4 @@
 import React from "react";
-import pluralize from "pluralize";
 import OrderItem from "./OrderItem";
 import { withTranslation } from "react-i18next";
 

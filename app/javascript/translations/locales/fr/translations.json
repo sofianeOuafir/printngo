@@ -99,6 +99,7 @@
   "orderItem.price": "Prix:",
   "orderItem.quantity": "Quantité:",
   "orderItem.chooseFormat": "Choisissez un format:",
+  "orderItem.removeSuccessNotification": "L'élément a bien été supprimé!",
   "orderItemList.total": "Total",
   "orderItemList.taxes": "TVA",
   "orderItemList.subtotal": "Sous-total ({{count}} element)",
@@ -185,5 +186,12 @@
   "order.invoice": "Facture",
   "reportIssue.text": "Signaler un problème",
   "reportIssue.subject": "Problème avec la commande #{{orderId}}",
-  "reportIssue.href": "mailto:probleme@printandgo.fr?subject={{subject}}"
+  "reportIssue.href": "mailto:probleme@printandgo.fr?subject={{subject}}",
+  "documentsPage.title": "Vos Documents",
+  "documentsPage.checkout": "Panier",
+  "documentsPage.upload": "Soumettre Documents",
+  "documentList.noDocumentYet": "Vous n'avez pas encore de document.",
+  "documentItem.addToBasket": "Ajouter <span>Au Panier</span>",
+  "documentItem.successNotification": "Ajouté au panier avec succès!",
+  "partnerOrder.confirmationSuccess": "Merci pour votre confirmation!"
 }

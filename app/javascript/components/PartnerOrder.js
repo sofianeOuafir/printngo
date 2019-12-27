@@ -2,6 +2,7 @@ import React from "react";
 import pluralize from "pluralize";
 import { toast } from "react-toastify";
 import { connect } from "react-redux";
+import { withTranslation } from "react-i18next";
 
 import {
   startUpdatePartnerOrder,
@@ -16,14 +17,15 @@ class PartnerOrder extends React.Component {
     const {
       startUpdatePartnerOrder,
       startSetPartnerOrders,
-      order
+      order,
+      t
     } = this.props;
     startUpdatePartnerOrder({ secretCode: order.secret_code })
       .then(() => {
         return startSetPartnerOrders();
       })
       .then(() => {
-        toast.success("Thank you for confirming!", {
+        toast.success(t("partnerOrder.confirmationSuccess"), {
           position: toast.POSITION.BOTTOM_RIGHT
         });
       });
@@ -131,4 +133,7 @@ const mapDispatchToProps = dispatch => ({
   startSetPartnerOrders: () => dispatch(startSetPartnerOrders())
 });
 
-export default connect(null, mapDispatchToProps)(PartnerOrder);
+export default connect(
+  null,
+  mapDispatchToProps
+)(withTranslation()(PartnerOrder));
