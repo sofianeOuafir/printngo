@@ -36,7 +36,9 @@ class TopUpProductCheckoutPage extends React.Component {
         ) : (
           <Fragment>
             <PageBanner
-              title={t(`${product.code}.name`, { price: fromCentsToDollars(product.price) })}
+              title={t(`${product.code}.name`, {
+                price: fromCentsToDollars(product.price)
+              })}
               description={t(`${product.code}.description`, {
                 allocatedCredit: fromCentsToDollars(product.allocated_credit)
               })}
@@ -44,7 +46,9 @@ class TopUpProductCheckoutPage extends React.Component {
 
             <div className="border top-up-product-checkout-page--payment--description-container flex border-color--grey border-bottom--none">
               <div className="col-6 px1 border-right border-color--grey pb1 top-up-product-checkout-page--payment-container">
-                <h3 className="text-navy">Payment</h3>
+                <h3 className="text-navy">
+                  {t("topUpProductCheckoutPage.payment")}
+                </h3>
                 <StripeProvider apiKey={process.env.STRIPE_PUBLIC_KEY}>
                   <Elements>
                     <CheckoutForm
@@ -57,11 +61,15 @@ class TopUpProductCheckoutPage extends React.Component {
               <div className="col-6">
                 <div className="px3 flex flex-direction--column pb1">
                   <h3 className="text-navy">
-                    {t(`${product.code}.name`, { price: fromCentsToDollars(product.price) })}
+                    {t(`${product.code}.name`, {
+                      price: fromCentsToDollars(product.price)
+                    })}
                   </h3>
                   <p className="text-navy">
                     {t(`${product.code}.description`, {
-                      allocatedCredit: fromCentsToDollars(product.allocated_credit)
+                      allocatedCredit: fromCentsToDollars(
+                        product.allocated_credit
+                      )
                     })}
                   </p>
                   <SellingPointList
