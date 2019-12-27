@@ -30,7 +30,7 @@ class OrderItemList extends React.Component {
           }  h5`}
         >
           {!readOnly && (
-            <div>
+            <div className="mr1">
               <UploadAndPrintButton
                 className="button button--navy"
                 text={t("orderItemList.upload")}

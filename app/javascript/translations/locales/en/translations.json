@@ -193,5 +193,13 @@
   "documentList.noDocumentYet": "You don't have any document yet.",
   "documentItem.addToBasket": "Add <span>To Basket</span>",
   "documentItem.successNotification": "Added to basket successfully!",
-  "partnerOrder.confirmationSuccess": "Thank you for confirming!"
+  "partnerOrder.confirmationSuccess": "Thank you for confirming!",
+  "uploadAndPrintButton.link.defaultText": "Upload & Print Now",
+  "uploadAndPrintButton.modal.title": "Choose Files",
+  "uploadAndPrintButton.modal.acceptedFormat": "Accepted format",
+  "uploadAndPrintButton.modal.progress": "Progress: {{percent}}% (It can take a few moments)",
+  "uploadAndPrintButton.modal.uploadButton": "Upload From Device",
+  "uploadAndPrintButton.modal.cancelButton": "Cancel",
+  "uploadAndPrintButton.modal.tryAgain": "Try To Upload Again",
+  "uploadAndPrintButton.modal.continue": "Continue"
 }

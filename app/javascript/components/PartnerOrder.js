@@ -51,7 +51,7 @@ class PartnerOrder extends React.Component {
       });
   };
   render() {
-    const { order, readOnly = false } = this.props;
+    const { order, readOnly = false, t } = this.props;
     const { user, deliverables } = order;
     return (
       <div className="mb1">
@@ -98,7 +98,7 @@ class PartnerOrder extends React.Component {
               )}
               <div className="flex align-items--center">
                 <span className="h5 text-navy mr1">
-                  {deliverable.print_product.name} (
+                  {t(`${deliverable.print_product.code}.name`)} (
                   {pluralize(
                     `${deliverable.number_of_page} page`,
                     deliverable.number_of_page

@@ -98,7 +98,7 @@
   "orderPickUpLocationPage.title": "Sélectionnez un imprimeur",
   "orderItem.price": "Prix:",
   "orderItem.quantity": "Quantité:",
-  "orderItem.chooseFormat": "Choisissez un format:",
+  "orderItem.chooseFormat": "Choisir format:",
   "orderItem.removeSuccessNotification": "L'élément a bien été supprimé!",
   "orderItemList.total": "Total",
   "orderItemList.taxes": "TVA",
@@ -193,5 +193,13 @@
   "documentList.noDocumentYet": "Vous n'avez pas encore de document.",
   "documentItem.addToBasket": "Ajouter <span>Au Panier</span>",
   "documentItem.successNotification": "Ajouté au panier avec succès!",
-  "partnerOrder.confirmationSuccess": "Merci pour votre confirmation!"
+  "partnerOrder.confirmationSuccess": "Merci pour votre confirmation!",
+  "uploadAndPrintButton.link.defaultText": "Soumettre Documents",
+  "uploadAndPrintButton.modal.title": "Choisir des fichiers",
+  "uploadAndPrintButton.modal.acceptedFormat": "Format accepté",
+  "uploadAndPrintButton.modal.progress": "Progression: {{percent}}% (Cela peut prendre quelques instants)",
+  "uploadAndPrintButton.modal.uploadButton": "Télécharger depuis un appareil",
+  "uploadAndPrintButton.modal.cancelButton": "Annuler",
+  "uploadAndPrintButton.modal.tryAgain": "Essayez à nouveau",
+  "uploadAndPrintButton.modal.continue": "Continuer"
 }

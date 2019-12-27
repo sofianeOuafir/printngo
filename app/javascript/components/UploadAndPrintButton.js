@@ -4,6 +4,7 @@ import axios from "axios";
 import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Line } from "rc-progress";
+import { withTranslation } from "react-i18next";
 
 import { addOrderItem } from "./../actions/orderItems";
 import { MdDone, MdHighlightOff } from "react-icons/md";
@@ -119,7 +120,11 @@ class UploadAndPrintButton extends React.Component {
   };
 
   render() {
-    const { text = "Upload & Print Now", className } = this.props;
+    const {
+      t,
+      text = t("uploadAndPrintButton.link.defaultText"),
+      className
+    } = this.props;
     return (
       <Fragment>
         <Link
@@ -137,11 +142,12 @@ class UploadAndPrintButton extends React.Component {
           contentLabel="Upload Modal"
         >
           <h2 className="m0 center py1 bg-navy text-white h4 favourite-font-weight">
-            Choose Files
+            {t("uploadAndPrintButton.modal.title")}
           </h2>
           <div className="px3 flex flex-direction--column mt1 mb2">
             <span className="mb1">
-              Accepted format: {acceptedFormat.join(", ")}
+              {t("uploadAndPrintButton.modal.acceptedFormat")}:{" "}
+              {acceptedFormat.join(", ")}
             </span>
             <form>
               <input
@@ -155,8 +161,9 @@ class UploadAndPrintButton extends React.Component {
             {this.state.isUploading ? (
               <div>
                 <p className="text-navy m0 mb1 h4">
-                  Progress: {this.state.percentage}% (It can take a little
-                  moment)
+                  {t("uploadAndPrintButton.modal.progress", {
+                    percent: this.state.percentage
+                  })}
                 </p>
                 <Line
                   percent={this.state.percentage}
@@ -191,14 +198,14 @@ class UploadAndPrintButton extends React.Component {
                   onClick={this.triggerFileDialog}
                   className="button button--navy button--no-border-radius center"
                 >
-                  Upload From Device
+                  {t("uploadAndPrintButton.modal.uploadButton")}
                 </a>
                 <div className="flex justify-content--end mt1">
                   <a
                     className="button button-outline--navy button--no-border-radius"
                     onClick={this.closeModal}
                   >
-                    Cancel
+                    {t("uploadAndPrintButton.modal.cancelButton")}
                   </a>
                 </div>
               </Fragment>
@@ -209,14 +216,15 @@ class UploadAndPrintButton extends React.Component {
                   onClick={this.triggerFileDialog}
                   className="button button-outline--navy"
                 >
-                  Try To Upload Again
+                  {t("uploadAndPrintButton.modal.tryAgain")}
                 </a>
                 <Link
                   className="button button--pink"
                   onClick={this.redirectToBasket}
                   to="#"
                 >
-                  Continue &rarr;
+                  {t("uploadAndPrintButton.modal.continue")}{" "}
+                  &rarr;
                 </Link>
               </div>
             )}
@@ -238,4 +246,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(UploadAndPrintButton));
+)(withRouter(withTranslation()(UploadAndPrintButton)));
