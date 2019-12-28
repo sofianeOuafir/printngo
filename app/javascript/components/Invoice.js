@@ -1,6 +1,6 @@
 import React from "react";
 import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from "react-i18next";
 
 import { fromCentsToDollars } from "../lib/money";
 import { getDateFormat } from "../lib/date";
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   cellCompanyDetails: {
     border: "0 solid #BDBDBD",
     padding: 0,
-    width: 100
+    width: 200
   }
 });
 
@@ -94,7 +94,7 @@ const Invoice = ({ orderItems, order, user, invoice, t }) => (
               { textAlign: "left", fontSize: 20 }
             ]}
           >
-            Print N' Go
+            {t("invoice.printandgo")}
           </Text>
           <Text
             style={[styles.headerText, styles.cell, styles.cellWithoutBorder]}
@@ -113,7 +113,7 @@ const Invoice = ({ orderItems, order, user, invoice, t }) => (
               { fontSize: 20, color: "#BDBDBD" }
             ]}
           >
-            Invoice
+            {t("invoice.title")}
           </Text>
         </View>
         <View style={[styles.row, styles.rowWithoutBorder, { marginTop: 10 }]}>
@@ -125,7 +125,7 @@ const Invoice = ({ orderItems, order, user, invoice, t }) => (
               { textAlign: "left" }
             ]}
           >
-            922 Logan avenue
+            {t("invoice.address")}
           </Text>
           <Text
             style={[styles.headerText, styles.cell, styles.cellWithoutBorder]}
@@ -154,7 +154,7 @@ const Invoice = ({ orderItems, order, user, invoice, t }) => (
               { textAlign: "left" }
             ]}
           >
-            Toronto, M4K 3E4
+            {t("invoice.city")}, {t("invoice.postcode")}
           </Text>
           <Text
             style={[styles.headerText, styles.cell, styles.cellWithoutBorder]}
@@ -171,7 +171,7 @@ const Invoice = ({ orderItems, order, user, invoice, t }) => (
           <Text
             style={[styles.headerText, styles.cell, styles.cellCompanyDetails]}
           >
-            Invoice # {invoice.id}
+            {t("invoice.number", { id: invoice.id })}
           </Text>
         </View>
         <View style={[styles.row, styles.rowWithoutBorder]}>
@@ -183,7 +183,7 @@ const Invoice = ({ orderItems, order, user, invoice, t }) => (
               { textAlign: "left" }
             ]}
           >
-            Website: https://www.printngo.ca
+            {t("invoice.website")}
           </Text>
           <Text
             style={[styles.headerText, styles.cell, styles.cellWithoutBorder]}
@@ -210,7 +210,7 @@ const Invoice = ({ orderItems, order, user, invoice, t }) => (
               { textAlign: "left" }
             ]}
           >
-            Contact: contact@printngo.ca
+            {t("invoice.contact")}
           </Text>
           <Text
             style={[styles.headerText, styles.cell, styles.cellWithoutBorder]}
@@ -240,7 +240,7 @@ const Invoice = ({ orderItems, order, user, invoice, t }) => (
               { textAlign: "left" }
             ]}
           >
-            Bill to: {user.fullname}
+            {t("invoice.billTo", { fullname: user.fullname })}
           </Text>
           <Text
             style={[styles.headerText, styles.cell, styles.cellWithoutBorder]}
@@ -267,7 +267,7 @@ const Invoice = ({ orderItems, order, user, invoice, t }) => (
               { textAlign: "left" }
             ]}
           >
-            Email: {user.email}
+            {t("invoice.email", { email: user.email })}
           </Text>
           <Text
             style={[styles.headerText, styles.cell, styles.cellWithoutBorder]}
@@ -296,31 +296,33 @@ const Invoice = ({ orderItems, order, user, invoice, t }) => (
               styles.cellProduct
             ]}
           >
-            Product
-          </Text>
-          <Text
-            style={[
-              styles.headerText,
-              styles.cell,
-              styles.cellHeader,
-              styles.cellDescription
-            ]}
-          >
-            Description
+            {t("invoice.product")}
           </Text>
           {invoice.print_order_invoice && (
+            <Text
+              style={[
+                styles.headerText,
+                styles.cell,
+                styles.cellHeader,
+                styles.cellDescription
+              ]}
+            >
+              {t("invoice.description")}
+            </Text>
+          )}
+          {invoice.print_order_invoice && (
             <Text style={[styles.headerText, styles.cell, styles.cellHeader]}>
-              Number Of Page
+              {t("invoice.numberOfPage")}
             </Text>
           )}
           <Text style={[styles.headerText, styles.cell, styles.cellHeader]}>
-            Quantity
+            {t("invoice.quantity")}
           </Text>
           <Text style={[styles.headerText, styles.cell, styles.cellHeader]}>
-            Unit Price
+            {t("invoice.unitPrice")}
           </Text>
           <Text style={[styles.headerText, styles.cell, styles.cellHeader]}>
-            Line Total
+            {t("invoice.lineTotal")}
           </Text>
         </View>
         {orderItems.map((orderItem, index) => (
@@ -328,11 +330,13 @@ const Invoice = ({ orderItems, order, user, invoice, t }) => (
             <Text style={[styles.headerText, styles.cell, styles.cellProduct]}>
               {t(`${orderItem.product.code}.name`)}
             </Text>
-            <Text
-              style={[styles.headerText, styles.cell, styles.cellDescription]}
-            >
-              {orderItem.description}
-            </Text>
+            {invoice.print_order_invoice && (
+              <Text
+                style={[styles.headerText, styles.cell, styles.cellDescription]}
+              >
+                {orderItem.description}
+              </Text>
+            )}
             {orderItem.document && (
               <Text style={[styles.headerText, styles.cell]}>
                 {orderItem.document.number_of_page}
@@ -380,7 +384,7 @@ const Invoice = ({ orderItems, order, user, invoice, t }) => (
               { padding: 0 }
             ]}
           >
-            Subtotal
+            {t("invoice.subtotal")}
           </Text>
           <Text
             style={[
@@ -424,7 +428,7 @@ const Invoice = ({ orderItems, order, user, invoice, t }) => (
               { padding: 0 }
             ]}
           >
-            Tax Amount
+            {t("invoice.taxAmount")}
           </Text>
           <Text
             style={[
@@ -468,7 +472,7 @@ const Invoice = ({ orderItems, order, user, invoice, t }) => (
               { padding: 0 }
             ]}
           >
-            Total
+            {t("invoice.total")}
           </Text>
           <Text
             style={[
@@ -512,7 +516,7 @@ const Invoice = ({ orderItems, order, user, invoice, t }) => (
               { padding: 0 }
             ]}
           >
-            Paid
+            {t("invoice.paid")}
           </Text>
           <Text
             style={[
@@ -556,7 +560,7 @@ const Invoice = ({ orderItems, order, user, invoice, t }) => (
               { padding: 0 }
             ]}
           >
-            Total Due
+            {t("invoice.totalDue")}
           </Text>
           <Text
             style={[
@@ -570,7 +574,9 @@ const Invoice = ({ orderItems, order, user, invoice, t }) => (
           </Text>
         </View>
         <View style={[styles.row, { marginTop: 5, border: "0 black solid" }]}>
-          <Text style={{ color: "#506C9D" }}>Thank you for your business!</Text>
+          <Text style={{ color: "#506C9D" }}>
+            {t("invoice.thankYouForYourBusiness")}
+          </Text>
         </View>
       </View>
     </Page>
