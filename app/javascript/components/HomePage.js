@@ -68,7 +68,7 @@ const ContactUsButton = props => {
   const { t } = useTranslation();
   return (
     <a
-      href="mailto:contact@printngo.ca"
+      href={t("home.contact.link")}
       {...props}
       className="second-call-to-action button button-outline button-outline--navy"
     >

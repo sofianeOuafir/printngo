@@ -175,6 +175,7 @@
   "home.bestValue.description": "Our service is awesome, it doesn't mean it should be more expensive! We provide you with the best printing service at the best price.",
   "home.contact.title": "We love hearing from you",
   "home.contact.description": "Having questions, want to give a feedback or just say hello? You can contact us anytime at contact@printngo.ca",
+  "home.contact.link": "mailto:contact@printngo.ca",
   "orderStatus.printed": "Printed",
   "orderStatus.markAsPrinted": "Mark as printed",
   "orderStatus.printing": "Printing",
