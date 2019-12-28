@@ -227,5 +227,7 @@
   "topUpProductCheckoutPage.payment": "Payment",
   "topUpOrderThankYouPage.paymentSuccess": "Payment Success!",
   "topUpOrderThankYouPage.thankYou": "Thank you {{firstname}}! Your wallet has been successful credited. Your balance is now {{walletBalance}}. Happy Printing!",
-  "topUpOrderThankYouPage.seeInvoice": "See Invoice"
+  "topUpOrderThankYouPage.seeInvoice": "See Invoice",
+  "transactionItem.print.title": "Print",
+  "transactionItem.topUp.title": "Top Up"
 }

@@ -77,7 +77,7 @@
   "checkoutForm.alreadyCustomer": "Déjà client?",
   "checkoutForm.agreeTermsAndConditions": "J'accepte les termes et conditions.",
   "checkoutForm.doubleCheck": "J'ai revérifié l'aperçu et les spécifications de mes documents. Je comprends que ma commande sera imprimée conformément à l'aperçu et aux spécifications que j'ai choisis.",
-  "checkoutForm.processingPayment": "Traitement du paiement ..",
+  "checkoutForm.processingPayment": "Traitement du paiement ...",
   "checkoutForm.payNow": "Payer maintenant",
   "paymentPage.payment": "Paiement",
   "paymentPage.yourOrder": "Votre Commande",
@@ -227,5 +227,7 @@
   "topUpProductCheckoutPage.payment": "Paiement",
   "topUpOrderThankYouPage.paymentSuccess": "Paiement réussi!",
   "topUpOrderThankYouPage.thankYou": "Merci {{firstname}}! Votre portefeuille a bien été crédité. Votre solde est maintenant {{walletBalance}}. Bonne impression!",
-  "topUpOrderThankYouPage.seeInvoice": "Voir Facture"
+  "topUpOrderThankYouPage.seeInvoice": "Voir Facture",
+  "transactionItem.print.title": "Impression",
+  "transactionItem.topUp.title": "Recharge"
 }

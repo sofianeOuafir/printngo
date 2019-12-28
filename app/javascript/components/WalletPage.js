@@ -58,7 +58,9 @@ class WalletPage extends React.Component {
           <div className="border border-color--grey py1 mt1 px1">
             {transactions.map((transaction, index) => {
               const { order, created_at, type, new_balance } = transaction;
-              const transactionContext = order.print_order ? "Print" : "Top Up";
+              const transactionContext = order.print_order
+                ? t("transactionItem.print.title")
+                : t("transactionItem.topUp.title");
               const amount =
                 type == "Credit"
                   ? `+${fromCentsToDollars(transaction.amount)}`
