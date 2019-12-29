@@ -263,5 +263,8 @@
   "activationThankYouPage.loginNow": "Login Now",
   "adminHomePage.title": "Home Page",
   "partnerApplicationSubNavBar.newApplications": "New Applications",
-  "partnerApplicationSubNavBar.archivedApplications": "Archived Applications"
+  "partnerApplicationSubNavBar.archivedApplications": "Archived Applications",
+  "partnerApplicationList.noPartnerApplication": "There is not any partner application.",
+  "partnerApplication.view": "View",
+  "partnerApplication.createAccount": "Create Account"
 }

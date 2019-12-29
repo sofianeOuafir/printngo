@@ -263,5 +263,8 @@
   "activationThankYouPage.loginNow": "Se Connecter",
   "adminHomePage.title": "Page d'accueil",
   "partnerApplicationSubNavBar.newApplications": "Nouvelles candidatures",
-  "partnerApplicationSubNavBar.archivedApplications": "Candidatures archivées"
+  "partnerApplicationSubNavBar.archivedApplications": "Candidatures archivées",
+  "partnerApplicationList.noPartnerApplication": "Il n'y a pas de candidature.",
+  "partnerApplication.view": "Voir",
+  "partnerApplication.createAccount": "Créer un compte"
 }

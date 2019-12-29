@@ -1,6 +1,7 @@
 import React from "react";
 import { withRouter, Link } from "react-router-dom";
 import axios from "axios";
+import { withTranslation } from "react-i18next";
 
 const onCreatePartnerClick = ({ e, id, history }) => {
   e.preventDefault();
@@ -13,7 +14,7 @@ const onCreatePartnerClick = ({ e, id, history }) => {
     });
 };
 
-const PartnerApplication = ({ partnerApplication, history }) => {
+const PartnerApplication = ({ partnerApplication, history, t }) => {
   const {
     company_name: companyName,
     id,
@@ -29,7 +30,7 @@ const PartnerApplication = ({ partnerApplication, history }) => {
           className="button button--navy"
           style={{ marginRight: "5px", marginBottom: "5px" }}
         >
-          View
+          {t("partnerApplication.view")}
         </Link>
         {!partnerCreated && (
           <Link
@@ -37,7 +38,7 @@ const PartnerApplication = ({ partnerApplication, history }) => {
             to="#"
             onClick={e => onCreatePartnerClick({ id, history, e })}
           >
-            Create Account
+            {t("partnerApplication.createAccount")}
           </Link>
         )}
       </div>
@@ -45,4 +46,4 @@ const PartnerApplication = ({ partnerApplication, history }) => {
   );
 };
 
-export default withRouter(PartnerApplication);
+export default withRouter(withTranslation()(PartnerApplication));

@@ -1,8 +1,9 @@
 import React from "react";
+import { withTranslation } from "react-i18next";
 
 import PartnerApplication from "./PartnerApplication";
 
-const PartnerApplicationList = ({ partnerApplications }) => {
+const PartnerApplicationList = ({ partnerApplications, t }) => {
   return partnerApplications.length > 0 ? (
     partnerApplications.map(partnerApplication => (
       <PartnerApplication
@@ -11,8 +12,10 @@ const PartnerApplicationList = ({ partnerApplications }) => {
       />
     ))
   ) : (
-    <p className="h5 text-navy">There is not any partner application.</p>
+    <p className="h5 text-navy">
+      {t("partnerApplicationList.noPartnerApplication")}
+    </p>
   );
 };
 
-export default PartnerApplicationList;
+export default withTranslation()(PartnerApplicationList);
