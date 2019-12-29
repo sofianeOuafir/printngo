@@ -267,5 +267,7 @@
   "partnerApplicationList.noPartnerApplication": "Il n'y a pas de candidature.",
   "partnerApplication.view": "Voir",
   "partnerApplication.createAccount": "Créer un compte",
-  "newPartnerApplicationsPage.createNewApplication": "Créer une nouvelle candidature"
+  "newPartnerApplicationsPage.createNewApplication": "Créer une nouvelle candidature",
+  "partnerSearchBar.accessCode": "Code d'accès",
+  "partnerSearchBar.search": "Rechercher"
 }
