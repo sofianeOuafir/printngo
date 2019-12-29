@@ -252,5 +252,11 @@
   "invoice.total": "Total",
   "invoice.paid": "Payé",
   "invoice.totalDue": "Total dû",
-  "invoice.thankYouForYourBusiness": "Nous vous remercions de votre confiance."
+  "invoice.thankYouForYourBusiness": "Nous vous remercions de votre confiance.",
+  "activationPage.welcome": "Bienvenue",
+  "activationPage.setupNewPassword": "Choisissez un nouveau mot de passe pour activer votre compte",
+  "activationPage.password": "Mot de passe",
+  "activationPage.passwordConfirmation": "Confirmation mot de passe",
+  "activationPage.activateNow": "Activer maintenant",
+  "activationPage.linkInvalid": "Ce lien d'activation n'est plus valide."
 }
