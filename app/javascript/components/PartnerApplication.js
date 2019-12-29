@@ -23,7 +23,7 @@ const PartnerApplication = ({ partnerApplication, history }) => {
   return (
     <div className="flex justify-content--between mb1 align-items--center p1 border border-color--grey">
       <span className="text-navy h5">{companyName}</span>
-      <div>
+      <div className="flex flex-direction--column">
         <Link
           to={`/admin/partner-application/${id}`}
           className="button button--navy"

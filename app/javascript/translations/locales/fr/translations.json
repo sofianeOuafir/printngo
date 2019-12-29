@@ -261,5 +261,7 @@
   "activationPage.linkInvalid": "Ce lien d'activation n'est plus valide.",
   "activationThankYouPage.accountActivated": "Votre compte est activé!",
   "activationThankYouPage.loginNow": "Se Connecter",
-  "adminHomePage.title": "Page d'accueil"
+  "adminHomePage.title": "Page d'accueil",
+  "partnerApplicationSubNavBar.newApplications": "Nouvelles candidatures",
+  "partnerApplicationSubNavBar.archivedApplications": "Candidatures archivées"
 }
