@@ -258,5 +258,7 @@
   "activationPage.password": "Password",
   "activationPage.passwordConfirmation": "Password Confirmation",
   "activationPage.activateNow": "Activate Now",
-  "activationPage.linkInvalid": "This activation link is not valid anymore."
+  "activationPage.linkInvalid": "This activation link is not valid anymore.",
+  "activationThankYouPage.accountActivated": "Your account is activated!",
+  "activationThankYouPage.loginNow": "Login Now"
 }
