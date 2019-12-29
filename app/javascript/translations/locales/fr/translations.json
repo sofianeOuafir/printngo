@@ -260,5 +260,6 @@
   "activationPage.activateNow": "Activer maintenant",
   "activationPage.linkInvalid": "Ce lien d'activation n'est plus valide.",
   "activationThankYouPage.accountActivated": "Votre compte est activé!",
-  "activationThankYouPage.loginNow": "Se Connecter"
+  "activationThankYouPage.loginNow": "Se Connecter",
+  "adminHomePage.title": "Page d'accueil"
 }

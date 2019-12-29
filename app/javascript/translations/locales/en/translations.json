@@ -260,5 +260,6 @@
   "activationPage.activateNow": "Activate Now",
   "activationPage.linkInvalid": "This activation link is not valid anymore.",
   "activationThankYouPage.accountActivated": "Your account is activated!",
-  "activationThankYouPage.loginNow": "Login Now"
+  "activationThankYouPage.loginNow": "Login Now",
+  "adminHomePage.title": "Home Page"
 }
