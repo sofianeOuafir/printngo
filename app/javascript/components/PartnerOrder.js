@@ -56,19 +56,14 @@ class PartnerOrder extends React.Component {
     return (
       <div className="mb1">
         {order.awaiting_confirmation && (
-          <p className="h6 text-orange m0 mb1">
-            <strong>
-              IMPORTANT: Please remember to mark the order as printed once the
-              documents get delivered to the client. It allows us to have
-              confirmation that everything went well and help us making sure you
-              get paid for the service provided.
-            </strong>
+          <p className="h5 text-orange m0 mb1">
+            <strong>{t("partnerOrder.important")}</strong>
           </p>
         )}
         <div className="px1 border border--thick border-color--grey">
           <div className="flex align-items--center justify-content--between">
             <h2 className="h4 m0 py1 favourite-font-weight text-navy">
-              {user.fullname} - Order #{order.id}
+              {user.fullname} - {t("partnerOrder.order")} #{order.id}
             </h2>
 
             <OrderStatus
@@ -113,7 +108,7 @@ class PartnerOrder extends React.Component {
                     onClick={() => this.onPrintClick(id)}
                     className="my1 button button--navy"
                   >
-                    Print
+                    {t("partnerOrder.print")}
                   </button>
                 )}
               </div>

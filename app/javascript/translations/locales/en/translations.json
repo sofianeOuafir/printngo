@@ -276,5 +276,8 @@
   "documentViewer.of": "of",
   "orderAwaitingConfirmationPage.title": "Awaiting Confirmation Orders",
   "orderAwaitingConfirmationPage.noOrder": "All good! You don't have any order awaiting for confirmation.",
-  "partnerLocationPage.title": "My Location"
+  "partnerLocationPage.title": "My Location",
+  "partnerOrder.important": "IMPORTANT: Please remember to mark the order as printed once the documents get delivered to the client. It allows us to have confirmation that everything went well and help us making sure you get paid for the service provided.",
+  "partnerOrder.order": "Order",
+  "partnerOrder.print": "Print"
 }

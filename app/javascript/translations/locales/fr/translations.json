@@ -276,5 +276,8 @@
   "documentViewer.of": "sur",
   "orderAwaitingConfirmationPage.title": "Commandes en attente de confirmation",
   "orderAwaitingConfirmationPage.noOrder": "Vous n'avez aucune commande en attente de confirmation.",
-  "partnerLocationPage.title": "Ma Localisation"
+  "partnerLocationPage.title": "Ma Localisation",
+  "partnerOrder.important": "IMPORTANT: N'oubliez pas de marquer la commande comme imprimée une fois les documents livrés au client. Cela nous permet d'avoir la confirmation que tout s'est bien passé et nous aide à nous assurer que vous êtes payé pour le service fourni.",
+  "partnerOrder.order": "Commande",
+  "partnerOrder.print": "Imprimer"
 }
