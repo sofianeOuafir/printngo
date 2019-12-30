@@ -279,5 +279,7 @@
   "partnerLocationPage.title": "Ma Localisation",
   "partnerOrder.important": "IMPORTANT: N'oubliez pas de marquer la commande comme imprimée une fois les documents livrés au client. Cela nous permet d'avoir la confirmation que tout s'est bien passé et nous aide à nous assurer que vous êtes payé pour le service fourni.",
   "partnerOrder.order": "Commande",
-  "partnerOrder.print": "Imprimer"
+  "partnerOrder.print": "Imprimer",
+  "printedOrderPage.title": "Commandes Imprimées",
+  "printedOrderPage.noOrder": "Vous n'avez pas encore imprimé de commande."
 }

@@ -279,5 +279,7 @@
   "partnerLocationPage.title": "My Location",
   "partnerOrder.important": "IMPORTANT: Please remember to mark the order as printed once the documents get delivered to the client. It allows us to have confirmation that everything went well and help us making sure you get paid for the service provided.",
   "partnerOrder.order": "Order",
-  "partnerOrder.print": "Print"
+  "partnerOrder.print": "Print",
+  "printedOrderPage.title": "Printed Orders",
+  "printedOrderPage.noOrder": "You haven't printed any order yet."
 }
