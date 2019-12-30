@@ -275,5 +275,6 @@
   "documentViewer.next": "Next",
   "documentViewer.of": "of",
   "orderAwaitingConfirmationPage.title": "Awaiting Confirmation Orders",
-  "orderAwaitingConfirmationPage.noOrder": "All good! You don't have any order awaiting for confirmation."
+  "orderAwaitingConfirmationPage.noOrder": "All good! You don't have any order awaiting for confirmation.",
+  "partnerLocationPage.title": "My Location"
 }

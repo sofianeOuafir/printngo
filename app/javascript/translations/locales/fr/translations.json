@@ -275,5 +275,6 @@
   "documentViewer.next": "Suivant",
   "documentViewer.of": "sur",
   "orderAwaitingConfirmationPage.title": "Commandes en attente de confirmation",
-  "orderAwaitingConfirmationPage.noOrder": "Vous n'avez aucune commande en attente de confirmation."
+  "orderAwaitingConfirmationPage.noOrder": "Vous n'avez aucune commande en attente de confirmation.",
+  "partnerLocationPage.title": "Ma Localisation"
 }
