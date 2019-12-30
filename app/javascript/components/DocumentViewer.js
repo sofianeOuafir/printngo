@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 import Loader from "./Loader";
+import { withTranslation } from "react-i18next";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 class DocumentViewer extends Component {
@@ -24,6 +25,7 @@ class DocumentViewer extends Component {
 
   render() {
     const { pageNumber, numPages } = this.state;
+    const { t } = this.props;
     const Nav = () => {
       return (
         <div
@@ -36,10 +38,11 @@ class DocumentViewer extends Component {
             disabled={pageNumber <= 1}
             onClick={this.previousPage}
           >
-            &larr; Previous
+            &larr; {t("documentViewer.previous")}
           </button>
           <p>
-            Page {pageNumber || (numPages ? 1 : "--")} of {numPages || "--"}
+            Page {pageNumber || (numPages ? 1 : "--")} {t("documentViewer.of")}{" "}
+            {numPages || "--"}
           </p>
           <button
             className={`button ${
@@ -48,7 +51,7 @@ class DocumentViewer extends Component {
             disabled={pageNumber >= numPages}
             onClick={this.nextPage}
           >
-            Next &rarr;
+            {t("documentViewer.next")} &rarr;
           </button>
         </div>
       );
@@ -72,4 +75,4 @@ class DocumentViewer extends Component {
   }
 }
 
-export default DocumentViewer;
+export default withTranslation()(DocumentViewer);

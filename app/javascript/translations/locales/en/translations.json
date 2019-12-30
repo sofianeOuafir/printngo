@@ -269,5 +269,9 @@
   "partnerApplication.createAccount": "Create Account",
   "newPartnerApplicationsPage.createNewApplication": "Create New Application",
   "partnerSearchBar.accessCode": "Access Code",
-  "partnerSearchBar.search": "Search"
+  "partnerSearchBar.search": "Search",
+  "partnerOrderPage.orderNotFound": "<p>We couldn't find any order corresponding with the following access code: <strong>{{secretCode}}</strong>. <br />Possible reasons:</p><ul><li>The spelling is wrong.</li><li>The order has already been printed.</li></ul>",
+  "documentViewer.previous": "Previous",
+  "documentViewer.next": "Next",
+  "documentViewer.of": "of"
 }

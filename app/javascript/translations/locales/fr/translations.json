@@ -269,5 +269,9 @@
   "partnerApplication.createAccount": "Créer un compte",
   "newPartnerApplicationsPage.createNewApplication": "Créer une nouvelle candidature",
   "partnerSearchBar.accessCode": "Code d'accès",
-  "partnerSearchBar.search": "Rechercher"
+  "partnerSearchBar.search": "Rechercher",
+  "partnerOrderPage.orderNotFound": "<p>Nous n'avons trouvé aucune commande correspondant au code d'accès suivant: <strong>{{secretCode}}</strong>. <br />Raisons possibles:</p><ul><li>L'orthographe est fausse.</li><li>La commande a déjà été imprimée.</li></ul>",
+  "documentViewer.previous": "Précédent",
+  "documentViewer.next": "Suivant",
+  "documentViewer.of": "sur"
 }

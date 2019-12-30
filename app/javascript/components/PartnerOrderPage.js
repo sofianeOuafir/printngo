@@ -1,6 +1,8 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { withTranslation } from "react-i18next";
+import ReactHtmlParser from "react-html-parser";
 
 import PartnerSearchBar from "./PartnerSearchBar";
 import { startSetPartnerOrder, setPartnerOrder } from "./../actions/orders";
@@ -52,7 +54,7 @@ class PartnerOrderPage extends React.Component {
 
   render() {
     const { secretCode, displayError } = this.state;
-    const { order } = this.props;
+    const { order, t } = this.props;
     return (
       <div className="content-container flex flex-direction--column fullscreen align-items--center justify-content--center">
         <div className="fullwidth">
@@ -67,15 +69,9 @@ class PartnerOrderPage extends React.Component {
           {order.id && !displayError && <PartnerOrder order={order} />}
           {displayError && (
             <div className="text-pink h5 ">
-              <p>
-                We couldn't find any order corresponding with the following
-                access code: <strong>{secretCode}</strong>. <br />
-                Possible reasons:
-              </p>
-              <ul>
-                <li>The spelling is wrong.</li>
-                <li>The order has already been printed.</li>
-              </ul>
+              {ReactHtmlParser(
+                t("partnerOrderPage.orderNotFound", { secretCode })
+              )}
             </div>
           )}
         </div>
@@ -97,4 +93,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(PartnerOrderPage));
+)(withRouter(withTranslation()(PartnerOrderPage)));
