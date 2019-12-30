@@ -273,5 +273,7 @@
   "partnerOrderPage.orderNotFound": "<p>We couldn't find any order corresponding with the following access code: <strong>{{secretCode}}</strong>. <br />Possible reasons:</p><ul><li>The spelling is wrong.</li><li>The order has already been printed.</li></ul>",
   "documentViewer.previous": "Previous",
   "documentViewer.next": "Next",
-  "documentViewer.of": "of"
+  "documentViewer.of": "of",
+  "orderAwaitingConfirmationPage.title": "Awaiting Confirmation Orders",
+  "orderAwaitingConfirmationPage.noOrder": "All good! You don't have any order awaiting for confirmation."
 }
