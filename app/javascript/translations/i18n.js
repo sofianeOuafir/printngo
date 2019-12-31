@@ -5,6 +5,10 @@ import { initReactI18next } from "react-i18next";
 import translationEN from "./locales/en/translations.json";
 import translationFR from "./locales/fr/translations.json";
 
+const detectionOptions = {
+  order: ["subdomain", "cookie", "navigator"]
+};
+
 const resources = {
   en: {
     translations: translationEN
@@ -17,6 +21,7 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
+    detection: detectionOptions,
     // we init with resources
     resources,
     fallbackLng: "en",
