@@ -1,6 +1,5 @@
 import React from "react";
 import YouTube from "react-youtube";
-import { INTRODUCTION_VIDEO_ID } from "./../constants/constants";
 import { withTranslation } from "react-i18next";
 
 const WhyPrintnGo = ({ t }) => {
@@ -21,7 +20,7 @@ const WhyPrintnGo = ({ t }) => {
         </p>
 
         <YouTube
-          videoId={INTRODUCTION_VIDEO_ID}
+          videoId={t('introduction_video_id')}
           opt={opts}
           className="youtube-iframe"
         />

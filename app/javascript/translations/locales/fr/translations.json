@@ -188,7 +188,7 @@
   "order.invoice": "Facture",
   "reportIssue.text": "Signaler un problème",
   "reportIssue.subject": "Problème avec la commande #{{orderId}}",
-  "reportIssue.href": "mailto:probleme@printandgo.fr?subject={{subject}}",
+  "reportIssue.href": "mailto:aide@printandgo.fr?subject={{subject}}",
   "documentsPage.title": "Vos Documents",
   "documentsPage.checkout": "Panier",
   "documentsPage.upload": "Soumettre Documents",
@@ -311,5 +311,6 @@
   "pageTitle.PrivateNewPartnerApplicationsPage": "Nouvelle Candidatures",
   "pageTitle.PrivateArchivedPartnerApplicationsPage": "Candidatures archivées",
   "pageTitle.PrivateAdminPartnerApplicationEditPage": "Candidature",
-  "pageTitle.PrivateAdminPartnerApplicationsNewPage": "Candidature - Nouveau"
+  "pageTitle.PrivateAdminPartnerApplicationsNewPage": "Candidature - Nouveau",
+  "introduction_video_id": "o7o1EN9JM4A"
 }

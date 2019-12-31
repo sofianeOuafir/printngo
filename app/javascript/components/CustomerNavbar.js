@@ -11,7 +11,6 @@ import { startSetClientCurrentOrder } from "../actions/orders";
 import UploadAndPrintButton from "./UploadAndPrintButton";
 import SignInLink from "./SignInLink";
 import WalletElement from "./WalletElement";
-import { INTRODUCTION_VIDEO_ID } from "../constants/constants";
 import Navbar from "./Navbar";
 import SignOutLink from "./SignOutLink";
 
@@ -193,7 +192,7 @@ class CustomerNavbar extends React.Component {
           channel="youtube"
           autoplay={1}
           isOpen={this.state.videoModalOpen}
-          videoId={INTRODUCTION_VIDEO_ID}
+          videoId={t("introduction_video_id")}
           onClose={() => this.setState({ videoModalOpen: false })}
         />
       </Fragment>
