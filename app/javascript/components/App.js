@@ -50,6 +50,7 @@ import AdminPartnerApplicationsNewPage from "./AdminPartnerApplicationsNewPage";
 import ActivationPage from "./ActivationPage";
 import ActivationThankYouPage from "./ActivationThankYouPage";
 import i18n from "./../translations/i18n";
+import AppWithTranslation from "./AppWithTranslation";
 
 const store = configureStore();
 
@@ -157,6 +158,7 @@ class App extends React.Component {
     axios.defaults.headers.common["X-CSRF-Token"] = csrfToken;
   }
   render() {
+    const { t } = this.props;
     return (
       <Provider store={store}>
         <BrowserRouter>
@@ -180,14 +182,14 @@ class App extends React.Component {
                 exact
                 path="/"
                 Layout={Layout}
-                title="Home"
+                title={t("pageTitle.HomePage")}
                 component={HomePage}
               />
               <AppRoute
                 exact
                 path="/terms-and-conditions"
                 Layout={Layout}
-                title="Terms And Conditions"
+                title={t("pageTitle.TermsAndConditions")}
                 component={TermsAndConditions}
               />
 
@@ -195,87 +197,87 @@ class App extends React.Component {
                 exact
                 path="/become-partner/application"
                 Layout={Layout}
-                title="Become Partner - Application"
+                title={t("pageTitle.PartnerApplicationPage")}
                 component={PartnerApplicationPage}
               />
               <AppRoute
                 exact
                 path="/print-shops-near-me"
                 Layout={Layout}
-                title="Print Shops Near Me"
+                title={t("pageTitle.PrintShopNearMePage")}
                 component={PrintShopNearMePage}
               />
               <AppRoute
                 exact
                 path="/pricing"
                 Layout={Layout}
-                title="Pricing"
+                title={t("pageTitle.PricingPage")}
                 component={PricingPage}
               />
               <AppRoute
                 exact
                 path="/top-up/:id"
                 Layout={Layout}
-                title="Top up"
+                title={t("pageTitle.TopUpProductCheckoutPage")}
                 component={TopUpProductCheckoutPage}
               />
               <AppRoute
                 exact
                 path="/top-up-order/:id/thank-you"
                 Layout={Layout}
-                title="Thank you!"
+                title={t("pageTitle.PrivateTopUpOrderThankYouPage")}
                 component={PrivateTopUpOrderThankYouPage}
               />
               <AppRoute
-                title="Become a Partner"
+                title={t("pageTitle.PartnerPage")}
                 path="/become-partner"
                 Layout={Layout}
                 component={PartnerPage}
               />
               <AppRoute
-                title="Your Printing Orders"
+                title={t("pageTitle.PrivatePrintingOrdersPage")}
                 Layout={Layout}
                 path="/printing-orders"
                 component={PrivatePrintingOrdersPage}
               />
               <AppRoute
-                title="Your Top Up Orders"
+                title={t("pageTitle.PrivateTopUpOrdersPage")}
                 Layout={Layout}
                 path="/top-up-orders"
                 component={PrivateTopUpOrdersPage}
               />
               <AppRoute
-                title="Your Documents"
+                title={t("pageTitle.PrivateDocumentsPage")}
                 path="/documents"
                 Layout={Layout}
                 component={PrivateDocumentsPage}
               />
               <AppRoute
-                title="Document"
+                title={t("pageTitle.DocumentShowPage")}
                 path="/document/:id"
                 Layout={Layout}
                 component={DocumentShowPage}
               />
               <AppRoute
-                title="Login"
+                title={t("pageTitle.PublicUserLoginPage")}
                 path="/login"
                 Layout={Layout}
                 component={PublicUserLoginPage}
               />
               <AppRoute
-                title="Your Order"
+                title={t("pageTitle.PrivateOrderShowPage")}
                 path="/order/:id"
                 Layout={Layout}
                 component={PrivateOrderShowPage}
               />
               <AppRoute
-                title="Your Wallet"
+                title={t("pageTitle.WalletPage")}
                 path="/wallet"
                 Layout={Layout}
                 component={WalletPage}
               />
               <AppRoute
-                title="Your Invoice"
+                title={t("pageTitle.PrivateInvoicePage")}
                 path="/invoice/:id"
                 Layout={Layout}
                 component={PrivateInvoicePage}
@@ -287,18 +289,18 @@ class App extends React.Component {
                 exact
                 path="/partner"
                 Layout={PartnerLayout}
-                title="Home"
+                title={t("pageTitle.PrivatePartnerHomePage")}
                 component={PrivatePartnerHomePage}
               />
               <AppRoute
                 path="/partner/login"
-                title="Login"
+                title={t("pageTitle.PublicPartnerLoginPage")}
                 Layout={PartnerLayout}
                 component={PublicPartnerLoginPage}
               />
 
               <AppRoute
-                title="Order"
+                title={t("pageTitle.PrivatePartnerOrderPage")}
                 path="/partner/order/:secretCode"
                 Layout={PartnerLayout}
                 component={PrivatePartnerOrderPage}
@@ -306,31 +308,31 @@ class App extends React.Component {
 
               <AppRoute
                 path="/partner/awaiting-confirmation"
-                title="Awaiting Confirmations"
+                title={t("pageTitle.PrivateOrderAwaitingConfirmationPage")}
                 Layout={PartnerLayout}
                 component={PrivateOrderAwaitingConfirmationPage}
               />
               <AppRoute
-                title="Printed Orders"
+                title={t("pageTitle.PrivatePrintedOrderPage")}
                 path="/partner/printed-orders"
                 Layout={PartnerLayout}
                 component={PrivatePrintedOrderPage}
               />
               <AppRoute
-                title="My Location"
+                title={t("pageTitle.PrivatePartnerLocationPage")}
                 path="/partner/location"
                 Layout={PartnerLayout}
                 component={PrivatePartnerLocationPage}
               />
               <AppRoute
                 exact
-                title="Activation"
+                title={t("pageTitle.PublicActivationThankYouPage")}
                 path="/partner/activation/thank-you"
                 Layout={PartnerLayout}
                 component={PublicActivationThankYouPage}
               />
               <AppRoute
-                title="Activation"
+                title={t("pageTitle.PublicActivationPage")}
                 path="/partner/activation/:token"
                 Layout={PartnerLayout}
                 component={PublicActivationPage}
@@ -341,37 +343,37 @@ class App extends React.Component {
               {/* Admin Layout */}
               <AppRoute
                 exact
-                title="Home"
+                title={t("pageTitle.PrivateAdminHomePage")}
                 path="/admin"
                 Layout={AdminLayout}
                 component={PrivateAdminHomePage}
               />
               <AppRoute
-                title="Login"
+                title={t("pageTitle.PublicAdminLoginPage")}
                 path="/admin/login"
                 Layout={AdminLayout}
                 component={PublicAdminLoginPage}
               />
               <AppRoute
-                title="New Applications"
+                title={t("pageTitle.PrivateNewPartnerApplicationsPage")}
                 path="/admin/new-partner-applications"
                 Layout={AdminLayout}
                 component={PrivateNewPartnerApplicationsPage}
               />
               <AppRoute
-                title="Archived Applications"
+                title={t("pageTitle.PrivateArchivedPartnerApplicationsPage")}
                 path="/admin/archived-partner-applications"
                 Layout={AdminLayout}
                 component={PrivateArchivedPartnerApplicationsPage}
               />
               <AppRoute
-                title="Partner Application"
+                title={t("pageTitle.PrivateAdminPartnerApplicationEditPage")}
                 path="/admin/partner-application/:id"
                 Layout={AdminLayout}
                 component={PrivateAdminPartnerApplicationEditPage}
               />
               <AppRoute
-                title="Partner Application - New"
+                title={t("pageTitle.PrivateAdminPartnerApplicationsNewPage")}
                 path="/admin/partner-applications/new"
                 Layout={AdminLayout}
                 component={PrivateAdminPartnerApplicationsNewPage}
@@ -389,7 +391,7 @@ class App extends React.Component {
 let hasRendered = false;
 const renderApp = () => {
   if (!hasRendered) {
-    ReactDOM.render(<App />, document.getElementById("app"));
+    ReactDOM.render(<AppWithTranslation />, document.getElementById("app"));
     hasRendered = true;
   }
 };
