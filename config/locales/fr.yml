@@ -23,3 +23,18 @@ fr:
               blank: 'Veuillez choisir un mot de passe'
             password_confirmation:
               confirmation: 'Les mots de passe ne correspondent pas'
+        partner_application: 
+          attributes:
+            firstname: 
+              blank: 'Veuillez saisir votre prénom'
+            lastname: 
+              blank: 'Veuillez saisir votre nom de famille'
+            email: 
+              blank: 'Veuillez renseigner une adresse e-mail'
+              invalid: 'Veuillez entrer une adresse e-mail valide'
+            company_name: 
+              blank: "Veuillez saisir le nom de votre entreprise"
+            postcode: 
+              blank: "Veuillez saisir le code postal de votre entreprise"
+            company_address: 
+              blank: "Veuillez saisir l'adresse de votre entreprise"

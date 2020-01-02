@@ -54,4 +54,18 @@ en:
               blank: 'Please choose a password'
             password_confirmation:
               confirmation: 'Passwords do not match'
-
+        partner_application: 
+          attributes:
+            firstname: 
+              blank: 'Please enter your first name'
+            lastname: 
+              blank: 'Please enter your last name'
+            email: 
+              blank: 'Please enter an email address'
+              invalid: 'Please enter a valid email address'
+            company_name: 
+              blank: "Please enter your company's name"
+            postcode: 
+              blank: "Please enter your company's postcode"
+            company_address: 
+              blank: "Please enter your company's address"
