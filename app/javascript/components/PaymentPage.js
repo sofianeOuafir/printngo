@@ -33,7 +33,7 @@ class PaymentPage extends React.Component {
     if (this.state.loadingData) {
       return <Loader />;
     } else {
-      const { clientCurrentOrder, orderItems, t } = this.props;
+      const { clientCurrentOrder, orderItems, t, currentLocale } = this.props;
       const { selected_partner } = clientCurrentOrder;
       const currentState = 3;
       return (
@@ -72,9 +72,11 @@ class PaymentPage extends React.Component {
               />
             </div>
             <div className="p2 border border-color--grey">
-              <h2 className="h5 text-navy favourite-font-weight">{t("paymentPage.payment")}</h2>
+              <h2 className="h5 text-navy favourite-font-weight">
+                {t("paymentPage.payment")}
+              </h2>
               <StripeProvider apiKey={process.env.STRIPE_PUBLIC_KEY}>
-                <Elements>
+                <Elements locale={currentLocale}>
                   <CheckoutForm orderType={PRINT_ORDER} />
                 </Elements>
               </StripeProvider>

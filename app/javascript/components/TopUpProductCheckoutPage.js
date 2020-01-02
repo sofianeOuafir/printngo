@@ -27,7 +27,7 @@ class TopUpProductCheckoutPage extends React.Component {
       });
   }
   render() {
-    const { t } = this.props;
+    const { t, currentLocale } = this.props;
     const { product } = this.state;
     return (
       <div className="content-container">
@@ -50,7 +50,7 @@ class TopUpProductCheckoutPage extends React.Component {
                   {t("topUpProductCheckoutPage.payment")}
                 </h3>
                 <StripeProvider apiKey={process.env.STRIPE_PUBLIC_KEY}>
-                  <Elements>
+                  <Elements locale={currentLocale}>
                     <CheckoutForm
                       orderType={TOP_UP_ORDER}
                       productId={this.props.match.params.id}

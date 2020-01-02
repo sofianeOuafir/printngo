@@ -62,16 +62,17 @@ const AppRoute = ({
   ...rest
 }) => {
   const { t } = useTranslation();
+  const currentLocale = i18n.language;
   return (
     <Route
       {...rest}
       render={props =>
         Layout ? (
           <Layout title={title} description={description}>
-            <Component {...props} t={t} />
+            <Component {...props} t={t} currentLocale={currentLocale} />
           </Layout>
         ) : (
-          <Component {...props} t={t} />
+          <Component {...props} t={t} currentLocale={currentLocale} />
         )
       }
     />
