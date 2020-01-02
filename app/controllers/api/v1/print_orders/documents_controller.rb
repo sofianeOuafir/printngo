@@ -14,14 +14,14 @@ class Api::V1::PrintOrders::DocumentsController < ApplicationController
         render json: print_order_item.to_json(include: [:document, :order])
       else
         document.destroy if document.persisted?
-        render json: 'File format not supported. Please convert your file into PDF and try again!', status: 415
+        render json: I18n.translate('controllers.print_orders.documents.create.unsupported_format'), status: 415
       end
     rescue PDF::Reader::MalformedPDFError
-      render json: 'File format not supported. Please convert your file into PDF and try again!', status: 415
+      render json: I18n.translate('controllers.print_orders.documents.create.unsupported_format'), status: 415
     rescue ArgumentError => e
-      render json: e.message, status: 415
+      render json: I18n.translate('controllers.print_orders.documents.create.unsupported_format'), status: 415
     rescue StandardError
-      render json: 'File format not supported. Please convert your file into PDF and try again!', status: 415  
+      render json: I18n.translate('controllers.print_orders.documents.create.unsupported_format'), status: 415  
     end
   end
 end

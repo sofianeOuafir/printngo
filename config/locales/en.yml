@@ -31,6 +31,38 @@
 
 en:
   tax_amount: 13
+  controllers:
+    admins:
+      sessions:
+        create: 
+          login_unsuccessful: 'Email or password incorrect'
+        destroy: 
+          logout_successfully: 'Logout successfully'
+    partners:
+      sessions: 
+        create:
+          account_not_activated: 'Your account is not activated. Please activate it.'
+          login_unsuccessful: 'Email or password incorrect'
+        destroy: 
+          logout_successfully: 'Logout successfully'
+      deliverables:
+        show:
+          error: 'This action is not allowed'
+    users:
+      sessions: 
+        create:
+          login_unsuccessful: 'Email or password incorrect'
+        destroy: 
+          logout_successfully: 'Logout successfully'
+    print_orders:
+      documents: 
+        create: 
+          unsupported_format: 'File format not supported. Please convert your file into PDF and try again!'
+    print_order_items: 
+      destroy: 
+        error: 'This action is not allowed'
+      update: 
+        error: 'This action is not allowed'
   activerecord: 
     errors: 
       models: 

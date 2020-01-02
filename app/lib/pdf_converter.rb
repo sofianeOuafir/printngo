@@ -28,7 +28,7 @@ class PdfConverter
       end
       { file: File.open(pdf_path), filename: filename, content_type: type }
     else
-      raise ArgumentError, "#{subtype.present? ? "#{subtype} format is" : 'File format'} not supported. Please convert your file into PDF and try again!"
+      raise ArgumentError
     end
   end
 

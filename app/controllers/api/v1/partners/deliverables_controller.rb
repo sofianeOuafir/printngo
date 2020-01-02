@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::V1::Partners::DeliverablesController < ApplicationController
   before_action :authenticate_partner!
 
@@ -6,7 +8,7 @@ class Api::V1::Partners::DeliverablesController < ApplicationController
     OpenURI::Buffer.const_set 'StringMax', 0
     deliverable = Deliverable.find(params[:id])
     if deliverable.print_order.printer_id.present?
-      render json: { message: 'This action is not allowed' }, status: 403
+      render json: { message: I18n.translate('controllers.partners.deliverables.show.error') }, status: 403
     else
       pdf_content = open(deliverable.file.service_url)
       send_file(pdf_content, filename: 'something', disposition: 'inline', type: 'application/pdf')

@@ -1,5 +1,37 @@
 fr:
   tax_amount: 20
+  controllers:
+    admins:
+      sessions:
+        create: 
+          login_unsuccessful: 'E-mail ou mot de passe incorrect'
+        destroy: 
+          logout_successfully: 'Déconnexion réussie'
+    partners:
+      sessions: 
+        create:
+          account_not_activated: "Votre compte n'est pas activé. Veuillez l'activer."
+          login_unsuccessful: 'E-mail ou mot de passe incorrect'
+        destroy: 
+          logout_successfully: 'Déconnexion réussie'
+      deliverables:
+        show:
+          error: "Cette action n'est pas autorisée"
+    users:
+      sessions: 
+        create:
+          login_unsuccessful: 'E-mail ou mot de passe incorrect'
+        destroy: 
+          logout_successfully: 'Déconnexion réussie'
+    print_orders:
+      documents: 
+        create: 
+          unsupported_format: 'Format de fichier non pris en charge. Veuillez convertir votre fichier en PDF et réessayer!'
+    print_order_items: 
+      destroy: 
+        error: "Cette action n'est pas autorisée"
+      update: 
+        error: "Cette action n'est pas autorisée"
   activerecord: 
     errors: 
       models: 
