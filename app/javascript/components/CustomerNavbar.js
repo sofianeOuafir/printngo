@@ -48,11 +48,6 @@ class CustomerNavbar extends React.Component {
     });
   };
 
-  onLanguageChange = async language => {
-    const { i18n } = this.props;
-    await i18n.changeLanguage(language);
-  };
-
   render() {
     const { clientCurrentOrder, t } = this.props;
 
@@ -163,24 +158,6 @@ class CustomerNavbar extends React.Component {
         ShowWhenAuthenticated: true,
         ShowWhenNonAuthenticated: true,
         element: <WalletElement className="text-pink" />
-      },
-      {
-        ShowWhenAuthenticated: true,
-        ShowWhenNonAuthenticated: true,
-        element: (
-          <Link to="#" onClick={() => this.onLanguageChange("fr")}>
-            Fr
-          </Link>
-        )
-      },
-      {
-        ShowWhenAuthenticated: true,
-        ShowWhenNonAuthenticated: true,
-        element: (
-          <Link to="#" onClick={() => this.onLanguageChange("en")}>
-            En
-          </Link>
-        )
       }
     ];
 
