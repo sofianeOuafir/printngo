@@ -31,3 +31,20 @@
 
 en:
   tax_amount: 13
+  activerecord: 
+    errors: 
+      models: 
+        user: 
+          attributes: 
+            firstname: 
+              blank: 'Please enter your first name'
+            lastname: 
+              blank: 'Please enter your last name'
+            password: 
+              blank: 'Please choose a password'
+            password_confirmation:
+              confirmation: 'Passwords do not match'
+            email: 
+              blank: 'Please enter an email address'
+              taken: 'This email is already taken'
+              invalid: 'Please enter a valid email address'

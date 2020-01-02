@@ -79,6 +79,7 @@
   "checkoutForm.doubleCheck": "I have double checked my documents preview and specifications. I understand that my order will be printed in line with the preview and specification I have chosen.",
   "checkoutForm.processingPayment": "Processing Payment...",
   "checkoutForm.payNow": "Pay Now",
+  "checkoutForm.pleaseAgreeToTandC": "Please agree to T&C's.",
   "paymentPage.payment": "Payment",
   "paymentPage.yourOrder": "Your Order",
   "paymentPage.backToPrintShop": "Select Another Print Shop",

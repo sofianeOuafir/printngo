@@ -99,14 +99,14 @@ class CheckoutForm extends Component {
   };
 
   attemptPayment = () => {
-    const { auth, stripe } = this.props;
+    const { auth, stripe, t } = this.props;
     const { fullname, id } = auth;
     const { cardComplete } = this.state;
     if (!this.state.agreedToTermsAndConditions) {
       this.setState(prevState => ({
         errors: {
           ...prevState.errors,
-          termsAndCondition: "Please agree to T&C's."
+          termsAndCondition: t("checkoutForm.pleaseAgreeToTandC")
         },
         processingPayment: false
       }));
@@ -330,7 +330,9 @@ class CheckoutForm extends Component {
           }`}
           text="Submit"
         >
-          {processingPayment ? t("checkoutForm.processingPayment") : t("checkoutForm.payNow")}
+          {processingPayment
+            ? t("checkoutForm.processingPayment")
+            : t("checkoutForm.payNow")}
         </button>
       </form>
     );

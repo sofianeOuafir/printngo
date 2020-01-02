@@ -79,6 +79,7 @@
   "checkoutForm.doubleCheck": "J'ai revérifié l'aperçu et les spécifications de mes documents. Je comprends que ma commande sera imprimée conformément à l'aperçu et aux spécifications que j'ai choisis.",
   "checkoutForm.processingPayment": "Traitement du paiement ...",
   "checkoutForm.payNow": "Payer maintenant",
+  "checkoutForm.pleaseAgreeToTandC": "Veuillez accepter les termes et conditions.",
   "paymentPage.payment": "Paiement",
   "paymentPage.yourOrder": "Votre Commande",
   "paymentPage.backToPrintShop": "Sélectionner un autre imprimeur",

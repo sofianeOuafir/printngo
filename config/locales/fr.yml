@@ -1,2 +1,19 @@
 fr:
   tax_amount: 20
+  activerecord: 
+    errors: 
+      models: 
+        user: 
+          attributes: 
+            firstname: 
+              blank: 'Veuillez saisir votre prénom'
+            lastname: 
+              blank: 'Veuillez saisir votre nom de famille'
+            password: 
+              blank: 'Veuillez choisir un mot de passe'
+            password_confirmation:
+              confirmation: 'Les mots de passe ne correspondent pas'
+            email: 
+              blank: 'Veuillez renseigner une adresse e-mail'
+              taken: 'Cet email est déjà pris'
+              invalid: 'Veuillez entrer une adresse e-mail valide'
