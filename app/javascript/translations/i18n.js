@@ -47,6 +47,7 @@ i18n
     // we init with resources
     resources,
     fallbackLng: "en",
+    whitelist: ["fr", "en"],
     debug: true,
 
     // have a common namespace used around the full app
