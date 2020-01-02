@@ -48,3 +48,10 @@ en:
               blank: 'Please enter an email address'
               taken: 'This email is already taken'
               invalid: 'Please enter a valid email address'
+        activation: 
+          attributes:
+            password: 
+              blank: 'Please choose a password'
+            password_confirmation:
+              confirmation: 'Passwords do not match'
+

@@ -17,3 +17,9 @@ fr:
               blank: 'Veuillez renseigner une adresse e-mail'
               taken: 'Cet email est déjà pris'
               invalid: 'Veuillez entrer une adresse e-mail valide'
+        activation: 
+          attributes:
+            password: 
+              blank: 'Veuillez choisir un mot de passe'
+            password_confirmation:
+              confirmation: 'Les mots de passe ne correspondent pas'
