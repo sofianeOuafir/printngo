@@ -18,6 +18,7 @@
     <script>
       function initFreshChat() {
         window.fcWidget.init({
+          locale: "<%= I18n.locale %>",
           token: "720beb06-ed74-4a2c-b445-146e616887f8",
           host: "https://wchat.freshchat.com"
         });
