@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import moment from "moment";
 
 import { startGetCurrentUser } from "./../actions/auth";
 import PartnerPage from "./PartnerPage";
@@ -155,6 +156,7 @@ const PublicActivationThankYouPage = props => (
 
 class App extends React.Component {
   componentDidMount() {
+    moment.locale(i18n.language);
     const csrfToken = document.querySelector('[name="csrf-token"]').content;
     axios.defaults.headers.common["X-CSRF-Token"] = csrfToken;
   }
