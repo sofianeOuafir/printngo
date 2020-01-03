@@ -31,6 +31,15 @@
 
 en:
   tax_amount: 13
+  mailer: 
+    activation_email: 
+      template_id: "d-dcdb078019b34e53ba346e5997fe3ca0"
+    print_order_confirmed_email: 
+      template_id: "d-37305aec46ae4898a40df3ad3ce89e13"
+    top_up_order_confirmed_email: 
+      template_id: "d-7646a1995e3144ecb17201290e978a40"
+    welcome_email: 
+      template_id: "d-23c125a1683a4e7fac655d3844533c69"
   stripe:
     errors:
       incorrect_number: "The card number is incorrect."

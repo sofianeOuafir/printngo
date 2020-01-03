@@ -1,5 +1,14 @@
 fr:
   tax_amount: 20
+  mailer: 
+    activation_email: 
+      template_id: "d-9b6f510caa954d9299f91e2f474f8cf3"
+    print_order_confirmed_email: 
+      template_id: "d-6453c624882e4a6999f944af15ef893e"
+    top_up_order_confirmed_email: 
+      template_id: "d-4bb894a464964ef6b6091ff401239ff9"
+    welcome_email: 
+      template_id: "d-6b34812520834774b0162a3b999e72af"
   stripe:
     errors:
       incorrect_number: "Le numéro de carte est incorrect."
