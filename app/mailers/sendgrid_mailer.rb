@@ -15,7 +15,7 @@ class SendgridMailer
         }
       ],
       "from": {
-        "email": 'contact@printngo.ca'
+        "email": 'contact@printandgo.ca'
       },
       "template_id": 'd-dcdb078019b34e53ba346e5997fe3ca0'
     }
@@ -48,7 +48,7 @@ class SendgridMailer
         }
       ],
       "from": {
-        "email": 'contact@printngo.ca'
+        "email": 'contact@printandgo.ca'
       },
       "template_id": 'd-37305aec46ae4898a40df3ad3ce89e13'
     }
@@ -72,7 +72,7 @@ class SendgridMailer
         }
       ],
       "from": {
-        "email": 'contact@printngo.ca'
+        "email": 'contact@printandgo.ca'
       },
       "template_id": 'd-7646a1995e3144ecb17201290e978a40'
     }
@@ -92,7 +92,7 @@ class SendgridMailer
         }
       ],
       "from": {
-        "email": 'contact@printngo.ca'
+        "email": 'contact@printandgo.ca'
       },
       "template_id": 'd-23c125a1683a4e7fac655d3844533c69'
     }

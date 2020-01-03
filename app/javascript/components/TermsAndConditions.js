@@ -10,7 +10,7 @@ const TermsAndConditionsPage = () => (
 
     <p>
       These terms and conditions outline the rules and regulations for the use
-      of Print and Go's Website, located at printngo.ca.
+      of Print and Go's Website, located at printandgo.ca.
     </p>
 
     <p>
