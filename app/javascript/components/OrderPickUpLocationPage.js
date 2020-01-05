@@ -8,9 +8,8 @@ import {
   startUpdateClientCurrentOrder,
   startSetClientCurrentOrder
 } from "../actions/orders";
-import { startSetPartners } from "../actions/partners";
 import Loader from "./Loader";
-import { TORONTO_LOCATION, DEFAULT_ZOOM_MAP } from "./../constants/constants";
+import { DEFAULT_ZOOM_MAP } from "./../constants/constants";
 import PartnerList from "./PartnerList";
 
 class OrderPickUpLocationPage extends React.Component {
@@ -19,25 +18,26 @@ class OrderPickUpLocationPage extends React.Component {
     this.state = {
       defaultMapZoom: DEFAULT_ZOOM_MAP,
       loadingData: true,
-      mapCenter: TORONTO_LOCATION
+      mapCenter: {
+        lat: props.t("partnerList.mapCenter.lat"),
+        lng: props.t("partnerList.mapCenter.lng")
+      }
     };
   }
 
   componentDidMount() {
-    const { startSetClientCurrentOrder, startSetPartners } = this.props;
-    Promise.all([startSetClientCurrentOrder(), startSetPartners()]).then(
-      response => {
-        const order = response[0].data;
-        const { selected_partner } = order;
-        const mapCenter = selected_partner
-          ? { lat: selected_partner.lat, lng: selected_partner.lng }
-          : this.state.mapCenter;
-        this.setState(() => ({
-          loadingData: false,
-          mapCenter
-        }));
-      }
-    );
+    const { startSetClientCurrentOrder } = this.props;
+    Promise.all([startSetClientCurrentOrder()]).then(response => {
+      const order = response[0].data;
+      const { selected_partner } = order;
+      const mapCenter = selected_partner
+        ? { lat: selected_partner.lat, lng: selected_partner.lng }
+        : this.state.mapCenter;
+      this.setState(() => ({
+        loadingData: false,
+        mapCenter
+      }));
+    });
   }
 
   onLocationSelect = partnerId => {
@@ -96,8 +96,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   startUpdateClientCurrentOrder: updates =>
     dispatch(startUpdateClientCurrentOrder(updates)),
-  startSetClientCurrentOrder: () => dispatch(startSetClientCurrentOrder()),
-  startSetPartners: () => dispatch(startSetPartners())
+  startSetClientCurrentOrder: () => dispatch(startSetClientCurrentOrder())
 });
 
 export default connect(

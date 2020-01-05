@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { withTranslation } from "react-i18next";
 
@@ -15,11 +15,37 @@ class PartnerList extends React.Component {
       selectedPartner: props.selectedPartner,
       sortingData: false,
       sortingError: "",
-      permissionStatus: ""
+      permissionStatus: "",
+      loadingData: true
     };
   }
-  onFindClosest = () => {
+  onBoundsHaveChanged = bounds => {
     const { startSetPartners } = this.props;
+    const { loadingData } = this.state;
+    const { pa, ka } = bounds;
+    const { g: boundsSWLat, h: boundsNELat } = pa;
+    const { g: boundsSWLng, h: boundsNELng } = ka;
+    this.setState(() => ({
+      boundsSWLat,
+      boundsSWLng,
+      boundsNELat,
+      boundsNELng
+    }));
+    startSetPartners({
+      boundsSWLat,
+      boundsSWLng,
+      boundsNELat,
+      boundsNELng
+    }).then(() => {
+      if (loadingData) {
+        this.setState({
+          loadingData: false
+        });
+      }
+    });
+  };
+  onFindClosest = () => {
+    const { startSetPartners, t } = this.props;
     this.setState(
       () => ({ sortingData: true }),
       () => {
@@ -34,10 +60,26 @@ class PartnerList extends React.Component {
                   }));
                 })
                 .then(() => {
+                  const {
+                    boundsSWLat,
+                    boundsSWLng,
+                    boundsNELat,
+                    boundsNELng
+                  } = this.state;
                   navigator.geolocation.getCurrentPosition(
                     data => {
-                      const { latitude: lat, longitude: lng } = data.coords;
-                      startSetPartners({ lat, lng }).then(() => {
+                      const {
+                        latitude: usersPositionlat,
+                        longitude: usersPositionlng
+                      } = data.coords;
+                      startSetPartners({
+                        usersPositionlat,
+                        usersPositionlng,
+                        boundsSWLat,
+                        boundsSWLng,
+                        boundsNELat,
+                        boundsNELng
+                      }).then(() => {
                         resolve();
                       });
                     },
@@ -92,7 +134,8 @@ class PartnerList extends React.Component {
       selectedPartner,
       sortingData,
       sortingError,
-      permissionStatus
+      permissionStatus,
+      loadingData
     } = this.state;
     const {
       showEachMap = false,
@@ -106,52 +149,59 @@ class PartnerList extends React.Component {
     return (
       <div className="flex partner-list">
         <div className="col-7 partner-list--list-container">
-          <div>
-            <a
-              className="button button--navy button--no-border-radius mb1 fullwidth px0"
-              onClick={this.onFindClosest}
-            >
-              {t("partnerList.sortFromClosestToFurthest")}
-            </a>
-          </div>
-
-          {sortingData && permissionStatus && (
-            <p className="h5 m0 mb1 text-navy">
-              {permissionStatus == "granted"
-                ? t("partnerList.loadingPleaseWait")
-                : t("partnerList.PleaseEnableGeolocation")}
-            </p>
-          )}
-          {sortingError && (
-            <p className="h5 m0 mb1 text-navy">{sortingError}</p>
-          )}
-          {partners.length > 0 ? (
-            partners.map((partner, index) => (
-              <Partner
-                showMap={showEachMap}
-                highlighted={
-                  (highlightedPartner &&
-                    partner.id === highlightedPartner.id) ||
-                  (!readOnly &&
-                    selectedPartner &&
-                    selectedPartner.id === partner.id)
-                }
-                readOnly={readOnly}
-                onLocationSelect={onLocationSelect}
-                partner={partner}
-                onMouseLeave={this.onPartnerMouseLeave}
-                onMouseEnter={() => this.onPartnerMouseEnter(partner)}
-                key={index}
-              />
-            ))
+          {loadingData ? (
+            <p className="h5 text-navy m0">{t("partnerList.dataIsLoading")}</p>
           ) : (
-            <p className="h5 text-navy m0">
-              {t("partnerList.printingLocationsComingSoon")}
-            </p>
+            <Fragment>
+              <div>
+                <a
+                  className="button button--navy button--no-border-radius mb1 fullwidth px0"
+                  onClick={this.onFindClosest}
+                >
+                  {t("partnerList.sortFromClosestToFurthest")}
+                </a>
+              </div>
+
+              {sortingData && permissionStatus && (
+                <p className="h5 m0 mb1 text-navy">
+                  {permissionStatus == "granted"
+                    ? t("partnerList.loadingPleaseWait")
+                    : t("partnerList.PleaseEnableGeolocation")}
+                </p>
+              )}
+              {sortingError && (
+                <p className="h5 m0 mb1 text-navy">{sortingError}</p>
+              )}
+              {partners.length > 0 ? (
+                partners.map((partner, index) => (
+                  <Partner
+                    showMap={showEachMap}
+                    highlighted={
+                      (highlightedPartner &&
+                        partner.id === highlightedPartner.id) ||
+                      (!readOnly &&
+                        selectedPartner &&
+                        selectedPartner.id === partner.id)
+                    }
+                    readOnly={readOnly}
+                    onLocationSelect={onLocationSelect}
+                    partner={partner}
+                    onMouseLeave={this.onPartnerMouseLeave}
+                    onMouseEnter={() => this.onPartnerMouseEnter(partner)}
+                    key={index}
+                  />
+                ))
+              ) : (
+                <p className="h5 text-navy m0">
+                  {t("partnerList.printingLocationsComingSoon")}
+                </p>
+              )}
+            </Fragment>
           )}
         </div>
         <div className="col-5 partner-list--map-container pl1 sticky sticky--map">
           <MapElement
+            onBoundsHaveChanged={this.onBoundsHaveChanged}
             defaultZoom={defaultMapZoom}
             defaultMapCenter={mapCenter}
             center={mapCenter}
