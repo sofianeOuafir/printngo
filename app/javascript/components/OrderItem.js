@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { toast } from "react-toastify";
 import { IoMdRemoveCircle, IoIosAddCircle } from "react-icons/io";
+import { withTranslation } from "react-i18next";
 
 import { startUpdateOrderItem, removeOrderItem } from "./../actions/orderItems";
 import { fromCentsToDollars } from "../lib/money";
@@ -18,7 +19,8 @@ class OrderItem extends React.Component {
   };
 
   displayRemovalNotification = () => {
-    toast.success("Item removed successfully!", {
+    const { t } = this.props;
+    toast.success(t("orderItem.removeSuccessNotification"), {
       position: toast.POSITION.BOTTOM_RIGHT
     });
   };
@@ -41,7 +43,7 @@ class OrderItem extends React.Component {
   };
 
   render() {
-    const { orderItem, products, readOnly } = this.props;
+    const { orderItem, products, readOnly, t } = this.props;
     const {
       id,
       document,
@@ -58,9 +60,9 @@ class OrderItem extends React.Component {
         </div>
         <div className="flex justify-content--around fullwidth">
           <div className="flex flex-direction--column justify-content--center">
-            <span className="mb2">Print In: </span>
+            <span className="mb2">{t("orderItem.chooseFormat")} </span>
             {readOnly ? (
-              <span>{product.name}</span>
+              <span>{t(`${product.code}.name`)}</span>
             ) : (
               <select
                 value={product_id}
@@ -70,7 +72,7 @@ class OrderItem extends React.Component {
               >
                 {products.map((product, index) => (
                   <option key={index} value={product.id}>
-                    {product.name}
+                    {t(`${product.code}.name`)}
                   </option>
                 ))}
               </select>
@@ -78,7 +80,7 @@ class OrderItem extends React.Component {
           </div>
 
           <div className="flex flex-direction--column justify-content--center">
-            <span className="mb2">Quantity:</span>
+            <span className="mb2">{t("orderItem.quantity")}</span>
             {readOnly ? (
               <span className="center">{quantity}</span>
             ) : (
@@ -111,7 +113,7 @@ class OrderItem extends React.Component {
           </div>
 
           <div className="flex flex-direction--column justify-content--center">
-            <span className="mb2">Price:</span>
+            <span className="mb2">{t("orderItem.price")}</span>
             <span>{fromCentsToDollars(sub_total)}</span>
           </div>
         </div>
@@ -134,4 +136,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OrderItem);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withTranslation()(OrderItem));

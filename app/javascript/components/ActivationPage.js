@@ -84,6 +84,7 @@ class ActivationPage extends React.Component {
       passwordConfirmation,
       errors
     } = this.state;
+    const { t } = this.props;
     return loadingData ? (
       <Loader />
     ) : (
@@ -91,10 +92,10 @@ class ActivationPage extends React.Component {
         {linkIsValid ? (
           <div className="halfwidth p2 border border-color--grey">
             <h1 className="center text-navy">
-              Welcome, {activation.partner.firstname}!
+              {t("activationPage.welcome")}, {activation.partner.firstname}!
             </h1>
             <p className="text-navy h4 center">
-              Setup a new password to activate your account
+              {t("activationPage.setupNewPassword")}
             </p>
             <form
               className="checkout--form form__input-container"
@@ -102,30 +103,27 @@ class ActivationPage extends React.Component {
             >
               <TextInput
                 errors={errors.password}
-                className="mb1"
+                style={{ marginBottom: '5px' }}
                 type="password"
-                placeholder="Password"
+                placeholder={t("activationPage.password")}
                 value={password}
                 onChange={this.onPasswordChange}
               />
               <TextInput
                 errors={errors.passwordConfirmation}
-                className="mb1"
+                style={{ marginBottom: '5px' }}
                 type="password"
-                placeholder="Password Confirmation"
+                placeholder={t("activationPage.passwordConfirmation")}
                 value={passwordConfirmation}
                 onChange={this.onPasswordConfirmationChange}
               />
               <button className="button button--navy fullwidth">
-                Activate Now
+                {t("activationPage.activateNow")}
               </button>
             </form>
           </div>
         ) : (
-          <p className="h4 text-navy">
-            This activation link is not valid anymore. Please{" "}
-            <a href="mailto:contact@printngo.ca">contact us</a>.
-          </p>
+          <p className="h4 text-navy">{t("activationPage.linkInvalid")}</p>
         )}
       </div>
     );

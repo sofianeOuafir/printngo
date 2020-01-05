@@ -7,6 +7,7 @@ import { getContext } from "./../lib/context";
 export const PrivateRoute = ({
   isAuthenticated = true,
   component: Component,
+  t,
   ...rest
 }) => {
   const context = getContext();
@@ -24,7 +25,7 @@ export const PrivateRoute = ({
       {...rest}
       component={props =>
         isAuthenticated ? (
-          <Component {...props} />
+          <Component {...props} t={t} />
         ) : (
           <Redirect
             to={{

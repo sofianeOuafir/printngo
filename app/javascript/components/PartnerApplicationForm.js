@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { withTranslation } from "react-i18next";
 
 import TextInput from "./TextInput";
 
@@ -179,7 +180,7 @@ class PartnerApplicationForm extends React.Component {
   };
 
   render() {
-    const { showAdminFields = true } = this.props;
+    const { showAdminFields = true, t } = this.props;
     const {
       firstname,
       lastname,
@@ -200,7 +201,9 @@ class PartnerApplicationForm extends React.Component {
         className="form__input-container partner-application-page-form"
         onSubmit={this.onSubmit}
       >
-        <h2 className="text-navy h5">About you:</h2>
+        <h2 className="text-navy h5">
+          {t("partnerApplicationForm.aboutYou")}:
+        </h2>
         <div className="flex partner-application-page-form--input-container">
           <div className="col-6 mr1">
             <TextInput
@@ -208,7 +211,7 @@ class PartnerApplicationForm extends React.Component {
               onChange={this.onFirstnameChange}
               className="mb1"
               value={firstname}
-              placeholder="Firstname"
+              placeholder={t("partnerApplicationForm.firstname")}
             />
           </div>
           <div className="col-6">
@@ -217,7 +220,7 @@ class PartnerApplicationForm extends React.Component {
               onChange={this.onLastnameChange}
               value={lastname}
               className="mb1"
-              placeholder="Lastname"
+              placeholder={t("partnerApplicationForm.lastname")}
             />
           </div>
         </div>
@@ -228,10 +231,12 @@ class PartnerApplicationForm extends React.Component {
             value={email}
             className="mb1"
             type="text"
-            placeholder="Email"
+            placeholder={t("partnerApplicationForm.email")}
           />
         </div>
-        <h2 className="text-navy h5">About your company:</h2>
+        <h2 className="text-navy h5">
+          {t("partnerApplicationForm.aboutYourCompany")}:
+        </h2>
         <div className="flex partner-application-page-form--input-container">
           <div className="col-6 mr1">
             <TextInput
@@ -239,7 +244,7 @@ class PartnerApplicationForm extends React.Component {
               onChange={this.onCompanyNameChange}
               value={companyName}
               className="mb1"
-              placeholder="Company Name"
+              placeholder={t("partnerApplicationForm.companyName")}
             />
           </div>
           <div className="col-6">
@@ -248,7 +253,7 @@ class PartnerApplicationForm extends React.Component {
               onChange={this.onPostcodeChange}
               value={postcode}
               className="mb1"
-              placeholder="Postcode"
+              placeholder={t("partnerApplicationForm.postcode")}
             />
           </div>
         </div>
@@ -259,7 +264,7 @@ class PartnerApplicationForm extends React.Component {
             value={companyAddress}
             className="mb1"
             type="text"
-            placeholder="Company Address"
+            placeholder={t("partnerApplicationForm.companyAddress")}
           />
         </div>
 
@@ -271,7 +276,7 @@ class PartnerApplicationForm extends React.Component {
                   onChange={this.onCityChange}
                   value={city}
                   className="mb1"
-                  placeholder="City"
+                  placeholder={t("partnerApplicationForm.city")}
                 />
               </div>
               <div className="col-6">
@@ -279,7 +284,7 @@ class PartnerApplicationForm extends React.Component {
                   onChange={this.onCountryChange}
                   value={country}
                   className="mb1"
-                  placeholder="Country"
+                  placeholder={t("partnerApplicationForm.country")}
                 />
               </div>
             </div>
@@ -289,7 +294,7 @@ class PartnerApplicationForm extends React.Component {
                   onChange={this.onLatitudeChange}
                   value={lat}
                   className="mb1"
-                  placeholder="Latitude"
+                  placeholder={t("partnerApplicationForm.latitude")}
                 />
               </div>
               <div className="col-6">
@@ -297,7 +302,7 @@ class PartnerApplicationForm extends React.Component {
                   onChange={this.onLontitudeChange}
                   value={lng}
                   className="mb1"
-                  placeholder="Lontitude"
+                  placeholder={t("partnerApplicationForm.longitude")}
                 />
               </div>
             </div>
@@ -307,7 +312,7 @@ class PartnerApplicationForm extends React.Component {
                 value={openingHours}
                 className="mb1"
                 type="text"
-                placeholder="Opening Hours"
+                placeholder={t("partnerApplicationForm.openingHours")}
               />
             </div>
             <div className="mb1">
@@ -317,7 +322,7 @@ class PartnerApplicationForm extends React.Component {
                   checked={archived}
                   type="checkbox"
                 />
-                <span>Archived</span>
+                <span>{t("partnerApplicationForm.archived")}</span>
               </label>
             </div>
           </Fragment>
@@ -327,11 +332,11 @@ class PartnerApplicationForm extends React.Component {
 }`}
           text="Submit"
         >
-          Submit
+          {t("partnerApplicationForm.submit")}
         </button>
       </form>
     );
   }
 }
 
-export default PartnerApplicationForm;
+export default withTranslation()(PartnerApplicationForm);

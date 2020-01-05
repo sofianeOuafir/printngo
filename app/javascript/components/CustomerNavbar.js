@@ -4,14 +4,15 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { scroller } from "react-scroll";
 import ModalVideo from "react-modal-video";
+import { withTranslation } from "react-i18next";
 
 import { startLogout } from "../actions/auth";
 import { startSetClientCurrentOrder } from "../actions/orders";
 import UploadAndPrintButton from "./UploadAndPrintButton";
 import SignInLink from "./SignInLink";
 import WalletElement from "./WalletElement";
-import { INTRODUCTION_VIDEO_ID } from "../constants/constants";
 import Navbar from "./Navbar";
+import SignOutLink from "./SignOutLink";
 
 class CustomerNavbar extends React.Component {
   constructor(props) {
@@ -48,38 +49,20 @@ class CustomerNavbar extends React.Component {
   };
 
   render() {
-    const { clientCurrentOrder } = this.props;
-    const pricingElement = <Link to="/pricing">Pricing</Link>;
-    const pickUpLocationsElement = (
-      <Link to="/pick-up-locations">Locations</Link>
-    );
-    const contactUsElement = (
-      <Link
-        onClick={e => this.navigateAndScroll({ e, element: "contact-us" })}
-        to="#"
-      >
-        Contact
-      </Link>
-    );
-    const basketElement = (
-      <Link to="/order/basket">
-        <span className="text-orange">
-          Basket (
-          {this.state.loadingData ? 0 : clientCurrentOrder.number_of_items})
-        </span>
-      </Link>
-    );
+    const { clientCurrentOrder, t } = this.props;
 
     const navBarItems = [
       {
         ShowWhenAuthenticated: true,
         ShowWhenNonAuthenticated: false,
-        element: <Link to="/documents">Documents</Link>
+        element: <Link to="/documents">{t("navbar.customer.documents")}</Link>
       },
       {
         ShowWhenAuthenticated: true,
         ShowWhenNonAuthenticated: false,
-        element: <Link to="/printing-orders">Orders</Link>
+        element: (
+          <Link to="/printing-orders">{t("navbar.customer.orders")}</Link>
+        )
       },
       {
         ShowWhenAuthenticated: false,
@@ -91,7 +74,7 @@ class CustomerNavbar extends React.Component {
             }
             to="#"
           >
-            How it works
+            {t("navbar.customer.howItWorks")}
           </Link>
         )
       },
@@ -106,74 +89,87 @@ class CustomerNavbar extends React.Component {
             }}
             to="#"
           >
-            Why Print n' Go
+            {t("navbar.customer.whyPrintAndGo")}
           </Link>
         )
       },
       {
         ShowWhenAuthenticated: true,
         ShowWhenNonAuthenticated: true,
-        element: pricingElement
+        element: <Link to="/pricing">{t("navbar.customer.pricing")}</Link>
       },
       {
         ShowWhenAuthenticated: true,
         ShowWhenNonAuthenticated: true,
-        element: <UploadAndPrintButton text="Print Now" />,
+        element: <UploadAndPrintButton text={t("navbar.customer.printNow")} />,
         printElement: true
       },
       {
         ShowWhenAuthenticated: true,
         ShowWhenNonAuthenticated: true,
-        element: <Link to="/become-partner">Become Partner</Link>
-      },
-      {
-        ShowWhenAuthenticated: true,
-        ShowWhenNonAuthenticated: true,
-        element: pickUpLocationsElement
-      },
-      {
-        ShowWhenAuthenticated: true,
-        ShowWhenNonAuthenticated: true,
-        element: contactUsElement
-      },
-      {
-        ShowWhenAuthenticated: false,
-        ShowWhenNonAuthenticated: true,
-        element: <SignInLink />
-      },
-      {
-        ShowWhenAuthenticated: true,
-        ShowWhenNonAuthenticated: false,
         element: (
-          <Link to="#" onClick={this.onLogout}>
-            Log out
+          <Link to="/become-partner">{t("navbar.customer.becomePrinter")}</Link>
+        )
+      },
+      {
+        ShowWhenAuthenticated: true,
+        ShowWhenNonAuthenticated: true,
+        element: (
+          <Link to="/print-shops-near-me">
+            {t("navbar.customer.findPrinter")}
           </Link>
         )
       },
       {
         ShowWhenAuthenticated: true,
         ShowWhenNonAuthenticated: true,
-        element: basketElement
+        element: (
+          <Link
+            onClick={e => this.navigateAndScroll({ e, element: "contact-us" })}
+            to="#"
+          >
+            {t("navbar.customer.contactUs")}
+          </Link>
+        )
+      },
+      {
+        ShowWhenAuthenticated: false,
+        ShowWhenNonAuthenticated: true,
+        element: <SignInLink to="/login" />
+      },
+      {
+        ShowWhenAuthenticated: true,
+        ShowWhenNonAuthenticated: false,
+        element: <SignOutLink onLogout={this.onLogout} />
       },
       {
         ShowWhenAuthenticated: true,
         ShowWhenNonAuthenticated: true,
-        element: <WalletElement />
+        element: (
+          <Link to="/order/basket">
+            <span className="text-orange">
+              {t("navbar.customer.basket")} (
+              {this.state.loadingData ? 0 : clientCurrentOrder.number_of_items})
+            </span>
+          </Link>
+        )
+      },
+      {
+        ShowWhenAuthenticated: true,
+        ShowWhenNonAuthenticated: true,
+        element: <WalletElement className="text-pink" />
       }
     ];
 
     return (
       <Fragment>
-        <Navbar
-          logoRedirectTo="/"
-          navBarItems={navBarItems}
-        />
+        <Navbar logoRedirectTo="/" navBarItems={navBarItems} />
 
         <ModalVideo
           channel="youtube"
           autoplay={1}
           isOpen={this.state.videoModalOpen}
-          videoId={INTRODUCTION_VIDEO_ID}
+          videoId={t("introduction_video_id")}
           onClose={() => this.setState({ videoModalOpen: false })}
         />
       </Fragment>
@@ -193,4 +189,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(CustomerNavbar));
+)(withRouter(withTranslation()(CustomerNavbar)));

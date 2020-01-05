@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import { scroller } from "react-scroll";
+import { useTranslation } from "react-i18next";
 
 import HowItWorks from "./HowItWorks";
 import WhyPrintnGo from "./WhyPrintnGo";
@@ -9,55 +10,79 @@ import LandingPageSection from "./LandingPageSection";
 import images from "./../images";
 import UploadAndPrintButton from "./UploadAndPrintButton";
 
-const SeeHowItWorksButtonMainSection = props => (
-  <HashLink
-    onClick={e => {
-      e.preventDefault();
-      scroller.scrollTo("how-it-works", {
-        duration: 1500,
-        smooth: true
-      });
-    }}
-    to="/#"
-    {...props}
-  >
-    See How It Works &darr;
-  </HashLink>
-);
+const SeeHowItWorksButtonMainSection = props => {
+  const { t } = useTranslation();
 
-const UploadAndPrintButtonMainSection = props => (
-  <UploadAndPrintButton
-    {...props}
-    className="px0 fullwidth button button--pink"
-  />
-);
-const GoToPricingPageElement = props => (
-  <Link to="/pricing" {...props}>
-    Check out our Pricing
-  </Link>
-);
-const GoToLocationPageElement = props => (
-  <Link to="/pick-up-locations" {...props}>
-    Find a Pick Up Location
-  </Link>
-);
-const ContactUsButton = props => (
-  <a
-    href="mailto:contact@printngo.ca"
-    {...props}
-    className="second-call-to-action button button-outline button-outline--navy"
-  >
-    Contact Us
-  </a>
-);
+  return (
+    <HashLink
+      onClick={e => {
+        e.preventDefault();
+        scroller.scrollTo("how-it-works", {
+          duration: 1500,
+          smooth: true
+        });
+      }}
+      to="/#"
+      {...props}
+    >
+      {t("home.main.howItWorks")} &darr;
+    </HashLink>
+  );
+};
+
+const UploadAndPrintButtonMainSection = props => {
+  const { t } = useTranslation();
+
+  return (
+    <UploadAndPrintButton
+      text={t("callToAction.printNow")}
+      {...props}
+      className="px0 fullwidth button button--pink"
+    />
+  );
+};
+
+const UploadAndPrintOtherSection = props => {
+  const { t } = useTranslation();
+
+  return <UploadAndPrintButton text={t("callToAction.printNow")} {...props} />;
+};
+const GoToPricingPageElement = props => {
+  const { t } = useTranslation();
+  return (
+    <Link to="/pricing" {...props}>
+      {t("callToAction.checkOutPricing")}
+    </Link>
+  );
+};
+const GoToLocationPageElement = props => {
+  const { t } = useTranslation();
+
+  return (
+    <Link to="/print-shops-near-me" {...props}>
+      {t("callToAction.findPrinter")}
+    </Link>
+  );
+};
+const ContactUsButton = props => {
+  const { t } = useTranslation();
+  return (
+    <a
+      href={t("home.contact.link")}
+      {...props}
+      className="second-call-to-action button button-outline button-outline--navy"
+    >
+      {t("callToAction.contactUs")}
+    </a>
+  );
+};
 class HomePage extends React.Component {
   render() {
+    const { t } = this.props;
     const sections = [
       {
-        title:
-          "Upload your documents, <br /> Choose your closest pick up location, Print n' Go",
-        description:
-          "Don't have access to a working printer or running out of ink? We got you covered! Print n' go is the <strong class='keyword text-pink h4'>quickest</strong>, <strong class='keyword text-pink h4'>closest</strong>, and <strong class='keyword text-pink h4'>most convenient</strong> way to print documents out there! <br/><br />We are <strong class='keyword text-pink h4'>privacy oriented</strong> and provide a <strong class='keyword text-pink h4'>secure payment system</strong> so you never need coins for printing documents again!",
+        title: t("home.main.title"),
+        description: t("home.main.description"),
         imgSrc: images.printer,
         imgAlt: "Printer Icon",
         bgColour: "bg-navy",
@@ -66,19 +91,17 @@ class HomePage extends React.Component {
         SecondCallToActionButton: SeeHowItWorksButtonMainSection
       },
       {
-        title: "The quickest process and simplest way for printing documents",
-        description:
-          "We're close to you, we cut down your travel time.<br /><br />No need to carry around your USB key any longer. Just upload, arrive and print.<br /><br />Once your documents are uploaded, you will no longer need a computer for completing the printing. Our partners, at the pick up locations, will do the printing for you.",
+        title: t("home.quickest.title"),
+        description: t("home.quickest.description"),
         imgSrc: images.runningMan,
         imgAlt: "Quickest printing service icon",
         bgColour: "bg-green",
         reverse: true,
-        SecondCallToActionButton: UploadAndPrintButton
+        SecondCallToActionButton: UploadAndPrintOtherSection
       },
       {
-        title: "We are the closest printing service near you",
-        description:
-          "How? Our pick up locations are your favourite convenient stores, cafes, pharmacies and any kind of shop that has a printing machine.",
+        title: t("home.closest.title"),
+        description: t("home.closest.description"),
         imgSrc: images.pinpoint,
         imgAlt: "Closest printing service icon",
         bgColour: "bg-grapefruit",
@@ -86,38 +109,35 @@ class HomePage extends React.Component {
         SecondCallToActionButton: GoToLocationPageElement
       },
       {
-        title: "We are privacy oriented",
-        description:
-          "Your privacy is the most important for us. We will provide you with an access code so that only you can access and trigger the print of your documents.",
+        title: t("home.privacyOriented.title"),
+        description: t("home.privacyOriented.description"),
         imgSrc: images.lock,
         imgAlt: "privacy oriented icon",
         bgColour: "bg-navy",
         reverse: true,
-        SecondCallToActionButton: UploadAndPrintButton
+        SecondCallToActionButton: UploadAndPrintOtherSection
       },
       {
-        title: "No need to have coins anymore",
-        description:
-          "Simply pay online before hand with our secure payment system.",
+        title: t("home.securePayment.title"),
+        description: t("home.securePayment.description"),
         imgSrc: images.debitCard,
         imgAlt: "no more coins icon",
         bgColour: "bg-mustard",
         reverse: false,
-        SecondCallToActionButton: UploadAndPrintButton
+        SecondCallToActionButton: UploadAndPrintOtherSection
       },
       {
-        title: "We store your documents for printing quicker in the future.",
-        description:
-          "Once you have uploaded your documents once, we will save them on your account so that you can print them even quicker in the future. <br /> <br /> And if you want to be even quicker, top up your wallet with our amazing top up deals and skip the need of providing your card details each time.",
+        title: t("home.storeDocument.title"),
+        description: t("home.storeDocument.description"),
         imgSrc: images.hourglass,
         imgAlt: "Printing service always quicker icon",
         bgColour: "bg-blue-sky",
         reverse: true,
-        SecondCallToActionButton: UploadAndPrintButton
+        SecondCallToActionButton: UploadAndPrintOtherSection
       },
       {
-        title: "Best value",
-        description: `Our service is awesome, it doesn't mean it should be more expensive! We provide you with the best printing service at the best price.`,
+        title: t("home.bestValue.title"),
+        description: t("home.bestValue.description"),
         imgSrc: images.moneyBag,
         imgAlt: "Best printing service at best price icon",
         bgColour: "bg-christmas-tree",
@@ -126,9 +146,8 @@ class HomePage extends React.Component {
       },
       {
         id: "contact-us",
-        title: "We love hearing from you",
-        description:
-          "Having questions, want to give a feedback or just say hello? You can contact us anytime at contact@printngo.ca",
+        title: t("home.contact.title"),
+        description: t("home.contact.description"),
         imgSrc: images.contact,
         imgAlt: "Contact Us",
         bgColour: "bg-white",

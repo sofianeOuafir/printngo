@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import pluralize from "pluralize";
 
 import OrderLayout from "./OrderLayout";
 import OrderItemList from "./OrderItemList";
@@ -28,21 +27,21 @@ class BasketPage extends React.Component {
     if (this.state.loadingData) {
       return <Loader />;
     } else {
-      const { orderItems, clientCurrentOrder } = this.props;
+      const { orderItems, clientCurrentOrder, t } = this.props;
       let { sub_total, number_of_items } = clientCurrentOrder;
       sub_total = fromCentsToDollars(sub_total);
       const currentState = number_of_items > 0 ? 1 : 0;
       return (
         <OrderLayout
           currentState={currentState}
-          title="Your Basket"
-          info={`Subtotal (${number_of_items} ${pluralize(
-            "Item",
-            number_of_items
-          )}): ${sub_total}`}
+          title={t("basketPage.title")}
+          info={t("basketPage.info", {
+            count: number_of_items,
+            subTotal: sub_total
+          })}
           nextButton={{
             link: "/order/pick-up-location",
-            text: "Find Location",
+            text: t("basketPage.nextButtonText"),
             disabled: orderItems.length == 0
           }}
         >

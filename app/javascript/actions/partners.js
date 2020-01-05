@@ -7,9 +7,9 @@ export const setPartners = partners => dispatch => {
   });
 };
 
-export const startSetPartners = ({ lat, lng } = {lat: null, lng: null}) => dispatch => {
+export const startSetPartners = ({ usersPositionlat, usersPositionlng, boundsSWLat, boundsSWLng, boundsNELat, boundsNELng } = {lat: null, lng: null}) => dispatch => {
   return axios.get('/api/v1/partners', {
-    params: { lat, lng }
+    params: { usersPositionlat, usersPositionlng, boundsSWLat, boundsSWLng, boundsNELat, boundsNELng }
   }).then((response) => {
     dispatch(setPartners(response.data));
     return response;

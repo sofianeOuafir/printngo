@@ -39,11 +39,11 @@ class Order < ApplicationRecord
   end
 
   def tax_amount
-    sub_total * 13 / 100
+    sub_total * I18n.translate('tax_amount') / 100
   end
 
   def total
-    sub_total * 113 / 100
+    sub_total * (100 + I18n.translate('tax_amount')) / 100
   end
 
   def total_paid

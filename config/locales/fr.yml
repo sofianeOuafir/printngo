@@ -1,0 +1,107 @@
+fr:
+  tax_amount: 20
+  mailer: 
+    from: 'contact@printandgo.fr'
+    activation_email: 
+      template_id: "d-9b6f510caa954d9299f91e2f474f8cf3"
+    print_order_confirmed_email: 
+      template_id: "d-6453c624882e4a6999f944af15ef893e"
+    top_up_order_confirmed_email: 
+      template_id: "d-4bb894a464964ef6b6091ff401239ff9"
+    welcome_email: 
+      template_id: "d-6b34812520834774b0162a3b999e72af"
+  stripe:
+    errors:
+      incorrect_number: "Le numéro de carte est incorrect."
+      invalid_number: "Le numéro de carte n’est pas un numéro de carte valide."
+      invalid_expiry_month: "Le mois d’expiration de la carte n’est pas valide."
+      invalid_expiry_year: "L’année d’expiration de la carte n’est pas valide."
+      invalid_cvc: "Le code de sécurité de la carte n’est pas valide."
+      expired_card: "La carte a expiré."
+      incorrect_cvc: "Le code de sécurité de la carte est incorrect."
+      incorrect_zip: "La validation du code postal de la carte a échoué."
+      card_declined: "La carte a été refusée."
+      missing: "Aucun client associé à cette carte"
+      processing_error: "Une erreur est survenue lors du contrôle de la carte."
+      rate_limit: "Une erreur est survenue en raison d'un trop grand nombre de requêtes vers le serveur. Veuillez nous contacter si vous rencontrez cette erreur systématiquement."
+      amount_too_small: "Le montant doit être d'au moins 0,50€"
+  controllers:
+    admins:
+      sessions:
+        create: 
+          login_unsuccessful: 'E-mail ou mot de passe incorrect'
+        destroy: 
+          logout_successfully: 'Déconnexion réussie'
+    partners:
+      sessions: 
+        create:
+          account_not_activated: "Votre compte n'est pas activé. Veuillez l'activer."
+          login_unsuccessful: 'E-mail ou mot de passe incorrect'
+        destroy: 
+          logout_successfully: 'Déconnexion réussie'
+      deliverables:
+        show:
+          error: "Cette action n'est pas autorisée"
+    users:
+      sessions: 
+        create:
+          login_unsuccessful: 'E-mail ou mot de passe incorrect'
+        destroy: 
+          logout_successfully: 'Déconnexion réussie'
+    print_orders:
+      documents: 
+        create: 
+          unsupported_format: 'Format de fichier non pris en charge. Veuillez convertir votre fichier en PDF et réessayer!'
+    print_order_items: 
+      destroy: 
+        error: "Cette action n'est pas autorisée"
+      update: 
+        error: "Cette action n'est pas autorisée"
+    top_up_orders:
+      stripe_payments:
+        create:
+          record_not_found: "Oups! Désolé, il semble que ce produit n'existe pas."
+          something_went_wrong: "Oups! Désolé, quelque chose s'est mal passé ... Nous faisons de notre mieux pour résoudre le problème!"
+    print_orders:
+      payments:
+        create:
+          order_already_paid: "La commande a déjà été payée."
+          something_went_wrong: "Oups! Désolé, quelque chose s'est mal passé ... Nous faisons de notre mieux pour résoudre le problème!"
+  activerecord: 
+    errors: 
+      models: 
+        user: 
+          attributes: 
+            firstname: 
+              blank: 'Veuillez saisir votre prénom'
+            lastname: 
+              blank: 'Veuillez saisir votre nom de famille'
+            password: 
+              blank: 'Veuillez choisir un mot de passe'
+            password_confirmation:
+              confirmation: 'Les mots de passe ne correspondent pas'
+            email: 
+              blank: 'Veuillez renseigner une adresse e-mail'
+              taken: 'Cet email est déjà pris'
+              invalid: 'Veuillez entrer une adresse e-mail valide'
+        activation: 
+          attributes:
+            password: 
+              blank: 'Veuillez choisir un mot de passe'
+            password_confirmation:
+              confirmation: 'Les mots de passe ne correspondent pas'
+        partner_application: 
+          attributes:
+            firstname: 
+              blank: 'Veuillez saisir votre prénom'
+            lastname: 
+              blank: 'Veuillez saisir votre nom de famille'
+            email: 
+              blank: 'Veuillez renseigner une adresse e-mail'
+              invalid: 'Veuillez entrer une adresse e-mail valide'
+            company_name: 
+              blank: "Veuillez saisir le nom de votre entreprise"
+            postcode: 
+              blank: "Veuillez saisir le code postal de votre entreprise"
+            company_address: 
+              blank: "Veuillez saisir l'adresse de votre entreprise"

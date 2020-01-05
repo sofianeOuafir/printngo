@@ -13,7 +13,7 @@ class Api::V1::Users::SessionsController < ApplicationController
       render json: user.to_json
     else
       render json: {
-        error: 'Email or password incorrect'
+        error: I18n.translate('controllers.users.sessions.create.login_unsuccessful')
       }, status: 404
     end
   end
@@ -21,6 +21,6 @@ class Api::V1::Users::SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     cookies.delete :ahoy_visit if cookies[:ahoy_visit]
-    render json: { message: 'Logout successfully' }, status: 200
+    render json: { message: I18n.translate('controllers.users.sessions.destroy.logout_successfully') }, status: 200
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::V1::Admins::SessionsController < ApplicationController
   before_action :authenticate_admin!, only: [:destroy]
 
@@ -12,13 +14,13 @@ class Api::V1::Admins::SessionsController < ApplicationController
       render json: admin.to_json
     else
       render json: {
-        error: 'Email or password incorrect'
+        error: I18n.translate('controllers.admins.sessions.create.login_unsuccessful')
       }, status: 404
     end
   end
 
   def destroy
     session[:admin_id] = nil
-    render json: { message: 'Logout successfully' }, status: 200
+    render json: { message: I18n.translate('controllers.admins.sessions.destroy.logout_successfully') }, status: 200
   end
 end

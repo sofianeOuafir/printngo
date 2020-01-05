@@ -8,7 +8,7 @@ class Layout extends React.Component {
     return (
       <React.Fragment>
         <Helmet>
-          <title>Print N' Go - {this.props.title}</title>
+          <title>Print and Go - {this.props.title}</title>
         </Helmet>
         <CustomerNavbar />
         {this.props.children}

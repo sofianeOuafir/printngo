@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { withTranslation } from "react-i18next";
 
 import PartnerApplicationSubNavBar from "./PartnerApplicationSubNavBar";
 import PartnerApplicationList from "./PartnerApplicationList";
@@ -28,17 +29,22 @@ class NewPartnerApplicationsPage extends React.Component {
 
   render() {
     const { partnerApplications, loadingData } = this.state;
-
+    const { t } = this.props;
     return loadingData ? (
       <Loader />
     ) : (
       <div className="content-container">
         <PartnerApplicationSubNavBar />
         <PartnerApplicationList partnerApplications={partnerApplications} />
-        <Link to="/admin/partner-applications/new" className="button button--navy">Create New Application</Link>
+        <Link
+          to="/admin/partner-applications/new"
+          className="button button--navy"
+        >
+          {t("newPartnerApplicationsPage.createNewApplication")}
+        </Link>
       </div>
     );
   }
 }
 
-export default NewPartnerApplicationsPage;
+export default withTranslation()(NewPartnerApplicationsPage);

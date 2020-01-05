@@ -31,7 +31,7 @@ class TopUpOrderThankYouPage extends React.Component {
     if (this.state.loadingData) {
       return <Loader />;
     } else {
-      const { clientOrder } = this.props;
+      const { clientOrder, t } = this.props;
       const { invoice, user } = clientOrder;
 
       return (
@@ -40,12 +40,15 @@ class TopUpOrderThankYouPage extends React.Component {
             <div className="center">
               <img src={images.success} alt="Success Icon" width={100} />
             </div>
-            <h1 className="h4 center">Payment Success!</h1>
+            <h1 className="h4 center">
+              {t("topUpOrderThankYouPage.paymentSuccess")}
+            </h1>
 
             <p>
-              Thank you {user.firstname}! Your wallet has been successful
-              credited. Your balance is now{" "}
-              {fromCentsToDollars(user.wallet_balance)}. Happy Printing!
+              {t("topUpOrderThankYouPage.thankYou", {
+                firstname: user.firstname,
+                walletBalance: fromCentsToDollars(user.wallet_balance)
+              })}
             </p>
 
             <div className="flex justify-content--between">
@@ -53,7 +56,7 @@ class TopUpOrderThankYouPage extends React.Component {
                 className="mt3 button button-outline--pink"
                 to={`/invoice/${invoice.id}`}
               >
-                See Invoice
+                {t("topUpOrderThankYouPage.seeInvoice")}
               </Link>
               <UploadAndPrintButton className="mt3 button button--pink" />
             </div>

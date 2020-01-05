@@ -30,4 +30,109 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  tax_amount: 13
+  mailer: 
+    from: 'contact@printandgo.ca'
+    activation_email: 
+      template_id: "d-dcdb078019b34e53ba346e5997fe3ca0"
+    print_order_confirmed_email: 
+      template_id: "d-37305aec46ae4898a40df3ad3ce89e13"
+    top_up_order_confirmed_email: 
+      template_id: "d-7646a1995e3144ecb17201290e978a40"
+    welcome_email: 
+      template_id: "d-23c125a1683a4e7fac655d3844533c69"
+  stripe:
+    errors:
+      incorrect_number: "The card number is incorrect."
+      invalid_number: "The card number is not a valid card number."
+      invalid_expiry_month: "The expiration month of the card is not valid."
+      invalid_expiry_year: "The card expiration year is not valid."
+      invalid_cvc: "The card security code is not valid."
+      expired_card: "The card expired."
+      incorrect_cvc: "The card security code is incorrect."
+      incorrect_zip: "The validation of the postal code of the card failed."
+      card_declined: "The card was declined."
+      missing: "No customer associated with this card"
+      processing_error: "An error occurred while checking the card."
+      rate_limit: "An error has occurred due to too many requests to the server. Please contact us if you encounter this error systematically."
+      amount_too_small: "Amount must be at least $0.50 cad"
+  controllers:
+    admins:
+      sessions:
+        create: 
+          login_unsuccessful: 'Email or password incorrect'
+        destroy: 
+          logout_successfully: 'Logout successfully'
+    partners:
+      sessions: 
+        create:
+          account_not_activated: 'Your account is not activated. Please activate it.'
+          login_unsuccessful: 'Email or password incorrect'
+        destroy: 
+          logout_successfully: 'Logout successfully'
+      deliverables:
+        show:
+          error: 'This action is not allowed'
+    users:
+      sessions: 
+        create:
+          login_unsuccessful: 'Email or password incorrect'
+        destroy: 
+          logout_successfully: 'Logout successfully'
+    print_orders:
+      documents: 
+        create: 
+          unsupported_format: 'File format not supported. Please convert your file into PDF and try again!'
+    print_order_items: 
+      destroy: 
+        error: 'This action is not allowed'
+      update: 
+        error: 'This action is not allowed'
+    top_up_orders:
+      stripe_payments:
+        create:
+          record_not_found: 'Oops! Sorry, it looks like this product does not exist.'
+          something_went_wrong: 'Oops! Sorry, something went wrong... We are doing our best to solve the problem!'
+    print_orders:
+      payments:
+        create:
+          order_already_paid: "Order has already been paid."
+          something_went_wrong: "Oops! Sorry, something went wrong... We are doing our best to solve the problem!"
+  activerecord: 
+    errors: 
+      models: 
+        user: 
+          attributes: 
+            firstname: 
+              blank: 'Please enter your first name'
+            lastname: 
+              blank: 'Please enter your last name'
+            password: 
+              blank: 'Please choose a password'
+            password_confirmation:
+              confirmation: 'Passwords do not match'
+            email: 
+              blank: 'Please enter an email address'
+              taken: 'This email is already taken'
+              invalid: 'Please enter a valid email address'
+        activation: 
+          attributes:
+            password: 
+              blank: 'Please choose a password'
+            password_confirmation:
+              confirmation: 'Passwords do not match'
+        partner_application: 
+          attributes:
+            firstname: 
+              blank: 'Please enter your first name'
+            lastname: 
+              blank: 'Please enter your last name'
+            email: 
+              blank: 'Please enter an email address'
+              invalid: 'Please enter a valid email address'
+            company_name: 
+              blank: "Please enter your company's name"
+            postcode: 
+              blank: "Please enter your company's postcode"
+            company_address: 
+              blank: "Please enter your company's address"

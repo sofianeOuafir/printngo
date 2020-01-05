@@ -7,6 +7,7 @@ import { getContext } from "./../lib/context";
 export const PublicRoute = ({
   isAuthenticated,
   component: Component,
+  t,
   ...rest
 }) => {
   const context = getContext();
@@ -22,7 +23,11 @@ export const PublicRoute = ({
     <Route
       {...rest}
       component={props =>
-        isAuthenticated ? <Redirect to={pathname} /> : <Component {...props} />
+        isAuthenticated ? (
+          <Redirect to={pathname} />
+        ) : (
+          <Component t={t} {...props} />
+        )
       }
     />
   );

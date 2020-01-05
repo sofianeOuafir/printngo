@@ -1,4 +1,8 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
+  config.hosts << 'localhost.printandgo.fr'
+  config.hosts << 'localhost.printandgo.ca'
   # Settings specified here will take precedence over those in config/application.rb.
   config.active_job.queue_adapter = :sidekiq
   # In the development environment your application's code is reloaded on

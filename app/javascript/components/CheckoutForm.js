@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { CardElement, injectStripe } from "react-stripe-elements";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import { withTranslation } from "react-i18next";
 
 import images from "./../images";
 import { startSignUp } from "./../actions/auth";
@@ -65,7 +66,7 @@ class CheckoutForm extends Component {
 
   onEmailChange = e => {
     let email = e.target.value;
-    if(email) {
+    if (email) {
       email = email.toLowerCase();
     }
     this.setState(prevState => ({
@@ -98,14 +99,14 @@ class CheckoutForm extends Component {
   };
 
   attemptPayment = () => {
-    const { auth, stripe } = this.props;
+    const { auth, stripe, t } = this.props;
     const { fullname, id } = auth;
     const { cardComplete } = this.state;
     if (!this.state.agreedToTermsAndConditions) {
       this.setState(prevState => ({
         errors: {
           ...prevState.errors,
-          termsAndCondition: "Please agree to T&C's."
+          termsAndCondition: t("checkoutForm.pleaseAgreeToTandC")
         },
         processingPayment: false
       }));
@@ -215,7 +216,7 @@ class CheckoutForm extends Component {
   };
 
   render() {
-    const { auth, orderType } = this.props;
+    const { auth, orderType, t } = this.props;
     const {
       errors,
       firstname,
@@ -227,7 +228,10 @@ class CheckoutForm extends Component {
       processingPayment
     } = this.state;
     return (
-      <form className="checkout--form form__input-container" onSubmit={this.onSubmit}>
+      <form
+        className="checkout--form form__input-container"
+        onSubmit={this.onSubmit}
+      >
         {!auth.authenticated && (
           <Fragment>
             <div className="checkout-form--input-container">
@@ -236,7 +240,7 @@ class CheckoutForm extends Component {
                   errors={errors.firstname}
                   className="mb1"
                   type="text"
-                  placeholder="Firstname"
+                  placeholder={t("checkoutForm.firstname")}
                   value={firstname}
                   onChange={this.onFirstnameChange}
                 />
@@ -246,7 +250,7 @@ class CheckoutForm extends Component {
                   errors={errors.lastname}
                   className="mb1"
                   type="text"
-                  placeholder="Lastname"
+                  placeholder={t("checkoutForm.lastname")}
                   value={lastname}
                   onChange={this.onLastnameChange}
                 />
@@ -258,7 +262,7 @@ class CheckoutForm extends Component {
                 errors={errors.email}
                 type="text"
                 className="mb1"
-                placeholder="Email"
+                placeholder={t("checkoutForm.email")}
                 value={email}
                 onChange={this.onEmailChange}
               />
@@ -269,7 +273,7 @@ class CheckoutForm extends Component {
                   errors={errors.password}
                   className="mb1"
                   type="password"
-                  placeholder="Password"
+                  placeholder={t("checkoutForm.password")}
                   value={password}
                   onChange={this.onPasswordChange}
                 />
@@ -279,7 +283,7 @@ class CheckoutForm extends Component {
                   errors={errors.passwordConfirmation}
                   className="mb1"
                   type="password"
-                  placeholder="Password Confirmation"
+                  placeholder={t("checkoutForm.passwordConfirmation")}
                   value={passwordConfirmation}
                   onChange={this.onPasswordConfirmationChange}
                 />
@@ -287,7 +291,7 @@ class CheckoutForm extends Component {
             </div>
             <div className="mt2">
               <span>
-                Already customer? <SignInLink />
+                {t("checkoutForm.alreadyCustomer")} <SignInLink to="/login" />
               </span>
             </div>
           </Fragment>
@@ -312,9 +316,8 @@ class CheckoutForm extends Component {
               checked={agreedToTermsAndConditions}
               onChange={this.onTermsAndConditionsAgreementChange}
             />
-            I agree to terms and conditions.
-            {orderType === PRINT_ORDER &&
-              "I have double checked my document preview and specification. I understand that my order will be printed in line with the preview and specification I have chosen."}
+            {t("checkoutForm.agreeTermsAndConditions")}{" "}
+            {orderType === PRINT_ORDER && t("checkoutForm.doubleCheck")}
           </label>
           {errors.termsAndCondition && (
             <p className="text-pink">{errors.termsAndCondition}</p>
@@ -327,7 +330,9 @@ class CheckoutForm extends Component {
           }`}
           text="Submit"
         >
-          {processingPayment ? "Processing Payment..." : "Pay Now"}
+          {processingPayment
+            ? t("checkoutForm.processingPayment")
+            : t("checkoutForm.payNow")}
         </button>
       </form>
     );
@@ -353,4 +358,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(injectStripe(withRouter(CheckoutForm)));
+)(injectStripe(withRouter(withTranslation()(CheckoutForm))));

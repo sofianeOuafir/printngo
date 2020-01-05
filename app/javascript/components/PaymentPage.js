@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Elements, StripeProvider } from "react-stripe-elements";
 
-import { fromCentsToDollars } from "./../lib/money";
 import OrderLayout from "./OrderLayout";
 import OrderItemList from "./OrderItemList";
 import CheckoutForm from "./CheckoutForm";
@@ -13,6 +12,7 @@ import Loader from "./Loader";
 import Partner from "./Partner";
 import { Link } from "react-router-dom";
 import { PRINT_ORDER } from "./../constants/constants";
+import WalletElement from "./WalletElement";
 
 class PaymentPage extends React.Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class PaymentPage extends React.Component {
   }
 
   componentDidMount() {
-    const { startSetClientCurrentOrder, startSetProducts } = this.props;
+    const { startSetClientCurrentOrder, startSetProducts, t } = this.props;
     Promise.all([startSetProducts(), startSetClientCurrentOrder()]).then(() => {
       this.setState(() => ({ loadingData: false }));
     });
@@ -33,20 +33,16 @@ class PaymentPage extends React.Component {
     if (this.state.loadingData) {
       return <Loader />;
     } else {
-      const { clientCurrentOrder, orderItems, walletBalance } = this.props;
+      const { clientCurrentOrder, orderItems, t, currentLocale } = this.props;
       const { selected_partner } = clientCurrentOrder;
       const currentState = 3;
       return (
         <OrderLayout
           currentState={currentState}
-          title="Review your order and pay"
-          info={`Wallet: ${
-            walletBalance
-              ? fromCentsToDollars(walletBalance)
-              : fromCentsToDollars(0)
-          }`}
+          title={t("paymentPage.title")}
+          info={<WalletElement className="text-navy" />}
           nextButton={{
-            text: "Almost There",
+            text: t("paymentPage.nextButton"),
             link: "/order/payment",
             disabled: true
           }}
@@ -54,7 +50,7 @@ class PaymentPage extends React.Component {
           <div className="h5 content-container">
             <div className="p2 border border-color--grey mb2">
               <h2 className="h5 text-navy favourite-font-weight">
-                Pick up Location
+                {t("paymentPage.printShop")}
               </h2>
               <Partner partner={selected_partner} />
               <div className="mt1">
@@ -62,21 +58,25 @@ class PaymentPage extends React.Component {
                   to="/order/pick-up-location"
                   className="button button-outline button-outline--pink"
                 >
-                  &larr; Select Another Pick up Location
+                  &larr; {t("paymentPage.backToPrintShop")}
                 </Link>
               </div>
             </div>
             <div className="p2 border border-color--grey mb2">
-              <h2 className="h5 text-navy favourite-font-weight">Your Order</h2>
+              <h2 className="h5 text-navy favourite-font-weight">
+                {t("paymentPage.yourOrder")}
+              </h2>
               <OrderItemList
                 orderItems={orderItems}
                 order={clientCurrentOrder}
               />
             </div>
             <div className="p2 border border-color--grey">
-              <h2 className="h5 text-navy favourite-font-weight">Payment</h2>
+              <h2 className="h5 text-navy favourite-font-weight">
+                {t("paymentPage.payment")}
+              </h2>
               <StripeProvider apiKey={process.env.STRIPE_PUBLIC_KEY}>
-                <Elements>
+                <Elements locale={currentLocale}>
                   <CheckoutForm orderType={PRINT_ORDER} />
                 </Elements>
               </StripeProvider>

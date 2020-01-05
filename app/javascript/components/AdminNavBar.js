@@ -1,9 +1,12 @@
 import React from "react";
 import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { withTranslation } from "react-i18next";
 
 import { startLogout } from "../actions/auth";
 import Navbar from "./Navbar";
+import SignOutLink from "./SignOutLink";
+import SignInLink from "./SignInLink";
 
 class AdminNavBar extends React.Component {
   onLogout = () => {
@@ -13,13 +16,17 @@ class AdminNavBar extends React.Component {
   };
 
   render() {
-    const { auth } = this.props;
+    const { auth, t } = this.props;
     const { firstname } = auth;
     const navBarItems = [
       {
         ShowWhenAuthenticated: true,
         ShowWhenNonAuthenticated: false,
-        element: <Link to="/admin/new-partner-applications">Partner Applications</Link>
+        element: (
+          <Link to="/admin/new-partner-applications">
+            {t("navbar.admin.partnerApplications")}
+          </Link>
+        )
       },
       {
         ShowWhenAuthenticated: true,
@@ -29,16 +36,12 @@ class AdminNavBar extends React.Component {
       {
         ShowWhenAuthenticated: true,
         ShowWhenNonAuthenticated: false,
-        element: (
-          <Link to="#" onClick={this.onLogout}>
-            Log out
-          </Link>
-        )
+        element: <SignOutLink onLogout={this.onLogout} />
       },
       {
         ShowWhenAuthenticated: false,
         ShowWhenNonAuthenticated: true,
-        element: <Link to="/admin/login">Login</Link>
+        element: <SignInLink to="/admin/login" />
       }
     ];
     return <Navbar logoRedirectTo="/admin" navBarItems={navBarItems} />;
@@ -56,4 +59,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(AdminNavBar));
+)(withRouter(withTranslation()(AdminNavBar)));

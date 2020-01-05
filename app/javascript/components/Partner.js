@@ -1,4 +1,5 @@
 import React from "react";
+import { withTranslation } from "react-i18next";
 
 import { numberToDistance } from "../lib/distance";
 import MapElement from "./MapElement";
@@ -9,6 +10,8 @@ const Partner = ({
   onLocationSelect = null,
   highlighted = false,
   showMap = true,
+  t,
+  tReady,
   ...rest
 }) => {
   return (
@@ -25,19 +28,25 @@ const Partner = ({
             <span className="pt1">
               {partner.address} {partner.city} {partner.postcode}
             </span>
-            <span>Opening Hours: {partner.opening_hours}</span>
+            <span>
+              {t("partner.openingHours")}: {partner.opening_hours}
+            </span>
             <div className="pt1">
               {partner.distance_to_user_position && (
-                <span className="mr1 text-pink">{`${numberToDistance(
-                  partner.distance_to_user_position
-                )} away`}</span>
+                <span className="mr1 text-pink">
+                  {t("partner.distanceAway", {
+                    distance: numberToDistance(
+                      partner.distance_to_user_position
+                    )
+                  })}
+                </span>
               )}
               <a
                 className={`${highlighted ? "text-white" : "text-navy"}`}
                 target="_blank"
                 href={`https://www.google.com/maps/search/?api=1&query=${partner.lat},${partner.lng}`}
               >
-                See Itinerary
+                {t("partner.seeItinerary")}
               </a>
             </div>
           </div>
@@ -49,7 +58,7 @@ const Partner = ({
                 }`}
                 onClick={() => onLocationSelect(partner.id)}
               >
-                Select
+                {t("partner.select")}
               </a>
             </div>
           )}
@@ -72,4 +81,4 @@ const Partner = ({
   );
 };
 
-export default Partner;
+export default withTranslation()(Partner);

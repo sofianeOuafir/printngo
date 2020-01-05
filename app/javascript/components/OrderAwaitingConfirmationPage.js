@@ -4,11 +4,11 @@ import PartnerOrder from "./PartnerOrder";
 
 import { awaitingConfirmationOrders } from "./../lib/filters";
 
-const OrderAwaitingConfirmationPage = ({ orders }) => {
+const OrderAwaitingConfirmationPage = ({ orders, t }) => {
   return (
     <div className="content-container">
       <h1 className="h4 text-navy favourite-font-weight">
-        Awaiting Confirmation Orders
+        {t("orderAwaitingConfirmationPage.title")}
       </h1>
 
       {orders.length > 0 ? (
@@ -16,9 +16,7 @@ const OrderAwaitingConfirmationPage = ({ orders }) => {
           <PartnerOrder readOnly={true} key={index} order={order} />
         ))
       ) : (
-        <p className="h5">
-          All good! You don't have any order awaiting for confirmation.
-        </p>
+        <p className="h5">{t("orderAwaitingConfirmationPage.noOrder")}</p>
       )}
     </div>
   );

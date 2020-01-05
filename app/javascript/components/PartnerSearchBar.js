@@ -1,14 +1,15 @@
 import React from "react";
+import { withTranslation } from "react-i18next";
 
 import TextInput from "./TextInput";
 
-const PartnerSearchBar = ({ onSubmit, onChange, secretCode }) => {
+const PartnerSearchBar = ({ onSubmit, onChange, secretCode, t }) => {
   return (
     <form className="flex form__input-container" onSubmit={onSubmit}>
       <div className="col-8">
         <TextInput
           type="text"
-          placeholder="Access Code"
+          placeholder={t("partnerSearchBar.accessCode")}
           value={secretCode}
           onChange={onChange}
         />
@@ -20,11 +21,11 @@ const PartnerSearchBar = ({ onSubmit, onChange, secretCode }) => {
             secretCode ? "button--navy" : "button--grey"
           } button--no-border-radius`}
         >
-          Search
+          {t("partnerSearchBar.search")}
         </button>
       </div>
     </form>
   );
 };
 
-export default PartnerSearchBar;
+export default withTranslation()(PartnerSearchBar);

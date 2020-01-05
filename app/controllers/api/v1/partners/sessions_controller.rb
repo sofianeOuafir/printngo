@@ -12,17 +12,17 @@ class Api::V1::Partners::SessionsController < ApplicationController
       render json: partner.to_json
     elsif partner
       render json: {
-        error: 'Your account is not activated. Please activate.'
+        error: I18n.translate('controllers.partners.sessions.create.account_not_activated')
       }, status: 404
     else
       render json: {
-        error: 'Email or password incorrect.'
+        error: I18n.translate('controllers.partners.sessions.create.login_unsuccessful')
       }, status: 404
     end
   end
 
   def destroy
     session[:partner_id] = nil
-    render json: { message: 'Logout successfully' }, status: 200
+    render json: { message: I18n.translate('controllers.partners.sessions.destroy.logout_successfully') }, status: 200
   end
 end

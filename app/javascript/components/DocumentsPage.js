@@ -26,7 +26,7 @@ class DocumentsPage extends React.Component {
     if (this.state.loadingData) {
       return <Loader />;
     } else {
-      const { orderItems } = this.props;
+      const { orderItems, t } = this.props;
       return (
         <div className="content-container">
           <div
@@ -34,18 +34,18 @@ class DocumentsPage extends React.Component {
             style={{ height: "75px" }}
           >
             <h1 className="documents-page--title text-navy favourite-font-weight h4">
-              Your Documents
+              {t("documentsPage.title")}
             </h1>
             {orderItems.length > 0 && (
               <Link to="/order/basket" className="button button--pink">
-                Checkout &rarr;
+              {t("documentsPage.checkout")} &rarr;
               </Link>
             )}
           </div>
-          <div>
+          <div className="mb3">
             <DocumentList />
             <UploadAndPrintButton
-              text="Upload & Add To Basket"
+              text={t("documentsPage.upload")}
               className="button button--navy"
             />
           </div>
@@ -63,7 +63,4 @@ const mapDispatchToProps = dispatch => ({
   startSetDocuments: () => dispatch(startSetDocuments())
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(DocumentsPage);
+export default connect(mapStateToProps, mapDispatchToProps)(DocumentsPage);

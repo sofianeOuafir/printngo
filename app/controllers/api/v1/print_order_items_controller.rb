@@ -17,7 +17,7 @@ class Api::V1::PrintOrderItemsController < ApplicationController
       print_order_item.destroy
       render json: print_order_item.to_json(include: :order)
     else
-      render json: { message: 'This action is not allowed' }, status: 403
+      render json: { message: I18n.translate('controllers.print_order_items.destroy.error') }, status: 403
     end
   end
 
@@ -27,7 +27,7 @@ class Api::V1::PrintOrderItemsController < ApplicationController
       print_order_item.update(print_order_item_params)
       render json: print_order_item.to_json(include: :order)
     else
-      render json: { message: 'This action is not allowed' }, status: 403
+      render json: { message: I18n.translate('controllers.print_order_items.update.error') }, status: 403
     end
   end
 

@@ -8,62 +8,59 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-PrintProduct.create(price: 25, name: 'A4 Black')
-PrintProduct.create(price: 50, name: 'A4 Color')
+PrintProduct.create(price: 25, code: 'printProduct1')
+PrintProduct.create(price: 50, code: 'printProduct2')
 TopUpProduct.create(price: 999,
-                    name: '$9.99 Top up / On demand',
-                    description: 'Get $11 of printing credit. Yes, An extra $1 for free!',
+                    code: 'topUpProduct1',
                     most_popular: false,
                     allocated_credit: 1100)
 TopUpProduct.create(price: 1999,
-                    name: '$19.99 Top up / On demand',
-                    description: 'Get $23 of printing credit. Yes, An extra $3 for free!',
+                    code: 'topUpProduct2',
                     most_popular: true,
                     allocated_credit: 2300)
 TopUpProduct.create(price: 2999,
-                    name: '$29.99 Top up / On demand',
-                    description: 'Get $36 of printing credit. Yes, An extra $6 for free!',
+                    code: 'topUpProduct3',
                     most_popular: false,
                     allocated_credit: 3600)
 
-SellingPoint.create(description: 'You get an extra 1$ dollar for free (+10% free).',
+SellingPoint.create(description: 'topUpProduct1.sellingPoint1',
                     top_up_product: TopUpProduct.ten_dollars_top_up)
-SellingPoint.create(description: 'Top up whenever you want. No monthly commitment.',
+SellingPoint.create(description: 'topUpProduct1.sellingPoint2',
                     top_up_product: TopUpProduct.ten_dollars_top_up)
-SellingPoint.create(description: 'No minimum amount per order.',
+SellingPoint.create(description: 'topUpProduct1.sellingPoint3',
                     top_up_product: TopUpProduct.ten_dollars_top_up)
-SellingPoint.create(description: 'Printing in black would cost a bit less than 0,23$ / page.',
+SellingPoint.create(description: 'topUpProduct1.sellingPoint4',
                     top_up_product: TopUpProduct.ten_dollars_top_up)
-SellingPoint.create(description: 'Printing in color would cost a bit less than 0,46$ / page.',
+SellingPoint.create(description: 'topUpProduct1.sellingPoint5',
                     top_up_product: TopUpProduct.ten_dollars_top_up)
-SellingPoint.create(description: 'Print even quicker by skipping the need of providing your credit card details each time.',
+SellingPoint.create(description: 'topUpProduct1.sellingPoint6',
                     top_up_product: TopUpProduct.ten_dollars_top_up)
 
 
-SellingPoint.create(description: 'You get an extra $3 of printing credit for free (+15% free).',
+SellingPoint.create(description: 'topUpProduct2.sellingPoint1',
                     top_up_product: TopUpProduct.twenty_dollars_top_up)
-SellingPoint.create(description: 'Top up whenever you want. No monthly commitment.',
+SellingPoint.create(description: 'topUpProduct2.sellingPoint2',
                     top_up_product: TopUpProduct.twenty_dollars_top_up)
-SellingPoint.create(description: 'No minimum amount per order.',
+SellingPoint.create(description: 'topUpProduct2.sellingPoint3',
                     top_up_product: TopUpProduct.twenty_dollars_top_up)
-SellingPoint.create(description: 'Printing in black would cost a bit less than 0,22$ / page.',
+SellingPoint.create(description: 'topUpProduct2.sellingPoint4',
                     top_up_product: TopUpProduct.twenty_dollars_top_up)
-SellingPoint.create(description: 'Printing in color would cost a bit less than 0,44$ / page.',
+SellingPoint.create(description: 'topUpProduct2.sellingPoint5',
                     top_up_product: TopUpProduct.twenty_dollars_top_up)
-SellingPoint.create(description: 'Print even quicker by skipping the need of providing your credit card details each time.',
+SellingPoint.create(description: 'topUpProduct2.sellingPoint6',
                     top_up_product: TopUpProduct.twenty_dollars_top_up)
 
-SellingPoint.create(description: 'You get an extra 6 dollars of printing credit for free (+20% free)',
+SellingPoint.create(description: 'topUpProduct3.sellingPoint1',
                     top_up_product: TopUpProduct.thirty_dollars_top_up)
-SellingPoint.create(description: 'Top up whenever you want. No monthly commitment.',
+SellingPoint.create(description: 'topUpProduct3.sellingPoint2',
                     top_up_product: TopUpProduct.thirty_dollars_top_up)
-SellingPoint.create(description: 'No minimum amount per order.',
+SellingPoint.create(description: 'topUpProduct3.sellingPoint3',
                     top_up_product: TopUpProduct.thirty_dollars_top_up)
-SellingPoint.create(description: 'Printing in black would cost a bit less than 0,21$ / page.',
+SellingPoint.create(description: 'topUpProduct3.sellingPoint4',
                     top_up_product: TopUpProduct.thirty_dollars_top_up)
-SellingPoint.create(description: 'Printing in color would cost a bit less than 0,42$ / page.',
+SellingPoint.create(description: 'topUpProduct3.sellingPoint5',
                     top_up_product: TopUpProduct.thirty_dollars_top_up)
-SellingPoint.create(description: 'Print even quicker by skipping the need of providing your credit card details each time.',
+SellingPoint.create(description: 'topUpProduct3.sellingPoint6',
                     top_up_product: TopUpProduct.thirty_dollars_top_up)
 
 if Rails.env.development?

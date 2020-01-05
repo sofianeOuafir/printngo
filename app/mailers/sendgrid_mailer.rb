@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SendgridMailer
   def self.activation_email(firstname:, token:, email:)
     data = {
@@ -15,12 +17,13 @@ class SendgridMailer
         }
       ],
       "from": {
-        "email": 'contact@printngo.ca'
+        "email": I18n.translate('mailer.from')
       },
-      "template_id": 'd-dcdb078019b34e53ba346e5997fe3ca0'
+      "template_id": I18n.translate('mailer.activation_email.template_id')
     }
     send_email(data)
   end
+
   def self.print_order_confirmed_email(order)
     user = order.user
     partner = order.selected_partner
@@ -48,12 +51,13 @@ class SendgridMailer
         }
       ],
       "from": {
-        "email": 'contact@printngo.ca'
+        "email": I18n.translate('mailer.')
       },
-      "template_id": 'd-37305aec46ae4898a40df3ad3ce89e13'
+      "template_id": I18n.translate('mailer.print_order_confirmed_email.template_id')
     }
     send_email(data)
   end
+
   def self.top_up_order_confirmed_email(order)
     user = order.user
     data = {
@@ -72,9 +76,9 @@ class SendgridMailer
         }
       ],
       "from": {
-        "email": 'contact@printngo.ca'
+        "email": I18n.translate('mailer.')
       },
-      "template_id": 'd-7646a1995e3144ecb17201290e978a40'
+      "template_id": I18n.translate('mailer.top_up_order_confirmed_email.template_id')
     }
     send_email(data)
   end
@@ -92,9 +96,9 @@ class SendgridMailer
         }
       ],
       "from": {
-        "email": 'contact@printngo.ca'
+        "email": I18n.translate('mailer.')
       },
-      "template_id": 'd-23c125a1683a4e7fac655d3844533c69'
+      "template_id": I18n.translate('mailer.welcome_email.template_id')
     }
     send_email(data)
   end

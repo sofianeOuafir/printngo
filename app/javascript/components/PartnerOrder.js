@@ -2,6 +2,7 @@ import React from "react";
 import pluralize from "pluralize";
 import { toast } from "react-toastify";
 import { connect } from "react-redux";
+import { withTranslation } from "react-i18next";
 
 import {
   startUpdatePartnerOrder,
@@ -16,14 +17,15 @@ class PartnerOrder extends React.Component {
     const {
       startUpdatePartnerOrder,
       startSetPartnerOrders,
-      order
+      order,
+      t
     } = this.props;
     startUpdatePartnerOrder({ secretCode: order.secret_code })
       .then(() => {
         return startSetPartnerOrders();
       })
       .then(() => {
-        toast.success("Thank you for confirming!", {
+        toast.success(t("partnerOrder.confirmationSuccess"), {
           position: toast.POSITION.BOTTOM_RIGHT
         });
       });
@@ -49,24 +51,19 @@ class PartnerOrder extends React.Component {
       });
   };
   render() {
-    const { order, readOnly = false } = this.props;
+    const { order, readOnly = false, t } = this.props;
     const { user, deliverables } = order;
     return (
       <div className="mb1">
         {order.awaiting_confirmation && (
-          <p className="h6 text-orange m0 mb1">
-            <strong>
-              IMPORTANT: Please remember to mark the order as printed once the
-              documents get delivered to the client. It allows us to have
-              confirmation that everything went well and help us making sure you
-              get paid for the service provided.
-            </strong>
+          <p className="h5 text-orange m0 mb1">
+            <strong>{t("partnerOrder.important")}</strong>
           </p>
         )}
         <div className="px1 border border--thick border-color--grey">
           <div className="flex align-items--center justify-content--between">
             <h2 className="h4 m0 py1 favourite-font-weight text-navy">
-              {user.fullname} - Order #{order.id}
+              {user.fullname} - {t("partnerOrder.order")} #{order.id}
             </h2>
 
             <OrderStatus
@@ -96,7 +93,7 @@ class PartnerOrder extends React.Component {
               )}
               <div className="flex align-items--center">
                 <span className="h5 text-navy mr1">
-                  {deliverable.print_product.name} (
+                  {t(`${deliverable.print_product.code}.name`)} (
                   {pluralize(
                     `${deliverable.number_of_page} page`,
                     deliverable.number_of_page
@@ -111,7 +108,7 @@ class PartnerOrder extends React.Component {
                     onClick={() => this.onPrintClick(id)}
                     className="my1 button button--navy"
                   >
-                    Print
+                    {t("partnerOrder.print")}
                   </button>
                 )}
               </div>
@@ -131,4 +128,7 @@ const mapDispatchToProps = dispatch => ({
   startSetPartnerOrders: () => dispatch(startSetPartnerOrders())
 });
 
-export default connect(null, mapDispatchToProps)(PartnerOrder);
+export default connect(
+  null,
+  mapDispatchToProps
+)(withTranslation()(PartnerOrder));

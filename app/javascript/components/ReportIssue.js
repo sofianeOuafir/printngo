@@ -1,8 +1,13 @@
 import React from "react";
+import { withTranslation } from "react-i18next";
 
-const ReportIssue = ({ order, ...rest }) => {
-  const subject = `Issue with order #${order.id}`;
-  return <a {...rest} href={`mailto:issue@printngo.ca?subject=${subject}`}>Report an issue</a>;
+const ReportIssue = ({ order, t, tReady, ...rest }) => {
+  const subject = t(`reportIssue.subject`, { orderId: order.id });
+  return (
+    <a {...rest} href={t("reportIssue.href", { subject })}>
+      {t("reportIssue.text")}
+    </a>
+  );
 };
 
-export default ReportIssue;
+export default withTranslation()(ReportIssue);

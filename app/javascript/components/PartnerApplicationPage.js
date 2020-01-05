@@ -24,11 +24,12 @@ class PartnerApplicationPage extends React.Component {
 
   render() {
     const { applied } = this.state;
+    const { t } = this.props;
     return (
       <div className="content-container pb3 mb3">
         <PageBanner
-          title="Become a Print n' Go Partner"
-          description="Want to attract more customers in your shop while making money off your printing machine? Your are in the right place! Simply fill up the form and we will get back to you as soon as possible. "
+          title={t("partnerApplicationPage.title")}
+          description={t("partnerApplicationPage.description")}
         />
         {applied ? (
           <div className="partner-application-page--thank-you content-container border border-color--grey h5 flex justify-content--center">
@@ -36,19 +37,18 @@ class PartnerApplicationPage extends React.Component {
               <div className="center">
                 <img src={images.success} alt="Success Icon" width={100} />
               </div>
-              <h1 className="h4 center">Success!</h1>
+              <h1 className="h4 center">
+                {t("partnerApplicationPage.success")}
+              </h1>
               <div>
-                <p className="center">
-                  Thank you for completing the form! We will get back to you
-                  shortly!
-                </p>
+                <p className="center">{t("partnerApplicationPage.thankYou")}</p>
               </div>
               <div className="flex justify-content--center">
                 <Link
                   className="mt3 button button--pink"
                   to={`/become-partner`}
                 >
-                  Finish
+                  {t("partnerApplicationPage.finish")}
                 </Link>
               </div>
             </div>

@@ -1,21 +1,21 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import DocumentItem from './DocumentItem';
+import React from "react";
+import { connect } from "react-redux";
+import { withTranslation } from "react-i18next";
 
-const DocumentList = ({ documents }) => {
-  return (
-    documents.length ? documents.map((document, index) => 
-      (
-       <DocumentItem key={index} document={document} />
-   )) : (
-       <p className="h5">You don't have any document yet.</p>
-   ) 
-  )
+import DocumentItem from "./DocumentItem";
 
-}
+const DocumentList = ({ documents, t }) => {
+  return documents.length ? (
+    documents.map((document, index) => (
+      <DocumentItem key={index} document={document} />
+    ))
+  ) : (
+    <p className="h5">{t("documentList.noDocumentYet")}</p>
+  );
+};
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   documents: state.documents
-})
+});
 
-export default connect(mapStateToProps)(DocumentList)
+export default connect(mapStateToProps)(withTranslation()(DocumentList));

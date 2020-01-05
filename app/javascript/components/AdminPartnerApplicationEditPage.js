@@ -15,18 +15,6 @@ class AdminPartnerApplicationsEditPage extends React.Component {
     };
   }
 
-  onCreatePartnerClick = e => {
-    e.preventDefault();
-    const id = this.props.match.params.id;
-    axios
-      .post("/api/v1/admins/partners", {
-        partner_application_id: id
-      })
-      .then(() => {
-        this.props.history.push("/admin/new-partner-applications");
-      });
-  };
-
   componentDidMount() {
     const id = this.props.match.params.id;
     axios.get(`/api/v1/admins/partner_applications/${id}`).then(response => {
@@ -54,15 +42,6 @@ class AdminPartnerApplicationsEditPage extends React.Component {
       <div className="content-container mb1">
         <div className="py1 flex justify-content--between">
           <BackButton />
-          {!partnerApplication.partner_created && (
-            <Link
-              className="button button--pink"
-              to="#"
-              onClick={this.onCreatePartnerClick}
-            >
-              Create Partner Account
-            </Link>
-          )}
         </div>
 
         <PartnerApplicationForm

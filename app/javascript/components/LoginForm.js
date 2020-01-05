@@ -1,6 +1,7 @@
 import React from "react";
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { withTranslation } from "react-i18next";
 
 import TextInput from './TextInput';
 import { startLogin } from './../actions/auth';
@@ -48,6 +49,7 @@ class LoginForm extends React.Component {
   };
 
   render() {
+    const { t } = this.props;
     return (
       <form
         onSubmit={this.onSubmit}
@@ -55,20 +57,20 @@ class LoginForm extends React.Component {
       >
         <p className="text-pink center">{this.state.error}</p>
         <TextInput
-          placeholder="Email"
+          placeholder={t('loginForm.email')}
           className="block mb1"
           value={this.state.email}
           onChange={this.onEmailChange}
           type="text"
         />
         <TextInput
-          placeholder="Password"
+          placeholder={t('loginForm.password')}
           className="block mb1"
           value={this.state.password}
           onChange={this.onPasswordChange}
           type="password"
         />
-        <button className="button button--navy fullwidth">Login</button>
+        <button className="button button--navy fullwidth">{t('signInLink')}</button>
       </form>
     );
   }
@@ -81,4 +83,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   null,
   mapDispatchToProps
-)(withRouter(LoginForm));
+)(withRouter(withTranslation()(LoginForm)));
