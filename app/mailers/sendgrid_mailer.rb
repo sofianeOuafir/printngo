@@ -17,7 +17,7 @@ class SendgridMailer
         }
       ],
       "from": {
-        "email": 'contact@printandgo.ca'
+        "email": I18n.translate('mailer.from')
       },
       "template_id": I18n.translate('mailer.activation_email.template_id')
     }
@@ -51,7 +51,7 @@ class SendgridMailer
         }
       ],
       "from": {
-        "email": 'contact@printandgo.ca'
+        "email": I18n.translate('mailer.')
       },
       "template_id": I18n.translate('mailer.print_order_confirmed_email.template_id')
     }
@@ -76,7 +76,7 @@ class SendgridMailer
         }
       ],
       "from": {
-        "email": 'contact@printandgo.ca'
+        "email": I18n.translate('mailer.')
       },
       "template_id": I18n.translate('mailer.top_up_order_confirmed_email.template_id')
     }
@@ -96,7 +96,7 @@ class SendgridMailer
         }
       ],
       "from": {
-        "email": 'contact@printandgo.ca'
+        "email": I18n.translate('mailer.')
       },
       "template_id": I18n.translate('mailer.welcome_email.template_id')
     }

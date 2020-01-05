@@ -1,6 +1,7 @@
 fr:
   tax_amount: 20
   mailer: 
+    from: 'contact@printandgo.fr'
     activation_email: 
       template_id: "d-9b6f510caa954d9299f91e2f474f8cf3"
     print_order_confirmed_email: 

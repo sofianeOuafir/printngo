@@ -32,6 +32,7 @@
 en:
   tax_amount: 13
   mailer: 
+    from: 'contact@printandgo.ca'
     activation_email: 
       template_id: "d-dcdb078019b34e53ba346e5997fe3ca0"
     print_order_confirmed_email: 
