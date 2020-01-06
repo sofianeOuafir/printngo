@@ -48,10 +48,6 @@ fr:
           login_unsuccessful: 'E-mail ou mot de passe incorrect'
         destroy: 
           logout_successfully: 'Déconnexion réussie'
-    print_orders:
-      documents: 
-        create: 
-          unsupported_format: 'Format de fichier non pris en charge. Veuillez convertir votre fichier en PDF et réessayer!'
     print_order_items: 
       destroy: 
         error: "Cette action n'est pas autorisée"
@@ -63,6 +59,9 @@ fr:
           record_not_found: "Oups! Désolé, il semble que ce produit n'existe pas."
           something_went_wrong: "Oups! Désolé, quelque chose s'est mal passé ... Nous faisons de notre mieux pour résoudre le problème!"
     print_orders:
+      documents: 
+        create: 
+          unsupported_format: 'Format de fichier non pris en charge. Veuillez convertir votre fichier en PDF et réessayer!'
       payments:
         create:
           order_already_paid: "La commande a déjà été payée."
