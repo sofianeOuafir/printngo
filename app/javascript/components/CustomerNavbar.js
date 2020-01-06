@@ -121,18 +121,6 @@ class CustomerNavbar extends React.Component {
         )
       },
       {
-        ShowWhenAuthenticated: true,
-        ShowWhenNonAuthenticated: true,
-        element: (
-          <Link
-            onClick={e => this.navigateAndScroll({ e, element: "contact-us" })}
-            to="#"
-          >
-            {t("navbar.customer.contactUs")}
-          </Link>
-        )
-      },
-      {
         ShowWhenAuthenticated: false,
         ShowWhenNonAuthenticated: true,
         element: <SignInLink to="/login" />
