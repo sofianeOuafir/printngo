@@ -308,7 +308,7 @@ class CheckoutForm extends Component {
         {this.isStripePayment() && (
           <CardElement hidePostalCode={true} onChange={this.onCardChange} />
         )}
-        <p className="text-pink">{errors.payment}</p>
+        <p className="text-leaf">{errors.payment}</p>
         <div className="my2">
           <label>
             <input
@@ -320,13 +320,13 @@ class CheckoutForm extends Component {
             {orderType === PRINT_ORDER && t("checkoutForm.doubleCheck")}
           </label>
           {errors.termsAndCondition && (
-            <p className="text-pink">{errors.termsAndCondition}</p>
+            <p className="text-leaf">{errors.termsAndCondition}</p>
           )}
         </div>
         <button
           disabled={processingPayment}
           className={`fullwidth button ${
-            processingPayment ? "button-grey text-pink" : "button--pink"
+            processingPayment ? "button-grey text-leaf" : "button--leaf"
           }`}
           text="Submit"
         >

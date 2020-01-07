@@ -65,13 +65,13 @@ class ThankYouPage extends React.Component {
               </div>
               <div className="flex justify-content--between">
                 <Link
-                  className="mt3 button button-outline--pink"
+                  className="mt3 button button-outline--leaf"
                   to={`/order/${this.props.match.params.id}`}
                 >
                   {t("printOrderThankYouPage.seeOrder")}
                 </Link>
                 <Link
-                  className="mt3 button button-outline--pink"
+                  className="mt3 button button-outline--leaf"
                   to={`/invoice/${invoice.id}`}
                 >
                   {t("printOrderThankYouPage.seeInvoice")}

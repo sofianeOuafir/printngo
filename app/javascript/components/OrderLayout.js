@@ -18,7 +18,7 @@ const OrderLayout = ({
 }) => (
   <Fragment>
     <Helmet>
-      <title>Print And Go - {title}</title>
+      <title>Print and Go - {title}</title>
     </Helmet>
     <div
       style={{ height: "75px" }}
@@ -28,7 +28,7 @@ const OrderLayout = ({
         <Link to="/">
           <Logo />
         </Link>
-        <WalletElement className="text-pink" />
+        <WalletElement className="text-leaf" />
       </div>
     </div>
     <div className="mt2 content-container">
@@ -69,7 +69,7 @@ const OrderLayout = ({
           <Link
             style={nextButton.disabled ? { pointerEvents: "none" } : null}
             className={`button order-layout--next-button ${
-              nextButton.disabled ? "button--grey" : "button--pink"
+              nextButton.disabled ? "button--grey" : "button--leaf"
             }`}
             to={nextButton.link}
           >

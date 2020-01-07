@@ -19,7 +19,7 @@ const TopUpProduct = ({ CallToAction, topUpProduct, t }) => {
       <div
         className={
           topUpProduct.most_popular
-            ? "top-up-product--most-popular flex flex-direction--vertical justify-content--center align-items--center bg-pink text-white center"
+            ? "top-up-product--most-popular flex flex-direction--vertical justify-content--center align-items--center bg-leaf text-white center"
             : "top-up-product--not-most-popular"
         }
       >
@@ -32,7 +32,7 @@ const TopUpProduct = ({ CallToAction, topUpProduct, t }) => {
           topUpProduct.most_popular ? "border-top--none" : ""
         }`}
         style={{
-          background: `${most_popular && "rgba(255, 117, 124, 0.2)"}`
+          background: `${most_popular && "rgba(155,208,105, 0.2)"}`
         }}
       >
         <div className="center top-up-product--name-container">
@@ -64,8 +64,8 @@ const TopUpProduct = ({ CallToAction, topUpProduct, t }) => {
               to={`/top-up/${id}`}
               className={`button ${
                 most_popular
-                  ? "button--pink"
-                  : "button--outline button-outline--pink"
+                  ? "button--leaf"
+                  : "button--outline button-outline--leaf"
               }`}
             >
               {t('callToAction.buyNow')}

@@ -36,7 +36,7 @@ const OrderStatus = ({ printable, onMarkAsPrinted = null, t }) => {
       />
     );
   } else if (printable.preparing) {
-    return <Status text={t("orderStatus.preparing")} Icon={IoMdSync} color={"text-pink"} />;
+    return <Status text={t("orderStatus.preparing")} Icon={IoMdSync} color={"text-leaf"} />;
   } else {
     return <Status text={t("orderStatus.readyToPrint")} Icon={IoMdClock} color="text-navy" />;
   }

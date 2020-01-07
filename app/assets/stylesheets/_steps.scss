@@ -61,7 +61,7 @@
     > .rc-steps-icon {
       line-height: 1;
       top: -1px;
-      color: $pink;
+      color: $leaf;
       position: relative;
 
       &.rcicon {
@@ -145,12 +145,12 @@
   }
 
   &-process &-icon {
-    border-color: $pink;
+    border-color: $leaf;
     background-color: #fff;
     > .rc-steps-icon {
-      color: $pink;
+      color: $leaf;
       .rc-steps-icon-dot {
-        background: $pink;
+        background: $leaf;
       }
     }
   }
@@ -168,33 +168,33 @@
   }
 
   &-process &-icon {
-    background: $pink;
+    background: $leaf;
     > .rc-steps-icon {
       color: #fff;
     }
   }
 
   &-finish &-icon {
-    border-color:  $pink;
+    border-color:  $leaf;
     background-color: #fff;
     > .rc-steps-icon {
-      color:  $pink;
+      color:  $leaf;
       .rc-steps-icon-dot {
-        background:  $pink;
+        background:  $leaf;
       }
     }
   }
   &-finish &-title {
     color: rgba(0,0,0,.43);
     &:after {
-      background-color: $pink;
+      background-color: $leaf;
     }
   }
   &-finish &-description {
     color: rgba(0,0,0,.43);
   }
   &-finish &-tail:after {
-    background-color: $pink;
+    background-color: $leaf;
   }
   
   &-error &-icon {

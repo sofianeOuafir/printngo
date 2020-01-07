@@ -33,7 +33,7 @@ const Partner = ({
             </span>
             <div className="pt1">
               {partner.distance_to_user_position && (
-                <span className="mr1 text-pink">
+                <span className="mr1 text-leaf">
                   {t("partner.distanceAway", {
                     distance: numberToDistance(
                       partner.distance_to_user_position

@@ -45,7 +45,7 @@ class PartnerApplicationPage extends React.Component {
               </div>
               <div className="flex justify-content--center">
                 <Link
-                  className="mt3 button button--pink"
+                  className="mt3 button button--leaf"
                   to={`/become-partner`}
                 >
                   {t("partnerApplicationPage.finish")}

@@ -37,7 +37,7 @@ const UploadAndPrintButtonMainSection = props => {
     <UploadAndPrintButton
       text={t("callToAction.printNow")}
       {...props}
-      className="px0 fullwidth button button--pink"
+      className="px0 fullwidth button button--leaf"
     />
   );
 };
@@ -70,7 +70,7 @@ const ContactUsButton = props => {
     <a
       href={t("home.contact.link")}
       {...props}
-      className="second-call-to-action button button-outline button-outline--navy"
+      className="second-call-to-action button button-outline"
     >
       {t("callToAction.contactUs")}
     </a>
@@ -83,7 +83,7 @@ class HomePage extends React.Component {
       {
         title: t("home.main.title"),
         description: t("home.main.description"),
-        imgSrc: images.printer,
+        imgSrc: images.logoOnly,
         imgAlt: "Printer Icon",
         bgColour: "bg-navy",
         reverse: false,
@@ -95,7 +95,7 @@ class HomePage extends React.Component {
         description: t("home.quickest.description"),
         imgSrc: images.runningMan,
         imgAlt: "Quickest printing service icon",
-        bgColour: "bg-green",
+        bgColour: "bg-navy",
         reverse: true,
         SecondCallToActionButton: UploadAndPrintOtherSection
       },
@@ -104,7 +104,7 @@ class HomePage extends React.Component {
         description: t("home.closest.description"),
         imgSrc: images.pinpoint,
         imgAlt: "Closest printing service icon",
-        bgColour: "bg-grapefruit",
+        bgColour: "bg-leaf",
         reverse: false,
         SecondCallToActionButton: GoToLocationPageElement
       },
@@ -113,7 +113,7 @@ class HomePage extends React.Component {
         description: t("home.privacyOriented.description"),
         imgSrc: images.lock,
         imgAlt: "privacy oriented icon",
-        bgColour: "bg-navy",
+        bgColour: "bg-christmas-tree",
         reverse: true,
         SecondCallToActionButton: UploadAndPrintOtherSection
       },
@@ -122,7 +122,7 @@ class HomePage extends React.Component {
         description: t("home.securePayment.description"),
         imgSrc: images.debitCard,
         imgAlt: "no more coins icon",
-        bgColour: "bg-mustard",
+        bgColour: "bg-navy",
         reverse: false,
         SecondCallToActionButton: UploadAndPrintOtherSection
       },
@@ -131,7 +131,7 @@ class HomePage extends React.Component {
         description: t("home.storeDocument.description"),
         imgSrc: images.hourglass,
         imgAlt: "Printing service always quicker icon",
-        bgColour: "bg-blue-sky",
+        bgColour: "bg-leaf",
         reverse: true,
         SecondCallToActionButton: UploadAndPrintOtherSection
       },
@@ -145,15 +145,24 @@ class HomePage extends React.Component {
         SecondCallToActionButton: GoToPricingPageElement
       },
       {
+        title: t("home.ecoFriendly.title"),
+        description: t("home.ecoFriendly.description"),
+        imgSrc: images.sprout,
+        imgAlt: "Eco Frendly",
+        bgColour: "bg-navy",
+        reverse: true,
+        SecondCallToActionButton: UploadAndPrintOtherSection
+      },
+      {
         id: "contact-us",
         title: t("home.contact.title"),
         description: t("home.contact.description"),
         imgSrc: images.contact,
         imgAlt: "Contact Us",
-        bgColour: "bg-white",
-        color: "text-navy",
+        bgColour: "bg-leaf",
+        color: "text-white",
         SecondCallToActionButton: ContactUsButton,
-        reverse: true
+        reverse: false
       }
     ];
     return (

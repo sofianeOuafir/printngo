@@ -53,12 +53,12 @@ class TopUpOrderThankYouPage extends React.Component {
 
             <div className="flex justify-content--between">
               <Link
-                className="mt3 button button-outline--pink"
+                className="mt3 button button-outline--leaf"
                 to={`/invoice/${invoice.id}`}
               >
                 {t("topUpOrderThankYouPage.seeInvoice")}
               </Link>
-              <UploadAndPrintButton className="mt3 button button--pink" />
+              <UploadAndPrintButton className="mt3 button button--leaf" />
             </div>
           </div>
         </div>

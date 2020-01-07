@@ -9,7 +9,7 @@ const PartnerPage = ({ t }) => {
     <Link
       to="/become-partner/application"
       {...props}
-      className="fullwidth px0 button button--pink"
+      className="fullwidth px0 button button--leaf"
     >
       {t("callToAction.becomePartner")}
     </Link>
@@ -34,7 +34,7 @@ const PartnerPage = ({ t }) => {
       description: t("partnerPage.newSourceRevenue.description"),
       imgSrc: images.money,
       imgAlt: "New Source Revenue Icon",
-      bgColour: "bg-grapefruit",
+      bgColour: "bg-leaf",
       reverse: true,
       SecondCallToActionButton: SecondGoToPartnerApplicationPageButton
     },
@@ -43,7 +43,7 @@ const PartnerPage = ({ t }) => {
       description: t("partnerPage.attractCustomers.description"),
       imgSrc: images.attract,
       imgAlt: "Attract new customers Icon",
-      bgColour: "bg-blue-sky",
+      bgColour: "bg-christmas-tree",
       reverse: false,
       SecondCallToActionButton: SecondGoToPartnerApplicationPageButton
     },
@@ -52,7 +52,7 @@ const PartnerPage = ({ t }) => {
       description: t("partnerPage.freePromotion.description"),
       imgSrc: images.shout,
       imgAlt: "Get free promotion Icon",
-      bgColour: "bg-christmas-tree",
+      bgColour: "bg-navy",
       reverse: true,
       SecondCallToActionButton: SecondGoToPartnerApplicationPageButton
     },
@@ -61,7 +61,7 @@ const PartnerPage = ({ t }) => {
       description: t("partnerPage.noImpact.description"),
       imgSrc: images.yoga,
       imgAlt: "Hassle free Icon",
-      bgColour: "bg-navy",
+      bgColour: "bg-leaf",
       reverse: true,
       SecondCallToActionButton: SecondGoToPartnerApplicationPageButton
     },
@@ -70,7 +70,7 @@ const PartnerPage = ({ t }) => {
       description: t("partnerPage.reinforceRelationship.description"),
       imgSrc: images.exercise,
       imgAlt: "Reinforce relationship Icon",
-      bgColour: "bg-orange",
+      bgColour: "bg-christmas-tree",
       reverse: false,
       SecondCallToActionButton: SecondGoToPartnerApplicationPageButton
     }

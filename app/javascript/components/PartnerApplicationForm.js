@@ -328,7 +328,7 @@ class PartnerApplicationForm extends React.Component {
           </Fragment>
         )}
         <button
-          className={`fullwidth button button--pink
+          className={`fullwidth button button--leaf
 }`}
           text="Submit"
         >
