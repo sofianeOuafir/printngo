@@ -18,7 +18,7 @@ const OrderLayout = ({
 }) => (
   <Fragment>
     <Helmet>
-      <title>Print And Go - {title}</title>
+      <title>Print and Go - {title}</title>
     </Helmet>
     <div
       style={{ height: "75px" }}

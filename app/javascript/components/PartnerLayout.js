@@ -9,7 +9,7 @@ class PartnerLayout extends React.Component {
     return (
       <Fragment>
         <Helmet>
-          <title>Print And Go - {this.props.title}</title>
+          <title>Print and Go - {this.props.title}</title>
         </Helmet>
         <PartnerNavBar />
         {this.props.children}
