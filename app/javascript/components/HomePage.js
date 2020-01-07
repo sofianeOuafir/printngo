@@ -145,15 +145,24 @@ class HomePage extends React.Component {
         SecondCallToActionButton: GoToPricingPageElement
       },
       {
+        title: t("home.ecoFriendly.title"),
+        description: t("home.ecoFriendly.description"),
+        imgSrc: images.sprout,
+        imgAlt: "Eco Frendly",
+        bgColour: "bg-navy",
+        reverse: true,
+        SecondCallToActionButton: UploadAndPrintOtherSection
+      },
+      {
         id: "contact-us",
         title: t("home.contact.title"),
         description: t("home.contact.description"),
         imgSrc: images.contact,
         imgAlt: "Contact Us",
-        bgColour: "bg-navy",
+        bgColour: "bg-leaf",
         color: "text-white",
         SecondCallToActionButton: ContactUsButton,
-        reverse: true
+        reverse: false
       }
     ];
     return (
