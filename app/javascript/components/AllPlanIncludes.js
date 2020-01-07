@@ -24,6 +24,9 @@ const AllPlanIncludes = ({ t }) => {
     [
       {
         description: t("allPlanIncludes.sellingPoint5")
+      },
+      {
+        description: t("allPlanIncludes.sellingPoint6")
       }
     ]
   ];

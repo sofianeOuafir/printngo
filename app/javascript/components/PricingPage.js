@@ -31,7 +31,7 @@ const PayAsYouGoCallToAction = () => {
   return (
     <UploadAndPrintButton
       text={t("callToAction.instantQuote")}
-      className="button button-outline button-outline--pink"
+      className="button button-outline button-outline--leaf"
     />
   );
 };

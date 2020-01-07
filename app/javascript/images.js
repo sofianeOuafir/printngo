@@ -26,8 +26,10 @@ import tinyPrinter from './../assets/images/tiny-printer.png';
 import tinyBluePrinter from './../assets/images/tiny-blue-printer.png';
 import pdf from './../assets/images/pdf.png';
 import logo from './../assets/images/logo.png';
+import logoOnly from './../assets/images/logo-only.png';
 
 export default {
+  logoOnly,
   logo,
   pdf,
   tinyBluePrinter,

@@ -55,7 +55,7 @@ class LoginForm extends React.Component {
         onSubmit={this.onSubmit}
         className="border border-color--grey p2 form__input-container"
       >
-        <p className="text-pink center">{this.state.error}</p>
+        <p className="text-leaf center">{this.state.error}</p>
         <TextInput
           placeholder={t('loginForm.email')}
           className="block mb1"

@@ -68,7 +68,7 @@ class PartnerOrderPage extends React.Component {
 
           {order.id && !displayError && <PartnerOrder order={order} />}
           {displayError && (
-            <div className="text-pink h5 ">
+            <div className="text-leaf h5 ">
               {ReactHtmlParser(
                 t("partnerOrderPage.orderNotFound", { secretCode })
               )}

@@ -145,7 +145,7 @@ class CustomerNavbar extends React.Component {
       {
         ShowWhenAuthenticated: true,
         ShowWhenNonAuthenticated: true,
-        element: <WalletElement className="text-pink" />
+        element: <WalletElement className="text-leaf" />
       }
     ];
 

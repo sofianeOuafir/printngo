@@ -33,7 +33,7 @@ class DocumentViewer extends Component {
         >
           <button
             className={`button ${
-              pageNumber <= 1 ? "button--grey" : "button--pink"
+              pageNumber <= 1 ? "button--grey" : "button--leaf"
             }`}
             disabled={pageNumber <= 1}
             onClick={this.previousPage}
@@ -46,7 +46,7 @@ class DocumentViewer extends Component {
           </p>
           <button
             className={`button ${
-              pageNumber >= numPages ? "button--grey" : "button--pink"
+              pageNumber >= numPages ? "button--grey" : "button--leaf"
             }`}
             disabled={pageNumber >= numPages}
             onClick={this.nextPage}

@@ -9,7 +9,7 @@ const WhyPrintnGo = ({ t }) => {
   };
   return (
     <div
-      className={`bg-pink fullscreen border--bottom border-color--white justify-content--center text-white flex flex-direction--column align-items--center`}
+      className={`bg-leaf fullscreen border--bottom border-color--white justify-content--center text-white flex flex-direction--column align-items--center`}
     >
       <div
         style={{ width: "80%" }}

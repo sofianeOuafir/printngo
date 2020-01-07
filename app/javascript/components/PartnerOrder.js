@@ -72,7 +72,7 @@ class PartnerOrder extends React.Component {
             />
           </div>
           <div className="mb1">
-            <ReportIssue className="report-issue text-pink" order={order} />
+            <ReportIssue className="report-issue text-leaf" order={order} />
           </div>
         </div>
 

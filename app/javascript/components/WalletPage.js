@@ -51,7 +51,7 @@ class WalletPage extends React.Component {
         <h1>
           <WalletElement className="text-navy" />
         </h1>
-        <Link to="/pricing" className="button button--pink">
+        <Link to="/pricing" className="button button--leaf">
           {t("callToAction.topUpNow")}
         </Link>
         {transactions.length > 0 && (

@@ -56,7 +56,7 @@ class PaymentPage extends React.Component {
               <div className="mt1">
                 <Link
                   to="/order/pick-up-location"
-                  className="button button-outline button-outline--pink"
+                  className="button button-outline button-outline--leaf"
                 >
                   &larr; {t("paymentPage.backToPrintShop")}
                 </Link>

@@ -34,7 +34,7 @@ const PartnerApplication = ({ partnerApplication, history, t }) => {
         </Link>
         {!partnerCreated && (
           <Link
-            className="button button--pink"
+            className="button button--leaf"
             to="#"
             onClick={e => onCreatePartnerClick({ id, history, e })}
           >

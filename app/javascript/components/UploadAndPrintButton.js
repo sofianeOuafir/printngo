@@ -168,7 +168,7 @@ class UploadAndPrintButton extends React.Component {
                 <Line
                   percent={this.state.percentage}
                   strokeWidth="4"
-                  strokeColor="#FF757C"
+                  strokeColor="#9BD069"
                 />
                 <div
                   id="uploadedFiles"
@@ -182,12 +182,12 @@ class UploadAndPrintButton extends React.Component {
                           {uploadedFile.success ? (
                             <MdDone className="h4 text-christmas-tree" />
                           ) : (
-                            <MdHighlightOff className="h4 text-pink" />
+                            <MdHighlightOff className="h4 text-leaf" />
                           )}
                         </div>
                         <div className="ml1">{uploadedFile.name}</div>
                       </div>
-                      <span className="text-pink">{uploadedFile.message}</span>
+                      <span className="text-leaf">{uploadedFile.message}</span>
                     </div>
                   ))}
                 </div>
@@ -219,7 +219,7 @@ class UploadAndPrintButton extends React.Component {
                   {t("uploadAndPrintButton.modal.tryAgain")}
                 </a>
                 <Link
-                  className="button button--pink"
+                  className="button button--leaf"
                   onClick={this.redirectToBasket}
                   to="#"
                 >

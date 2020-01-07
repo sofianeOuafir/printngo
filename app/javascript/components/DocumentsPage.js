@@ -37,7 +37,7 @@ class DocumentsPage extends React.Component {
               {t("documentsPage.title")}
             </h1>
             {orderItems.length > 0 && (
-              <Link to="/order/basket" className="button button--pink">
+              <Link to="/order/basket" className="button button--leaf">
               {t("documentsPage.checkout")} &rarr;
               </Link>
             )}
