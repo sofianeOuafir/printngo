@@ -47,7 +47,7 @@
   "printProduct2.name": "A4 Color",
   "pricingPage.title": "Simple, honest and affordable price",
   "pricingPage.description": "The most convenient printing solution adapted to your needs!",
-  "navbar.admin.partnerApplications": "Parner Applications",
+  "navbar.admin.partnerApplications": "Partner Applications",
   "navbar.partner.print": "Print",
   "navbar.partner.myLocation": "My Location",
   "navbar.partner.awaitingConfirmation": "Awaiting Confirmation",
@@ -216,6 +216,7 @@
   "partnerApplicationPage.success": "Success!",
   "partnerApplicationPage.thankYou": "Thank you for completing the form! We will get back to you shortly!",
   "partnerApplicationPage.finish": "Finish",
+  "partnerApplicationForm.notEditable": "You cannot edit an application when the partner account has been created. Edit the partner directly.",
   "partnerApplicationForm.firstname": "First Name",
   "partnerApplicationForm.lastname": "Last Name",
   "partnerApplicationForm.email": "Email",
@@ -274,6 +275,7 @@
   "partnerApplicationList.noPartnerApplication": "There is not any partner application.",
   "partnerApplication.view": "View",
   "partnerApplication.createAccount": "Create Account",
+  "partnerApplication.successNotification": "Partner account created successfully! An activation email has been sent.",
   "newPartnerApplicationsPage.createNewApplication": "Create New Application",
   "partnerSearchBar.accessCode": "Access Code",
   "partnerSearchBar.search": "Search",
@@ -319,5 +321,7 @@
   "pageTitle.PrivateArchivedPartnerApplicationsPage": "Archived Applications",
   "pageTitle.PrivateAdminPartnerApplicationEditPage": "Partner Application",
   "pageTitle.PrivateAdminPartnerApplicationsNewPage": "Partner Application - New",
-  "introduction_video_id": "rnkntq2P9vE"
+  "introduction_video_id": "rnkntq2P9vE",
+  "adminPartnerApplicationEditPage.successNotification": "Application successfully updated",
+  "adminPartnerApplicationNewPage.successNotification": "Application successfully created"
 }

@@ -21,6 +21,8 @@ class Api::V1::Admins::PartnersController < ApplicationController
     if partner.save
       partner.activations.create
       render json: partner.to_json
+    else
+      render json: { errors: partner.errors.to_json }, status: 400
     end
   end
 end

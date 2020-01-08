@@ -23,6 +23,8 @@ class PartnerApplicationForm extends React.Component {
       openingHours:
         (partnerApplication && partnerApplication.opening_hours) || "",
       archived: (partnerApplication && partnerApplication.archived) || false,
+      partnerCreated:
+        (partnerApplication && partnerApplication.partner_created) || false,
       errors: {
         firstname: [],
         lastname: [],
@@ -194,6 +196,7 @@ class PartnerApplicationForm extends React.Component {
       lng,
       openingHours,
       archived,
+      partnerCreated,
       errors
     } = this.state;
     return (
@@ -201,12 +204,18 @@ class PartnerApplicationForm extends React.Component {
         className="form__input-container partner-application-page-form"
         onSubmit={this.onSubmit}
       >
+        {partnerCreated && (
+          <p className="text-leaf m0 h5">
+            {t("partnerApplicationForm.notEditable")}
+          </p>
+        )}
         <h2 className="text-navy h5">
           {t("partnerApplicationForm.aboutYou")}:
         </h2>
         <div className="flex partner-application-page-form--input-container">
           <div className="col-6 mr1">
             <TextInput
+              disabled={partnerCreated}
               errors={errors.firstname}
               onChange={this.onFirstnameChange}
               className="mb1"
@@ -216,6 +225,7 @@ class PartnerApplicationForm extends React.Component {
           </div>
           <div className="col-6">
             <TextInput
+              disabled={partnerCreated}
               errors={errors.lastname}
               onChange={this.onLastnameChange}
               value={lastname}
@@ -226,6 +236,7 @@ class PartnerApplicationForm extends React.Component {
         </div>
         <div>
           <TextInput
+            disabled={partnerCreated}
             errors={errors.email}
             onChange={this.onEmailChange}
             value={email}
@@ -240,6 +251,7 @@ class PartnerApplicationForm extends React.Component {
         <div className="flex partner-application-page-form--input-container">
           <div className="col-6 mr1">
             <TextInput
+              disabled={partnerCreated}
               errors={errors.companyName}
               onChange={this.onCompanyNameChange}
               value={companyName}
@@ -249,6 +261,7 @@ class PartnerApplicationForm extends React.Component {
           </div>
           <div className="col-6">
             <TextInput
+              disabled={partnerCreated}
               errors={errors.postcode}
               onChange={this.onPostcodeChange}
               value={postcode}
@@ -259,6 +272,7 @@ class PartnerApplicationForm extends React.Component {
         </div>
         <div>
           <TextInput
+            disabled={partnerCreated}
             errors={errors.companyAddress}
             onChange={this.onCompanyAddressChange}
             value={companyAddress}
@@ -273,6 +287,7 @@ class PartnerApplicationForm extends React.Component {
             <div className="flex partner-application-page-form--input-container">
               <div className="col-6 mr1">
                 <TextInput
+                  disabled={partnerCreated}
                   onChange={this.onCityChange}
                   value={city}
                   className="mb1"
@@ -281,6 +296,7 @@ class PartnerApplicationForm extends React.Component {
               </div>
               <div className="col-6">
                 <TextInput
+                  disabled={partnerCreated}
                   onChange={this.onCountryChange}
                   value={country}
                   className="mb1"
@@ -291,6 +307,7 @@ class PartnerApplicationForm extends React.Component {
             <div className="flex partner-application-page-form--input-container">
               <div className="col-6 mr1">
                 <TextInput
+                  disabled={partnerCreated}
                   onChange={this.onLatitudeChange}
                   value={lat}
                   className="mb1"
@@ -299,6 +316,7 @@ class PartnerApplicationForm extends React.Component {
               </div>
               <div className="col-6">
                 <TextInput
+                  disabled={partnerCreated}
                   onChange={this.onLontitudeChange}
                   value={lng}
                   className="mb1"
@@ -308,6 +326,7 @@ class PartnerApplicationForm extends React.Component {
             </div>
             <div>
               <TextInput
+                disabled={partnerCreated}
                 onChange={this.onOpeningHoursChange}
                 value={openingHours}
                 className="mb1"
@@ -318,6 +337,7 @@ class PartnerApplicationForm extends React.Component {
             <div className="mb1">
               <label className="flex align-items--center">
                 <TextInput
+                  disabled={partnerCreated}
                   onChange={this.onArchivedChange}
                   checked={archived}
                   type="checkbox"
@@ -328,8 +348,10 @@ class PartnerApplicationForm extends React.Component {
           </Fragment>
         )}
         <button
-          className={`fullwidth button button--leaf
-}`}
+          disabled={partnerCreated}
+          className={`fullwidth button ${
+            partnerCreated ? "button--grey" : "button--leaf"
+          }`}
           text="Submit"
         >
           {t("partnerApplicationForm.submit")}
