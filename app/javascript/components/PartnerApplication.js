@@ -23,7 +23,7 @@ const onCreatePartnerClick = ({ e, id, history, t }) => {
       const errors = JSON.parse(e.response.data.errors);
       for (let key in errors) {
         errors[key].forEach(element => {
-          message += `${element}`;
+          message += `${element} `;
         });
       }
       toast.error(`${message}`, {
