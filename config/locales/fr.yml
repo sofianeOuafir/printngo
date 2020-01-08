@@ -97,6 +97,10 @@ fr:
               blank: 'Veuillez renseigner une adresse e-mail'
               taken: 'Cet email est déjà pris'
               invalid: 'Veuillez entrer une adresse e-mail valide'
+            phone_number: 
+              blank: "Veuillez saisir un numéro de téléphone"
+            bank_details: 
+              blank: "Veuillez saisir vos coordonnées bancaires. Nous les utiliserons pour vous payer dans le future."
         admin: 
           attributes: 
             firstname: 
@@ -132,3 +136,7 @@ fr:
               blank: "Veuillez saisir le code postal de votre entreprise"
             company_address: 
               blank: "Veuillez saisir l'adresse de votre entreprise"
+            phone_number: 
+              blank: "Veuillez saisir un numéro de téléphone"
+            bank_details: 
+              blank: "Veuillez saisir vos coordonnées bancaires. Nous les utiliserons pour vous payer dans le future."

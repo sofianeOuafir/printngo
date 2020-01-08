@@ -232,6 +232,8 @@
   "partnerApplicationForm.submit": "Submit",
   "partnerApplicationForm.aboutYourCompany": "About your company",
   "partnerApplicationForm.aboutYou": "About you",
+  "partnerApplicationForm.phoneNumber": "Phone number",
+  "partnerApplicationForm.bankDetails": "Bank details - We will use this information to pay you in the future",
   "backButton.text": "Back",
   "topUpProductCheckoutPage.payment": "Payment",
   "topUpOrderThankYouPage.paymentSuccess": "Payment Success!",

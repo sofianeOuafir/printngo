@@ -43,6 +43,7 @@ class Api::V1::Admins::PartnerApplicationsController < ApplicationController
                                                 :company_address,
                                                 :company_name,
                                                 :city, :country, :lat, :lng,
-                                                :opening_hours, :archived)
+                                                :opening_hours, :archived,
+                                                :phone_number, :bank_details)
   end
 end

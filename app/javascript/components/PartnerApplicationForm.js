@@ -25,13 +25,19 @@ class PartnerApplicationForm extends React.Component {
       archived: (partnerApplication && partnerApplication.archived) || false,
       partnerCreated:
         (partnerApplication && partnerApplication.partner_created) || false,
+      phoneNumber:
+        (partnerApplication && partnerApplication.phone_number) || "",
+      bankDetails:
+        (partnerApplication && partnerApplication.bank_details) || "",
       errors: {
         firstname: [],
         lastname: [],
         email: [],
         companyName: [],
         companyAddress: [],
-        postcode: []
+        postcode: [],
+        phoneNumber: [],
+        bankDetails: []
       }
     };
   }
@@ -111,6 +117,22 @@ class PartnerApplicationForm extends React.Component {
     }));
   };
 
+  onPhoneNumberChange = e => {
+    const phoneNumber = e.target.value;
+    this.setState(prevState => ({
+      errors: { ...prevState.errors, phoneNumber: [] },
+      phoneNumber
+    }));
+  };
+
+  onBankDetailsChange = e => {
+    const bankDetails = e.target.value;
+    this.setState(prevState => ({
+      errors: { ...prevState.errors, bankDetails: [] },
+      bankDetails
+    }));
+  };
+
   onPostcodeChange = e => {
     const postcode = e.target.value;
     this.setState(prevState => ({
@@ -140,7 +162,9 @@ class PartnerApplicationForm extends React.Component {
       country,
       lat,
       lng,
-      archived
+      archived,
+      phoneNumber: phone_number,
+      bankDetails: bank_details
     } = this.state;
     const partnerApplication = {
       firstname,
@@ -154,7 +178,9 @@ class PartnerApplicationForm extends React.Component {
       lat,
       lng,
       opening_hours,
-      archived
+      archived,
+      phone_number,
+      bank_details
     };
 
     this.props.onSubmit(partnerApplication).catch(e => {
@@ -165,7 +191,9 @@ class PartnerApplicationForm extends React.Component {
         lastname,
         postcode,
         company_address,
-        company_name
+        company_name,
+        phone_number,
+        bank_details
       } = errors;
       this.setState(prevState => ({
         errors: {
@@ -175,7 +203,9 @@ class PartnerApplicationForm extends React.Component {
           lastname,
           postcode,
           companyAddress: company_address,
-          companyName: company_name
+          companyName: company_name,
+          phoneNumber: phone_number,
+          bankDetails: bank_details
         }
       }));
     });
@@ -197,6 +227,8 @@ class PartnerApplicationForm extends React.Component {
       openingHours,
       archived,
       partnerCreated,
+      phoneNumber,
+      bankDetails,
       errors
     } = this.state;
     return (
@@ -245,6 +277,17 @@ class PartnerApplicationForm extends React.Component {
             placeholder={t("partnerApplicationForm.email")}
           />
         </div>
+        <div>
+          <TextInput
+            disabled={partnerCreated}
+            errors={errors.phoneNumber}
+            onChange={this.onPhoneNumberChange}
+            value={phoneNumber}
+            className="mb1"
+            type="number"
+            placeholder={t("partnerApplicationForm.phoneNumber")}
+          />
+        </div>
         <h2 className="text-navy h5">
           {t("partnerApplicationForm.aboutYourCompany")}:
         </h2>
@@ -279,6 +322,17 @@ class PartnerApplicationForm extends React.Component {
             className="mb1"
             type="text"
             placeholder={t("partnerApplicationForm.companyAddress")}
+          />
+        </div>
+        <div>
+          <TextInput
+            disabled={partnerCreated}
+            errors={errors.bankDetails}
+            onChange={this.onBankDetailsChange}
+            value={bankDetails}
+            className="mb1"
+            type="text"
+            placeholder={t("partnerApplicationForm.bankDetails")}
           />
         </div>
 

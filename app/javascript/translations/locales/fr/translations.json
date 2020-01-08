@@ -232,6 +232,8 @@
   "partnerApplicationForm.submit": "Valider",
   "partnerApplicationForm.aboutYourCompany": "À propos de votre entreprise",
   "partnerApplicationForm.aboutYou": "À propos de vous",
+  "partnerApplicationForm.phoneNumber": "Numéro de téléphone",
+  "partnerApplicationForm.bankDetails": "Coordonnées bancaires - Nous utiliserons ces informations pour vous payer à l'avenir",
   "backButton.text": "Retour",
   "topUpProductCheckoutPage.payment": "Paiement",
   "topUpOrderThankYouPage.paymentSuccess": "Paiement réussi!",
