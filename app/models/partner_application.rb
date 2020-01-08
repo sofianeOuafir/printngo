@@ -10,6 +10,8 @@ class PartnerApplication < ApplicationRecord
   validates_presence_of :company_name
   validates_presence_of :postcode
   validates_presence_of :company_address
+  validates_presence_of :phone_number
+  validates_presence_of :bank_details
 
   scope :with_partner, -> { where(id: Partner.all.map(&:partner_application_id)) }
   scope :archived, -> { where(archived: true).or(with_partner) }

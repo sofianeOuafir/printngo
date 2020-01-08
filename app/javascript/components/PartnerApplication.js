@@ -2,8 +2,9 @@ import React from "react";
 import { withRouter, Link } from "react-router-dom";
 import axios from "axios";
 import { withTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 
-const onCreatePartnerClick = ({ e, id, history }) => {
+const onCreatePartnerClick = ({ e, id, history, t }) => {
   e.preventDefault();
   axios
     .post("/api/v1/admins/partners", {
@@ -11,6 +12,23 @@ const onCreatePartnerClick = ({ e, id, history }) => {
     })
     .then(() => {
       history.push("/admin/new-partner-applications");
+    })
+    .then(() => {
+      toast.success(t("partnerApplication.successNotification"), {
+        position: toast.POSITION.BOTTOM_RIGHT
+      });
+    })
+    .catch(e => {
+      let message = "";
+      const errors = JSON.parse(e.response.data.errors);
+      for (let key in errors) {
+        errors[key].forEach(element => {
+          message += `${element}`;
+        });
+      }
+      toast.error(`${message}`, {
+        position: toast.POSITION.BOTTOM_RIGHT
+      });
     });
 };
 
@@ -36,7 +54,7 @@ const PartnerApplication = ({ partnerApplication, history, t }) => {
           <Link
             className="button button--leaf"
             to="#"
-            onClick={e => onCreatePartnerClick({ id, history, e })}
+            onClick={e => onCreatePartnerClick({ id, history, e, t })}
           >
             {t("partnerApplication.createAccount")}
           </Link>

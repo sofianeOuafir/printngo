@@ -216,6 +216,7 @@
   "partnerApplicationPage.success": "Formulaire soumis avec succès!",
   "partnerApplicationPage.thankYou": "Merci d'avoir rempli le formulaire! Nous vous répondrons sous peu!",
   "partnerApplicationPage.finish": "Terminer",
+  "partnerApplicationForm.notEditable": "Vous ne pouvez pas modifier une candidature une fois le compte partenaire créé. Modifiez le partenaire directement.",
   "partnerApplicationForm.firstname": "Prénom",
   "partnerApplicationForm.lastname": "Nom",
   "partnerApplicationForm.email": "E-mail",
@@ -231,6 +232,8 @@
   "partnerApplicationForm.submit": "Valider",
   "partnerApplicationForm.aboutYourCompany": "À propos de votre entreprise",
   "partnerApplicationForm.aboutYou": "À propos de vous",
+  "partnerApplicationForm.phoneNumber": "Numéro de téléphone",
+  "partnerApplicationForm.bankDetails": "Coordonnées bancaires - Nous utiliserons ces informations pour vous payer à l'avenir",
   "backButton.text": "Retour",
   "topUpProductCheckoutPage.payment": "Paiement",
   "topUpOrderThankYouPage.paymentSuccess": "Paiement réussi!",
@@ -274,6 +277,7 @@
   "partnerApplicationList.noPartnerApplication": "Il n'y a pas de candidature.",
   "partnerApplication.view": "Voir",
   "partnerApplication.createAccount": "Créer un compte",
+  "partnerApplication.successNotification": "Compte partenaire créé avec succès! Un e-mail d'activation a été envoyé.",
   "newPartnerApplicationsPage.createNewApplication": "Créer une nouvelle candidature",
   "partnerSearchBar.accessCode": "Code d'accès",
   "partnerSearchBar.search": "Rechercher",
@@ -319,5 +323,7 @@
   "pageTitle.PrivateArchivedPartnerApplicationsPage": "Candidatures archivées",
   "pageTitle.PrivateAdminPartnerApplicationEditPage": "Candidature",
   "pageTitle.PrivateAdminPartnerApplicationsNewPage": "Candidature - Nouveau",
-  "introduction_video_id": "o7o1EN9JM4A"
+  "introduction_video_id": "o7o1EN9JM4A",
+  "adminPartnerApplicationEditPage.successNotification": "Candidature modifiée avec succès!",
+  "adminPartnerApplicationNewPage.successNotification": "Candidature créée avec succès!"
 }

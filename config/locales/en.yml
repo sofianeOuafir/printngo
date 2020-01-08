@@ -83,6 +83,38 @@ en:
               blank: 'Please enter an email address'
               taken: 'This email is already taken'
               invalid: 'Please enter a valid email address'
+        partner: 
+          attributes: 
+            firstname: 
+              blank: 'Please enter your first name'
+            lastname: 
+              blank: 'Please enter your last name'
+            password: 
+              blank: 'Please choose a password'
+            password_confirmation:
+              confirmation: 'Passwords do not match'
+            email: 
+              blank: 'Please enter an email address'
+              taken: 'This email is already taken'
+              invalid: 'Please enter a valid email address'
+            phone_number: 
+              blank: "Please enter a phone number"
+            bank_details: 
+              blank: "Please enter your bank details. We will use this information to pay you in the future." 
+        admin: 
+          attributes: 
+            firstname: 
+              blank: 'Please enter your first name'
+            lastname: 
+              blank: 'Please enter your last name'
+            password: 
+              blank: 'Please choose a password'
+            password_confirmation:
+              confirmation: 'Passwords do not match'
+            email: 
+              blank: 'Please enter an email address'
+              taken: 'This email is already taken'
+              invalid: 'Please enter a valid email address'
         activation: 
           attributes:
             password: 
@@ -104,3 +136,7 @@ en:
               blank: "Please enter your company's postcode"
             company_address: 
               blank: "Please enter your company's address"
+            phone_number: 
+              blank: "Please enter a phone number"
+            bank_details: 
+              blank: "Please enter your bank details. We will use this information to pay you in the future." 

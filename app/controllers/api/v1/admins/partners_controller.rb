@@ -14,6 +14,8 @@ class Api::V1::Admins::PartnersController < ApplicationController
       country: partner_application.country,
       lat: partner_application.lat,
       lng: partner_application.lng,
+      phone_number: partner_application.phone_number,
+      bank_details: partner_application.bank_details,
       opening_hours: partner_application.opening_hours,
       partner_application_id: partner_application.id,
       password: 'abc123'
@@ -21,6 +23,8 @@ class Api::V1::Admins::PartnersController < ApplicationController
     if partner.save
       partner.activations.create
       render json: partner.to_json
+    else
+      render json: { errors: partner.errors.to_json }, status: 400
     end
   end
 end

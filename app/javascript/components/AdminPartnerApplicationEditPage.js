@@ -1,6 +1,7 @@
 import React from "react";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 import PartnerApplicationForm from "./PartnerApplicationForm";
 import Loader from "./Loader";
@@ -27,10 +28,19 @@ class AdminPartnerApplicationsEditPage extends React.Component {
 
   onSubmit = partnerApplication => {
     const { id } = this.state.partnerApplication;
+    const { t } = this.props;
     return axios
       .patch(`/api/v1/admins/partner_applications/${id}`, partnerApplication)
       .then(() => {
         this.props.history.push("/admin/new-partner-applications");
+      })
+      .then(() => {
+        toast.success(
+          t("adminPartnerApplicationEditPage.successNotification"),
+          {
+            position: toast.POSITION.BOTTOM_RIGHT
+          }
+        );
       });
   };
 

@@ -13,6 +13,11 @@ class Api::V1::PartnerApplicationsController < ApplicationController
   private
 
   def partner_application_params
-    params.require(:partner_application).permit(:firstname, :lastname, :email, :postcode, :company_address, :company_name)
+    params.require(:partner_application).permit(:firstname, :lastname, :email,
+                                                :postcode, :company_address,
+                                                :company_name, :phone_number,
+                                                :archived, :city, :country,
+                                                :lat, :lng, :opening_hours,
+                                                :bank_details)
   end
 end
