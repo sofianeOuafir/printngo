@@ -52,6 +52,7 @@ import ActivationPage from "./ActivationPage";
 import ActivationThankYouPage from "./ActivationThankYouPage";
 import i18n from "./../translations/i18n";
 import AppWithTranslation from "./AppWithTranslation";
+import PartnerGuide from "./PartnerGuide";
 
 const store = configureStore();
 
@@ -152,6 +153,9 @@ const PublicActivationPage = props => (
 );
 const PublicActivationThankYouPage = props => (
   <PublicRoute {...props} component={ActivationThankYouPage} />
+);
+const PrivatePartnerGuide = props => (
+  <PrivateRoute {...props} component={PartnerGuide} />
 );
 
 class App extends React.Component {
@@ -339,6 +343,12 @@ class App extends React.Component {
                 path="/partner/activation/:token"
                 Layout={PartnerLayout}
                 component={PublicActivationPage}
+              />
+              <AppRoute
+                title={t("pageTitle.PrivatePartnerGuide")}
+                path="/partner/guide"
+                Layout={PartnerLayout}
+                component={PrivatePartnerGuide}
               />
 
               {/* Partner Layout */}
