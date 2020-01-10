@@ -1,9 +1,13 @@
 fr:
+  s3:
+    guide: "guide/guide-francais.pdf"
   tax_amount: 20
   mailer: 
     from: 'contact@printandgo.fr'
     activation_email: 
       template_id: "d-9b6f510caa954d9299f91e2f474f8cf3"
+    activation_confirmation_email: 
+      template_id: "d-968eb651312d4d5aa7a9063c4e495f8c"
     print_order_confirmed_email: 
       template_id: "d-6453c624882e4a6999f944af15ef893e"
     top_up_order_confirmed_email: 

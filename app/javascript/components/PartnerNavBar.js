@@ -62,6 +62,15 @@ class PartnerNavBar extends React.Component {
       {
         ShowWhenAuthenticated: true,
         ShowWhenNonAuthenticated: false,
+        element: (
+          <Link to="/partner/guide">
+            {t("navbar.partner.guide")}
+          </Link>
+        )
+      },
+      {
+        ShowWhenAuthenticated: true,
+        ShowWhenNonAuthenticated: false,
         element: <Link to="/partner">{firstname}</Link>
       },
       {

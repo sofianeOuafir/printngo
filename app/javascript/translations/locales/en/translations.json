@@ -52,6 +52,7 @@
   "navbar.partner.myLocation": "My Location",
   "navbar.partner.awaitingConfirmation": "Awaiting Confirmation",
   "navbar.partner.printedOrders": "Printed Orders",
+  "navbar.partner.guide": "Guide",
   "navbar.customer.basket": "Basket",
   "navbar.customer.contactUs": "Contact Us",
   "navbar.customer.findPrinter": "Print Shops Near Me",
@@ -323,6 +324,7 @@
   "pageTitle.PrivateArchivedPartnerApplicationsPage": "Archived Applications",
   "pageTitle.PrivateAdminPartnerApplicationEditPage": "Partner Application",
   "pageTitle.PrivateAdminPartnerApplicationsNewPage": "Partner Application - New",
+  "pageTitle.PrivatePartnerGuide": "Guide",
   "introduction_video_id": "rnkntq2P9vE",
   "adminPartnerApplicationEditPage.successNotification": "Application successfully updated",
   "adminPartnerApplicationNewPage.successNotification": "Application successfully created"

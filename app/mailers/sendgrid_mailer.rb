@@ -1,6 +1,35 @@
 # frozen_string_literal: true
 
 class SendgridMailer
+  def self.activation_confirmation_email(email)
+    s3 = Aws::S3::Client.new
+    File.open('guide.pdf', 'wb') do |file|
+      s3.get_object({ bucket:ENV['S3_BUCKET_NAME'], key: I18n.translate('s3.guide')}, target: file)
+    end
+    data = {
+      "personalizations": [
+        {
+          "to": [
+            {
+              "email": email
+            }
+          ]
+        }
+      ],
+      "attachments": [{
+        'content': Base64.strict_encode64(File.read('guide.pdf')),
+        'type': 'application/pdf',
+        'filename': 'guide.pdf',
+        "disposition": 'attachment'
+      }],
+      "from": {
+        "email": I18n.translate('mailer.from')
+      },
+      "template_id": I18n.translate('mailer.activation_confirmation_email.template_id')
+    }
+    send_email(data)
+  end
+
   def self.activation_email(firstname:, token:, email:)
     data = {
       "personalizations": [

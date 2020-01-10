@@ -1,9 +1,13 @@
 en:
+  s3:
+    guide: "guide/guide-english.pdf"
   tax_amount: 13
   mailer: 
     from: 'contact@printandgo.ca'
     activation_email: 
       template_id: "d-dcdb078019b34e53ba346e5997fe3ca0"
+    activation_confirmation_email: 
+      template_id: "d-ac47b8df430b415caafced297ff9a81d"
     print_order_confirmed_email: 
       template_id: "d-37305aec46ae4898a40df3ad3ce89e13"
     top_up_order_confirmed_email: 

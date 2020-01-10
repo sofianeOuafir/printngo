@@ -52,6 +52,7 @@
   "navbar.partner.myLocation": "Ma Localisation",
   "navbar.partner.awaitingConfirmation": "En Attente de Confirmation",
   "navbar.partner.printedOrders": "Commandes Imprimées",
+  "navbar.partner.guide": "Guide",
   "navbar.customer.basket": "Panier",
   "navbar.customer.contactUs": "Contact-nous",
   "navbar.customer.findPrinter": "Oú imprimer",
@@ -323,6 +324,7 @@
   "pageTitle.PrivateArchivedPartnerApplicationsPage": "Candidatures archivées",
   "pageTitle.PrivateAdminPartnerApplicationEditPage": "Candidature",
   "pageTitle.PrivateAdminPartnerApplicationsNewPage": "Candidature - Nouveau",
+  "pageTitle.PrivatePartnerGuide": "Guide",
   "introduction_video_id": "o7o1EN9JM4A",
   "adminPartnerApplicationEditPage.successNotification": "Candidature modifiée avec succès!",
   "adminPartnerApplicationNewPage.successNotification": "Candidature créée avec succès!"

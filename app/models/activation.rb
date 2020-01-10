@@ -29,9 +29,10 @@ class Activation < ApplicationRecord
   def activate_partner
     return unless saved_change_to_activated? && activated?
 
-    partner.update(activated: true,
-                   password: password,
-                   password_confirmation: password_confirmation)
-    # send activation confirmation email
+    if partner.update(activated: true,
+                      password: password,
+                      password_confirmation: password_confirmation)
+      SendgridMailer.activation_confirmation_email(partner.email)
+    end
   end
 end
