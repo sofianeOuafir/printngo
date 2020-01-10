@@ -14,7 +14,7 @@ class DocumentItem extends React.Component {
     const { startAddOrderItem, t } = this.props;
     startAddOrderItem(documentId).then(() => {
       toast.success(t("documentItem.successNotification"), {
-        position: toast.POSITION.BOTTOM_RIGHT
+        position: toast.POSITION.BOTTOM_LEFT
       });
     });
   }

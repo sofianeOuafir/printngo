@@ -16,7 +16,7 @@ class AdminPartnerApplicationsNewPage extends React.Component {
       })
       .then(() => {
         toast.success(t("adminPartnerApplicationNewPage.successNotification"), {
-          position: toast.POSITION.BOTTOM_RIGHT
+          position: toast.POSITION.BOTTOM_LEFT
         });
       });
   };

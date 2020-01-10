@@ -26,7 +26,7 @@ class PartnerOrder extends React.Component {
       })
       .then(() => {
         toast.success(t("partnerOrder.confirmationSuccess"), {
-          position: toast.POSITION.BOTTOM_RIGHT
+          position: toast.POSITION.BOTTOM_LEFT
         });
       });
   };

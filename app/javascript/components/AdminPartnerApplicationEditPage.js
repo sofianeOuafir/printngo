@@ -38,7 +38,7 @@ class AdminPartnerApplicationsEditPage extends React.Component {
         toast.success(
           t("adminPartnerApplicationEditPage.successNotification"),
           {
-            position: toast.POSITION.BOTTOM_RIGHT
+            position: toast.POSITION.BOTTOM_LEFT
           }
         );
       });

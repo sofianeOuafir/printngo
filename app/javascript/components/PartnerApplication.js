@@ -15,7 +15,7 @@ const onCreatePartnerClick = ({ e, id, history, t }) => {
     })
     .then(() => {
       toast.success(t("partnerApplication.successNotification"), {
-        position: toast.POSITION.BOTTOM_RIGHT
+        position: toast.POSITION.BOTTOM_LEFT
       });
     })
     .catch(e => {
@@ -27,7 +27,7 @@ const onCreatePartnerClick = ({ e, id, history, t }) => {
         });
       }
       toast.error(`${message}`, {
-        position: toast.POSITION.BOTTOM_RIGHT
+        position: toast.POSITION.BOTTOM_LEFT
       });
     });
 };

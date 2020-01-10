@@ -21,7 +21,7 @@ class OrderItem extends React.Component {
   displayRemovalNotification = () => {
     const { t } = this.props;
     toast.success(t("orderItem.removeSuccessNotification"), {
-      position: toast.POSITION.BOTTOM_RIGHT
+      position: toast.POSITION.BOTTOM_LEFT
     });
   };
 
