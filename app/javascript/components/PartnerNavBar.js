@@ -11,9 +11,31 @@ import SignOutLink from "./SignOutLink";
 import SignInLink from "./SignInLink";
 
 class PartnerNavBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loadingData: true
+    };
+  }
   componentDidMount() {
-    const { startSetPartnerOrders } = this.props;
-    startSetPartnerOrders();
+    const { startSetPartnerOrders, auth } = this.props;
+    auth.authenticated &&
+      startSetPartnerOrders().then(() => {
+        this.setState(() => ({ loadingData: false }));
+      });
+  }
+
+  componentDidUpdate(prevProps) {
+    const { startSetPartnerOrders, auth } = this.props;
+
+    if (
+      auth.authenticated &&
+      auth.authenticated !== prevProps.auth.authenticated
+    ) {
+      startSetPartnerOrders().then(() => {
+        this.setState(() => ({ loadingData: false }));
+      });
+    }
   }
 
   onLogout = () => {
@@ -23,6 +45,7 @@ class PartnerNavBar extends React.Component {
   };
 
   render() {
+    const { loadingData } = this.state;
     const { auth, printedOrders, awaitingConfirmationOrders, t } = this.props;
     const { firstname } = auth;
     const navBarItems = [
@@ -43,7 +66,8 @@ class PartnerNavBar extends React.Component {
         ShowWhenNonAuthenticated: false,
         element: (
           <Link to="/partner/printed-orders">
-            {t("navbar.partner.printedOrders")} ({printedOrders.length})
+            {t("navbar.partner.printedOrders")} (
+            {loadingData ? "-" : printedOrders.length})
           </Link>
         )
       },
@@ -54,7 +78,7 @@ class PartnerNavBar extends React.Component {
           <Link to="/partner/awaiting-confirmation">
             {t("navbar.partner.awaitingConfirmation")}{" "}
             <span className="text-orange">
-              ({awaitingConfirmationOrders.length})
+              ({loadingData ? "-" : awaitingConfirmationOrders.length})
             </span>
           </Link>
         )
@@ -62,11 +86,7 @@ class PartnerNavBar extends React.Component {
       {
         ShowWhenAuthenticated: true,
         ShowWhenNonAuthenticated: false,
-        element: (
-          <Link to="/partner/guide">
-            {t("navbar.partner.guide")}
-          </Link>
-        )
+        element: <Link to="/partner/guide">{t("navbar.partner.guide")}</Link>
       },
       {
         ShowWhenAuthenticated: true,
