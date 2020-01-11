@@ -26,6 +26,7 @@ Rails.application.routes.draw do
         resources :deliverables, only: [:show]
         resources :printing_attempts, only: [:create]
         get 'guide', to: 'guide#show'
+        get 'testing', to: 'testing#show'
       end
       resources :print_order_items, only: %i[create update destroy]
       resources :print_products, only: [:index]
