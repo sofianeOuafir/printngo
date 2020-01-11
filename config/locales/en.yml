@@ -1,6 +1,7 @@
 en:
   s3:
     guide: "guide/guide-english.pdf"
+    test: "test/test-english.pdf"
   tax_amount: 13
   mailer: 
     from: 'contact@printandgo.ca'

@@ -1,6 +1,7 @@
 fr:
   s3:
     guide: "guide/guide-francais.pdf"
+    test: "test/test-francais.pdf"
   tax_amount: 20
   mailer: 
     from: 'contact@printandgo.fr'

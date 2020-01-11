@@ -53,6 +53,7 @@ import ActivationThankYouPage from "./ActivationThankYouPage";
 import i18n from "./../translations/i18n";
 import AppWithTranslation from "./AppWithTranslation";
 import PartnerGuide from "./PartnerGuide";
+import PartnerTestingPage from "./PartnerTestingPage";
 
 const store = configureStore();
 
@@ -156,6 +157,9 @@ const PublicActivationThankYouPage = props => (
 );
 const PrivatePartnerGuide = props => (
   <PrivateRoute {...props} component={PartnerGuide} />
+);
+const PrivatePartnerTestingPage = props => (
+  <PrivateRoute {...props} component={PartnerTestingPage} />
 );
 
 class App extends React.Component {
@@ -350,7 +354,12 @@ class App extends React.Component {
                 Layout={PartnerLayout}
                 component={PrivatePartnerGuide}
               />
-
+              <AppRoute
+                title={t("pageTitle.PrivatePartnerTestingPage")}
+                path={"/partner/testing"}
+                Layout={PartnerLayout}
+                component={PrivatePartnerTestingPage}
+              />
               {/* Partner Layout */}
 
               {/* Admin Layout */}

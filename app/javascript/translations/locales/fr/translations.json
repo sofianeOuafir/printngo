@@ -53,6 +53,7 @@
   "navbar.partner.awaitingConfirmation": "En Attente de Confirmation",
   "navbar.partner.printedOrders": "Commandes Imprimées",
   "navbar.partner.guide": "Guide",
+  "navbar.partner.test": "Tester",
   "navbar.customer.basket": "Panier",
   "navbar.customer.contactUs": "Contact-nous",
   "navbar.customer.findPrinter": "Oú imprimer",
@@ -325,7 +326,10 @@
   "pageTitle.PrivateAdminPartnerApplicationEditPage": "Candidature",
   "pageTitle.PrivateAdminPartnerApplicationsNewPage": "Candidature - Nouveau",
   "pageTitle.PrivatePartnerGuide": "Guide",
+  "pageTitle.PrivatePartnerTestingPage": "Tester",
   "introduction_video_id": "o7o1EN9JM4A",
   "adminPartnerApplicationEditPage.successNotification": "Candidature modifiée avec succès!",
-  "adminPartnerApplicationNewPage.successNotification": "Candidature créée avec succès!"
+  "adminPartnerApplicationNewPage.successNotification": "Candidature créée avec succès!",
+  "partnerTestingPage.title": "Page de test - Testez la connexion avec votre imprimante.",
+  "partnerTestingPage.testPrintingNow": "Tester l'impression maintenant"
 }
