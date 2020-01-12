@@ -91,6 +91,11 @@ class PartnerNavBar extends React.Component {
       {
         ShowWhenAuthenticated: true,
         ShowWhenNonAuthenticated: false,
+        element: <Link to="/partner/promote">{t("navbar.partner.promote")}</Link>
+      },
+      {
+        ShowWhenAuthenticated: true,
+        ShowWhenNonAuthenticated: false,
         element: <Link to="/partner/testing">{t("navbar.partner.test")}</Link>
       },
       {

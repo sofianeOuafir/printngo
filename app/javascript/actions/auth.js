@@ -17,10 +17,7 @@ export const startLogin = ({ email, password }) => dispatch => {
       password
     })
     .then(response => {
-      dispatch({
-        type: "LOGIN",
-        user: response.data
-      });
+      dispatch(login(response.data));
       return response;
     });
 };
@@ -44,14 +41,18 @@ export const startGetCurrentUser = () => dispatch => {
   }
   return axios.get(uri).then(response => {
     if (response.data) {
-      dispatch({
-        type: "LOGIN",
-        user: response.data
-      });
+      dispatch(login(response.data));
       return response;
     } else {
       return dispatch(logout());
     }
+  });
+};
+
+export const login = user => dispatch => {
+  return dispatch({
+    type: "LOGIN",
+    user
   });
 };
 

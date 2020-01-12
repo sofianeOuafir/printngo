@@ -1,4 +1,5 @@
 import React from "react";
+import PageBanner from "./PageBanner";
 
 class PartnerTestingPage extends React.Component {
   onTestPrintingNow = e => {
@@ -11,8 +12,11 @@ class PartnerTestingPage extends React.Component {
     const { t } = this.props;
     return (
       <div className="content-container">
-        <h1 className="h4 text-navy">{t("partnerTestingPage.title")}</h1>
-        <div>
+        <PageBanner
+          title={t("partnerTestingPage.title")}
+          description={t("partnerTestingPage.description")}
+        />
+        <div className="center">
           <button
             className="button button--navy"
             onClick={this.onTestPrintingNow}
