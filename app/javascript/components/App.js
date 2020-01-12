@@ -54,6 +54,7 @@ import i18n from "./../translations/i18n";
 import AppWithTranslation from "./AppWithTranslation";
 import PartnerGuide from "./PartnerGuide";
 import PartnerTestingPage from "./PartnerTestingPage";
+import PartnerPromotePage from "./PartnerPromotePage";
 
 const store = configureStore();
 
@@ -160,6 +161,9 @@ const PrivatePartnerGuide = props => (
 );
 const PrivatePartnerTestingPage = props => (
   <PrivateRoute {...props} component={PartnerTestingPage} />
+);
+const PrivatePartnerPromotePage = props => (
+  <PrivateRoute {...props} component={PartnerPromotePage} />
 );
 
 class App extends React.Component {
@@ -359,6 +363,12 @@ class App extends React.Component {
                 path={"/partner/testing"}
                 Layout={PartnerLayout}
                 component={PrivatePartnerTestingPage}
+              />
+              <AppRoute
+                title={t("pageTitle.PrivatePartnerPromotePage")}
+                path={"/partner/promote"}
+                Layout={PartnerLayout}
+                component={PrivatePartnerPromotePage}
               />
               {/* Partner Layout */}
 

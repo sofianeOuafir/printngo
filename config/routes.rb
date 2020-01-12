@@ -25,6 +25,7 @@ Rails.application.routes.draw do
         resources :print_orders, only: %i[show update index]
         resources :deliverables, only: [:show]
         resources :printing_attempts, only: [:create]
+        resources :promotions, only: [:update]
         get 'guide', to: 'guide#show'
         get 'testing', to: 'testing#show'
       end
