@@ -420,7 +420,7 @@ class PartnerApplicationForm extends React.Component {
                   className="button button--navy button--no-border-radius fullwidth px0"
                   href={this.props.partnerApplication.contract_url}
                 >
-                  See Contrat
+                  {t("partnerApplicationForm.seeContract")}
                 </a>
               </div>
             )}
@@ -432,7 +432,7 @@ class PartnerApplicationForm extends React.Component {
                   partnerCreated ? "button--grey" : "button-outline--navy"
                 } fullwidth px0 button--no-border-radius`}
               >
-                Upload New Contract
+                {t("partnerApplicationForm.uploadNewContract")}
               </a>
               <TextInput
                 className="hide"

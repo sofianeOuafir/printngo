@@ -11,9 +11,11 @@ class Partner < ApplicationRecord
   has_many :print_orders, -> { distinct }, through: :deliverables
   has_many :activations
   has_many :promotions
+  has_one_attached :contract
 
   validates_presence_of :phone_number
   validates_presence_of :bank_details
+  validates_presence_of :contract
 
   scope :activated, -> { where(activated: true) }
 
