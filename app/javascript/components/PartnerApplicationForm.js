@@ -137,7 +137,6 @@ class PartnerApplicationForm extends React.Component {
 
   onContractUpload = async e => {
     const contract = e.target.files[0];
-    console.log(contract);
     this.setState(() => ({ contract }));
   };
 
