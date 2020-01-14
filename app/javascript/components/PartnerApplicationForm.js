@@ -29,6 +29,7 @@ class PartnerApplicationForm extends React.Component {
         (partnerApplication && partnerApplication.phone_number) || "",
       bankDetails:
         (partnerApplication && partnerApplication.bank_details) || "",
+      contract: (partnerApplication && partnerApplication.contract) || "",
       errors: {
         firstname: [],
         lastname: [],
@@ -41,6 +42,13 @@ class PartnerApplicationForm extends React.Component {
       }
     };
   }
+
+  triggerFileDialog = () => {
+    const { partnerCreated } = this.state;
+    if (!partnerCreated) {
+      document.getElementById("contractInput").click();
+    }
+  };
 
   onFirstnameChange = e => {
     const firstname = e.target.value;
@@ -119,10 +127,17 @@ class PartnerApplicationForm extends React.Component {
 
   onPhoneNumberChange = e => {
     const phoneNumber = e.target.value;
-    this.setState(prevState => ({
-      errors: { ...prevState.errors, phoneNumber: [] },
-      phoneNumber
-    }));
+    if (!isNaN(phoneNumber)) {
+      this.setState(prevState => ({
+        errors: { ...prevState.errors, phoneNumber: [] },
+        phoneNumber
+      }));
+    }
+  };
+
+  onContractUpload = async e => {
+    const contract = e.target.files[0];
+    this.setState(() => ({ contract }));
   };
 
   onBankDetailsChange = e => {
@@ -164,7 +179,8 @@ class PartnerApplicationForm extends React.Component {
       lng,
       archived,
       phoneNumber: phone_number,
-      bankDetails: bank_details
+      bankDetails: bank_details,
+      contract
     } = this.state;
     const partnerApplication = {
       firstname,
@@ -180,10 +196,19 @@ class PartnerApplicationForm extends React.Component {
       opening_hours,
       archived,
       phone_number,
-      bank_details
+      bank_details,
+      contract
     };
 
-    this.props.onSubmit(partnerApplication).catch(e => {
+    const formData = new FormData();
+
+    for (const key of Object.keys(partnerApplication)) {
+      if (key != "contract" || (key == "contract" && partnerApplication[key])) {
+        formData.append(key, partnerApplication[key]);
+      }
+    }
+
+    this.props.onSubmit(formData).catch(e => {
       const errors = JSON.parse(e.response.data.errors);
       const {
         email,
@@ -284,7 +309,6 @@ class PartnerApplicationForm extends React.Component {
             onChange={this.onPhoneNumberChange}
             value={phoneNumber}
             className="mb1"
-            type="number"
             placeholder={t("partnerApplicationForm.phoneNumber")}
           />
         </div>
@@ -386,6 +410,34 @@ class PartnerApplicationForm extends React.Component {
                 className="mb1"
                 type="text"
                 placeholder={t("partnerApplicationForm.openingHours")}
+              />
+            </div>
+            {this.props.partnerApplication.contract_url && (
+              <div className="mb1">
+                <a
+                  target="_blank"
+                  className="button button--navy button--no-border-radius fullwidth px0"
+                  href={this.props.partnerApplication.contract_url}
+                >
+                  {t("partnerApplicationForm.seeContract")}
+                </a>
+              </div>
+            )}
+            <div className="mb1">
+              <a
+                disabled={partnerCreated}
+                onClick={this.triggerFileDialog}
+                className={`button ${
+                  partnerCreated ? "button--grey" : "button-outline--navy"
+                } fullwidth px0 button--no-border-radius`}
+              >
+                {t("partnerApplicationForm.uploadNewContract")}
+              </a>
+              <TextInput
+                className="hide"
+                id="contractInput"
+                type="file"
+                onChange={this.onContractUpload}
               />
             </div>
             <div className="mb1">

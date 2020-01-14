@@ -11,9 +11,11 @@ class Partner < ApplicationRecord
   has_many :print_orders, -> { distinct }, through: :deliverables
   has_many :activations
   has_many :promotions
+  has_one_attached :contract
 
   validates_presence_of :phone_number
   validates_presence_of :bank_details
+  validates_presence_of :contract
 
   scope :activated, -> { where(activated: true) }
 
@@ -27,15 +29,21 @@ class Partner < ApplicationRecord
     promotions.present? ? promotions.first.text : ''
   end
 
+  def contract_url
+    contract.attached? ? contract.service_url : nil
+  end
+
   def as_json(options = {})
     h = super(options)
     h[:promotion] = promotion
+    h[:contract_url] = contract_url
     h
   end
 
   def serializable_hash(options = {})
     h = super(options)
     h[:promotion] = promotion
+    h[:contract_url] = contract_url
     h
   end
 

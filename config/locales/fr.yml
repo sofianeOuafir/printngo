@@ -106,6 +106,8 @@ fr:
               blank: "Veuillez saisir un numéro de téléphone"
             bank_details: 
               blank: "Veuillez saisir vos coordonnées bancaires. Nous les utiliserons pour vous payer dans le future."
+            contract: 
+              blank: "Veuillez télécharger le contrat."
         admin: 
           attributes: 
             firstname: 
@@ -144,4 +146,4 @@ fr:
             phone_number: 
               blank: "Veuillez saisir un numéro de téléphone"
             bank_details: 
-              blank: "Veuillez saisir vos coordonnées bancaires. Nous les utiliserons pour vous payer dans le future."
+              blank: "Veuillez saisir vos coordonnées bancaires. Nous les utiliserons pour vous payer dans le future." 

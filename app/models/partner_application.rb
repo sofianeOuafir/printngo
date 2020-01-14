@@ -2,6 +2,7 @@
 
 class PartnerApplication < ApplicationRecord
   has_one :partner
+  has_one_attached :contract
 
   validates_presence_of :firstname
   validates_presence_of :lastname
@@ -21,15 +22,21 @@ class PartnerApplication < ApplicationRecord
     partner.present?
   end
 
+  def contract_url
+    contract.attached? ? contract.service_url : nil
+  end
+
   def serializable_hash(options = {})
     h = super(options)
     h[:partner_created] = partner_created?
+    h[:contract_url] = contract_url
     h
   end
 
   def as_json(options = {})
     h = super(options)
     h[:partner_created] = partner_created?
+    h[:contract_url] = contract_url
     h
   end
 end

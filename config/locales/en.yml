@@ -105,7 +105,9 @@ en:
             phone_number: 
               blank: "Please enter a phone number"
             bank_details: 
-              blank: "Please enter your bank details. We will use this information to pay you in the future." 
+              blank: "Please enter your bank details. We will use this information to pay you in the future."
+            contract: 
+              blank: "Please upload contract."  
         admin: 
           attributes: 
             firstname: 
@@ -144,4 +146,4 @@ en:
             phone_number: 
               blank: "Please enter a phone number"
             bank_details: 
-              blank: "Please enter your bank details. We will use this information to pay you in the future." 
+              blank: "Please enter your bank details. We will use this information to pay you in the future."
