@@ -29,15 +29,21 @@ class Partner < ApplicationRecord
     promotions.present? ? promotions.first.text : ''
   end
 
+  def contract_url
+    contract.attached? ? contract.service_url : nil
+  end
+
   def as_json(options = {})
     h = super(options)
     h[:promotion] = promotion
+    h[:contract_url] = contract_url
     h
   end
 
   def serializable_hash(options = {})
     h = super(options)
     h[:promotion] = promotion
+    h[:contract_url] = contract_url
     h
   end
 
