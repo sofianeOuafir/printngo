@@ -109,22 +109,25 @@ class ActivationPage extends React.Component {
               className="checkout--form form__input-container"
               onSubmit={this.onSubmit}
             >
-              <TextInput
-                errors={errors.password}
-                style={{ marginBottom: "5px" }}
-                type="password"
-                placeholder={t("activationPage.password")}
-                value={password}
-                onChange={this.onPasswordChange}
-              />
-              <TextInput
-                errors={errors.passwordConfirmation}
-                style={{ marginBottom: "5px" }}
-                type="password"
-                placeholder={t("activationPage.passwordConfirmation")}
-                value={passwordConfirmation}
-                onChange={this.onPasswordConfirmationChange}
-              />
+              <div className="mb05">
+                <TextInput
+                  errors={errors.password}
+                  type="password"
+                  placeholder={t("activationPage.password")}
+                  value={password}
+                  onChange={this.onPasswordChange}
+                />
+              </div>
+              <div className="mb05">
+                <TextInput
+                  errors={errors.passwordConfirmation}
+                  type="password"
+                  placeholder={t("activationPage.passwordConfirmation")}
+                  value={passwordConfirmation}
+                  onChange={this.onPasswordConfirmationChange}
+                />
+              </div>
+
               <button
                 disabled={loading}
                 className={`button ${

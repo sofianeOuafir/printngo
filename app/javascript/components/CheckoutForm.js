@@ -235,20 +235,18 @@ class CheckoutForm extends Component {
         {!auth.authenticated && (
           <Fragment>
             <div className="checkout-form--input-container">
-              <div className="col-6 mr1">
+              <div className="col-6 mr1 mb05">
                 <TextInput
                   errors={errors.firstname}
-                  className="mb1"
                   type="text"
                   placeholder={t("checkoutForm.firstname")}
                   value={firstname}
                   onChange={this.onFirstnameChange}
                 />
               </div>
-              <div className="col-6">
+              <div className="col-6 mb05">
                 <TextInput
                   errors={errors.lastname}
-                  className="mb1"
                   type="text"
                   placeholder={t("checkoutForm.lastname")}
                   value={lastname}
@@ -257,31 +255,28 @@ class CheckoutForm extends Component {
               </div>
             </div>
 
-            <div>
+            <div className="mb05">
               <TextInput
                 errors={errors.email}
                 type="text"
-                className="mb1"
                 placeholder={t("checkoutForm.email")}
                 value={email}
                 onChange={this.onEmailChange}
               />
             </div>
             <div className="flex checkout-form--input-container">
-              <div className="col-6 mr1">
+              <div className="col-6 mr1 mb05">
                 <TextInput
                   errors={errors.password}
-                  className="mb1"
                   type="password"
                   placeholder={t("checkoutForm.password")}
                   value={password}
                   onChange={this.onPasswordChange}
                 />
               </div>
-              <div className="col-6">
+              <div className="col-6 mb05">
                 <TextInput
                   errors={errors.passwordConfirmation}
-                  className="mb1"
                   type="password"
                   placeholder={t("checkoutForm.passwordConfirmation")}
                   value={passwordConfirmation}

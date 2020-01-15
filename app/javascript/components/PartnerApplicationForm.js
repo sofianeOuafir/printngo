@@ -270,45 +270,41 @@ class PartnerApplicationForm extends React.Component {
           {t("partnerApplicationForm.aboutYou")}:
         </h2>
         <div className="flex partner-application-page-form--input-container">
-          <div className="col-6 mr1">
+          <div className="col-6 mr1 mb05">
             <TextInput
               disabled={partnerCreated}
               errors={errors.firstname}
               onChange={this.onFirstnameChange}
-              className="mb1"
               value={firstname}
               placeholder={t("partnerApplicationForm.firstname")}
             />
           </div>
-          <div className="col-6">
+          <div className="col-6 mb05">
             <TextInput
               disabled={partnerCreated}
               errors={errors.lastname}
               onChange={this.onLastnameChange}
               value={lastname}
-              className="mb1"
               placeholder={t("partnerApplicationForm.lastname")}
             />
           </div>
         </div>
-        <div>
+        <div className="mb05">
           <TextInput
             disabled={partnerCreated}
             errors={errors.email}
             onChange={this.onEmailChange}
             value={email}
-            className="mb1"
             type="text"
             placeholder={t("partnerApplicationForm.email")}
           />
         </div>
-        <div>
+        <div className="mb05">
           <TextInput
             disabled={partnerCreated}
             errors={errors.phoneNumber}
             onChange={this.onPhoneNumberChange}
             value={phoneNumber}
-            className="mb1"
             placeholder={t("partnerApplicationForm.phoneNumber")}
           />
         </div>
@@ -316,45 +312,41 @@ class PartnerApplicationForm extends React.Component {
           {t("partnerApplicationForm.aboutYourCompany")}:
         </h2>
         <div className="flex partner-application-page-form--input-container">
-          <div className="col-6 mr1">
+          <div className="col-6 mr1 mb05">
             <TextInput
               disabled={partnerCreated}
               errors={errors.companyName}
               onChange={this.onCompanyNameChange}
               value={companyName}
-              className="mb1"
               placeholder={t("partnerApplicationForm.companyName")}
             />
           </div>
-          <div className="col-6">
+          <div className="col-6 mb05">
             <TextInput
               disabled={partnerCreated}
               errors={errors.postcode}
               onChange={this.onPostcodeChange}
               value={postcode}
-              className="mb1"
               placeholder={t("partnerApplicationForm.postcode")}
             />
           </div>
         </div>
-        <div>
+        <div className="mb05">
           <TextInput
             disabled={partnerCreated}
             errors={errors.companyAddress}
             onChange={this.onCompanyAddressChange}
             value={companyAddress}
-            className="mb1"
             type="text"
             placeholder={t("partnerApplicationForm.companyAddress")}
           />
         </div>
-        <div>
+        <div className="mb05">
           <TextInput
             disabled={partnerCreated}
             errors={errors.bankDetails}
             onChange={this.onBankDetailsChange}
             value={bankDetails}
-            className="mb1"
             type="text"
             placeholder={t("partnerApplicationForm.bankDetails")}
           />
@@ -363,51 +355,46 @@ class PartnerApplicationForm extends React.Component {
         {showAdminFields && (
           <Fragment>
             <div className="flex partner-application-page-form--input-container">
-              <div className="col-6 mr1">
+              <div className="col-6 mr1 mb05">
                 <TextInput
                   disabled={partnerCreated}
                   onChange={this.onCityChange}
                   value={city}
-                  className="mb1"
                   placeholder={t("partnerApplicationForm.city")}
                 />
               </div>
-              <div className="col-6">
+              <div className="col-6 mb05">
                 <TextInput
                   disabled={partnerCreated}
                   onChange={this.onCountryChange}
                   value={country}
-                  className="mb1"
                   placeholder={t("partnerApplicationForm.country")}
                 />
               </div>
             </div>
             <div className="flex partner-application-page-form--input-container">
-              <div className="col-6 mr1">
+              <div className="col-6 mr1 mb05">
                 <TextInput
                   disabled={partnerCreated}
                   onChange={this.onLatitudeChange}
                   value={lat}
-                  className="mb1"
                   placeholder={t("partnerApplicationForm.latitude")}
                 />
               </div>
-              <div className="col-6">
+              <div className="col-6 mb05">
                 <TextInput
                   disabled={partnerCreated}
                   onChange={this.onLontitudeChange}
                   value={lng}
-                  className="mb1"
                   placeholder={t("partnerApplicationForm.longitude")}
                 />
               </div>
             </div>
-            <div>
+            <div className="mb05">
               <TextInput
                 disabled={partnerCreated}
                 onChange={this.onOpeningHoursChange}
                 value={openingHours}
-                className="mb1"
                 type="text"
                 placeholder={t("partnerApplicationForm.openingHours")}
               />
