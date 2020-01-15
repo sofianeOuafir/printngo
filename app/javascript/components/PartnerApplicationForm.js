@@ -412,17 +412,18 @@ class PartnerApplicationForm extends React.Component {
                 placeholder={t("partnerApplicationForm.openingHours")}
               />
             </div>
-            {this.props.partnerApplication.contract_url && (
-              <div className="mb1">
-                <a
-                  target="_blank"
-                  className="button button--navy button--no-border-radius fullwidth px0"
-                  href={this.props.partnerApplication.contract_url}
-                >
-                  {t("partnerApplicationForm.seeContract")}
-                </a>
-              </div>
-            )}
+            {this.props.partnerApplication &&
+              this.props.partnerApplication.contract_url && (
+                <div className="mb1">
+                  <a
+                    target="_blank"
+                    className="button button--navy button--no-border-radius fullwidth px0"
+                    href={this.props.partnerApplication.contract_url}
+                  >
+                    {t("partnerApplicationForm.seeContract")}
+                  </a>
+                </div>
+              )}
             <div className="mb1">
               <a
                 disabled={partnerCreated}
