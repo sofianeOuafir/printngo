@@ -128,6 +128,10 @@ en:
               blank: 'Please choose a password'
             password_confirmation:
               confirmation: 'Passwords do not match'
+        promotion:
+          attributes:
+            text:
+              too_long: "The text is too long and can only contain 100 characters."
         partner_application: 
           attributes:
             firstname: 

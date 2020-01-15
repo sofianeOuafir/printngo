@@ -6,7 +6,8 @@ import MapElement from "./MapElement";
 
 const Partner = ({
   readOnly = true,
-  promotion = null,
+  promotionText = null,
+  promotionLink = null,
   partner,
   onLocationSelect = null,
   highlighted = false,
@@ -32,11 +33,32 @@ const Partner = ({
             <span>
               {t("partner.openingHours")}: {partner.opening_hours}
             </span>
-            {(partner.promotion || promotion) && (
-              <span className="mt1 text-orange word-wrap--break-word">
-                {promotion !== null ? promotion : partner.promotion}
-              </span>
-            )}
+            {(partner.promotion_text || promotionText) &&
+              (promotionLink ? (
+                <a
+                  target="_blank"
+                  className="mt1 text-orange word-wrap--break-word"
+                  href={`${promotionLink}`}
+                >
+                  {promotionText !== null
+                    ? promotionText
+                    : partner.promotion_text}
+                </a>
+              ) : partner.promotion_link ? (
+                <a
+                  target="_blank"
+                  className="mt1 text-orange word-wrap--break-word"
+                  href={`${partner.promotion_link}`}
+                >
+                  {partner.promotion_text}
+                </a>
+              ) : (
+                <span className="mt1 text-orange word-wrap--break-word">
+                  {promotionText !== null
+                    ? promotionText
+                    : partner.promotion_text}
+                </span>
+              ))}
             <div className="pt1">
               {partner.distance_to_user_position && (
                 <span className="mr1 text-leaf">

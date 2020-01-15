@@ -25,8 +25,12 @@ class Partner < ApplicationRecord
     distance_to(Partner.user_position)
   end
 
-  def promotion
+  def promotion_text
     promotions.present? ? promotions.first.text : ''
+  end
+
+  def promotion_link
+    promotions.present? ? promotions.first.link : ''
   end
 
   def contract_url
@@ -35,14 +39,16 @@ class Partner < ApplicationRecord
 
   def as_json(options = {})
     h = super(options)
-    h[:promotion] = promotion
+    h[:promotion_text] = promotion_text
+    h[:promotion_link] = promotion_link
     h[:contract_url] = contract_url
     h
   end
 
   def serializable_hash(options = {})
     h = super(options)
-    h[:promotion] = promotion
+    h[:promotion_text] = promotion_text
+    h[:promotion_link] = promotion_link
     h[:contract_url] = contract_url
     h
   end
