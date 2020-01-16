@@ -70,7 +70,6 @@ class PartnerPromotePage extends React.Component {
       .catch(e => {
         const errors = JSON.parse(e.response.data.errors);
         const { text, link } = errors;
-        console.log(text, link);
         this.setState(prevState => ({
           errors: {
             ...prevState.errors,

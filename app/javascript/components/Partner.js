@@ -3,6 +3,7 @@ import { withTranslation } from "react-i18next";
 
 import { numberToDistance } from "../lib/distance";
 import MapElement from "./MapElement";
+import Promotion from "./Promotion";
 
 const Partner = ({
   readOnly = true,
@@ -33,32 +34,16 @@ const Partner = ({
             <span>
               {t("partner.openingHours")}: {partner.opening_hours}
             </span>
-            {(partner.promotion_text || promotionText) &&
-              (promotionLink ? (
-                <a
-                  target="_blank"
-                  className="mt1 text-orange word-wrap--break-word"
-                  href={`${promotionLink}`}
-                >
-                  {promotionText !== null
-                    ? promotionText
-                    : partner.promotion_text}
-                </a>
-              ) : partner.promotion_link ? (
-                <a
-                  target="_blank"
-                  className="mt1 text-orange word-wrap--break-word"
-                  href={`${partner.promotion_link}`}
-                >
-                  {partner.promotion_text}
-                </a>
-              ) : (
-                <span className="mt1 text-orange word-wrap--break-word">
-                  {promotionText !== null
-                    ? promotionText
-                    : partner.promotion_text}
-                </span>
-              ))}
+            <Promotion
+              className={`mt1 text-leaf`}
+              text={
+                promotionText !== null ? promotionText : partner.promotion_text
+              }
+              link={
+                promotionLink !== null ? promotionLink : partner.promotion_link
+              }
+            />
+
             <div className="pt1">
               {partner.distance_to_user_position && (
                 <span className="mr1 text-leaf">
