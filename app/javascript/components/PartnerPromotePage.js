@@ -113,6 +113,7 @@ class PartnerPromotePage extends React.Component {
               onChange={this.onPromotionLinkChange}
             />
           </div>
+          <p className="text-navy">{t("partnerPromotePage.explanation")}</p>
           <Partner
             partner={auth}
             promotionLink={promotionLink}
