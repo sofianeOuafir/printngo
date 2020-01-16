@@ -146,6 +146,7 @@ GEM
     prawn (2.2.2)
       pdf-core (~> 0.7.0)
       ttfunk (~> 1.5)
+    public_suffix (4.0.3)
     puma (3.12.1)
     rack (2.0.7)
     rack-protection (2.0.7)
@@ -236,6 +237,9 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
+    validate_url (1.0.8)
+      activemodel (>= 3.0.0)
+      public_suffix
     web-console (4.0.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -279,6 +283,7 @@ DEPENDENCIES
   stripe
   turbolinks (~> 5)
   tzinfo-data
+  validate_url
   web-console (>= 3.3.0)
   webpacker (~> 4.0)
 

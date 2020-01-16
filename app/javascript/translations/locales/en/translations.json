@@ -341,7 +341,11 @@
   "partnerTestingPage.testPrintingNow": "Test Printing Now",
   "partnerPromotePage.title": "Promote",
   "partnerPromotePage.description": "Let our customers know about your current deals, products or services you would like to promote!",
-  "partnerPromotePage.promotionPlaceHolder": "E.g. Sale up to 50% off on entire store.",
+  "partnerPromotePage.promotionTextLabel": "Promote a product, service, event or deal (optional)",
+  "partnerPromotePage.promotionTextPlaceHolder": "E.g. Sale up to 50% off on entire store.",
+  "partnerPromotePage.promotionLinkLabel": "Provide a link (optional)",
+  "partnerPromotePage.promotionLinkPlaceHolder": "e.g. https://www.mywebsite.com",
+  "partnerPromotePage.explanation": "Here is a preview of what the customer will see.",
   "partnerPromotePage.successNotification": "Promotion updated successfully!",
   "partnerPromotePage.save": "Save"
 }

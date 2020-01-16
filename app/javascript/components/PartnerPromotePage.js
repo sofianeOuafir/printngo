@@ -12,38 +12,77 @@ class PartnerPromotePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      promotion: props.auth.promotion
+      promotionText: props.auth.promotion_text,
+      promotionLink: props.auth.promotion_link,
+      errors: {
+        promotionText: [],
+        promotionLink: []
+      }
     };
   }
 
-  onPromotionChange = e => {
-    const promotion = e.target.value;
-    if (promotion.length <= 100) {
-      this.setState(() => ({
-        promotion
+  onPromotionTextChange = e => {
+    const promotionText = e.target.value;
+    if (promotionText.length <= 100) {
+      this.setState(prevState => ({
+        promotionText,
+        errors: {
+          ...prevState.errors,
+          promotionText: []
+        }
       }));
     }
+  };
+  onPromotionLinkChange = e => {
+    const promotionLink = e.target.value;
+    this.setState(prevState => ({
+      promotionLink,
+      errors: {
+        ...prevState.errors,
+        promotionLink: []
+      }
+    }));
   };
 
   onSubmit = e => {
     e.preventDefault();
-    const { promotion } = this.state;
+    const { promotionText, promotionLink } = this.state;
     const { login, t } = this.props;
     axios
       .patch("/api/v1/partners/promotions/current", {
-        text: promotion
+        text: promotionText,
+        link: promotionLink
       })
       .then(response => {
         login(response.data.partner);
-        toast.success(t("partnerPromotePage.successNotification"), {
-          position: toast.POSITION.BOTTOM_LEFT
-        });
+        this.setState(
+          () => ({
+            promotionText: response.data.text,
+            promotionLink: response.data.link
+          }),
+          () => {
+            toast.success(t("partnerPromotePage.successNotification"), {
+              position: toast.POSITION.BOTTOM_LEFT
+            });
+          }
+        );
+      })
+      .catch(e => {
+        const errors = JSON.parse(e.response.data.errors);
+        const { text, link } = errors;
+        this.setState(prevState => ({
+          errors: {
+            ...prevState.errors,
+            promotionText: text,
+            promotionLink: link
+          }
+        }));
       });
   };
 
   render() {
     const { auth, t } = this.props;
-    const { promotion } = this.state;
+    const { promotionText, promotionLink, errors } = this.state;
     return (
       <div className="content-container">
         <PageBanner
@@ -51,28 +90,43 @@ class PartnerPromotePage extends React.Component {
           description={t("partnerPromotePage.description")}
         />
         <form
-          className="flex form__input-container mb1"
+          className="form__input-container mb1 border border-color--grey p1"
           onSubmit={this.onSubmit}
         >
-          <div className="col-8">
+          <div className="mb05">
             <TextInput
+              label={t("partnerPromotePage.promotionTextLabel")}
+              errors={errors.promotionText}
               type="text"
-              placeholder={t("partnerPromotePage.promotionPlaceHolder")}
-              value={promotion}
-              onChange={this.onPromotionChange}
+              placeholder={t("partnerPromotePage.promotionTextPlaceHolder")}
+              value={promotionText}
+              onChange={this.onPromotionTextChange}
             />
           </div>
-          <div className="col-4">
-            <button
-              className={`fullwidth fullheight button button--navy button--no-border-radius`}
-              text="Submit"
-            >
-              {t("partnerPromotePage.save")}
-            </button>
+          <div className="mb05">
+            <TextInput
+              label={t("partnerPromotePage.promotionLinkLabel")}
+              errors={errors.promotionLink}
+              type="text"
+              placeholder={t("partnerPromotePage.promotionLinkPlaceHolder")}
+              value={promotionLink}
+              onChange={this.onPromotionLinkChange}
+            />
           </div>
-        </form>
+          <p className="text-navy">{t("partnerPromotePage.explanation")}</p>
+          <Partner
+            partner={auth}
+            promotionLink={promotionLink}
+            promotionText={promotionText}
+          />
 
-        <Partner partner={auth} promotion={promotion} />
+          <button
+            className={`fullwidth fullheight button button--navy button--no-border-radius`}
+            text="Submit"
+          >
+            {t("partnerPromotePage.save")}
+          </button>
+        </form>
       </div>
     );
   }

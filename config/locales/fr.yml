@@ -128,6 +128,10 @@ fr:
               blank: 'Veuillez choisir un mot de passe'
             password_confirmation:
               confirmation: 'Les mots de passe ne correspondent pas'
+        promotion:
+          attributes:
+            text:
+              too_long: "Le text est trop long et ne peut contenir que 100 charactères."
         partner_application: 
           attributes:
             firstname: 

@@ -15,6 +15,6 @@ class Api::V1::Partners::PromotionsController < ApplicationController
   private
 
   def partner_params
-    params.require(:promotion).permit(:text)
+    params.require(:promotion).permit(:text, :link)
   end
 end

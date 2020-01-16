@@ -341,7 +341,11 @@
   "partnerTestingPage.testPrintingNow": "Tester l'impression maintenant",
   "partnerPromotePage.title": "Promouvoir",
   "partnerPromotePage.description": "Informez nos clients de vos offres, produits ou services actuels que vous souhaitez promouvoir!",
-  "partnerPromotePage.promotionPlaceHolder": "Par exemple: Vente jusqu'à 50% de réduction sur tout le magasin.",
+  "partnerPromotePage.promotionTextLabel": "Promouvoir un produit, un service, un événement ou une offre (facultatif)",
+  "partnerPromotePage.promotionTextPlaceHolder": "Par exemple: Vente jusqu'à 50% de réduction sur tout le magasin.",
+  "partnerPromotePage.promotionLinkLabel": "Fournissez un lien (facultatif)",
+  "partnerPromotePage.promotionLinkPlaceHolder": "Par exemple: https://www.monsiteinternet.com",
+  "partnerPromotePage.explanation": "Voici un aperçu de ce que le client verra.",
   "partnerPromotePage.successNotification": "Promotion mise à jour avec succès!",
   "partnerPromotePage.save": "Enregistrer"
 }

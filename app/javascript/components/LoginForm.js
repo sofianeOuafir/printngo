@@ -1,10 +1,10 @@
 import React from "react";
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 import { withTranslation } from "react-i18next";
 
-import TextInput from './TextInput';
-import { startLogin } from './../actions/auth';
+import TextInput from "./TextInput";
+import { startLogin } from "./../actions/auth";
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -18,8 +18,8 @@ class LoginForm extends React.Component {
 
   onEmailChange = e => {
     let email = e.target.value;
-    if(email) {
-      email = email.toLowerCase().trim()
+    if (email) {
+      email = email.toLowerCase().trim();
     }
     this.setState(() => ({ email, error: "" }));
   };
@@ -56,21 +56,28 @@ class LoginForm extends React.Component {
         className="border border-color--grey p2 form__input-container"
       >
         <p className="text-leaf center">{this.state.error}</p>
-        <TextInput
-          placeholder={t('loginForm.email')}
-          className="block mb1"
-          value={this.state.email}
-          onChange={this.onEmailChange}
-          type="text"
-        />
-        <TextInput
-          placeholder={t('loginForm.password')}
-          className="block mb1"
-          value={this.state.password}
-          onChange={this.onPasswordChange}
-          type="password"
-        />
-        <button className="button button--navy fullwidth">{t('signInLink')}</button>
+        <div className="mb05">
+          <TextInput
+            placeholder={t("loginForm.email")}
+            className="block"
+            value={this.state.email}
+            onChange={this.onEmailChange}
+            type="text"
+          />
+        </div>
+        <div className="mb05">
+          <TextInput
+            placeholder={t("loginForm.password")}
+            className="block"
+            value={this.state.password}
+            onChange={this.onPasswordChange}
+            type="password"
+          />
+        </div>
+
+        <button className="button button--navy fullwidth">
+          {t("signInLink")}
+        </button>
       </form>
     );
   }
