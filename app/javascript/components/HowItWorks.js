@@ -13,13 +13,13 @@ const HowItWorks = ({ t }) => {
     },
     {
       src: images.map,
-      alt: "Pick Up Location Icon",
+      alt: "Printing Location Icon",
       title: t("home.howItWorks.step2"),
       number: 2
     },
     {
       src: images.creditCard,
-      alt: "Pick Up Location Icon",
+      alt: "Credit card Icon",
       title: t("home.howItWorks.step3"),
       number: 3
     },
