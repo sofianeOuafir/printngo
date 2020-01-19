@@ -35,9 +35,9 @@ class PartnerProductsPage extends React.Component {
         {loadingData ? (
           <Loader />
         ) : (
-          <div className="flex">
+          <div className="flex justify-content--center">
             {products.map((product, index) => (
-              <div key={index} className="col-4 p1">
+              <div key={index} className="col-3 p1">
                 <PartnerProduct product={product} />
               </div>
             ))}

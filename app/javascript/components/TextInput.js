@@ -12,7 +12,7 @@ const TextInput = ({
       className={`flex ${
         labelDirection == "column"
           ? "flex-direction--column"
-          : "flex-direction--row align-items--center"
+          : "flex-direction--row"
       }`}
     >
       {label && (
@@ -23,17 +23,19 @@ const TextInput = ({
           {label}
         </label>
       )}
-      <input {...props} />
-      {errors && errors.length > 0 && (
-        <ul
-          className="errors"
-          style={{ marginTop: "5px", marginBottom: "5px" }}
-        >
-          {errors.map((error, index) => (
-            <li key={index}>{error}</li>
-          ))}
-        </ul>
-      )}
+      <div className="flex flex-direction--column">
+        <input {...props} />
+        {errors && errors.length > 0 && (
+          <ul
+            className="errors"
+            style={{ marginTop: "5px", marginBottom: "5px" }}
+          >
+            {errors.map((error, index) => (
+              <li key={index}>{error}</li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 };

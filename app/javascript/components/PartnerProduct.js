@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import images from "./../images";
 import TextInput from "./TextInput";
 import "react-toggle/style.css";
+import { fromCentsToDollars, fromDollarsToCents } from "./../lib/money";
 
 class PartnerProduct extends React.Component {
   constructor(props) {
@@ -15,9 +16,9 @@ class PartnerProduct extends React.Component {
     this.state = {
       id,
       active,
-      name: (product && name) || "",
-      description: (product && description) || "",
-      price: (product && price) || "",
+      name: name || "",
+      description: description || "",
+      price: ((price || price == 0) && fromCentsToDollars(price, false)) || "",
       errors: {
         name: [],
         description: [],
@@ -33,32 +34,45 @@ class PartnerProduct extends React.Component {
 
   onNameChange = e => {
     const { value: name } = e.target;
-    this.setState(prevState => ({
-      name,
-      errors: { ...prevState.errors, name: [] }
-    }));
+    if (name.length <= 50) {
+      this.setState(prevState => ({
+        name,
+        errors: { ...prevState.errors, name: [] }
+      }));
+    }
   };
 
   onDescriptionChange = e => {
     const { value: description } = e.target;
-    this.setState(prevState => ({
-      description,
-      errors: { ...prevState.errors, description: [] }
-    }));
+    if (description.length <= 100) {
+      this.setState(prevState => ({
+        description,
+        errors: { ...prevState.errors, description: [] }
+      }));
+    }
   };
 
   onPriceChange = e => {
     const { value: price } = e.target;
-    this.setState(prevState => ({
-      price,
-      errors: { ...prevState.errors, price: [] }
-    }));
+    if (!isNaN(price)) {
+      this.setState(prevState => ({
+        price,
+        errors: { ...prevState.errors, price: [] }
+      }));
+    }
   };
 
   onSubmit = e => {
     e.preventDefault();
     const { active, name, description, price, id } = this.state;
-    const partnerProduct = { active, name, description, price };
+    let priceInCents = fromDollarsToCents(price);
+    priceInCents = priceInCents || priceInCents == 0 ? priceInCents : "";
+    const partnerProduct = {
+      active,
+      name,
+      description,
+      price: priceInCents
+    };
     axios
       .patch(`/api/v1/partners/partner_products/${id}`, partnerProduct)
       .then(response => {
@@ -68,7 +82,7 @@ class PartnerProduct extends React.Component {
             active,
             name,
             description,
-            price,
+            price: fromCentsToDollars(price, false) || "",
             errors: {
               name: [],
               price: []
@@ -133,8 +147,8 @@ class PartnerProduct extends React.Component {
               placeholder="E.g. Available in a range of colours like..."
             />
           </div>
-          <div className="flex align-items--center">
-            <div className="flex flex-direction--column col-8">
+          <div className="flex mb05">
+            <div className="flex halfwidth flex-direction--column">
               <Toggle
                 className="mb05"
                 id={`${id}-partner-product-active`}
@@ -148,15 +162,17 @@ class PartnerProduct extends React.Component {
                 {active ? "Published" : "Unpublished"}
               </label>
             </div>
-            <div className="mb05">
+            <div className="halfwidth flex justify-content--end">
               <TextInput
+                style={{ paddingRight: "0px", paddingLeft: "0px" }}
+                className="fullwidth"
                 labelDirection="row"
                 errors={errors.price}
                 onChange={this.onPriceChange}
                 value={price}
                 label="$"
                 labelClassName="h3 text-navy"
-                placeholder="Price: Eg. 19.99"
+                placeholder="E.g. 19.99"
               />
             </div>
           </div>
