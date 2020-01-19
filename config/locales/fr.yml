@@ -131,7 +131,16 @@ fr:
         promotion:
           attributes:
             text:
-              too_long: "Le text est trop long et ne peut contenir que 100 charactères."
+              too_long: "Le text est trop long et ne peut contenir que %{count} charactères."
+        partner_product: 
+          attributes:
+            name: 
+              blank: "Veuillez renseigner un nom"
+              too_long: "Le nom est trop long et ne peut contenir que %{count} charactères."
+            description: 
+              too_long: "La description est trop longue et ne peut contenir que %{count} charactères."
+            price: 
+              blank: "Veuillez renseigner un prix"
         partner_application: 
           attributes:
             firstname: 

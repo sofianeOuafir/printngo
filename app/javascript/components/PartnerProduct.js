@@ -2,6 +2,7 @@ import React from "react";
 import Toggle from "react-toggle";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { withTranslation } from "react-i18next";
 
 import images from "./../images";
 import TextInput from "./TextInput";
@@ -64,6 +65,7 @@ class PartnerProduct extends React.Component {
 
   onSubmit = e => {
     e.preventDefault();
+    const { t } = this.props;
     const { active, name, description, price, id } = this.state;
     let priceInCents = fromDollarsToCents(price);
     priceInCents = priceInCents || priceInCents == 0 ? priceInCents : "";
@@ -89,19 +91,16 @@ class PartnerProduct extends React.Component {
             }
           }),
           () => {
-            toast.success("Product saved successfully", {
+            toast.success(t("partnerProduct.successNotification"), {
               position: toast.POSITION.BOTTOM_LEFT
             });
           }
         );
       })
       .catch(e => {
-        toast.error(
-          "The product hasn't been published. Resolve the errors and try publishing again!",
-          {
-            position: toast.POSITION.BOTTOM_LEFT
-          }
-        );
+        toast.error(t("partnerProduct.errorNotification"), {
+          position: toast.POSITION.BOTTOM_LEFT
+        });
         const errors = JSON.parse(e.response.data.errors);
         const { price, name, description } = errors;
         this.setState(prevState => ({
@@ -117,13 +116,14 @@ class PartnerProduct extends React.Component {
   };
 
   render() {
+    const { t } = this.props;
     const { active, name, description, price, id, errors } = this.state;
     return (
       <div className="border border-color--grey">
         <img
           src={images.partnerProductDefault}
           className="fullwidth"
-          alt="Partner Product Default"
+          alt={t("partnerProduct.imageProductDefaultAlt")}
         />
         <form
           onSubmit={this.onSubmit}
@@ -134,8 +134,8 @@ class PartnerProduct extends React.Component {
               errors={errors.name}
               value={name}
               onChange={this.onNameChange}
-              label="Provide a name"
-              placeholder="E.g Ray Ban Sunglasses"
+              label={t("partnerProduct.nameLabel")}
+              placeholder={t("partnerProduct.namePlaceholder")}
             />
           </div>
           <div className="mb05">
@@ -143,8 +143,8 @@ class PartnerProduct extends React.Component {
               errors={errors.description}
               value={description}
               onChange={this.onDescriptionChange}
-              label="Provide a short description (Optional)"
-              placeholder="E.g. Available in a range of colours like..."
+              label={t("partnerProduct.descriptionLabel")}
+              placeholder={t("partnerProduct.descriptionPlaceholder")}
             />
           </div>
           <div className="flex mb05">
@@ -159,7 +159,9 @@ class PartnerProduct extends React.Component {
                 className="text-navy"
                 htmlFor={`${id}-partner-product-active`}
               >
-                {active ? "Published" : "Unpublished"}
+                {active
+                  ? t("partnerProduct.published")
+                  : t("partnerProduct.unpublished")}
               </label>
             </div>
             <div className="halfwidth flex justify-content--end">
@@ -170,18 +172,20 @@ class PartnerProduct extends React.Component {
                 errors={errors.price}
                 onChange={this.onPriceChange}
                 value={price}
-                label="$"
+                label={t("partnerProduct.priceLabel")}
                 labelClassName="h3 text-navy"
-                placeholder="E.g. 19.99"
+                placeholder={t("partnerProduct.pricePlaceholder")}
               />
             </div>
           </div>
 
-          <button className="button button--leaf fullwidth px0">Save</button>
+          <button className="button button--leaf fullwidth px0">
+            {t("partnerProduct.save")}
+          </button>
         </form>
       </div>
     );
   }
 }
 
-export default PartnerProduct;
+export default withTranslation()(PartnerProduct);

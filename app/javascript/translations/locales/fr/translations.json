@@ -351,5 +351,18 @@
   "partnerPromotePage.successNotification": "Promotion mise à jour avec succès!",
   "partnerPromotePage.save": "Enregistrer",
   "partnerProductsPage.title": "Présentez vos produits et augmentez vos chances de vendre!",
-  "partnerProductsPage.description": "Nous annoncerons vos produits à nos clients pour augmenter les chances qu'ils achètent quelque chose en entrant dans votre magasin!"
+  "partnerProductsPage.description": "Nous annoncerons vos produits à nos clients pour augmenter les chances qu'ils achètent quelque chose en entrant dans votre magasin!",
+  
+  "partnerProduct.successNotification": "Produit enregistré avec succès",
+  "partnerProduct.errorNotification": "Le produit n'a pas été publié. Résolvez les erreurs et réessayez de publier!",
+  "partnerProduct.imageProductDefaultAlt": "Produit par défaut du partenaire",
+  "partnerProduct.nameLabel": "Donnez un nom",
+  "partnerProduct.namePlaceholder": "Lunettes de soleil Ray Ban",
+  "partnerProduct.descriptionLabel": "Fournissez une brève description (facultatif)",
+  "partnerProduct.descriptionPlaceholder": "Disponible dans une gamme de couleurs comme ...",
+  "partnerProduct.published": "Publié",
+  "partnerProduct.unpublished": "Non publié",
+  "partnerProduct.priceLabel": "€",
+  "partnerProduct.pricePlaceholder": "Par ex: 19.99",
+  "partnerProduct.save": "Enregistrer"
 }
