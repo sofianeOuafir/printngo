@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_15_182539) do
+ActiveRecord::Schema.define(version: 2020_01_18_222759) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -228,6 +228,11 @@ ActiveRecord::Schema.define(version: 2020_01_15_182539) do
     t.integer "allocated_credit"
     t.boolean "most_popular"
     t.string "code"
+    t.string "name"
+    t.string "description"
+    t.boolean "active", default: false
+    t.bigint "partner_id"
+    t.index ["partner_id"], name: "index_products_on_partner_id"
   end
 
   create_table "promotions", force: :cascade do |t|
@@ -286,6 +291,7 @@ ActiveRecord::Schema.define(version: 2020_01_15_182539) do
   add_foreign_key "payments", "orders"
   add_foreign_key "printing_attempts", "deliverables"
   add_foreign_key "printing_attempts", "partners"
+  add_foreign_key "products", "partners"
   add_foreign_key "promotions", "partners"
   add_foreign_key "selling_points", "products"
   add_foreign_key "transactions", "payments"

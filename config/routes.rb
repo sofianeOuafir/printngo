@@ -26,6 +26,7 @@ Rails.application.routes.draw do
         resources :deliverables, only: [:show]
         resources :printing_attempts, only: [:create]
         resources :promotions, only: [:update]
+        resources :partner_products, only: [:index, :update]
         get 'guide', to: 'guide#show'
         get 'testing', to: 'testing#show'
       end

@@ -55,6 +55,7 @@
   "navbar.partner.guide": "Guide",
   "navbar.partner.test": "Testing",
   "navbar.partner.promote": "Promote",
+  "navbar.partner.products": "My products",
   "navbar.partner.contract": "Contract",
   "navbar.customer.basket": "Basket",
   "navbar.customer.contactUs": "Contact Us",
@@ -333,6 +334,7 @@
   "pageTitle.PrivatePartnerTestingPage": "Testing",
   "pageTitle.PrivatePartnerPromotePage": "Promote",
   "pageTitle.PrivatePartnerContractPage": "Contract",
+  "pageTitle.PrivatePartnerProductsPage": "Products",
   "introduction_video_id": "rnkntq2P9vE",
   "adminPartnerApplicationEditPage.successNotification": "Application successfully updated",
   "adminPartnerApplicationNewPage.successNotification": "Application successfully created",
@@ -347,5 +349,7 @@
   "partnerPromotePage.promotionLinkPlaceHolder": "e.g. https://www.mywebsite.com",
   "partnerPromotePage.explanation": "Here is a preview of what the customer will see.",
   "partnerPromotePage.successNotification": "Promotion updated successfully!",
-  "partnerPromotePage.save": "Save"
+  "partnerPromotePage.save": "Save",
+  "partnerProductsPage.title": "Showcase your products and increase your chances to sell!",
+  "partnerProductsPage.description": "We will advertise your products to our customers to increase the chances that they buy something when coming into your store!"
 }

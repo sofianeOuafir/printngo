@@ -56,6 +56,7 @@ import PartnerGuide from "./PartnerGuide";
 import PartnerTestingPage from "./PartnerTestingPage";
 import PartnerPromotePage from "./PartnerPromotePage";
 import PartnerContractPage from "./PartnerContractPage";
+import PartnerProductsPage from "./PartnerProductsPage";
 
 const store = configureStore();
 
@@ -170,6 +171,10 @@ const PrivatePartnerPromotePage = props => (
 const PrivatePartnerContractPage = props => (
   <PrivateRoute {...props} component={PartnerContractPage} />
 );
+
+const PrivatePartnerProductsPage = (props) => (
+  <PrivateRoute {...props} component={PartnerProductsPage} />
+)
 
 class App extends React.Component {
   componentDidMount() {
@@ -380,6 +385,12 @@ class App extends React.Component {
                 path={"/partner/contract"}
                 Layout={PartnerLayout}
                 component={PrivatePartnerContractPage}
+              />
+              <AppRoute
+                title={t("pageTitle.PrivatePartnerProductsPage")}
+                path={"/partner/products"}
+                Layout={PartnerLayout}
+                component={PrivatePartnerProductsPage}
               />
               {/* Partner Layout */}
 

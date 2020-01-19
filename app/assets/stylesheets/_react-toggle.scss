@@ -1,0 +1,5 @@
+@import 'variables/colours';
+
+.react-toggle--checked .react-toggle-track {
+  background-color: $leaf !important;
+}

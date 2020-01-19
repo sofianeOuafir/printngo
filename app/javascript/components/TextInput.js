@@ -1,9 +1,28 @@
 import React from "react";
 
-const TextInput = ({ errors, label = null, ...props }) => {
+const TextInput = ({
+  errors,
+  label = null,
+  labelDirection = "column",
+  labelClassName = "text-navy",
+  ...props
+}) => {
   return (
-    <div className="flex flex-direction--column">
-      {label && <label className="mb05 text-navy">{label}</label>}
+    <div
+      className={`flex ${
+        labelDirection == "column"
+          ? "flex-direction--column"
+          : "flex-direction--row align-items--center"
+      }`}
+    >
+      {label && (
+        <label
+          style={{ marginBottom: "5px", marginRight: "5px" }}
+          className={labelClassName}
+        >
+          {label}
+        </label>
+      )}
       <input {...props} />
       {errors && errors.length > 0 && (
         <ul
