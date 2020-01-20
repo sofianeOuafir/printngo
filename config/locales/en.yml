@@ -131,7 +131,17 @@ en:
         promotion:
           attributes:
             text:
-              too_long: "The text is too long and can only contain 100 characters."
+              too_long: "The text is too long and can only contain %{count} characters."
+        partner_product: 
+          attributes:
+            name: 
+              blank: "Please provide a name"
+              too_long: "The name is too long and can only contain %{count} characters."
+            description: 
+              blank: "Please provide a description"
+              too_long: "The description is too long and can only contain %{count} characters."
+            price: 
+              blank: "Please provide a price"
         partner_application: 
           attributes:
             firstname: 

@@ -1,0 +1,13 @@
+@import './../variables/breakpoints';
+@import './../variables/size';
+
+.partner-product-list--container {
+  @media(max-width: $tablet-breakpoint) {
+    flex-direction: column;
+    > div {
+      width: 100%;
+      margin-bottom: $s-size;
+      margin-right: 0px;
+    }
+  }
+}

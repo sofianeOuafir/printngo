@@ -11,6 +11,8 @@ class Partner < ApplicationRecord
   has_many :print_orders, -> { distinct }, through: :deliverables
   has_many :activations
   has_many :promotions
+  has_many :partner_products
+  has_many :active_partner_products, -> { where(active: true) }, class_name: 'PartnerProduct'
   has_one_attached :contract
 
   validates_presence_of :phone_number
@@ -18,6 +20,8 @@ class Partner < ApplicationRecord
   validates_presence_of :contract
 
   scope :activated, -> { where(activated: true) }
+
+  after_create :create_partner_products
 
   reverse_geocoded_by :lat, :lng
 
@@ -54,4 +58,10 @@ class Partner < ApplicationRecord
   end
 
   attr_accessor :user_position
+
+  private 
+
+  def create_partner_products
+    3.times { partner_products.create }
+  end
 end

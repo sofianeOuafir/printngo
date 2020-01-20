@@ -28,8 +28,10 @@ import pdf from "./../assets/images/pdf.png";
 import logo from "./../assets/images/logo.png";
 import logoOnly from "./../assets/images/logo-only.png";
 import sprout from "./../assets/images/sprout.png";
+import partnerProductDefault from "./../assets/images/partner-product-default.svg";
 
 export default {
+  partnerProductDefault,
   sprout,
   logoOnly,
   logo,

@@ -57,6 +57,10 @@ body {
   text-decoration: none;
 }
 
+.text-decoration--underline {
+  text-decoration: underline;  
+}
+
 .word-wrap--break-word {
   word-wrap: break-word;
 }
@@ -67,6 +71,10 @@ body {
 
 .halfwidth {
   width: 50%;
+}
+
+.thirdwidth {
+  width: 33%;
 }
 
 .overflow--hidden {

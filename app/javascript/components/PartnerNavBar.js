@@ -46,8 +46,7 @@ class PartnerNavBar extends React.Component {
 
   render() {
     const { loadingData } = this.state;
-    const { auth, printedOrders, awaitingConfirmationOrders, t } = this.props;
-    const { firstname } = auth;
+    const { printedOrders, awaitingConfirmationOrders, t } = this.props;
     const navBarItems = [
       {
         ShowWhenAuthenticated: true,
@@ -91,6 +90,11 @@ class PartnerNavBar extends React.Component {
       {
         ShowWhenAuthenticated: true,
         ShowWhenNonAuthenticated: false,
+        element: <Link to="/partner/products">{t("navbar.partner.products")}</Link>
+      },
+      {
+        ShowWhenAuthenticated: true,
+        ShowWhenNonAuthenticated: false,
         element: <Link to="/partner/promote">{t("navbar.partner.promote")}</Link>
       },
       {
@@ -102,11 +106,6 @@ class PartnerNavBar extends React.Component {
         ShowWhenAuthenticated: true,
         ShowWhenNonAuthenticated: false,
         element: <Link to="/partner/contract">{t("navbar.partner.contract")}</Link>
-      },
-      {
-        ShowWhenAuthenticated: true,
-        ShowWhenNonAuthenticated: false,
-        element: <Link to="/partner">{firstname}</Link>
       },
       {
         ShowWhenAuthenticated: true,
