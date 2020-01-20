@@ -5,6 +5,7 @@ class PartnerProduct < Product
   validates_presence_of :description, if: :active?
   validates_length_of :description, maximum: 100
   validates_presence_of :price, if: :active?
+  validates :link, url: { allow_blank: true }, if: :active?
 
   before_validation :strip_name
   before_validation :strip_description

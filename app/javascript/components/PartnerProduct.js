@@ -7,23 +7,29 @@ import { withTranslation } from "react-i18next";
 import images from "./../images";
 import TextInput from "./TextInput";
 import "react-toggle/style.css";
-import { fromCentsToDollars, fromDollarsToCents, dollarsWithDevise } from "./../lib/money";
+import {
+  fromCentsToDollars,
+  fromDollarsToCents,
+  dollarsWithDevise
+} from "./../lib/money";
 
 class PartnerProduct extends React.Component {
   constructor(props) {
     super(props);
     const { product } = this.props;
-    const { active, name, description, price, id } = product;
+    const { active, name, description, price, id, link } = product;
     this.state = {
       id,
       active,
       name: name || "",
       description: description || "",
+      link: link || "",
       price: ((price || price == 0) && fromCentsToDollars(price, false)) || "",
       errors: {
         name: [],
         description: [],
-        price: []
+        price: [],
+        link: []
       }
     };
   }
@@ -53,6 +59,14 @@ class PartnerProduct extends React.Component {
     }
   };
 
+  onLinkChange = e => {
+    const { value: link } = e.target;
+    this.setState(prevState => ({
+      link,
+      errors: { ...prevState.errors, link: [] }
+    }));
+  };
+
   onPriceChange = e => {
     const { value: price } = e.target;
     if (!isNaN(price)) {
@@ -66,28 +80,31 @@ class PartnerProduct extends React.Component {
   onSubmit = e => {
     e.preventDefault();
     const { t } = this.props;
-    const { active, name, description, price, id } = this.state;
+    const { active, name, description, price, id, link } = this.state;
     let priceInCents = fromDollarsToCents(price);
     priceInCents = priceInCents || priceInCents == 0 ? priceInCents : "";
     const partnerProduct = {
       active,
       name,
       description,
+      link,
       price: priceInCents
     };
     axios
       .patch(`/api/v1/partners/partner_products/${id}`, partnerProduct)
       .then(response => {
-        const { active, name, description, price } = response.data;
+        const { active, name, description, price, link } = response.data;
         this.setState(
           () => ({
             active,
-            name,
-            description,
+            name: name || "",
+            description: description || "",
+            link: link || "",
             price: fromCentsToDollars(price, false) || "",
             errors: {
               name: [],
-              price: []
+              price: [],
+              link: []
             }
           }),
           () => {
@@ -102,13 +119,14 @@ class PartnerProduct extends React.Component {
           position: toast.POSITION.BOTTOM_LEFT
         });
         const errors = JSON.parse(e.response.data.errors);
-        const { price, name, description } = errors;
+        const { price, name, description, link } = errors;
         this.setState(prevState => ({
           active: false,
           errors: {
             ...prevState.errors,
             price,
             name,
+            link,
             description
           }
         }));
@@ -117,17 +135,39 @@ class PartnerProduct extends React.Component {
 
   render() {
     const { t, readOnly = true } = this.props;
-    const { active, name, description, price, id, errors } = this.state;
+    const { active, name, description, price, id, errors, link } = this.state;
+    const Image = () => (
+      <img
+        src={images.partnerProductDefault}
+        className="fullwidth"
+        alt={t("partnerProduct.imageProductDefaultAlt")}
+      />
+    );
+
+    const Container = ({ children, className, ...props }) =>
+      link ? (
+        <a
+          href={link}
+          target="_blank"
+          className={`${className} text-decoration--none`}
+        >
+          {children}
+        </a>
+      ) : (
+        <div className={className} {...props}>
+          {children}
+        </div>
+      );
     return (
       <Fragment>
         {readOnly ? (
-          <div className="flex flex-direction--column justify-content--between fullheight">
-            <img
-              src={images.partnerProductDefault}
-              className="fullwidth"
-              alt={t("partnerProduct.imageProductDefaultAlt")}
-            />
-            <p className="px2 mt05 mb05 text-navy h4 word-wrap--break-word">
+          <Container className="flex flex-direction--column justify-content--between fullheight">
+            <Image />
+            <p
+              className={`${
+                link ? "text-decoration--underline" : ""
+              } px2 mt05 mb05 text-navy h4 word-wrap--break-word`}
+            >
               <strong>{name} </strong>
             </p>
             <p className="px2 mt05 mb05 text-navy word-wrap--break-word">
@@ -136,14 +176,10 @@ class PartnerProduct extends React.Component {
             <p className="px2 text-navy h4">
               <strong>{dollarsWithDevise(price)}</strong>
             </p>
-          </div>
+          </Container>
         ) : (
           <form onSubmit={this.onSubmit} className="form__input-container mb05">
-            <img
-              src={images.partnerProductDefault}
-              className="fullwidth"
-              alt={t("partnerProduct.imageProductDefaultAlt")}
-            />
+            <Image />
             <div className="mb05 px2">
               <TextInput
                 errors={errors.name}
@@ -160,6 +196,15 @@ class PartnerProduct extends React.Component {
                 onChange={this.onDescriptionChange}
                 label={t("partnerProduct.descriptionLabel")}
                 placeholder={t("partnerProduct.descriptionPlaceholder")}
+              />
+            </div>
+            <div className="mb05 px2">
+              <TextInput
+                errors={errors.link}
+                value={link}
+                onChange={this.onLinkChange}
+                label={t("partnerProduct.linkLabel")}
+                placeholder={t("partnerProduct.linkPlaceholder")}
               />
             </div>
             <div className="flex mb05 px2">

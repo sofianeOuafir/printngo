@@ -365,5 +365,7 @@
   "partnerProduct.unpublished": "Unpublished",
   "partnerProduct.priceLabel": "$",
   "partnerProduct.pricePlaceholder": "E.g. 19.99",
+  "partnerProduct.linkLabel": "Provide a link (Optional)",
+  "partnerProduct.linkPlaceholder": "http://yourwebsite.com",
   "partnerProduct.save": "Save"
 }

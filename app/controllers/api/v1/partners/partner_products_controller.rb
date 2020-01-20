@@ -17,6 +17,6 @@ class Api::V1::Partners::PartnerProductsController < ApplicationController
   private
 
   def partner_product_params
-    params.require(:partner_product).permit(:name, :description, :price, :active)
+    params.require(:partner_product).permit(:name, :description, :price, :active, :link)
   end
 end
