@@ -4,11 +4,15 @@ export function fromCentsToDollars(cents, withDevise = true) {
   if (cents || cents === 0) {
     const dollars = (cents / 100).toFixed(2);
     if (withDevise) {
-      return i18n.t("devise", { value: dollars });
+      return dollarsWithDevise(dollars);
     } else {
       return dollars;
     }
   }
+}
+
+export function dollarsWithDevise(value) {
+  return i18n.t("devise", { value });
 }
 
 export function fromDollarsToCents(dollars) {

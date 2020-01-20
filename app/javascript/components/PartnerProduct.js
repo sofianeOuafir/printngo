@@ -7,7 +7,7 @@ import { withTranslation } from "react-i18next";
 import images from "./../images";
 import TextInput from "./TextInput";
 import "react-toggle/style.css";
-import { fromCentsToDollars, fromDollarsToCents } from "./../lib/money";
+import { fromCentsToDollars, fromDollarsToCents, dollarsWithDevise } from "./../lib/money";
 
 class PartnerProduct extends React.Component {
   constructor(props) {
@@ -120,29 +120,31 @@ class PartnerProduct extends React.Component {
     const { active, name, description, price, id, errors } = this.state;
     return (
       <Fragment>
-        <img
-          src={images.partnerProductDefault}
-          className="fullwidth"
-          alt={t("partnerProduct.imageProductDefaultAlt")}
-        />
         {readOnly ? (
-          <div className="flex flex-direction--column border px2">
-            <p className="mt05 mb05 text-navy h4 word-wrap--break-word">
+          <div className="flex flex-direction--column justify-content--between fullheight">
+            <img
+              src={images.partnerProductDefault}
+              className="fullwidth"
+              alt={t("partnerProduct.imageProductDefaultAlt")}
+            />
+            <p className="px2 mt05 mb05 text-navy h4 word-wrap--break-word">
               <strong>{name} </strong>
             </p>
-            <p  className="mt05 mb05 text-navy word-wrap--break-word">
+            <p className="px2 mt05 mb05 text-navy word-wrap--break-word">
               {description}
             </p>
-            <p  className="text-navy h4">
-              <strong>{price}</strong>
+            <p className="px2 text-navy h4">
+              <strong>{dollarsWithDevise(price)}</strong>
             </p>
           </div>
         ) : (
-          <form
-            onSubmit={this.onSubmit}
-            className="form__input-container px2 mb05"
-          >
-            <div className="mb05">
+          <form onSubmit={this.onSubmit} className="form__input-container mb05">
+            <img
+              src={images.partnerProductDefault}
+              className="fullwidth"
+              alt={t("partnerProduct.imageProductDefaultAlt")}
+            />
+            <div className="mb05 px2">
               <TextInput
                 errors={errors.name}
                 value={name}
@@ -151,7 +153,7 @@ class PartnerProduct extends React.Component {
                 placeholder={t("partnerProduct.namePlaceholder")}
               />
             </div>
-            <div className="mb05">
+            <div className="mb05 px2">
               <TextInput
                 errors={errors.description}
                 value={description}
@@ -160,7 +162,7 @@ class PartnerProduct extends React.Component {
                 placeholder={t("partnerProduct.descriptionPlaceholder")}
               />
             </div>
-            <div className="flex mb05">
+            <div className="flex mb05 px2">
               <div className="flex halfwidth flex-direction--column">
                 <Toggle
                   className="mb05 block"
@@ -191,10 +193,11 @@ class PartnerProduct extends React.Component {
                 />
               </div>
             </div>
-
-            <button className="button button--leaf fullwidth px0">
-              {t("partnerProduct.save")}
-            </button>
+            <div className="px1">
+              <button className="button button--leaf fullwidth px0">
+                {t("partnerProduct.save")}
+              </button>
+            </div>
           </form>
         )}
       </Fragment>

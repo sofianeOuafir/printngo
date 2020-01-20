@@ -4,13 +4,14 @@ import PartnerProduct from "./PartnerProduct";
 
 const PartnerProductList = ({ products, readOnly = true }) => {
   return (
-    <div className="partner-product-list--container flex justify-content-around">
+    <div className="partner-product-list--container flex justify-content-around p1">
       {products.map((product, index) => (
         <div
           key={index}
-          className={`thirdwidth border border-color--grey ${
-            products.length == index + 1 ? "" : "mr1"
-          }`}
+          style={{
+            marginRight: `${products.length == index + 1 ? "" : "10px"}`
+          }}
+          className={`thirdwidth border border-color--grey`}
         >
           <PartnerProduct readOnly={readOnly} product={product} />
         </div>
