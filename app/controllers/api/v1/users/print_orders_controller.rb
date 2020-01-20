@@ -6,6 +6,6 @@ class Api::V1::Users::PrintOrdersController < ApplicationController
   end
 
   def show
-    render json: current_user.print_orders.find(params[:id]).to_json(include: [{ order_items: { include: [:document, :product] } }, :selected_partner, :user, :invoice])
+    render json: current_user.print_orders.find(params[:id]).to_json(include: [{ order_items: { include: [:document, :product] }, selected_partner: { include: :active_partner_products } }, :user, :invoice])
   end
 end

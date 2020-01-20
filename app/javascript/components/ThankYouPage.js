@@ -8,6 +8,7 @@ import images from "./../images";
 import { startSetClientOrder } from "./../actions/orders";
 import Loader from "./Loader";
 import Partner from "./Partner";
+import PartnerProductList from "./PartnerProductList";
 
 class ThankYouPage extends React.Component {
   constructor(props) {
@@ -29,6 +30,7 @@ class ThankYouPage extends React.Component {
       return <Loader />;
     } else {
       const { partner, clientOrder, t } = this.props;
+      const { active_partner_products } = partner;
       const { user, invoice, id, secret_code } = clientOrder;
       const { firstname } = user;
       const currentState = 4;
@@ -63,6 +65,14 @@ class ThankYouPage extends React.Component {
                 <Partner partner={partner} />
                 <p>{t("printOrderThankYouPage.doNotShare")}</p>
               </div>
+              {active_partner_products.length > 0 && (
+                <div className="p2 border border-color--grey mb2">
+                  <p className="text-navy m0 mb1">
+                    {t("printOrderThankYouPage.deals")}
+                  </p>
+                  <PartnerProductList products={active_partner_products} />
+                </div>
+              )}
               <div className="flex justify-content--between">
                 <Link
                   className="mt3 button button-outline--leaf"

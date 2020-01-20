@@ -1,6 +1,6 @@
 class Api::V1::PrintOrdersController < ApplicationController
   def show
-    render json: current_order.to_json(include: [{ print_order_items: { include: [:document, :product] } }, :selected_partner, :user, :invoice])
+    render json: current_order.to_json(include: [{ print_order_items: { include: [:document, :product] }, selected_partner: { include: :active_partner_products } }, :user, :invoice])
   end
 
   def update

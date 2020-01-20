@@ -138,6 +138,7 @@ fr:
               blank: "Veuillez renseigner un nom"
               too_long: "Le nom est trop long et ne peut contenir que %{count} charactères."
             description: 
+              blank: "Veuillez renseigner une description"
               too_long: "La description est trop longue et ne peut contenir que %{count} charactères."
             price: 
               blank: "Veuillez renseigner un prix"

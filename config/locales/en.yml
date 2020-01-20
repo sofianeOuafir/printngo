@@ -138,6 +138,7 @@ en:
               blank: "Please provide a name"
               too_long: "The name is too long and can only contain %{count} characters."
             description: 
+              blank: "Please provide a description"
               too_long: "The description is too long and can only contain %{count} characters."
             price: 
               blank: "Please provide a price"

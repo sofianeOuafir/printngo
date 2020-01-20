@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Toggle from "react-toggle";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -116,74 +116,88 @@ class PartnerProduct extends React.Component {
   };
 
   render() {
-    const { t } = this.props;
+    const { t, readOnly = true } = this.props;
     const { active, name, description, price, id, errors } = this.state;
     return (
-      <div className="border border-color--grey">
+      <Fragment>
         <img
           src={images.partnerProductDefault}
           className="fullwidth"
           alt={t("partnerProduct.imageProductDefaultAlt")}
         />
-        <form
-          onSubmit={this.onSubmit}
-          className="form__input-container px2 py1"
-        >
-          <div className="mb05">
-            <TextInput
-              errors={errors.name}
-              value={name}
-              onChange={this.onNameChange}
-              label={t("partnerProduct.nameLabel")}
-              placeholder={t("partnerProduct.namePlaceholder")}
-            />
+        {readOnly ? (
+          <div style={{ flexGrow: "1" }} className="flex flex-direction--column border px2">
+            <p className="mt05 mb05 text-navy h4 word-wrap--break-word">
+              <strong>{name} </strong>
+            </p>
+            <p  className="mt05 mb05 text-navy word-wrap--break-word">
+              {description}
+            </p>
+            <p  className="text-navy h4">
+              <strong>{price}</strong>
+            </p>
           </div>
-          <div className="mb05">
-            <TextInput
-              errors={errors.description}
-              value={description}
-              onChange={this.onDescriptionChange}
-              label={t("partnerProduct.descriptionLabel")}
-              placeholder={t("partnerProduct.descriptionPlaceholder")}
-            />
-          </div>
-          <div className="flex mb05">
-            <div className="flex halfwidth flex-direction--column">
-              <Toggle
-                className="mb05"
-                id={`${id}-partner-product-active`}
-                checked={active}
-                onChange={this.onActiveChange}
-              />
-              <label
-                className="text-navy"
-                htmlFor={`${id}-partner-product-active`}
-              >
-                {active
-                  ? t("partnerProduct.published")
-                  : t("partnerProduct.unpublished")}
-              </label>
-            </div>
-            <div className="halfwidth flex justify-content--end">
+        ) : (
+          <form
+            onSubmit={this.onSubmit}
+            className="form__input-container px2 mb05"
+          >
+            <div className="mb05">
               <TextInput
-                style={{ paddingRight: "0px", paddingLeft: "0px" }}
-                className="fullwidth"
-                labelDirection="row"
-                errors={errors.price}
-                onChange={this.onPriceChange}
-                value={price}
-                label={t("partnerProduct.priceLabel")}
-                labelClassName="h3 text-navy"
-                placeholder={t("partnerProduct.pricePlaceholder")}
+                errors={errors.name}
+                value={name}
+                onChange={this.onNameChange}
+                label={t("partnerProduct.nameLabel")}
+                placeholder={t("partnerProduct.namePlaceholder")}
               />
             </div>
-          </div>
+            <div className="mb05">
+              <TextInput
+                errors={errors.description}
+                value={description}
+                onChange={this.onDescriptionChange}
+                label={t("partnerProduct.descriptionLabel")}
+                placeholder={t("partnerProduct.descriptionPlaceholder")}
+              />
+            </div>
+            <div className="flex mb05">
+              <div className="flex halfwidth flex-direction--column">
+                <Toggle
+                  className="mb05"
+                  id={`${id}-partner-product-active`}
+                  checked={active}
+                  onChange={this.onActiveChange}
+                />
+                <label
+                  className="text-navy"
+                  htmlFor={`${id}-partner-product-active`}
+                >
+                  {active
+                    ? t("partnerProduct.published")
+                    : t("partnerProduct.unpublished")}
+                </label>
+              </div>
+              <div className="halfwidth flex justify-content--end">
+                <TextInput
+                  style={{ paddingRight: "0px", paddingLeft: "0px" }}
+                  className="fullwidth"
+                  labelDirection="row"
+                  errors={errors.price}
+                  onChange={this.onPriceChange}
+                  value={price}
+                  label={t("partnerProduct.priceLabel")}
+                  labelClassName="h3 text-navy"
+                  placeholder={t("partnerProduct.pricePlaceholder")}
+                />
+              </div>
+            </div>
 
-          <button className="button button--leaf fullwidth px0">
-            {t("partnerProduct.save")}
-          </button>
-        </form>
-      </div>
+            <button className="button button--leaf fullwidth px0">
+              {t("partnerProduct.save")}
+            </button>
+          </form>
+        )}
+      </Fragment>
     );
   }
 }

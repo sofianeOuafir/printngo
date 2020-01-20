@@ -2,13 +2,16 @@ class PartnerProduct < Product
   belongs_to :partner
   validates_presence_of :name, if: :active?
   validates_length_of :name, maximum: 50
-  validates_presence_of :price, if: :active?
+  validates_presence_of :description, if: :active?
   validates_length_of :description, maximum: 100
+  validates_presence_of :price, if: :active?
 
   before_validation :strip_name
   before_validation :strip_description
   before_save :capitalize_name
   before_save :capitalize_description
+
+  scope :active, -> { where(active: true) }
 
   private
 

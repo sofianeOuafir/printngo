@@ -3,7 +3,7 @@ import axios from "axios";
 
 import Loader from "./Loader";
 import PageBanner from "./PageBanner";
-import PartnerProduct from "./PartnerProduct";
+import PartnerProductList from "./PartnerProductList";
 
 class PartnerProductsPage extends React.Component {
   constructor(props) {
@@ -35,12 +35,8 @@ class PartnerProductsPage extends React.Component {
         {loadingData ? (
           <Loader />
         ) : (
-          <div className="flex justify-content--center border border-color--grey p1">
-            {products.map((product, index) => (
-              <div key={index} className="col-3 p1">
-                <PartnerProduct product={product} />
-              </div>
-            ))}
+          <div className="border border-color--grey">
+            <PartnerProductList readOnly={false} products={products} />
           </div>
         )}
       </div>

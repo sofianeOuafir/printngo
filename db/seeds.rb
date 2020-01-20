@@ -8,8 +8,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-PrintProduct.create(price: 25, code: 'printProduct1')
-PrintProduct.create(price: 50, code: 'printProduct2')
+PrintProduct.create(price: 30, code: 'printProduct1')
+PrintProduct.create(price: 60, code: 'printProduct2')
 TopUpProduct.create(price: 999,
                     code: 'topUpProduct1',
                     most_popular: false,

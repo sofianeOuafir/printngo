@@ -13,6 +13,7 @@ import Partner from "./Partner";
 import { Link } from "react-router-dom";
 import { PRINT_ORDER } from "./../constants/constants";
 import WalletElement from "./WalletElement";
+import PartnerProductList from "./PartnerProductList";
 
 class PaymentPage extends React.Component {
   constructor(props) {
@@ -35,6 +36,7 @@ class PaymentPage extends React.Component {
     } else {
       const { clientCurrentOrder, orderItems, t, currentLocale } = this.props;
       const { selected_partner } = clientCurrentOrder;
+      const { active_partner_products } = selected_partner;
       const currentState = 3;
       return (
         <OrderLayout
@@ -71,6 +73,12 @@ class PaymentPage extends React.Component {
                 order={clientCurrentOrder}
               />
             </div>
+            {active_partner_products.length > 0 && (
+              <div className="p2 border border-color--grey mb2">
+                <p className="text-navy m0 mb1">{t("paymentPage.deals")}</p>
+                <PartnerProductList products={active_partner_products} />
+              </div>
+            )}
             <div className="p2 border border-color--grey">
               <h2 className="h5 text-navy favourite-font-weight">
                 {t("paymentPage.payment")}

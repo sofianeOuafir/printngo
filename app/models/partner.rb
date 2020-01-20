@@ -12,6 +12,7 @@ class Partner < ApplicationRecord
   has_many :activations
   has_many :promotions
   has_many :partner_products
+  has_many :active_partner_products, -> { where(active: true) }, class_name: 'PartnerProduct'
   has_one_attached :contract
 
   validates_presence_of :phone_number
