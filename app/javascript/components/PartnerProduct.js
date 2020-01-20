@@ -6,7 +6,6 @@ import { withTranslation } from "react-i18next";
 
 import images from "./../images";
 import TextInput from "./TextInput";
-import "react-toggle/style.css";
 import {
   fromCentsToDollars,
   fromDollarsToCents,
