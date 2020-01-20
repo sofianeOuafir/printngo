@@ -103,6 +103,7 @@ class PartnerProduct extends React.Component {
             price: fromCentsToDollars(price, false) || "",
             errors: {
               name: [],
+              description: [],
               price: [],
               link: []
             }
