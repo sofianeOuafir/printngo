@@ -11,6 +11,8 @@ class Order < ApplicationRecord
   has_one :credit_payment, class_name: 'CreditPayment', foreign_key: 'order_id'
   has_one :invoice, through: :payment
 
+  after_save :persist_tax_amount_paid
+
   scope :paid, -> { where(paid: true) }
   scope :unpaid, -> { where(paid: false) }
 
@@ -39,11 +41,11 @@ class Order < ApplicationRecord
   end
 
   def tax_amount
-    sub_total * I18n.translate('tax_amount') / 100
+    tax_amount_paid.present? ? tax_amount_paid : sub_total * I18n.translate('tax_amount') / 100
   end
 
   def total
-    sub_total * (100 + I18n.translate('tax_amount')) / 100
+    sub_total + tax_amount
   end
 
   def total_paid
@@ -76,5 +78,13 @@ class Order < ApplicationRecord
     h[:total_due] = total_due
     h[:print_order] = print_order?
     h
+  end
+
+  private
+
+  def persist_tax_amount_paid
+    return unless saved_changes[:paid].present? && paid?
+
+    update_columns(tax_amount_paid: tax_amount)
   end
 end

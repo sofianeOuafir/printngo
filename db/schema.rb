@@ -152,6 +152,7 @@ ActiveRecord::Schema.define(version: 2020_01_20_182309) do
     t.bigint "selected_partner_id"
     t.bigint "printer_id"
     t.string "type"
+    t.integer "tax_amount_paid"
     t.index ["printer_id"], name: "index_orders_on_printer_id"
     t.index ["secret_code"], name: "index_orders_on_secret_code", unique: true
     t.index ["selected_partner_id"], name: "index_orders_on_selected_partner_id"
