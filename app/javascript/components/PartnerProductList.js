@@ -8,10 +8,9 @@ const PartnerProductList = ({ products, readOnly = true }) => {
       {products.map((product, index) => (
         <div
           key={index}
-          style={{ marginRight: `${
-            products.length == index + 1 ? "" : "5px"
-          }` }}
-          className={`thirdwidth border border-color--grey`}
+          className={`thirdwidth border border-color--grey ${
+            products.length == index + 1 ? "" : "mr1"
+          }`}
         >
           <PartnerProduct readOnly={readOnly} product={product} />
         </div>

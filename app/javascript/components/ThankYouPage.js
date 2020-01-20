@@ -45,7 +45,7 @@ class ThankYouPage extends React.Component {
             text: t("printOrderThankYouPage.nextButton")
           }}
         >
-          <div className="mx1 content-container border border-color--grey h5 flex justify-content--center">
+          <div className="mx1 content-container border border-color--grey h5">
             <div className="my2">
               <div className="center">
                 <img src={images.success} alt="Success Icon" width={80} />

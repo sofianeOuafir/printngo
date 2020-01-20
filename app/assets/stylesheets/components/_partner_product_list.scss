@@ -4,7 +4,7 @@
 .partner-product-list--container {
   @media(max-width: $tablet-breakpoint) {
     flex-direction: column;
-    div {
+    > div {
       width: 100%;
       margin-bottom: $s-size;
       margin-right: 0px;

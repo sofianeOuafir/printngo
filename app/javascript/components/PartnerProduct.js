@@ -126,7 +126,7 @@ class PartnerProduct extends React.Component {
           alt={t("partnerProduct.imageProductDefaultAlt")}
         />
         {readOnly ? (
-          <div style={{ flexGrow: "1" }} className="flex flex-direction--column border px2">
+          <div className="flex flex-direction--column border px2">
             <p className="mt05 mb05 text-navy h4 word-wrap--break-word">
               <strong>{name} </strong>
             </p>
@@ -163,7 +163,7 @@ class PartnerProduct extends React.Component {
             <div className="flex mb05">
               <div className="flex halfwidth flex-direction--column">
                 <Toggle
-                  className="mb05"
+                  className="mb05 block"
                   id={`${id}-partner-product-active`}
                   checked={active}
                   onChange={this.onActiveChange}
